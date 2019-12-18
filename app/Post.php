@@ -9,7 +9,7 @@ class Post extends Model
   protected $dates = [
     'post_drafted',
     'post_published',
-    'post_modified'
+    'post_modified',
   ];
 
   protected $fillable = [
@@ -23,7 +23,4 @@ class Post extends Model
     'post_name',
   ];
 
-  public static $rules = [
-    'post_title' => 'required'
-  ];
 }

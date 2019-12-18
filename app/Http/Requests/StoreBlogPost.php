@@ -24,14 +24,26 @@ class StoreBlogPost extends FormRequest
     public function rules()
     {
       return [
-        'post_title' => ['required'],
+        'post_title' => ['required', 'max:100'],
+        'post_excerpt' => ['max:200'],
+        'post_name' => ['regex:/[a-z0-9_-]+/', 'max:30'],
+      ];
+    }
+
+    public function attributes()
+    {
+      return [
+        'post_title' => '記事のタイトル',
+        'post_content' => '記事の本文',
+        'post_excerpt' => '要約文',
+        'post_name' => '投稿スラッグ',
       ];
     }
 
     public function messages()
     {
       return [
-        'post_title.required' => '記事タイトルを入力して下さい。',
+        'post_name.regex' => '投稿スラッグで使えるのは「数字、英字(小文字)、-（ハイフン）、_（アンダーバー）」のみです。',
       ];
     }
 
