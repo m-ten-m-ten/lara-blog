@@ -9,9 +9,6 @@
 
   <title>{{ config('app.name', 'Laravel') }}</title>
 
-  <!-- Scripts -->
-  <script src="{{ asset('js/app.js') }}" defer></script>
-
   <!-- Fonts -->
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -30,7 +27,7 @@
         @guest
           <a class="block text-white text-xl" href="{{ route('login') }}">{{ __('Login') }}</a>
           @if (Route::has('register'))
-            <a class="" href="{{ route('register') }}">{{ __('Register') }}</a>    
+            <a class="" href="{{ route('register') }}">{{ __('Register') }}</a>
           @endif
         @else
           <div>
@@ -110,11 +107,12 @@
       </div>
     </div>
   </nav> --}}
+
     <div class="pb-16">
       @yield('content')
     </div>
-    <footer class="absolute bottom-0 h-16 flex justify-center items-center bg-blue-900 w-full ">      
-      <p class="text-white text-center">Copyright(c) 2019, {{ config('app.name') }}. All Right Reserved.</p>      
+    <footer class="absolute bottom-0 h-16 flex justify-center items-center bg-blue-900 w-full ">
+      <p class="text-white text-center">Copyright(c) 2019, {{ config('app.name') }}. All Right Reserved.</p>
     </footer>
   </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

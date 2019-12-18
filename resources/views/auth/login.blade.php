@@ -7,7 +7,7 @@
 
       @csrf
 
-      @include('common.email')   
+      @include('common.email')
 
       @include('common.password')
 
@@ -17,7 +17,7 @@
       </label>
 
       <div class="py-4 flex justify-between items-center">
-        
+
         @include('common.submit-btn', ['text' => __('Login')])
 
         @if (Route::has('password.request'))
@@ -25,7 +25,7 @@
             {{ __('Forgot Your Password?') }}
           </a>
         @endif
-        
+
       </div>
     </form>
   </div>

@@ -6,16 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\post;
-
+use App\Http\Requests\StoreBlogPost;
 
 class PostController extends Controller
 {
 
-  public function __construct()
-    {
-        $this->middleware('auth');
-    }
-  
   public function index()
   {
     $data = [
@@ -29,9 +24,7 @@ class PostController extends Controller
     return view('dashboard.post.create');
   }
 
-  public function store(Request $req)
-  {
-    $this->validate($req, Post::$rules);
+  public function store( StoreBlogPost $req ){
     $p = new Post();
     switch ($req->submit_btn) {
       case 'draft_btn':
@@ -41,13 +34,12 @@ class PostController extends Controller
       case 'publish_btn':
         $p->post_published = Carbon::now();
         $p->post_status = 'published';
-        break;      
+        break;
       default:
         # code...
         break;
     }
     $p->fill($req->except('_token'))->save();
-    $p = Post::orderBy('id', 'desc')->first();
     return redirect('dashboard/post/'.$p->id.'/edit');
   }
 
@@ -58,9 +50,7 @@ class PostController extends Controller
     ]);
   }
 
-  public function update(Request $req, $id)
-  {
-    $this->validate($req, Post::$rules);
+  public function update( StoreBlogPost $req, $id ){
     $p = Post::find($id);
     switch ($req->submit_btn) {
       case 'draft_btn':
@@ -80,18 +70,18 @@ class PostController extends Controller
         break;
       }
     $p->fill($req->except('_token', '_method'))->save();
-    return redirect('dashboard/post/'.$id.'/edit');  
+    return redirect('dashboard/post/'.$id.'/edit');
   }
 
   public function delete(Request $req)
   {
     if($req->checked_posts) {
       Post::destroy($req->checked_id);
-    } else {          
+    } else {
       $p = Post::findOrFail($req->delete_id);
       $p->delete();
     }
-    return redirect('dashboard/post/index');
+    return redirect('dashboard/post');
   }
 
 }

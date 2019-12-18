@@ -11,7 +11,7 @@
     <div class="py-2">
       <div class="inline-block relative">
         <select class="block appearance-none px-2 py-2 border w-32">
-          <option>一括削除</option>          
+          <option>一括削除</option>
         </select>
         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
           <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -38,7 +38,7 @@
           <td class="px-4 py-4">
             {!! $p->post_published ? '公開日時：'.$p->post_published->format('Y/m/d h:i').'<br>' : '' !!}
             {!! $p->post_modified ? '更新日時：'.$p->post_modified->format('Y/m/d h:i').'<br>' : '' !!}
-            {{ $p->post_status == 'drafted' ? '下書き保存日時：'.$p->post_drafted->format('Y/m/d h:i') : '' }}        
+            {{ $p->post_status == 'drafted' ? '下書き保存日時：'.$p->post_drafted->format('Y/m/d h:i') : '' }}
           </td>
           <td class="px-4 py-4">
             <a class="text-blue-700 underline" href="/dashboard/post/{{ $p->id }}/edit">編集</a>
@@ -47,7 +47,7 @@
           </td>
         </tr>
         @endforeach
-      </tbody>  
+      </tbody>
     </table>
     <div class="flex justify-center pt-2 pb-10">
       {{ $posts->links() }}

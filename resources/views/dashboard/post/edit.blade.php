@@ -8,7 +8,7 @@
   <div class="flex justify-between items-center border-b">
     <div class="flex items-center">
     <h1 class="text-2xl font-bold py-4 mr-2">投稿編集</h1>
-    <a href="/dashboard/post/index" class="text-blue-700 font-bold focus:outline-none py-2 px-4 mr-2 border border-blue-700 rounded" >投稿一覧へ</a>
+    <a href="/dashboard/post" class="text-blue-700 font-bold focus:outline-none py-2 px-4 mr-2 border border-blue-700 rounded" >投稿一覧へ</a>
     </div>
 
     <div class="flex items-center">
@@ -26,31 +26,25 @@
   </div>
 
   <div class="flex flex-wrap">
-    {{-- メイン --}}    
+    {{-- メイン --}}
     <div class="main w-full md:w-3/4 md:pr-4 pt-4">
-      <div class="py2">
-        @if (count($errors) > 0)
-          <ul>
-            @foreach ($errors->all() as $err)
-              <li class="text-red-500">{{ $err }}</li>      
-            @endforeach
-          </ul>
-      @endif
-      </div>
-      <div class="py-2 mb-1">     
+
+      @include('common.error-list')
+
+      <div class="py-2 mb-1">
         <lavel for="post_title" class="text-lg font-bold">タイトル</lavel>
-        <input name="post_title" class="px-2 py-2 border rounded w-full text-xl" type="text" 
+        <input name="post_title" class="px-2 py-2 border rounded w-full text-xl" type="text"
         value="{{ old('post_title', $p->post_title) }}">
       </div>
-      <div class="py-2 mb-1">        
+      <div class="py-2 mb-1">
         <lavel for="post_content" class="text-lg font-bold">本文</lavel>
         <textarea name="post_content" class="px-2 py-2 border rounded w-full" type="text" rows="20">{{ old('post_content', $p->post_content) }}</textarea>
       </div>
     </div>
-  
+
     {{-- サイドバー --}}
     <div class="sidebar w-full md:w-1/4 md:pl-4 md:pt-4 md:border-l">
-      
+
       {{-- ステータス --}}
       <div class="py-2 mb-1">
         <h2 class="border-b-2 border-blue-500 text-lg font-bold mb-2">日付</h2>

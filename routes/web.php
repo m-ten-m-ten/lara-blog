@@ -15,16 +15,29 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+// Auth::routes();
 
-Route::prefix('dashboard/post')->group(function() {
-  Route::get('index', 'Dashboard\PostController@index');
-  Route::get('create', 'Dashboard\PostController@create');
-  Route::POST('store', 'Dashboard\PostController@store');
-  Route::get('{id}/edit', 'Dashboard\PostController@edit');
-  Route::patch('{id}', 'Dashboard\PostController@update');
-  Route::delete('delete', 'Dashboard\PostController@delete');
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
+Route::prefix('password')->group(function() {
+  Route::get('reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+  Route::post('email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+  Route::get('reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+  Route::post('reset', 'Auth\ResetPasswordController@reset')->name('password.update');
+  Route::get('confirm', 'Auth\ConfirmPasswordController@showConfirmForm')->name('password.confirm');
+  Route::post('confirm', 'Auth\ConfirmPasswordController@confirm');
 });
 
 
-
+Route::group(['middleware' => ['auth']], function() {
+  Route::prefix('dashboard/post')->group(function() {
+    Route::get('', 'Dashboard\PostController@index');
+    Route::get('create', 'Dashboard\PostController@create');
+    Route::post('store', 'Dashboard\PostController@store');
+    Route::get('{id}/edit', 'Dashboard\PostController@edit');
+    Route::patch('{id}', 'Dashboard\PostController@update');
+    Route::delete('delete', 'Dashboard\PostController@delete');
+  });
+});
