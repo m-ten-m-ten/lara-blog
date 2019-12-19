@@ -11410,6 +11410,59 @@ html {
   font-size: 15px;
 }
 
+.header_nav_toggle {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  width: 45px;
+  height: 45px;
+  background-color: #000;
+  border-radius: 23px;
+  cursor: pointer;
+}
+
+.header_nav_toggle .header_nav_toggle_bar, .header_nav_toggle::before, .header_nav_toggle::after {
+  -webkit-transition-duration: 250ms;
+          transition-duration: 250ms;
+  -webkit-transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+          transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  -webkit-transition-property: all;
+  transition-property: all;
+  display: block;
+  position: absolute;
+  top: 21px;
+  left: 11px;
+  width: 23px;
+  height: 3px;
+  background-color: #fff;
+}
+
+.header_nav_toggle::before {
+  -webkit-transform: translate(0, 9px);
+          transform: translate(0, 9px);
+  content: "";
+}
+
+.header_nav_toggle::after {
+  -webkit-transform: translate(0, -9px);
+          transform: translate(0, -9px);
+  content: "";
+}
+
+.header_nav_toggle.is-active .header_nav_toggle_bar {
+  opacity: 0;
+}
+
+.header_nav_toggle.is-active::before {
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+.header_nav_toggle.is-active::after {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
 @media (min-width: 640px){
   .sm\:sr-only{
     position: absolute;

@@ -1,13 +1,3 @@
-// index 削除時のアラート
-function delete_alert(e){
-   if(!window.confirm('本当に削除しますか？')){
-      window.alert('キャンセルされました');
-      return false;
-   }
-   document.deleteform.submit();
-};
-
-
 $(function() {
 
 // index 全選択
@@ -27,18 +17,21 @@ $(function() {
   });
 
 // nav トグルメニュー
-  var $navigation = $('.dropdown-menu ul');
-  var $navigationToggle = $('.dropdown-toggle');
+  var $navigation = $('.dropdown_menu');
+  var $navigationToggle = $('.dropdown_toggle');
 
   $navigationToggle.click(function() {
 
     if($navigation.hasClass('open')) {
       $navigation.slideUp();
       $navigation.removeClass('open');
+      $navigationClose.removeClass('is-active');
+      $(this).removeClass('is-active');
     } else {
       $navigation.slideDown();
       $navigation.addClass('open');
+      $navigationClose.addClass('is-active');
+      $(this).addClass('is-active');
     }
   });
-
 });

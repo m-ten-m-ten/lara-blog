@@ -11,66 +11,61 @@ use App\Http\Requests\StoreBlogPost;
 class PostController extends Controller
 {
 
-  public function index()
-  {
+  public function show(){
     $data = [
       'posts' => Post::paginate(10)
     ];
     return view('dashboard.post.index', $data);
   }
 
-  public function create()
-  {
+  public function create(){
     return view('dashboard.post.create');
   }
 
   public function store( StoreBlogPost $req ){
-    $p = new Post();
+    $post = new Post();
     switch ($req->submit_btn) {
       case 'draft_btn':
-        $p->post_drafted = Carbon::now();
-        $p->post_status = 'drafted';
+        $post->post_drafted = Carbon::now();
+        $post->post_status = 'drafted';
         break;
       case 'publish_btn':
-        $p->post_published = Carbon::now();
-        $p->post_status = 'published';
+        $post->post_published = Carbon::now();
+        $post->post_status = 'published';
         break;
       default:
         # code...
         break;
     }
-    $p->fill($req->except('_token'))->save();
-    return redirect('dashboard/post/'.$p->id.'/edit');
+    $post->fill($req->except('_token'))->save();
+    return redirect('dashboard/post/'.$post->id.'/edit');
   }
 
-  public function edit($id)
+  public function edit( Post $post )
   {
-   return view('dashboard/post/edit', [
-      'p' => Post::findOrFail($id)
-    ]);
+   return view('dashboard/post/edit', compact('post'));
   }
 
-  public function update( StoreBlogPost $req, $id ){
-    $p = Post::find($id);
+  public function update( StoreBlogPost $req, Post $post ){
     switch ($req->submit_btn) {
       case 'draft_btn':
-        $p->post_drafted = Carbon::now();
-        $p->post_status = 'drafted';
+        $post->post_drafted = Carbon::now();
+        $post->post_status = 'drafted';
         break;
       case 'publish_btn':
-        $p->post_published = Carbon::now();
-        $p->post_status = 'published';
+        $post->post_published = Carbon::now();
+        $post->post_status = 'published';
         break;
       case 'modify_btn':
-        $p->post_modified = Carbon::now();
-        $p->post_status = 'published';
+        $post->post_modified = Carbon::now();
+        $post->post_status = 'published';
         break;
       default:
         # code...
         break;
       }
-    $p->fill($req->except('_token', '_method'))->save();
-    return redirect('dashboard/post/'.$id.'/edit');
+    $post->fill($req->except('_token', '_method'))->save();
+    return view('dashboard/post/edit', compact('post'));
   }
 
   public function delete(Request $req)
@@ -78,8 +73,8 @@ class PostController extends Controller
     if($req->checked_posts) {
       Post::destroy($req->checked_id);
     } else {
-      $p = Post::findOrFail($req->delete_id);
-      $p->delete();
+      $post = Post::findOrFail($req->delete_id);
+      $post->delete();
     }
     return redirect('dashboard/post');
   }

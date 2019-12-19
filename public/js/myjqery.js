@@ -86,25 +86,46 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/assets/js/app.js":
-/*!************************************!*\
-  !*** ./resources/assets/js/app.js ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(/*! ./sample */ "./resources/assets/js/sample.js");
-
-/***/ }),
-
-/***/ "./resources/assets/js/sample.js":
-/*!***************************************!*\
-  !*** ./resources/assets/js/sample.js ***!
-  \***************************************/
+/***/ "./resources/js/myjqery.js":
+/*!*********************************!*\
+  !*** ./resources/js/myjqery.js ***!
+  \*********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-alert('CAUTION!!');
+$(function () {
+  // index 全選択
+  // 1. 「全選択」する
+  $('#all').on('click', function () {
+    $("input[name='checked_id[]']").prop('checked', this.checked);
+  }); // 2. 「全選択」以外のチェックボックスがクリックされたら、
+
+  $("input[name='checked_id[]']").on('click', function () {
+    if ($('#boxes :checked').length == $('#boxes :input').length) {
+      // 全てのチェックボックスにチェックが入っていたら、「全選択」 = checked
+      $('#all').prop('checked', true);
+    } else {
+      // 1つでもチェックが入っていたら、「全選択」 = checked
+      $('#all').prop('checked', false);
+    }
+  }); // nav トグルメニュー
+
+  var $navigation = $('.dropdown_menu');
+  var $navigationToggle = $('.dropdown_toggle');
+  $navigationToggle.click(function () {
+    if ($navigation.hasClass('open')) {
+      $navigation.slideUp();
+      $navigation.removeClass('open');
+      $navigationClose.removeClass('is-active');
+      $(this).removeClass('is-active');
+    } else {
+      $navigation.slideDown();
+      $navigation.addClass('open');
+      $navigationClose.addClass('is-active');
+      $(this).addClass('is-active');
+    }
+  });
+});
 
 /***/ }),
 
@@ -120,13 +141,13 @@ alert('CAUTION!!');
 /***/ }),
 
 /***/ 0:
-/*!********************************************************************!*\
-  !*** multi ./resources/assets/js/app.js ./resources/sass/app.scss ***!
-  \********************************************************************/
+/*!*****************************************************************!*\
+  !*** multi ./resources/js/myjqery.js ./resources/sass/app.scss ***!
+  \*****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/matsuotenmei/program/Laravel/lara-blog/resources/assets/js/app.js */"./resources/assets/js/app.js");
+__webpack_require__(/*! /Users/matsuotenmei/program/Laravel/lara-blog/resources/js/myjqery.js */"./resources/js/myjqery.js");
 module.exports = __webpack_require__(/*! /Users/matsuotenmei/program/Laravel/lara-blog/resources/sass/app.scss */"./resources/sass/app.scss");
 
 

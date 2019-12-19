@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('dashboard.layouts.base')
 @section('content')
 <div class="max-w-5xl mx-auto px-4">
   <div class="flex items-center">
@@ -22,36 +22,36 @@
     <table class="table-auto w-full border mb-4">
       <tr>
         <th class="font-normal text-left border-b px-4 py-2"><input type="checkbox" id="all"></th>
-        <th class="font-normal text-left border-b px-4 py-2">タイトル</th>
-        <th class="font-normal text-left border-b px-4 py-2">カテゴリー</th>
-        <th class="font-normal text-left border-b px-4 py-2">タグ</th>
+        <th class="font-normal text-left border-b px-4 py-2 md:w-1/3 w-1/2">タイトル</th>
+        <th class="font-normal text-left border-b px-4 py-2 hidden md:table-cell">カテゴリー</th>
+        <th class="font-normal text-left border-b px-4 py-2 hidden md:table-cell">タグ</th>
         <th class="font-normal text-left border-b px-4 py-2">日付</th>
-        <th class="font-normal text-left border-b px-4 py-2"></th>
+        <th class="font-normal text-left border-b px-4 py-2 md:w-32 w-16"></th>
       </tr>
       <tbody id="boxes">
-        @foreach ($posts as $id => $p)
+        @foreach ($posts as $id => $post)
         <tr class="{{ $loop->odd ? 'bg-gray-100' : ''}}">
-          <td class="px-4 py-4"><input type="checkbox" name="checked_id[]" value="{{ $p->id }}"></td>
-          <td class="px-4 py-4"><a class="text-blue-700 font-bold" href="/dashboard/post/{{ $p->id }}/edit">{{ $p->post_title }}</a>{{ $p->post_status == 'drafted' ? ' - 下書き' : ''}}</td>
-          <td class="px-4 py-4">-</td>
-          <td class="px-4 py-4">-</td>
+          <td class="px-4 py-4"><input type="checkbox" name="checked_id[]" value="{{ $post->id }}"></td>
+          <td class="px-4 py-4"><a class="text-blue-700 font-bold" href="/dashboard/post/{{ $post }}/edit">{{ $post->post_title }}</a>{{ $post->post_status == 'drafted' ? ' - 下書き' : ''}}</td>
+          <td class="px-4 py-4 hidden md:table-cell">-</td>
+          <td class="px-4 py-4 hidden md:table-cell">-</td>
           <td class="px-4 py-4">
-            {!! $p->post_published ? '公開日時：'.$p->post_published->format('Y/m/d h:i').'<br>' : '' !!}
-            {!! $p->post_modified ? '更新日時：'.$p->post_modified->format('Y/m/d h:i').'<br>' : '' !!}
-            {{ $p->post_status == 'drafted' ? '下書き保存日時：'.$p->post_drafted->format('Y/m/d h:i') : '' }}
+            {!! $post->post_published ? '公開日時：'.$post->post_published->format('Y/m/d h:i').'<br>' : '' !!}
+            {!! $post->post_modified ? '更新日時：'.$post->post_modified->format('Y/m/d h:i').'<br>' : '' !!}
+            {{ $post->post_status == 'drafted' ? '下書き：'.$post->post_drafted->format('Y/m/d h:i') : '' }}
           </td>
           <td class="px-4 py-4">
-            <a class="text-blue-700 underline" href="/dashboard/post/{{ $p->id }}/edit">編集</a>
-            |
-            <button class="text-blue-700 underline appearance-none " type="submit" name="delete_id" value="{{$p->id}}" onClick="delete_alert(event);return false;">削除</button>
+            <a class="text-blue-700 underline" href="/dashboard/post/{{ $post }}/edit">編集</a>
+            <span class="md:inline hidden">|</span>
+            <button class="text-blue-700 underline appearance-none " type="submit" name="delete_id" value="{{$post->id}}" onClick="delete_alert(event);return false;">削除</button>
           </td>
         </tr>
         @endforeach
       </tbody>
     </table>
+    </form>
     <div class="flex justify-center pt-2 pb-10">
       {{ $posts->links() }}
     </div>
-  </form>
 </div>
 @endsection

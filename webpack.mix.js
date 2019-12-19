@@ -11,7 +11,8 @@ const tailwindcss = require('tailwindcss');
  |
  */
 
-mix.js('resources/js/myscript.js', 'public/js/myscript.js')
+mix.js('resources/js/myjqery.js', 'public/js/myjqery.js')
+    .scripts('resources/js/mypure.js', 'public/js/mypure.js')
     .sass('resources/sass/app.scss', 'public/css')
     .options({
         processCssUrls: false,

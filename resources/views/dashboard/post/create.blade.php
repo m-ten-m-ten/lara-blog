@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('dashboard.layouts.base')
 
 @section('content')
 <div class="max-w-5xl mx-auto px-4">
@@ -19,7 +19,7 @@
     <div class="flex flex-wrap">
       {{-- メイン --}}
       <div class="main w-full md:w-3/4 md:pr-4 pt-4">
-        @include('common.error-list')
+        @include('dashboard.common.error-list')
         <div class="py-2">
           <lavel for="post_title" class="text-lg font-bold">タイトル</lavel>
           <input name="post_title" class="px-2 py-2 border rounded w-full text-xl" type="text" value="{{ old('post_title') }}">

@@ -11,16 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// フロント
+Route::get('/', 'HomeController@show');
 
 // Auth::routes();
 
+// Auth:登録機能以外のルート
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
-
 Route::prefix('password')->group(function() {
   Route::get('reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
   Route::post('email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
@@ -30,14 +29,14 @@ Route::prefix('password')->group(function() {
   Route::post('confirm', 'Auth\ConfirmPasswordController@confirm');
 });
 
-
+// Dashboard
 Route::group(['middleware' => ['auth']], function() {
   Route::prefix('dashboard/post')->group(function() {
-    Route::get('', 'Dashboard\PostController@index');
+    Route::get('', 'Dashboard\PostController@show');
     Route::get('create', 'Dashboard\PostController@create');
     Route::post('store', 'Dashboard\PostController@store');
-    Route::get('{id}/edit', 'Dashboard\PostController@edit');
-    Route::patch('{id}', 'Dashboard\PostController@update');
+    Route::get('{post}/edit', 'Dashboard\PostController@edit');
+    Route::patch('{post}', 'Dashboard\PostController@update');
     Route::delete('delete', 'Dashboard\PostController@delete');
   });
 });
