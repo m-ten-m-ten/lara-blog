@@ -11,9 +11,9 @@ use App\Http\Requests\StoreBlogPost;
 class PostController extends Controller
 {
 
-  public function show(){
+  public function index(){
     $data = [
-      'posts' => Post::paginate(10)
+      'posts' => Post::orderBy('created_at', 'desc')->paginate(10)
     ];
     return view('dashboard.post.index', $data);
   }

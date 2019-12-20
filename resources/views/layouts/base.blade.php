@@ -5,9 +5,9 @@
 <body class="h-full">
 
   <div class="relative min-h-full">
-    @include('common.nav')
+    @include('common.header')
 
-    <div class="pb-16">
+    <div class="mt-6 pb-16 px-4 max-w-5xl mx-auto">
       @yield('content')
     </div>
 

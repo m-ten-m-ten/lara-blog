@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="max-w-5xl mx-auto px-4">
-<form method="POST" action="/dashboard/post/{{ $post }}">
+<form method="POST" action="/dashboard/post/{{ $post->id }}">
   @csrf
   @method('PATCH')
   <div class="flex justify-between items-center border-b">

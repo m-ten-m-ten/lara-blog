@@ -12,7 +12,8 @@
 */
 
 // フロント
-Route::get('/', 'HomeController@show');
+Route::get('/', 'HomeController@index');
+Route::get('{post}', 'HomeController@show');
 
 // Auth::routes();
 
@@ -32,7 +33,7 @@ Route::prefix('password')->group(function() {
 // Dashboard
 Route::group(['middleware' => ['auth']], function() {
   Route::prefix('dashboard/post')->group(function() {
-    Route::get('', 'Dashboard\PostController@show');
+    Route::get('', 'Dashboard\PostController@index');
     Route::get('create', 'Dashboard\PostController@create');
     Route::post('store', 'Dashboard\PostController@store');
     Route::get('{post}/edit', 'Dashboard\PostController@edit');
