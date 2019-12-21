@@ -11,10 +11,6 @@
 |
 */
 
-// フロント
-Route::get('/', 'HomeController@index');
-Route::get('{post}', 'HomeController@show');
-
 // Auth::routes();
 
 // Auth:登録機能以外のルート
@@ -36,8 +32,20 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('', 'Dashboard\PostController@index');
     Route::get('create', 'Dashboard\PostController@create');
     Route::post('store', 'Dashboard\PostController@store');
+    Route::delete('delete', 'Dashboard\PostController@delete');
     Route::get('{post}/edit', 'Dashboard\PostController@edit');
     Route::patch('{post}', 'Dashboard\PostController@update');
-    Route::delete('delete', 'Dashboard\PostController@delete');
+  });
+  Route::prefix('dashboard/image')->group(function() {
+    Route::get('', 'Dashboard\ImageController@index');
+    Route::get('create', 'Dashboard\ImageController@create');
+    Route::post('store', 'Dashboard\ImageController@store');
+    Route::delete('delete', 'Dashboard\ImageController@delete');
+    Route::get('{image}/edit', 'Dashboard\ImageController@edit');
+    Route::patch('{image}', 'Dashboard\ImageController@update');
   });
 });
+
+// フロント
+Route::get('/', 'HomeController@index');
+Route::get('{post}', 'HomeController@show');

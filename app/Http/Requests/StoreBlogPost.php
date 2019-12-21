@@ -21,8 +21,7 @@ class StoreBlogPost extends FormRequest
      *
      * @return array
      */
-    public function rules()
-    {
+    public function rules(){
       return [
         'post_title' => ['required', 'max:100'],
         'post_excerpt' => ['max:200'],
@@ -30,8 +29,7 @@ class StoreBlogPost extends FormRequest
       ];
     }
 
-    public function attributes()
-    {
+    public function attributes(){
       return [
         'post_title' => '記事のタイトル',
         'post_content' => '記事の本文',
@@ -40,11 +38,10 @@ class StoreBlogPost extends FormRequest
       ];
     }
 
-    public function messages()
-    {
+    public function messages(){
       return [
-        'post_name.regex' => '投稿スラッグで使えるのは「数字、英字(小文字)、-（ハイフン）、_（アンダーバー）」のみです。',
+        'post_name.regex' => '投稿スラッグは「数字、英字(小文字)、-（ハイフン）、_（アンダーバー）」で入力して下さい。',
       ];
     }
 
-}
+  }
