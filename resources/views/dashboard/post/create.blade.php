@@ -19,8 +19,6 @@
     <div class="flex flex-wrap">
       {{-- メイン --}}
 
-      @include('common.upload')
-
       <div class="main w-full md:w-3/4 md:pr-4 pt-4">
         @include('dashboard.common.error-list')
         <div class="py-2">

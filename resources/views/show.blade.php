@@ -15,6 +15,6 @@
 </div>
 
 <div class="post-content py-2">
-  {{ $post->post_content }}
+  {!! $post->post_content !!}
 </div>
 @endsection

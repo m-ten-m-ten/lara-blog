@@ -23,20 +23,20 @@
       <tr>
         <th class="font-normal text-left border-b px-4 py-2"><input type="checkbox" id="all"></th>
         <th class="font-normal text-left border-b px-4 py-2">画像</th>
-        <th class="font-normal text-left border-b px-4 py-2">URL</th>
-        <th class="font-normal text-left border-b px-4 py-2">登録日</th>
+        <th class="font-normal text-left border-b px-4 py-2">ファイル名</th>
+        <th class="font-normal text-left border-b px-4 py-2 md:w-32 w-16">登録日</th>
       </tr>
       <tbody id="boxes">
         @foreach ($images as $id => $image)
         <tr class="{{ $loop->odd ? 'bg-gray-100' : ''}}">
           <td class="px-4 py-4"><input type="checkbox" name="checked_id[]" value="{{ $image->id }}"></td>
-          <td class="px-4 py-4"><img src="http://placehold.jp/0x50.png" alt=""></td>
-          <td class="px-4 py-4"><a class="text-blue-700 font-bold" href="/dashboard/image/{{ $image->id }}/edit">{{ $image->image_name }}</a></td>
-          <td class="px-4 py-4">公開日時：{{ $image->created_at->format('Y/m/d h:i') }}</td>
+          <td class="px-4 py-4"><img src="/img/{{$image->image_name}}.{{$image->image_extension}}" alt="" width="100px"></td>
+          <td class="px-4 py-4"><a class="text-blue-700 font-bold" href="/dashboard/image/{{ $image->id }}/edit">{{ $image->image_name }}.{{$image->image_extension}}</a></td>
+          <td class="px-4 py-4">{{ $image->created_at->format('Y/m/d h:i') }}</td>
           <td class="px-4 py-4">
-            <a class="text-blue-700 underline" href="/dashboard/post/{{ $image->id }}/edit">編集</a>
+            <a class="text-blue-700 underline" href="/dashboard/image/{{ $image->id }}/edit">編集</a>
             <span class="md:inline hidden">|</span>
-            <button class="text-blue-700 underline appearance-none " type="submit" name="delete_id" value="{{$image->id}}" onClick="delete_alert(event);return false;">削除</button>
+            <button class="text-blue-700 underline appearance-none md:inline block md:mt-0 mt-1" type="submit" name="delete_id" value="{{$image->id}}" onClick="delete_alert(event);return false;">削除</button>
           </td>
         </tr>
         @endforeach

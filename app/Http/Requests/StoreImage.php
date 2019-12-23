@@ -23,7 +23,7 @@ class StoreImage extends FormRequest
      */
     public function rules(){
       return [
-        'image_file' => ['required', 'file', 'image', 'mimes:jpeg,png',],
+        'image_file' => ['filled', 'file', 'mimes:jpeg,png',],
         'image_name' => ['required', 'unique:images', 'regex:/[a-z0-9_-]+/', 'max:25'],
       ];
     }
@@ -37,7 +37,9 @@ class StoreImage extends FormRequest
 
     public function messages() {
       return [
-        'post_name.regex' => 'ファイル名は「数字、英字(小文字)、-（ハイフン）、_（アンダーバー）」で入力して下さい。',
+        'image_file.required' => '画像ファイルを選択して下さい。',
+        'image_name.regex' => 'ファイル名は「数字、英字(小文字)、-（ハイフン）、_（アンダーバー）」で入力して下さい。',
+        'image_name.unique' => 'すでに使用されているファイル名です。',
       ];
     }
   }
