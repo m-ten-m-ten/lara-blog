@@ -13,7 +13,7 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
       // 登録済みのユーザーは削除
-      DB::table('users')->delete();
+      User::truncate();
 
       User::create([
         'name' => 'ブログ管理者',

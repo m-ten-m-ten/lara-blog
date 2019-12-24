@@ -34,11 +34,17 @@
       {{-- サイドバー --}}
       <div class="sidebar w-full md:w-1/4 md:pl-4 md:pt-4 md:border-l">
 
+        {{-- サムネイル画像選択 --}}
+        <div class="py-2">
+          <h2 class="text-lg font-bold mb-2">サムネイル画像</h2>
+          @include('dashboard.common.thumbnail')
+        </div>
+
         {{-- 記事抜粋 --}}
         <div class="py-2">
           <h2 class="text-lg font-bold mb-2">記事抜粋</h2>
           <div class="">
-            <textarea name="post_excerpt" id="" class="px-2 py-2 border rounded w-full" rows="4" value="{{ old('post_excerpt') }}"></textarea>
+            <textarea name="post_excerpt" class="px-2 py-2 border rounded w-full" rows="4" value="{{ old('post_excerpt') }}"></textarea>
           </div>
         </div>
 
@@ -47,16 +53,17 @@
           <h2 class="text-lg font-bold mb-2">カテゴリー</h2>
 
           <div class="inline-block relative w-full">
-            <select class="block appearance-none w-full px-2 py-2">
-              <option>カテゴリーを選択</option>
-              <option value="cat01">カテゴリー01</option>
-              <option value="cat02">カテゴリー02</option>
+            <select name="category_id" class="block appearance-none w-full px-2 py-2">
+              <option value="">カテゴリーを選択</option>
+              @foreach ($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->category_title }}</option>
+              @endforeach
             </select>
             <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
               <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
             </div>
           </div>
-          <a href="#" class="text-blue-700 underline block mt-2 px-2">カテゴリーを新規作成</a>
+          <a href="{{ route('category.create') }}" class="text-blue-700 underline block mt-2 px-2">カテゴリーを新規作成</a>
         </div>
 
         {{-- タグ --}}
@@ -78,7 +85,7 @@
         <div class="py-2">
           <h2 class="text-lg font-bold mb-2">投稿スラッグ</h2>
           <div class="">
-            <input name="post_name" id="" class="px-2 py-2 border rounded w-full" value="{{ old('post_name') }}"></input>
+            <input name="post_name" class="px-2 py-2 border rounded w-full" value="{{ old('post_name') }}"></input>
           </div>
         </div>
 

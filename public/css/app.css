@@ -11401,6 +11401,10 @@ video {
   z-index: auto;
 }
 
+.radio:checked + label {
+  border: 4px solid #4199E1;
+}
+
 .check_box:checked + .label-blue {
   background-color: #4199E1;
   color: white;

@@ -6,20 +6,24 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\post;
+use App\Image;
+use App\Category;
 use App\Http\Requests\StoreBlogPost;
 
 class PostController extends Controller
 {
 
   public function index(){
-    $data = [
-      'posts' => Post::orderBy('created_at', 'desc')->paginate(10)
-    ];
-    return view('dashboard.post.index', $data);
+    $posts = Post::orderBy('created_at', 'desc')->paginate(10);
+    return view('dashboard.post.index', compact('posts'));
   }
 
   public function create(){
-    return view('dashboard.post.create');
+    $data = [
+      'images' => Image::orderBy('created_at', 'desc')->paginate(10),
+      'categories' => Category::all(),
+    ];
+    return view('dashboard.post.create', $data);
   }
 
   public function store( StoreBlogPost $req ){
@@ -41,9 +45,13 @@ class PostController extends Controller
     return redirect('dashboard/post/'.$post->id.'/edit');
   }
 
-  public function edit( Post $post )
-  {
-   return view('dashboard/post/edit', compact('post'));
+  public function edit( Post $post ){
+    $data = [
+      'post' => $post,
+      'images' => Image::orderBy('created_at', 'desc')->paginate(10),
+      'categories' => Category::all(),
+    ];
+    return view('dashboard.post.edit', $data);
   }
 
   public function update( StoreBlogPost $req, Post $post ){
@@ -64,8 +72,15 @@ class PostController extends Controller
         # code...
         break;
       }
-    $post->fill($req->except('_token', '_method'))->save();
-    return view('dashboard/post/edit', compact('post'));
+      $post->fill($req->except('_token', '_method'))->save();
+
+      $data = [
+        'post' => $post,
+        'images' => Image::orderBy('created_at', 'desc')->paginate(10),
+        'categories' => Category::all(),
+      ];
+
+    return view('dashboard/post/edit', $data);
   }
 
   public function delete(Request $req)

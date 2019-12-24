@@ -116,14 +116,31 @@ $(function () {
     if ($navigation.hasClass('open')) {
       $navigation.slideUp();
       $navigation.removeClass('open');
-      $navigationClose.removeClass('is-active');
-      $(this).removeClass('is-active');
     } else {
       $navigation.slideDown();
       $navigation.addClass('open');
-      $navigationClose.addClass('is-active');
-      $(this).addClass('is-active');
     }
+  }); // modal
+
+  var $modalOpen = $('#modal-open');
+  var $modalClose = $('#modal-close');
+  var $modal = $('#modal');
+  $modalOpen.click(function () {
+    $modal.css('display', 'block');
+  });
+  $modalClose.click(function () {
+    $modal.css('display', 'none');
+  }); // 選択したサムネイルの表示
+
+  var src = $('input[name="post_thumbnail"]:checked').next().children('img').attr('src');
+  var name = $('input[name="post_thumbnail"]:checked').next().children('div').text();
+  $("#selected_thumb_img").attr("src", src);
+  $("#selected_thumb_name").text(name);
+  $('input[name="post_thumbnail"]:radio').change(function () {
+    var src = $(this).next().children('img').attr('src');
+    var name = $(this).next().children('div').text();
+    $("#selected_thumb_img").attr("src", src);
+    $("#selected_thumb_name").text(name);
   });
 });
 

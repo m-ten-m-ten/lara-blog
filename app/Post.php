@@ -15,12 +15,20 @@ class Post extends Model
   protected $fillable = [
     'post_title',
     'post_content',
+    'post_thumbnail',
     'post_excerpt',
     'post_status',
     'post_drafted',
     'post_published',
     'post_modified',
     'post_name',
+    'category_id',
   ];
+
+  // categorysテーブルへの参照
+  public function category()
+  {
+    return $this->belongsTo('App\Category');
+  }
 
 }

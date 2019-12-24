@@ -16,22 +16,44 @@ $(function() {
     }
   });
 
-// nav トグルメニュー
-  var $navigation = $('.dropdown_menu');
-  var $navigationToggle = $('.dropdown_toggle');
+  // nav トグルメニュー
+  const $navigation = $('.dropdown_menu');
+  const $navigationToggle = $('.dropdown_toggle');
 
   $navigationToggle.click(function() {
-
     if($navigation.hasClass('open')) {
       $navigation.slideUp();
       $navigation.removeClass('open');
-      $navigationClose.removeClass('is-active');
-      $(this).removeClass('is-active');
     } else {
       $navigation.slideDown();
       $navigation.addClass('open');
-      $navigationClose.addClass('is-active');
-      $(this).addClass('is-active');
     }
   });
+
+  // modal
+  const $modalOpen = $('#modal-open');
+  const $modalClose = $('#modal-close');
+  const $modal = $('#modal');
+
+  $modalOpen.click(function() {
+    $modal.css('display', 'block');
+  });
+  $modalClose.click(function() {
+    $modal.css('display', 'none');
+  });
+
+  // 選択したサムネイルの表示
+  let src = $('input[name="post_thumbnail"]:checked').next().children('img').attr('src');
+  let name = $('input[name="post_thumbnail"]:checked').next().children('div').text();
+  $("#selected_thumb_img").attr("src", src);
+  $("#selected_thumb_name").text(name);
+
+  $('input[name="post_thumbnail"]:radio').change(function(){
+    let src = $(this).next().children('img').attr('src');
+    let name = $(this).next().children('div').text();
+    $("#selected_thumb_img").attr("src", src);
+    $("#selected_thumb_name").text(name);
+  });
+
 });
+

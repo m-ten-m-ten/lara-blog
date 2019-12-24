@@ -52,8 +52,18 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('{image}/edit', 'Dashboard\ImageController@edit');
     Route::patch('{image}', 'Dashboard\ImageController@update');
   });
+
+  Route::prefix('dashboard/category')->group(function() {
+    Route::get('', 'Dashboard\CategoryController@index')->name('category.index');
+    Route::get('create', 'Dashboard\CategoryController@create')->name('category.create');
+    Route::post('store', 'Dashboard\CategoryController@store');
+    Route::delete('delete', 'Dashboard\CategoryController@delete');
+    Route::get('{category}/edit', 'Dashboard\CategoryController@edit');
+    Route::patch('{category}', 'Dashboard\CategoryController@update');
+  });
 });
 
 // フロント
 Route::get('/', 'HomeController@index');
+Route::get('/category/{id}', 'HomeController@category');
 Route::get('{post}', 'HomeController@show');
