@@ -58,7 +58,7 @@
 
       {{-- サムネイル画像選択 --}}
       <div class="py-2">
-        <h2 class="text-lg font-bold mb-2">サムネイル画像</h2>
+        <h2 class="border-b-2 border-blue-500 text-lg font-bold mb-2">サムネイル画像</h2>
         @include('dashboard.common.thumbnail')
       </div>
 
@@ -72,7 +72,7 @@
 
         {{-- カテゴリー --}}
         <div class="py-2">
-          <h2 class="text-lg font-bold mb-2">カテゴリー</h2>
+          <h2 class="border-b-2 border-blue-500 text-lg font-bold mb-2">カテゴリー</h2>
 
           <div class="inline-block relative w-full">
             <select name="category_id" class="block appearance-none w-full px-2 py-2">
@@ -88,20 +88,21 @@
           <a href="{{ route('category.create') }}" class="text-blue-700 underline block mt-2 px-2">カテゴリーを新規作成</a>
         </div>
 
-      {{-- タグ --}}
-      <div class="py-2 mb-1">
-        <h2 class="border-b-2 border-blue-500 text-lg font-bold mb-2">タグ</h2>
-        <div class="flex flex-wrap">
-          <input type="checkbox" class="hidden check_box" id="tag01">
-          <label for="tag01" class="label-blue text-blue-700 border border-blue-700 cursor-pointer px-2 py-1 m-1 rounded">タグ01</label>
-          <input type="checkbox" class="hidden check_box" id="tag02">
-          <label for="tag02" class="label-blue text-blue-700 border border-blue-700 cursor-pointer px-2 py-1 m-1 rounded">タグタグ02</label><input type="checkbox" class="hidden check_box" id="tag03">
-          <label for="tag03" class="label-blue text-blue-700 border border-blue-700 cursor-pointer px-2 py-1 m-1 rounded">タタグタグ03</label><input type="checkbox" class="hidden check_box" id="tag04">
-          <label for="tag04" class="label-blue text-blue-700 border border-blue-700 cursor-pointer px-2 py-1 m-1 rounded">タグタグ04</label><input type="checkbox" class="hidden check_box" id="tag05">
-          <label for="tag05" class="label-blue text-blue-700 border border-blue-700 cursor-pointer px-2 py-1 m-1 rounded">タaaグ05</label>
+        {{-- タグ --}}
+        <div class="py-2">
+          <h2 class="border-b-2 border-blue-500 text-lg font-bold mb-2">タグ</h2>
+          <div class="flex flex-wrap">
+            @foreach ($tags as $tag)
+              <input type="checkbox" class="hidden check_box" id="tag{{ $tag->id}}" name="tags[]" value="{{ $tag->id}}" 
+              @foreach($post->tags as $post_tag)
+                @if($post_tag->id == $tag->id) checked @endif
+              @endforeach
+              >
+              <label for="tag{{ $tag->id}}" class="label-blue text-blue-700 border border-blue-700 cursor-pointer px-2 py-1 m-1 rounded">{{ $tag->tag_title}}</label>
+            @endforeach
+          </div>
+          <a href="{{ route('tag.create') }}" class="text-blue-700 underline block mt-2 px-2">タグを新規作成</a>
         </div>
-        <a href="#" class="text-blue-700 underline block mt-2 px-2">タグを新規作成</a>
-      </div>
 
       {{-- 投稿スラッグ --}}
       <div class="py-2 mb-1">

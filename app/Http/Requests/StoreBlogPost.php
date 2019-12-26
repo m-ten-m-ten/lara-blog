@@ -25,7 +25,7 @@ class StoreBlogPost extends FormRequest
       return [
         'post_title' => ['required', 'max:100'],
         'post_excerpt' => ['max:200'],
-        'post_name' => ['nullable', 'regex:/[a-z0-9_-]+/', 'max:30'],
+        'post_name' => ['nullable', 'regex:/[a-z0-9_-]+/', 'max:50'],
       ];
     }
 

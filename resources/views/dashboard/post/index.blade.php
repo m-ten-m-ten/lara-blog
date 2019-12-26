@@ -33,8 +33,12 @@
         <tr class="{{ $loop->odd ? 'bg-gray-100' : ''}}">
           <td class="px-4 py-4"><input type="checkbox" name="checked_id[]" value="{{ $post->id }}"></td>
           <td class="px-4 py-4"><a class="text-blue-700 font-bold" href="/dashboard/post/{{ $post->id }}/edit">{{ $post->post_title }}</a>{{ $post->post_status == 'drafted' ? ' - 下書き' : ''}}</td>
-          <td class="px-4 py-4 hidden md:table-cell">-</td>
-          <td class="px-4 py-4 hidden md:table-cell">-</td>
+          <td class="px-4 py-4 hidden md:table-cell">@if(isset($post->category_id)){{ $post->category->category_title }}@endif</td>
+          <td class="flex flex-wrap px-4 py-4 hidden md:table-cell text-gray-700">
+            @foreach ($post->tags as $tag)
+              #{{ $tag->tag_title }} 
+            @endforeach
+          </td>
           <td class="px-4 py-4">
             {!! $post->post_published ? '公開日時：'.$post->post_published->format('Y/m/d h:i').'<br>' : '' !!}
             {!! $post->post_modified ? '更新日時：'.$post->post_modified->format('Y/m/d h:i').'<br>' : '' !!}

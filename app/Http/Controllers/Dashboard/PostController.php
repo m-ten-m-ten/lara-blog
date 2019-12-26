@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use App\post;
 use App\Image;
 use App\Category;
+use App\Tag;
 use App\Http\Requests\StoreBlogPost;
 
 class PostController extends Controller
@@ -22,13 +23,14 @@ class PostController extends Controller
     $data = [
       'images' => Image::orderBy('created_at', 'desc')->paginate(10),
       'categories' => Category::all(),
+      'tags' => Tag::all(),
     ];
     return view('dashboard.post.create', $data);
   }
 
-  public function store( StoreBlogPost $req ){
+  public function store( StoreBlogPost $request ){
     $post = new Post();
-    switch ($req->submit_btn) {
+    switch ($request->submit_btn) {
       case 'draft_btn':
         $post->post_drafted = Carbon::now();
         $post->post_status = 'drafted';
@@ -41,7 +43,10 @@ class PostController extends Controller
         # code...
         break;
     }
-    $post->fill($req->except('_token'))->save();
+    $post->fill($request->except('_token'))->save();
+    if (is_array($request->tags)) {
+      $post->tags()->attach($request->tags);
+    }
     return redirect('dashboard/post/'.$post->id.'/edit');
   }
 
@@ -50,12 +55,13 @@ class PostController extends Controller
       'post' => $post,
       'images' => Image::orderBy('created_at', 'desc')->paginate(10),
       'categories' => Category::all(),
+      'tags' => Tag::all(),
     ];
     return view('dashboard.post.edit', $data);
   }
 
-  public function update( StoreBlogPost $req, Post $post ){
-    switch ($req->submit_btn) {
+  public function update( StoreBlogPost $request, Post $post ){
+    switch ($request->submit_btn) {
       case 'draft_btn':
         $post->post_drafted = Carbon::now();
         $post->post_status = 'drafted';
@@ -72,12 +78,17 @@ class PostController extends Controller
         # code...
         break;
       }
-      $post->fill($req->except('_token', '_method'))->save();
+      $post->fill($request->except('_token', '_method'))->save();
+      if (is_array($request->tags)) {
+        $post->tags()->detach();
+        $post->tags()->attach($request->tags);
+      }
 
       $data = [
         'post' => $post,
         'images' => Image::orderBy('created_at', 'desc')->paginate(10),
         'categories' => Category::all(),
+        'tags' => Tag::all(),
       ];
 
     return view('dashboard/post/edit', $data);

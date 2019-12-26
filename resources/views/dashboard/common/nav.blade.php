@@ -18,6 +18,7 @@
             <li><a class="block text-white px-4 py-2 bg-blue-900" href="{{ route('post.index') }}">投稿管理</a></li>
             <li><a class="block text-white px-4 py-2 bg-blue-900" href="{{ route('image.index') }}">画像管理</a></li>
             <li><a class="block text-white px-4 py-2 bg-blue-900" href="{{ route('category.index') }}">カテゴリー管理</a></li>
+            <li><a class="block text-white px-4 py-2 bg-blue-900" href="{{ route('tag.index') }}">タグ管理</a></li>
             <li>
               <a class="block text-white px-4 py-2 bg-blue-900" href="{{ route('logout') }}"
               onclick="event.preventDefault();

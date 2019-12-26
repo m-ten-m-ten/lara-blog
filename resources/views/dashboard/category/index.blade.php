@@ -17,7 +17,7 @@
           <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
         </div>
       </div>
-      <button class="text-blue-700 font-bold focus:outline-none py-2 px-4 mr-2 border border-blue-700 rounded" type="submit" name="checked_images" value="checked_images" onClick="delete_alert(event);return false;">適用</button>
+      <button class="text-blue-700 font-bold focus:outline-none py-2 px-4 mr-2 border border-blue-700 rounded" type="submit" name="checked_categories" value="checked_categories" onClick="delete_alert(event);return false;">適用</button>
     </div>
     <table class="table-auto w-full border mb-4">
       <tr>

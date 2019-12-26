@@ -30,5 +30,9 @@ class Post extends Model
   {
     return $this->belongsTo('App\Category');
   }
-
+  // tagsテーブルへの参照
+  public function tags()
+  {
+    return $this->belongsToMany('App\Tag');
+  }
 }

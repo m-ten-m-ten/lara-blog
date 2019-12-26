@@ -108,6 +108,24 @@ $(function () {
       // 1つでもチェックが入っていたら、「全選択」 = checked
       $('#all').prop('checked', false);
     }
+  });
+  $('#category_btn').click(function () {
+    if ($('#category_menu').hasClass('open')) {
+      $('#category_menu').slideUp();
+      $('#category_menu').removeClass('open');
+    } else {
+      $('#category_menu').slideDown();
+      $('#category_menu').addClass('open');
+    }
+  });
+  $('#tag_btn').click(function () {
+    if ($('#tag_menu').hasClass('open')) {
+      $('#tag_menu').slideUp();
+      $('#tag_menu').removeClass('open');
+    } else {
+      $('#tag_menu').slideDown();
+      $('#tag_menu').addClass('open');
+    }
   }); // nav トグルメニュー
 
   var $navigation = $('.dropdown_menu');

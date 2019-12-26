@@ -24,7 +24,7 @@ class StoreImage extends FormRequest
     public function rules(){
       return [
         'image_file' => ['filled', 'file', 'mimes:jpeg,png',],
-        'image_name' => ['required', 'unique:images', 'regex:/[a-z0-9_-]+/', 'max:25'],
+        'image_name' => ['required', 'unique:images', 'regex:/[a-z0-9_-]+/', 'max:50'],
       ];
     }
 

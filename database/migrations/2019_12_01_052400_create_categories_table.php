@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTagRelationshipsTable extends Migration
+class CreateCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class CreateTagRelationshipsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tag_relationships', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('category_title')->unique();
+            $table->string('category_name')->unique();
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ class CreateTagRelationshipsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tag_relationships');
+        Schema::dropIfExists('categories');
     }
 }

@@ -23,9 +23,11 @@ class CreatePostsTable extends Migration
             $table->dateTime('post_drafted')->nullable(); //下書き保存日時
             $table->dateTime('post_published')->nullable(); //公開日時
             $table->dateTime('post_modified')->nullable(); //更新日時
-            $table->string('post_name')->nullable(); //投稿スラッグ(url)
-            $table->biginteger('category_id')->nullable(); //category
+            $table->string('post_name')->nullable()->unique(); //投稿スラッグ(url)
+            $table->bigInteger('category_id')->unsigned()->nullable(); //category
             $table->timestamps();
+
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('set null');
         });
     }
 

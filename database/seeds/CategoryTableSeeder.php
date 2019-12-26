@@ -12,7 +12,7 @@ class CategoryTableSeeder extends Seeder
      */
     public function run()
     {
-        Category::truncate();
+        // Category::truncate();
 
         factory(Category::class, 10)->create();
     }

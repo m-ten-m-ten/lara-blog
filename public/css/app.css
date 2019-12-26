@@ -9629,11 +9629,11 @@ video {
   left: 0;
 }
 
-.inset-auto{
-  top: auto;
-  right: auto;
-  bottom: auto;
-  left: auto;
+.inset-77{
+  top: 77px;
+  right: 77px;
+  bottom: 77px;
+  left: 77px;
 }
 
 .inset-y-0{
@@ -9646,14 +9646,14 @@ video {
   left: 0;
 }
 
-.inset-y-auto{
-  top: auto;
-  bottom: auto;
+.inset-y-77{
+  top: 77px;
+  bottom: 77px;
 }
 
-.inset-x-auto{
-  right: auto;
-  left: auto;
+.inset-x-77{
+  right: 77px;
+  left: 77px;
 }
 
 .top-0{
@@ -9672,20 +9672,20 @@ video {
   left: 0;
 }
 
-.top-auto{
-  top: auto;
+.top-77{
+  top: 77px;
 }
 
-.right-auto{
-  right: auto;
+.right-77{
+  right: 77px;
 }
 
-.bottom-auto{
-  bottom: auto;
+.bottom-77{
+  bottom: 77px;
 }
 
-.left-auto{
-  left: auto;
+.left-77{
+  left: 77px;
 }
 
 .resize-none{
@@ -20482,11 +20482,11 @@ html {
     left: 0;
   }
 
-  .sm\:inset-auto{
-    top: auto;
-    right: auto;
-    bottom: auto;
-    left: auto;
+  .sm\:inset-77{
+    top: 77px;
+    right: 77px;
+    bottom: 77px;
+    left: 77px;
   }
 
   .sm\:inset-y-0{
@@ -20499,14 +20499,14 @@ html {
     left: 0;
   }
 
-  .sm\:inset-y-auto{
-    top: auto;
-    bottom: auto;
+  .sm\:inset-y-77{
+    top: 77px;
+    bottom: 77px;
   }
 
-  .sm\:inset-x-auto{
-    right: auto;
-    left: auto;
+  .sm\:inset-x-77{
+    right: 77px;
+    left: 77px;
   }
 
   .sm\:top-0{
@@ -20525,20 +20525,20 @@ html {
     left: 0;
   }
 
-  .sm\:top-auto{
-    top: auto;
+  .sm\:top-77{
+    top: 77px;
   }
 
-  .sm\:right-auto{
-    right: auto;
+  .sm\:right-77{
+    right: 77px;
   }
 
-  .sm\:bottom-auto{
-    bottom: auto;
+  .sm\:bottom-77{
+    bottom: 77px;
   }
 
-  .sm\:left-auto{
-    left: auto;
+  .sm\:left-77{
+    left: 77px;
   }
 
   .sm\:resize-none{
@@ -31258,11 +31258,11 @@ html {
     left: 0;
   }
 
-  .md\:inset-auto{
-    top: auto;
-    right: auto;
-    bottom: auto;
-    left: auto;
+  .md\:inset-77{
+    top: 77px;
+    right: 77px;
+    bottom: 77px;
+    left: 77px;
   }
 
   .md\:inset-y-0{
@@ -31275,14 +31275,14 @@ html {
     left: 0;
   }
 
-  .md\:inset-y-auto{
-    top: auto;
-    bottom: auto;
+  .md\:inset-y-77{
+    top: 77px;
+    bottom: 77px;
   }
 
-  .md\:inset-x-auto{
-    right: auto;
-    left: auto;
+  .md\:inset-x-77{
+    right: 77px;
+    left: 77px;
   }
 
   .md\:top-0{
@@ -31301,20 +31301,20 @@ html {
     left: 0;
   }
 
-  .md\:top-auto{
-    top: auto;
+  .md\:top-77{
+    top: 77px;
   }
 
-  .md\:right-auto{
-    right: auto;
+  .md\:right-77{
+    right: 77px;
   }
 
-  .md\:bottom-auto{
-    bottom: auto;
+  .md\:bottom-77{
+    bottom: 77px;
   }
 
-  .md\:left-auto{
-    left: auto;
+  .md\:left-77{
+    left: 77px;
   }
 
   .md\:resize-none{
@@ -42034,11 +42034,11 @@ html {
     left: 0;
   }
 
-  .lg\:inset-auto{
-    top: auto;
-    right: auto;
-    bottom: auto;
-    left: auto;
+  .lg\:inset-77{
+    top: 77px;
+    right: 77px;
+    bottom: 77px;
+    left: 77px;
   }
 
   .lg\:inset-y-0{
@@ -42051,14 +42051,14 @@ html {
     left: 0;
   }
 
-  .lg\:inset-y-auto{
-    top: auto;
-    bottom: auto;
+  .lg\:inset-y-77{
+    top: 77px;
+    bottom: 77px;
   }
 
-  .lg\:inset-x-auto{
-    right: auto;
-    left: auto;
+  .lg\:inset-x-77{
+    right: 77px;
+    left: 77px;
   }
 
   .lg\:top-0{
@@ -42077,20 +42077,20 @@ html {
     left: 0;
   }
 
-  .lg\:top-auto{
-    top: auto;
+  .lg\:top-77{
+    top: 77px;
   }
 
-  .lg\:right-auto{
-    right: auto;
+  .lg\:right-77{
+    right: 77px;
   }
 
-  .lg\:bottom-auto{
-    bottom: auto;
+  .lg\:bottom-77{
+    bottom: 77px;
   }
 
-  .lg\:left-auto{
-    left: auto;
+  .lg\:left-77{
+    left: 77px;
   }
 
   .lg\:resize-none{
@@ -52810,11 +52810,11 @@ html {
     left: 0;
   }
 
-  .xl\:inset-auto{
-    top: auto;
-    right: auto;
-    bottom: auto;
-    left: auto;
+  .xl\:inset-77{
+    top: 77px;
+    right: 77px;
+    bottom: 77px;
+    left: 77px;
   }
 
   .xl\:inset-y-0{
@@ -52827,14 +52827,14 @@ html {
     left: 0;
   }
 
-  .xl\:inset-y-auto{
-    top: auto;
-    bottom: auto;
+  .xl\:inset-y-77{
+    top: 77px;
+    bottom: 77px;
   }
 
-  .xl\:inset-x-auto{
-    right: auto;
-    left: auto;
+  .xl\:inset-x-77{
+    right: 77px;
+    left: 77px;
   }
 
   .xl\:top-0{
@@ -52853,20 +52853,20 @@ html {
     left: 0;
   }
 
-  .xl\:top-auto{
-    top: auto;
+  .xl\:top-77{
+    top: 77px;
   }
 
-  .xl\:right-auto{
-    right: auto;
+  .xl\:right-77{
+    right: 77px;
   }
 
-  .xl\:bottom-auto{
-    bottom: auto;
+  .xl\:bottom-77{
+    bottom: 77px;
   }
 
-  .xl\:left-auto{
-    left: auto;
+  .xl\:left-77{
+    left: 77px;
   }
 
   .xl\:resize-none{

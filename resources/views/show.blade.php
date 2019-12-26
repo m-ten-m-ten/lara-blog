@@ -7,10 +7,14 @@
     <span>{{ $post->post_published->format('Y.m.d') }}</span>
   </div>
   <div class="flex">
-    <a href="#" class="text-sm text-gray-700 border border-gray-500 rounded-lg mr-2 py-1 px-2">カテゴリー</a>
-    <a href="#" class="text-sm text-gray-700 border border-gray-500 rounded-lg mr-2 py-1 px-2">タグ1</a>
-    <a href="#" class="text-sm text-gray-700 border border-gray-500 rounded-lg mr-2 py-1 px-2">タグ2</a>
-    <a href="#" class="text-sm text-gray-700 border border-gray-500 rounded-lg mr-2 py-1 px-2">タグ3</a>
+
+    @if(isset($post->category))
+      <a href="/category/{{ $post->category->id }}" class="text-sm text-gray-700 hover:text-white hover:bg-gray-500 border border-gray-500 rounded-full mr-2 p-1">{{ $post->category->category_title }}</a>
+    @endif
+
+    @foreach ($post->tags as $tag)
+      <a href="/tag/{{ $tag->id }}" class="text-sm text-gray-700 hover:text-white hover:bg-gray-500 border border-gray-500 rounded-full mr-2 p-1">{{ $tag->tag_title }}</a>
+    @endforeach
   </div>
 </div>
 

@@ -61,9 +61,19 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('{category}/edit', 'Dashboard\CategoryController@edit');
     Route::patch('{category}', 'Dashboard\CategoryController@update');
   });
+
+  Route::prefix('dashboard/tag')->group(function() {
+    Route::get('', 'Dashboard\TagController@index')->name('tag.index');
+    Route::get('create', 'Dashboard\TagController@create')->name('tag.create');
+    Route::post('store', 'Dashboard\TagController@store');
+    Route::delete('delete', 'Dashboard\TagController@delete');
+    Route::get('{tag}/edit', 'Dashboard\TagController@edit');
+    Route::patch('{tag}', 'Dashboard\TagController@update');
+  });
 });
 
 // フロント
 Route::get('/', 'HomeController@index');
 Route::get('/category/{id}', 'HomeController@category');
+Route::get('/tag/{id}', 'HomeController@tag');
 Route::get('{post}', 'HomeController@show');
