@@ -27,7 +27,7 @@
         </div>
         <div class="py-2">
           <lavel for="post_content" class="text-lg font-bold">本文</lavel>
-          <textarea name="post_content" class="px-2 py-2 border rounded w-full" type="text" value="{{ old('post_content') }}" rows="20"></textarea>
+          <textarea name="post_content" class="px-2 py-2 border rounded w-full" type="text" value="" rows="20">{{ old('post_content') }}</textarea>
         </div>
       </div>
 
@@ -44,7 +44,7 @@
         <div class="py-2">
           <h2 class="border-b-2 border-blue-500 text-lg font-bold mb-2">記事抜粋</h2>
           <div class="">
-            <textarea name="post_excerpt" class="px-2 py-2 border rounded w-full" rows="4" value="{{ old('post_excerpt') }}"></textarea>
+            <textarea name="post_excerpt" class="px-2 py-2 border rounded w-full" rows="4" value="">{{ old('post_excerpt') }}</textarea>
           </div>
         </div>
 

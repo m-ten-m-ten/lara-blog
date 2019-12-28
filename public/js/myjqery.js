@@ -95,20 +95,17 @@
 
 $(function () {
   // index 全選択
-  // 1. 「全選択」する
   $('#all').on('click', function () {
-    $("input[name='checked_id[]']").prop('checked', this.checked);
-  }); // 2. 「全選択」以外のチェックボックスがクリックされたら、
-
-  $("input[name='checked_id[]']").on('click', function () {
+    $("input[name='checkedIds[]']").prop('checked', this.checked);
+  });
+  $("input[name='checkedIds[]']").on('click', function () {
     if ($('#boxes :checked').length == $('#boxes :input').length) {
-      // 全てのチェックボックスにチェックが入っていたら、「全選択」 = checked
       $('#all').prop('checked', true);
     } else {
-      // 1つでもチェックが入っていたら、「全選択」 = checked
       $('#all').prop('checked', false);
     }
-  });
+  }); // public ヘッダー スライドメニュー
+
   $('#category_btn').click(function () {
     if ($('#category_menu').hasClass('open')) {
       $('#category_menu').slideUp();
@@ -126,7 +123,7 @@ $(function () {
       $('#tag_menu').slideDown();
       $('#tag_menu').addClass('open');
     }
-  }); // nav トグルメニュー
+  }); // ドロップダウンメニュー
 
   var $navigation = $('.dropdown_menu');
   var $navigationToggle = $('.dropdown_toggle');
@@ -148,13 +145,13 @@ $(function () {
   });
   $modalClose.click(function () {
     $modal.css('display', 'none');
-  }); // 選択したサムネイルの表示
+  }); // 選択済みのサムネイルの表示
 
-  var src = $('input[name="post_thumbnail"]:checked').next().children('img').attr('src');
-  var name = $('input[name="post_thumbnail"]:checked').next().children('div').text();
+  var src = $('input[name="image_id"]:checked').next().children('img').attr('src');
+  var name = $('input[name="image_id"]:checked').next().children('div').text();
   $("#selected_thumb_img").attr("src", src);
   $("#selected_thumb_name").text(name);
-  $('input[name="post_thumbnail"]:radio').change(function () {
+  $('input[name="image_id"]:radio').change(function () {
     var src = $(this).next().children('img').attr('src');
     var name = $(this).next().children('div').text();
     $("#selected_thumb_img").attr("src", src);

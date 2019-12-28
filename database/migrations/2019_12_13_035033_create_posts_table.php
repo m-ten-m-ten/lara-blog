@@ -17,8 +17,8 @@ class CreatePostsTable extends Migration
             $table->bigIncrements('id');
             $table->text('post_title'); //タイトル
             $table->longText('post_content')->nullable(); //本文
+            $table->string('post_thumbnail')->nullable();
             $table->text('post_excerpt')->nullable(); //抜粋
-            $table->integer('post_thumbnail')->nullable(); //サムネイル画像-Imagesテーブルのid
             $table->string('post_status'); //ステータス：「published」「drafted」
             $table->dateTime('post_drafted')->nullable(); //下書き保存日時
             $table->dateTime('post_published')->nullable(); //公開日時

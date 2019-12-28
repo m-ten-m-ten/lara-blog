@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class StoreCategory extends FormRequest
+class TagStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,21 +24,21 @@ class StoreCategory extends FormRequest
      */
     public function rules(){
       return [
-        'category_title' => ['required', 'unique:categories', 'max:15'],
-        'category_name' => ['required', 'unique:categories', 'regex:/[a-z0-9_-]+/', 'max:50'],
+        'tag_title' => ['required', Rule::unique('tags')->ignore($this->tag), 'max:15'],
+        'tag_name' => ['required', Rule::unique('tags')->ignore($this->tag), 'max:50', 'regex:/^[-_a-z0-9]{1,50}$/'],
       ];
     }
 
     public function attributes(){
       return [
-        'category_title' => 'カテゴリー名',
-        'category_name' => 'カテゴリースラッグ',
+        'tag_title' => 'タグ名',
+        'tag_name' => 'タグスラッグ',
       ];
     }
 
     public function messages(){
       return [
-        'category_name.regex' => 'カテゴリースラッグは「数字、英字(小文字)、-（ハイフン）、_（アンダーバー）」で入力して下さい。',
+        'tag_name.regex' => 'タグスラッグは「数字、英字(小文字)、-（ハイフン）、_（アンダーバー）」で入力して下さい。',
       ];
     }
 }

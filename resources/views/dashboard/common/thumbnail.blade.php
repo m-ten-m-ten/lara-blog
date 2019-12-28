@@ -1,9 +1,9 @@
 <div class="flex flex-wrap items-start">
 
-  <button type="button" id="modal-open" class="shadow bg-blue-700 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 mb-2 mr-4 md:mr-0 rounded">画像を選択</button>
+  <button type="button" id="modal-open" class="shadow bg-blue-700 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 mb-2 mr-4 md:mr-0 rounded">画像を選択{{old('image_id')}}</button>
 
   <div class="text-center">
-    <img id="selected_thumb_img" src="" alt="" width="120px">
+    <img id="selected_thumb_img" src="@if(isset($post->post_thumbnail))/thumbnail/{{$post->post_thumbnail}}@endif" alt="" width="120px">
     <div id="selected_thumb_name" class="text-sm"></div>
   </div>
 
@@ -14,8 +14,9 @@
   <div class="bg-white opacity-100 h-full overflow-auto mx-auto px-4 py-2">
 
     <div class="flex flex-wrap justify-center">
-      @foreach ($images as $id => $image)
-        <input id="post_thumbnail_{{ $image->id }}" type="radio" name="post_thumbnail" value="{{ $image->id }}" class="radio hidden" @if(isset($post) && $post->post_thumbnail == $image->id) checked="checked" @endif>
+      @foreach ($images as $image)
+        <input id="post_thumbnail_{{ $image->id }}" type="radio" name="image_id" value="{{ $image->id }}" class="radio hidden"
+         @if( old('image_id') == $image->id ) checked @endif>
         <label for="post_thumbnail_{{ $image->id }}" class="cursor-pointer p-2 border-4 border-white rounded">
           <img src="/img/{{$image->image_name}}.{{$image->image_extension}}" alt="" width="120px">
           <div class="text-sm text-center">{{ $image->image_name }}.{{$image->image_extension}}</div>

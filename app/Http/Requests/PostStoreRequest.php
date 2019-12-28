@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class StoreBlogPost extends FormRequest
+class PostStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +26,7 @@ class StoreBlogPost extends FormRequest
       return [
         'post_title' => ['required', 'max:100'],
         'post_excerpt' => ['max:200'],
-        'post_name' => ['nullable', 'regex:/[a-z0-9_-]+/', 'max:50'],
+        'post_name' => ['nullable', Rule::unique('posts')->ignore($this->post), 'max:50', 'regex:/^[-_a-z0-9]{1,50}$/'],
       ];
     }
 
@@ -34,7 +35,6 @@ class StoreBlogPost extends FormRequest
         'post_title' => '記事のタイトル',
         'post_content' => '記事の本文',
         'post_excerpt' => '要約文',
-        'post_thumbnail' => 'サムネイル画像',
         'post_name' => '投稿スラッグ',
       ];
     }

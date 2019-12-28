@@ -5,13 +5,13 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\image;
-use App\Http\Requests\StoreImage;
+use App\Http\Requests\ImageStoreRequest;
 
 class ImageController extends Controller
 {
   public function index(){
     $data = [
-      'images' => Image::orderBy('created_at', 'desc')->paginate(10)
+      'images' => Image::latest()->paginate(10)
     ];
     return view('dashboard.image.index', $data);
   }
@@ -20,7 +20,7 @@ class ImageController extends Controller
     return view('dashboard.image.create');
   }
 
-  public function store( StoreImage $request ){
+  public function store( ImageStoreRequest $request ){
     if ($request->file('image_file')->isValid()) {
       $image_name = $request->image_name;
       $image_extension = $request->file('image_file')->guessExtension();
@@ -38,7 +38,7 @@ class ImageController extends Controller
    return view('dashboard.image.edit', compact('image'));
   }
 
-  public function update( StoreImage $request, Image $image ){
+  public function update( ImageStoreRequest $request, Image $image ){
     rename(public_path() . "/img/" . $image->image_name . "." . $image->image_extension, public_path() . "/img/" . $request->image_name . "." . $image->image_extension);
     $image->image_name = $request->image_name;
     $image->save();
@@ -48,13 +48,13 @@ class ImageController extends Controller
   public function delete(Request $req)
   {
     if($req->checked_images) {
-      foreach ($req->checked_id as $id) {
+      foreach ($req->checkedIds as $id) {
         $image = Image::findOrFail($id);
         \File::delete(public_path()."/img/".$image->image_name.".".$image->image_extension);
         $image->delete();
       }
     } else {
-      $image = Image::findOrFail($req->delete_id);
+      $image = Image::findOrFail($req->deleteId);
       \File::delete(public_path()."/img/".$image->image_name.".".$image->image_extension);
       $image->delete();
     }

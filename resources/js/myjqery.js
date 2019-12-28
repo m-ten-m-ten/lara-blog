@@ -1,22 +1,18 @@
 $(function() {
 
-// index 全選択
-  // 1. 「全選択」する
+  // index 全選択
   $('#all').on('click', function() {
-    $("input[name='checked_id[]']").prop('checked', this.checked);
+    $("input[name='checkedIds[]']").prop('checked', this.checked);
   });
-  // 2. 「全選択」以外のチェックボックスがクリックされたら、
-  $("input[name='checked_id[]']").on('click', function() {
+  $("input[name='checkedIds[]']").on('click', function() {
     if ($('#boxes :checked').length == $('#boxes :input').length) {
-      // 全てのチェックボックスにチェックが入っていたら、「全選択」 = checked
       $('#all').prop('checked', true);
     } else {
-      // 1つでもチェックが入っていたら、「全選択」 = checked
       $('#all').prop('checked', false);
     }
   });
 
-
+  // public ヘッダー スライドメニュー
   $('#category_btn').click(function() {
     if($('#category_menu').hasClass('open')){
       $('#category_menu').slideUp();
@@ -37,7 +33,7 @@ $(function() {
     }
   });
 
-  // nav トグルメニュー
+  // ドロップダウンメニュー
   const $navigation = $('.dropdown_menu');
   const $navigationToggle = $('.dropdown_toggle');
 
@@ -63,13 +59,13 @@ $(function() {
     $modal.css('display', 'none');
   });
 
-  // 選択したサムネイルの表示
-  let src = $('input[name="post_thumbnail"]:checked').next().children('img').attr('src');
-  let name = $('input[name="post_thumbnail"]:checked').next().children('div').text();
+  // 選択済みのサムネイルの表示
+  let src = $('input[name="image_id"]:checked').next().children('img').attr('src');
+  let name = $('input[name="image_id"]:checked').next().children('div').text();
   $("#selected_thumb_img").attr("src", src);
   $("#selected_thumb_name").text(name);
 
-  $('input[name="post_thumbnail"]:radio').change(function(){
+  $('input[name="image_id"]:radio').change(function(){
     let src = $(this).next().children('img').attr('src');
     let name = $(this).next().children('div').text();
     $("#selected_thumb_img").attr("src", src);

@@ -16,11 +16,7 @@
     </div>
     <div class="flex flex-wrap">
       <div class="py-2">
-        @if (session('status'))
-          <div class="bg-blue-100 text-blue-900 px-4 py-2">
-            {{ session('status') }}
-          </div>
-        @endif
+        @include('common.status')
         <div class="py-3">
           <lavel for="category_title" class="text-lg font-bold py-2">カテゴリー名</lavel>
           <input name="category_title" class="my-2 px-2 py-2 border @error('category_title') border-red-500 @enderror rounded w-full text-xl" type="text" value="{{ old('category_title', $category->category_title) }}">
