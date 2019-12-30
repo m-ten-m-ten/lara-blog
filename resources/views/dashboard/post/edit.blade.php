@@ -38,7 +38,7 @@
       </div>
       <div class="py-2 mb-1">
         <lavel for="post_content" class="text-lg font-bold">本文</lavel>
-        <textarea name="post_content" class="px-2 py-2 border rounded w-full" type="text" rows="20">{{ old('post_content', $post->post_content) }}</textarea>
+        <textarea  id="post_content" name="post_content" class="post-content px-2 py-2 border rounded w-full" type="text" rows="20">{{ old('post_content', $post->post_content) }}</textarea>
       </div>
     </div>
 

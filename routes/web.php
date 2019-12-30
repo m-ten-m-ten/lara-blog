@@ -40,6 +40,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('create', 'Dashboard\PostController@create');
     Route::post('store', 'Dashboard\PostController@store');
     Route::delete('delete', 'Dashboard\PostController@delete');
+    Route::get('read_image_api', 'Dashboard\PostController@readImage');
     Route::get('{post}/edit', 'Dashboard\PostController@edit');
     Route::patch('{post}', 'Dashboard\PostController@update');
   });

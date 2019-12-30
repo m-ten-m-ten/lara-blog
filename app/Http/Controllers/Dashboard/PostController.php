@@ -122,4 +122,15 @@ class PostController extends Controller
     }
   }
 
+  public function readImage()
+  {
+    $images = Image::latest()->get();
+    $imageJSON = array();
+    foreach ($images as $image) {
+      $fileName = $image->image_name . "." . $image->image_extension;
+      $imageJSON[] = array('title' => $fileName, 'value' => "/img/" . $fileName);
+    }
+    return $imageJSON;
+  }
+
 }
