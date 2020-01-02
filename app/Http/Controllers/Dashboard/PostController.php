@@ -11,13 +11,16 @@ use App\Http\Requests\PostStoreRequest;
 class PostController extends Controller
 {
 
-  public function index(){
+  public function index()
+  {
     $posts = Post::latest()->paginate(10);
     return view('dashboard.post.index', compact('posts'));
   }
 
-  public function create(){
+  public function create(Post $post)
+  {
     $data = [
+      'post' => $post,
       'images' => Image::latest()->paginate(15),
       'categories' => Category::all(),
       'tags' => Tag::all(),
@@ -25,23 +28,24 @@ class PostController extends Controller
     return view('dashboard.post.create', $data);
   }
 
-  public function store( PostStoreRequest $request ){
-    $post = new Post();
+  public function store( PostStoreRequest $request, Post $post )
+  {
     $this->storeDateStatus($request, $post);
     $post->fill($request->except('_token'))->save();
     $this->storeTags($request, $post);
     $this->storeThumbnail($request, $post);
-    return redirect('dashboard/post/'.$post->id.'/edit');
+    return redirect(route('post.edit', $post));
   }
 
-  public function edit( Post $post ){
+  public function edit( Post $post )
+  {
     $data = [
       'post' => $post,
       'images' => Image::latest()->paginate(15),
       'categories' => Category::all(),
       'tags' => Tag::all(),
     ];
-    return view('dashboard.post.edit', $data);
+    return view('dashboard.post.create', $data);
   }
 
   public function update( PostStoreRequest $request, Post $post )
@@ -50,7 +54,7 @@ class PostController extends Controller
     $post->fill($request->except('_token', '_method'))->save();
     $this->storeTags($request, $post);
     $this->storeThumbnail($request, $post);
-    return redirect('dashboard/post/'.$post->id.'/edit');
+    return redirect(route('post.edit', $post));
   }
 
   public function delete(Request $request)
@@ -62,7 +66,7 @@ class PostController extends Controller
     } else {
       $this->deletePost($request->deleteId);
     }
-    return redirect('dashboard/post');
+    return redirect(route('post.index'));
   }
 
   public function storeDateStatus(PostStoreRequest $request, Post $post)
@@ -87,8 +91,8 @@ class PostController extends Controller
 
   public function storeTags(PostStoreRequest $request, Post $post)
   {
+    $post->tags()->detach();
     if (is_array($request->tags)) {
-      $post->tags()->detach();
       $post->tags()->attach($request->tags);
     }
   }

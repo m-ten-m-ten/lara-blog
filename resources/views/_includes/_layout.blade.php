@@ -1,19 +1,19 @@
 <!doctype html>
 <html class="h-full" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-@include('common.head')
+@include('_includes._head')
 
 <body class="h-full">
-
   <div class="relative min-h-full">
-    @include('common.header')
+    @include('_includes._header')
 
     <div class="mt-6 pb-16 px-4 max-w-5xl mx-auto">
       @yield('content')
     </div>
 
-    @include('common.footer')
+    @include('_includes._footer')
   </div>
-@include('common.script')
+
+  @include('_includes._script')
 
 </body>
 </html>

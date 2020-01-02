@@ -17,27 +17,26 @@ class TagController extends Controller
     return view('dashboard.tag.index', $data);
   }
 
-  public function create()
+  public function create(Tag $tag)
   {
-    return view('dashboard.tag.create');
+    return view('dashboard.tag.create', compact('tag'));
   }
 
-  public function store( TagStoreRequest $request )
+  public function store( TagStoreRequest $request, Tag $tag )
   {
-    $tag = new Tag();
     $tag->fill($request->except('_token'))->save();
-    return redirect('dashboard/tag/'. $tag->id . '/edit')->with('status', __('タグの登録が完了しました。'));
+    return redirect(route('tag.edit', $tag))->with('status', __('登録が完了しました。'));
   }
 
   public function edit( Tag $tag )
   {
-   return view('dashboard.tag.edit', compact('tag'));
+   return view('dashboard.tag.create', compact('tag'));
   }
 
   public function update( TagStoreRequest $request, Tag $tag )
   {
     $tag->fill($request->except('_token', '_method'))->save();
-    return redirect('dashboard/tag/'. $tag->id . '/edit')->with('status', __('タグの変更が完了しました。'));
+    return redirect(route('tag.edit', $tag))->with('status', __('変更が完了しました。'));
   }
 
   public function delete(Request $request)
@@ -51,6 +50,6 @@ class TagController extends Controller
       $tag = Tag::findOrFail($request->deleteId);
       $tag->delete();
     }
-    return redirect('dashboard/tag');
+    return redirect(route('tag.index'));
   }
 }

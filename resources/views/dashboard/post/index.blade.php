@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.base')
+@extends('_includes._adminLayout')
 @section('content')
 <div class="max-w-5xl mx-auto px-4">
   <div class="flex items-center">
@@ -32,7 +32,7 @@
         @foreach ($posts as $id => $post)
         <tr class="{{ $loop->odd ? 'bg-gray-100' : ''}}">
           <td class="px-4 py-4"><input type="checkbox" name="checkedIds[]" value="{{ $post->id }}"></td>
-          <td class="px-4 py-4"><a class="text-blue-700 font-bold" href="/dashboard/post/{{ $post->id }}/edit">{{ $post->post_title }}</a>{{ $post->post_status == 'drafted' ? ' - 下書き' : ''}}</td>
+          <td class="px-4 py-4"><a class="text-blue-700 font-bold" href="/dashboard/post/edit/{{ $post->id }}">{{ $post->post_title }}</a>{{ $post->post_status == 'drafted' ? ' - 下書き' : ''}}</td>
           <td class="px-4 py-4 hidden md:table-cell">@if(isset($post->category_id)){{ $post->category->category_title }}@endif</td>
           <td class="flex flex-wrap px-4 py-4 hidden md:table-cell text-gray-700">
             @foreach ($post->tags as $tag)
@@ -45,7 +45,7 @@
             {{ $post->post_status == 'drafted' ? '下書き：'.$post->post_drafted->format('Y/m/d h:i') : '' }}
           </td>
           <td class="px-4 py-4">
-            <a class="text-blue-700 underline" href="/dashboard/post/{{ $post->id }}/edit">編集</a>
+            <a class="text-blue-700 underline" href="/dashboard/post/edit/{{ $post->id }}">編集</a>
             <span class="md:inline hidden">|</span>
             <button class="text-blue-700 underline appearance-none " type="submit" name="deleteId" value="{{$post->id}}" onClick="delete_alert(event);return false;">削除</button>
           </td>

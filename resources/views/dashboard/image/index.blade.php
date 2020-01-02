@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.base')
+@extends('_includes._adminLayout')
 @section('content')
 <div class="max-w-5xl mx-auto px-4">
   <div class="flex items-center">
@@ -31,10 +31,10 @@
         <tr class="{{ $loop->odd ? 'bg-gray-100' : ''}}">
           <td class="px-4 py-4"><input type="checkbox" name="checkedIds[]" value="{{ $image->id }}"></td>
           <td class="px-4 py-4"><img src="/img/{{$image->image_name}}.{{$image->image_extension}}" alt="" width="100px"></td>
-          <td class="px-4 py-4"><a class="text-blue-700 font-bold" href="/dashboard/image/{{ $image->id }}/edit">{{ $image->image_name }}.{{$image->image_extension}}</a></td>
+          <td class="px-4 py-4"><a class="text-blue-700 font-bold" href="/dashboard/image/edit/{{ $image->id }}">{{ $image->image_name }}.{{$image->image_extension}}</a></td>
           <td class="px-4 py-4">{{ $image->created_at->format('Y/m/d h:i') }}</td>
           <td class="px-4 py-4">
-            <a class="text-blue-700 underline" href="/dashboard/image/{{ $image->id }}/edit">編集</a>
+            <a class="text-blue-700 underline" href="/dashboard/image/edit/{{ $image->id }}">編集</a>
             <span class="md:inline hidden">|</span>
             <button class="text-blue-700 underline appearance-none md:inline block md:mt-0 mt-1" type="submit" name="deleteId" value="{{$image->id}}" onClick="delete_alert(event);return false;">削除</button>
           </td>

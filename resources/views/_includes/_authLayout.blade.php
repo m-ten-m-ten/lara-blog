@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.base')
+@extends('_includes._adminLayout')
 @section('content')
 
 <div class="flex items-center justify-center  my-4">

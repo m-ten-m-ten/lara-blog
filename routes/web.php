@@ -37,39 +37,39 @@ Route::group(['middleware' => ['auth']], function() {
 
   Route::prefix('dashboard/post')->group(function() {
     Route::get('', 'Dashboard\PostController@index')->name('post.index');
-    Route::get('create', 'Dashboard\PostController@create');
-    Route::post('store', 'Dashboard\PostController@store');
+    Route::get('create', 'Dashboard\PostController@create')->name('post.create');
+    Route::post('create', 'Dashboard\PostController@store');
     Route::delete('delete', 'Dashboard\PostController@delete');
+    Route::get('edit/{post}', 'Dashboard\PostController@edit')->name('post.edit');
+    Route::post('edit/{post}', 'Dashboard\PostController@update');
     Route::get('read_image_api', 'Dashboard\PostController@readImage');
-    Route::get('{post}/edit', 'Dashboard\PostController@edit');
-    Route::patch('{post}', 'Dashboard\PostController@update');
   });
 
   Route::prefix('dashboard/image')->group(function() {
     Route::get('', 'Dashboard\ImageController@index')->name('image.index');
-    Route::get('create', 'Dashboard\ImageController@create');
-    Route::post('store', 'Dashboard\ImageController@store');
+    Route::get('create', 'Dashboard\ImageController@create')->name('image.create');
+    Route::post('create', 'Dashboard\ImageController@store');
     Route::delete('delete', 'Dashboard\ImageController@delete');
-    Route::get('{image}/edit', 'Dashboard\ImageController@edit');
-    Route::patch('{image}', 'Dashboard\ImageController@update');
+    Route::get('edit/{image}', 'Dashboard\ImageController@edit')->name('image.edit');
+    Route::post('edit/{image}', 'Dashboard\ImageController@update');
   });
 
   Route::prefix('dashboard/category')->group(function() {
     Route::get('', 'Dashboard\CategoryController@index')->name('category.index');
     Route::get('create', 'Dashboard\CategoryController@create')->name('category.create');
-    Route::post('store', 'Dashboard\CategoryController@store');
+    Route::post('create', 'Dashboard\CategoryController@store');
     Route::delete('delete', 'Dashboard\CategoryController@delete');
-    Route::get('{category}/edit', 'Dashboard\CategoryController@edit');
-    Route::patch('{category}', 'Dashboard\CategoryController@update');
+    Route::get('edit/{category}', 'Dashboard\CategoryController@edit')->name('category.edit');
+    Route::post('edit/{category}', 'Dashboard\CategoryController@update');
   });
 
   Route::prefix('dashboard/tag')->group(function() {
     Route::get('', 'Dashboard\TagController@index')->name('tag.index');
     Route::get('create', 'Dashboard\TagController@create')->name('tag.create');
-    Route::post('store', 'Dashboard\TagController@store');
+    Route::post('create', 'Dashboard\TagController@store');
     Route::delete('delete', 'Dashboard\TagController@delete');
-    Route::get('{tag}/edit', 'Dashboard\TagController@edit');
-    Route::patch('{tag}', 'Dashboard\TagController@update');
+    Route::get('edit/{tag}', 'Dashboard\TagController@edit')->name('tag.edit');
+    Route::post('edit/{tag}', 'Dashboard\TagController@update');
   });
 });
 

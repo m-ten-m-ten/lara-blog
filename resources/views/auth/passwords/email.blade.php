@@ -1,13 +1,13 @@
-@extends('auth.layouts.base')
+@extends('_includes._authLayout')
 @section('auth-content')
 @section('title', __('Reset Password'))
 
 <form method="POST" action="{{ route('password.email') }}">
   @csrf
-  @include('auth.common.email')
+  @include('_includes._m-email')
 
   <div class="py-4">
-    @include('auth.common.submit-btn', ['text' => __('Send Password Reset Link')])
+    @include('_includes._m-button', ['text' => __('Send Password Reset Link')])
   </div>
 
 </form>

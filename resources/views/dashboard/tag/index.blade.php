@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.base')
+@extends('_includes._adminLayout')
 @section('content')
 <div class="max-w-5xl mx-auto px-4">
   <div class="flex items-center">
@@ -30,10 +30,10 @@
         @foreach ($tags as $id => $tag)
         <tr class="{{ $loop->odd ? 'bg-gray-100' : ''}}">
           <td class="px-4 py-4"><input type="checkbox" name="checkedIds[]" value="{{ $tag->id }}"></td>
-          <td class="px-4 py-4"><a class="text-blue-700 font-bold" href="/dashboard/tag/{{ $tag->id }}/edit">{{ $tag->tag_title }}</a></td>
+          <td class="px-4 py-4"><a class="text-blue-700 font-bold" href="/dashboard/tag/edit/{{ $tag->id }}">{{ $tag->tag_title }}</a></td>
           <td class="px-4 py-4">{{ $tag->tag_name }}</td>
           <td class="px-4 py-4">
-            <a class="text-blue-700 underline" href="/dashboard/tag/{{ $tag->id }}/edit">編集</a>
+            <a class="text-blue-700 underline" href="/dashboard/tag/edit/{{ $tag->id }}">編集</a>
             <span class="md:inline hidden">|</span>
             <button class="text-blue-700 underline appearance-none md:inline block md:mt-0 mt-1" type="submit" name="deleteId" value="{{$tag->id}}" onClick="delete_alert(event);return false;">削除</button>
           </td>

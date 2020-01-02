@@ -17,27 +17,26 @@ class CategoryController extends Controller
     return view('dashboard.category.index', $data);
   }
 
-  public function create()
+  public function create(Category $category)
   {
-    return view('dashboard.category.create');
+    return view('dashboard.category.create', compact('category'));
   }
 
-  public function store( CategoryStoreRequest $request )
+  public function store( CategoryStoreRequest $request, Category $category)
   {
-    $category = new Category();
     $category->fill($request->except('_token'))->save();
-    return redirect('dashboard/category/'. $category->id . '/edit')->with('status', __('カテゴリーの登録が完了しました。'));
+    return redirect(route('category.edit', $category))->with('status', __('登録が完了しました。'));
   }
 
   public function edit( Category $category )
   {
-   return view('dashboard.category.edit', compact('category'));
+   return view('dashboard.category.create', compact('category'));
   }
 
   public function update( CategoryStoreRequest $request, Category $category )
   {
     $category->fill($request->except('_token', '_method'))->save();
-    return redirect('dashboard/category/'. $category->id . '/edit')->with('status', __('カテゴリーの更新が完了しました。'));
+    return redirect(route('category.edit', $category))->with('status', __('変更が完了しました。'));
   }
 
   public function delete(Request $request)
@@ -51,6 +50,6 @@ class CategoryController extends Controller
       $category = Category::findOrFail($request->deleteId);
       $category->delete();
     }
-    return redirect('dashboard/category');
+    return redirect(route('category.index'));
   }
 }
