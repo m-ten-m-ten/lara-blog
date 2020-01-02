@@ -23,13 +23,13 @@
 
         <div class="py-3">
           <lavel for="tag_title" class="text-lg font-bold py-2">タグ名</lavel>
-          <input name="tag_title" class="my-2 px-2 py-2 border @error('tag_title') border-red-500 @enderror rounded w-full text-xl" type="text" value="{{ old('tag_title', $tag->tag_title) }}">
+          <input name="tag_title" class="my-2 px-2 py-2 border @error('tag_title') border-red-500 @enderror rounded w-full text-xl" type="text" value="{{ old('tag_title', $tag->tag_title) }}" required maxlength="15">
           @error('tag_title') <div class="text-red-500">{{ $message }}</div> @enderror
         </div>
 
         <div class="py-3">
           <lavel for="tag_name" class="text-lg font-bold py-2">スラッグ（使用可能：数字 / 英字(小文字) / - / _ ）</lavel>
-          <input name="tag_name" class="my-2 px-2 py-2 border @error('tag_name') border-red-500 @enderror rounded w-full text-xl" type="text" value="{{ old('tag_name', $tag->tag_name) }}">
+          <input name="tag_name" class="my-2 px-2 py-2 border @error('tag_name') border-red-500 @enderror rounded w-full text-xl" type="text" value="{{ old('tag_name', $tag->tag_name) }}" required maxlength="50" pattern="^[-_a-z0-9]{1,50}$">
           @error('tag_name') <div class="text-red-500">{{ $message }}</div> @enderror
         </div>
 

@@ -7,7 +7,7 @@
 
     <div class="flex justify-between items-center border-b">
       <div class="flex items-center">
-        <h1 class="text-2xl font-bold py-4 mr-2">{{ ($post->exists)? '新規投稿': '投稿編集'}}</h1>
+        <h1 class="text-2xl font-bold py-4 mr-2">{{ ($post->exists)? '投稿編集': '新規投稿'}}</h1>
         <a href="/dashboard/post" class="text-blue-700 font-bold focus:outline-none py-2 px-4 mr-2 border border-blue-700 rounded" >投稿一覧へ</a>
       </div>
 
@@ -37,7 +37,7 @@
 
         <div class="py-2">
           <lavel for="post_title" class="text-lg font-bold">タイトル</lavel>
-          <input name="post_title" class="px-2 py-2 border rounded w-full text-xl" type="text" value="{{ old('post_title', $post->post_title) }}">
+          <input name="post_title" class="px-2 py-2 border rounded w-full text-xl" type="text" value="{{ old('post_title', $post->post_title) }}" required maxlength="100">
         </div>
         <div class="py-2">
           <lavel for="post_content" class="text-lg font-bold">本文</lavel>
@@ -69,7 +69,7 @@
         <div class="py-2 mb-1">
           <h2 class="border-b-2 border-blue-500 text-lg font-bold mb-2">記事抜粋</h2>
           <div class="">
-            <textarea name="post_excerpt" id="" class="px-2 py-2 border rounded w-full" rows="4">{{ old('post_excerpt', $post->post_excerpt) }}</textarea>
+            <textarea name="post_excerpt" id="" class="px-2 py-2 border rounded w-full" rows="4" maxlength="200">{{ old('post_excerpt', $post->post_excerpt) }}</textarea>
           </div>
         </div>
 
@@ -109,9 +109,9 @@
 
         {{-- 投稿スラッグ --}}
         <div class="py-2 mb-1">
-          <h2 class="border-b-2 border-blue-500 text-lg font-bold mb-2">投稿スラッグ</h2>
+          <h2 class="border-b-2 border-blue-500 text-lg font-bold mb-2">スラッグ（使用可能：数字 / 英字(小文字) / - / _ ）</h2>
           <div class="">
-            <input name="post_name" id="" class="px-2 py-2 border rounded w-full" value="{{ old('post_name', $post->post_name) }}"></input>
+            <input name="post_name" id="" class="px-2 py-2 border rounded w-full" value="{{ old('post_name', $post->post_name) }}" maxlength="50" pattern="^[-_a-z0-9]{1,50}$"></input>
           </div>
         </div>
       </div>

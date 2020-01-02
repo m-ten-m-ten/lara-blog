@@ -19,13 +19,13 @@
 
         <div class="py-3">
           <lavel for="category_title" class="text-lg font-bold py-2">カテゴリー名</lavel>
-          <input name="category_title" class="my-2 px-2 py-2 border @error('category_title') border-red-500 @enderror rounded w-full text-xl" type="text" value="{{ old('category_title', $category->category_title) }}">
+          <input name="category_title" class="my-2 px-2 py-2 border @error('category_title') border-red-500 @enderror rounded w-full text-xl" type="text" value="{{ old('category_title', $category->category_title) }}" required maxlength="15">
           @error('category_title') <div class="text-red-500">{{ $message }}</div> @enderror
         </div>
 
         <div class="py-3">
           <lavel for="category_name" class="text-lg font-bold py-2">スラッグ（使用可能：数字 / 英字(小文字) / - / _ ）</lavel>
-          <input name="category_name" class="my-2 px-2 py-2 border @error('category_name') border-red-500 @enderror rounded w-full text-xl" type="text" value="{{ old('category_name', $category->category_name) }}">
+          <input name="category_name" class="my-2 px-2 py-2 border @error('category_name') border-red-500 @enderror rounded w-full text-xl" type="text" value="{{ old('category_name', $category->category_name) }}" required maxlength="50" pattern="^[-_a-z0-9]{1,50}$">
           @error('category_name') <div class="text-red-500">{{ $message }}</div> @enderror
         </div>
 
