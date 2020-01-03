@@ -75,6 +75,6 @@ Route::group(['middleware' => ['auth']], function() {
 
 // フロント
 Route::get('/', 'HomeController@index');
-Route::get('/category/{id}', 'HomeController@category');
-Route::get('/tag/{id}', 'HomeController@tag');
+Route::get('/category/{category}', 'HomeController@category');
+Route::get('/tag/{tag}', 'HomeController@tag');
 Route::get('{post}', 'HomeController@show');

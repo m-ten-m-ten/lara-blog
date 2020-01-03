@@ -32,9 +32,10 @@ class HomeController extends Controller
     return view('show', $data);
   }
 
-  public function category($id) {
+  public function category(Category $category) {
     $data = [
-      'posts' => Category::find($id)->posts()->orderBy('post_published', 'desc')->paginate(10),
+      'category' => $category,
+      'posts' => Category::find($category->id)->posts()->orderBy('post_published', 'desc')->paginate(10),
       'images' => Image::all(),
       'categories' => Category::all(),
       'tags' => Tag::all(),
@@ -42,9 +43,10 @@ class HomeController extends Controller
     return view('index', $data);
   }
 
-  public function tag($id) {
+  public function tag(Tag $tag) {
     $data = [
-      'posts' => Tag::find($id)->posts()->orderBy('post_published', 'desc')->paginate(10),
+      'tag' => $tag,
+      'posts' => Tag::find($tag->id)->posts()->orderBy('post_published', 'desc')->paginate(10),
       'images' => Image::all(),
       'categories' => Category::all(),
       'tags' => Tag::all(),

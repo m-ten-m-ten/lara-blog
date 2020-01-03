@@ -1,7 +1,7 @@
 <header class="public">
   <div class="bg-gray-900 h-20">
-    <div class="container mx-auto">
-      <div class="flex justify-between items-start  px-4 py-3">
+    <div class="max-w-5xl px-4 mx-auto">
+      <div class="flex justify-between items-start py-3">
         <a class="block text-4xl text-white w-40" href="{{ url('/') }}">
           {{ config('app.name') }}
         </a>

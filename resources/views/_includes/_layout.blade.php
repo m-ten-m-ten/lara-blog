@@ -6,7 +6,7 @@
   <div class="relative min-h-full">
     @include('_includes._header')
 
-    <div class="mt-6 pb-16 px-4 max-w-5xl mx-auto">
+    <div class="mt-4 pb-16 px-4 max-w-5xl mx-auto">
       @yield('content')
     </div>
 
