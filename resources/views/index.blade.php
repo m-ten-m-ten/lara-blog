@@ -3,6 +3,13 @@
 @section('content')
 
 <div class="sm:py-2">
+
+  @if(isset($category) || isset($tag))
+      <div class="mb-3 text-gray-700">
+        <a class="text-blue-500" href="{{ route('home') }}">HOME</a> > {{ isset($category)? 'カテゴリー「' . $category->category_title: 'タグ「' . $tag->tag_title }}」の記事一覧
+      </div>
+  @endif
+
   @if(isset($category) || isset($tag))
     <div class="bg-gray-200 sm:px-4 px-2 sm:py-6 py-3">
       <div class="sm:pl-4 pl-3 relative sm:text-xl">
