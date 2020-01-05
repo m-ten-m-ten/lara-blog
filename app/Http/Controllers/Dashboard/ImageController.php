@@ -20,12 +20,11 @@ class ImageController extends Controller
     return view('dashboard.image.create', compact('image'));
   }
 
-  public function store( ImageStoreRequest $request ){
+  public function store( ImageStoreRequest $request, Image $image ){
     if ($request->file('image_file')->isValid()) {
       $image_name = $request->image_name;
       $image_extension = $request->file('image_file')->guessExtension();
       $request->file('image_file')->move(public_path()."/img", $image_name.".".$image_extension);
-      $image = new Image();
       $image->image_name = $image_name;
       $image->image_extension = $image_extension;
       $image->save();
@@ -45,16 +44,16 @@ class ImageController extends Controller
     return redirect(route('image.edit', $image))->with('status', __('変更が完了しました。'));
   }
 
-  public function delete(Request $req)
+  public function delete(Request $request)
   {
-    if($req->checked_images) {
-      foreach ($req->checkedIds as $id) {
+    if ( $request->checked_images ) {
+      foreach ($request->checkedIds as $id) {
         $image = Image::findOrFail($id);
         \File::delete(public_path()."/img/".$image->image_name.".".$image->image_extension);
         $image->delete();
       }
     } else {
-      $image = Image::findOrFail($req->deleteId);
+      $image = Image::findOrFail($request->deleteId);
       \File::delete(public_path()."/img/".$image->image_name.".".$image->image_extension);
       $image->delete();
     }

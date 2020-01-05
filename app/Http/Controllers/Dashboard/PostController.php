@@ -30,10 +30,10 @@ class PostController extends Controller
 
   public function store( PostStoreRequest $request, Post $post )
   {
-    $this->storeDateStatus($request, $post);
-    $post->fill($request->except('_token'))->save();
-    $this->storeTags($request, $post);
-    $this->storeThumbnail($request, $post);
+    $this->storeDateStatus($request->submit_btn, $post); //post_statusと各日付の更新。
+    $post->tags()->sync($request->tags); //タグの更新。
+    if (isset($request->image_id)) $this->storeThumbnail($request->image_id, $post); //サムネイル画像の登録があれば、更新。
+    $post->fill($request->validated())->save(); //その他の検証済みのデータもfillして、セーブ。
     return redirect(route('post.edit', $post));
   }
 
@@ -50,10 +50,10 @@ class PostController extends Controller
 
   public function update( PostStoreRequest $request, Post $post )
   {
-    $this->storeDateStatus($request, $post);
-    $post->fill($request->except('_token', '_method'))->save();
-    $this->storeTags($request, $post);
-    $this->storeThumbnail($request, $post);
+    $this->storeDateStatus($request->submit_btn, $post); //post_statusと各日付の更新
+    $post->tags()->sync($request->tags); //タグの登録
+    if (isset($request->image_id)) $this->storeThumbnail($request->image_id, $post); //サムネイル画像の登録があれば、登録
+    $post->fill($request->validated())->save(); //その他検証済みのデータも合わせてセーブ
     return redirect(route('post.edit', $post));
   }
 
@@ -69,9 +69,9 @@ class PostController extends Controller
     return redirect(route('post.index'));
   }
 
-  public function storeDateStatus(PostStoreRequest $request, Post $post)
+  public function storeDateStatus(String $submit_btn, Post $post)
   {
-    switch ($request->submit_btn) {
+    switch ($submit_btn) {
     case 'draft_btn':
       $post->post_drafted = Carbon::now();
       $post->post_status = 'drafted';
@@ -89,27 +89,16 @@ class PostController extends Controller
     }
   }
 
-  public function storeTags(PostStoreRequest $request, Post $post)
+  public function storeThumbnail(Int $image_id, Post $post)
   {
-    $post->tags()->detach();
-    if (is_array($request->tags)) {
-      $post->tags()->attach($request->tags);
-    }
-  }
-
-  public function storeThumbnail(PostStoreRequest $request, Post $post)
-  {
-    if (isset($request->image_id)) {
-      $this->deleteThumbnail($post);
-      $image = Image::find($request->image_id);
-      $now = Carbon::now('Asia/Tokyo')->format('YmdHis');
-      $file_name = $now . "thumbnail_" . $post->id . "." . $image->image_extension;
-      $source = public_path() . "/img/" . $image->image_name . "." . $image->image_extension;
-      $dest = public_path() . "/thumbnail/" . $file_name;
-      copy($source, $dest);
-      $post->post_thumbnail = $file_name;
-      $post->save();
-      }
+    $this->deleteThumbnail($post);
+    $image = Image::find($image_id);
+    $now = Carbon::now()->format('YmdHis');
+    $file_name = $now . "thumbnail_" . $post->id . "." . $image->image_extension;
+    $source = public_path() . "/img/" . $image->image_name . "." . $image->image_extension;
+    $dest = public_path() . "/thumbnail/" . $file_name;
+    copy($source, $dest);
+    $post->post_thumbnail = $file_name;
   }
 
   public function deletePost($deleteId)

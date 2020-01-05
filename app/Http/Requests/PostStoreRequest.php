@@ -25,6 +25,7 @@ class PostStoreRequest extends FormRequest
     public function rules(){
       return [
         'post_title' => ['required', 'max:100'],
+        'post_content' => [],
         'post_excerpt' => ['max:200'],
         'post_name' => ['nullable', Rule::unique('posts')->ignore($this->post), 'max:50', 'regex:/^[-_a-z0-9]{1,50}$/'],
       ];

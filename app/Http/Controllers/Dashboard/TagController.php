@@ -24,7 +24,7 @@ class TagController extends Controller
 
   public function store( TagStoreRequest $request, Tag $tag )
   {
-    $tag->fill($request->except('_token'))->save();
+    $tag->fill($request->validated())->save();
     return redirect(route('tag.edit', $tag))->with('status', __('登録が完了しました。'));
   }
 
@@ -35,7 +35,7 @@ class TagController extends Controller
 
   public function update( TagStoreRequest $request, Tag $tag )
   {
-    $tag->fill($request->except('_token', '_method'))->save();
+    $tag->fill($request->validated())->save();
     return redirect(route('tag.edit', $tag))->with('status', __('変更が完了しました。'));
   }
 

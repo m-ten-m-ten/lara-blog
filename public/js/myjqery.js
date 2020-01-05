@@ -94,7 +94,7 @@
 /***/ (function(module, exports) {
 
 $(function () {
-  // index 全選択
+  // admin各機能indexページ 全選択/解除
   $('#all').on('click', function () {
     $("input[name='checkedIds[]']").prop('checked', this.checked);
   });
@@ -103,6 +103,20 @@ $(function () {
       $('#all').prop('checked', true);
     } else {
       $('#all').prop('checked', false);
+    }
+  }); // admin各機能indexページ チェック有無チェック
+
+  $('#multipleSubmitBtn').click(function () {
+    if ($('#boxes :checked').length == 0) {
+      alert('１つも選択されていません。');
+      return false;
+    }
+  }); // admin各機能indexページ キャンセル確認
+
+  $('#delete-form').submit(function () {
+    if (!confirm('本当に削除しますか？')) {
+      alert('キャンセルされました');
+      return false;
     }
   }); // public ヘッダー スライドメニュー
 

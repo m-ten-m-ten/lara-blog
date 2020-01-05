@@ -24,7 +24,7 @@ class CategoryController extends Controller
 
   public function store( CategoryStoreRequest $request, Category $category)
   {
-    $category->fill($request->except('_token'))->save();
+    $category->fill($request->validated())->save();
     return redirect(route('category.edit', $category))->with('status', __('登録が完了しました。'));
   }
 
@@ -35,7 +35,7 @@ class CategoryController extends Controller
 
   public function update( CategoryStoreRequest $request, Category $category )
   {
-    $category->fill($request->except('_token', '_method'))->save();
+    $category->fill($request->validated())->save();
     return redirect(route('category.edit', $category))->with('status', __('変更が完了しました。'));
   }
 
