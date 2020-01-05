@@ -1,22 +1,21 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\Post;
 use App\Tag;
+use Illuminate\Database\Seeder;
 
 class PostTagTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         $posts = Post::all();
         $tags = Tag::all();
+
         foreach ($posts as $post) {
-          $post->tags()->attach($tags->random(rand(1,3))->pluck('id')->toArray());
+            $post->tags()->attach($tags->random(\mt_rand(1, 3))->pluck('id')->toArray());
         }
     }
 }

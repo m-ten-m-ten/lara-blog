@@ -1,16 +1,14 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\Category;
+use Illuminate\Database\Seeder;
 
 class CategoryTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         // Category::truncate();
 

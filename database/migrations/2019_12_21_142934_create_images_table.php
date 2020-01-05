@@ -8,12 +8,10 @@ class CreateImagesTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('images', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table): void {
             $table->bigIncrements('id');
             $table->string('image_name')->unique();
             $table->string('image_extension');
@@ -23,10 +21,8 @@ class CreateImagesTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('images');
     }

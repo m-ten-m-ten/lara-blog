@@ -1,4 +1,6 @@
-<?php  // resources/lang/ja/validation.php
+<?php
+
+ // resources/lang/ja/validation.php
 return [
     /*
     |--------------------------------------------------------------------------

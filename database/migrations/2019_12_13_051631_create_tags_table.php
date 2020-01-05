@@ -8,12 +8,10 @@ class CreateTagsTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('tags', function (Blueprint $table) {
+        Schema::create('tags', function (Blueprint $table): void {
             $table->bigIncrements('id');
             $table->string('tag_title')->unique();
             $table->string('tag_name')->unique();
@@ -23,10 +21,8 @@ class CreateTagsTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('tags');
     }
