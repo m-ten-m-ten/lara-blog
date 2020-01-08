@@ -41,7 +41,8 @@ class ImageStoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'image_file.required' => '画像ファイルを選択して下さい。',
+            'image_file.filled'   => '画像ファイルを選択して下さい。',
+            'image_file.file'     => '画像ファイルのアップロードに失敗しました。再度ご登録下さい。',
             'image_name.regex'    => 'ファイル名は「数字、英字(小文字)、-（ハイフン）、_（アンダーバー）」で入力して下さい。',
             'image_name.unique'   => 'すでに使用されているファイル名です。',
         ];
