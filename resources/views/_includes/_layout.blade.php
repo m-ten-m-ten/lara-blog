@@ -2,7 +2,7 @@
 <html class="h-full" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 @include('_includes._head')
 
-<body class="h-full">
+<body id="public" class="h-full">
   <div class="relative min-h-full">
     @include('_includes._header')
 

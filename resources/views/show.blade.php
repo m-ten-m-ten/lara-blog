@@ -2,11 +2,9 @@
 
 @section('content')
 
-@if ( $post->category )
     <div class="mb-3 text-gray-700">
-      <a class="text-blue-500" href="{{ route('home') }}">HOME</a> > <a href="/category/{{ $post->category->id }}" class="text-blue-500">カテゴリー「{{ $post->category->category_title }}」</a> > 記事ページ
+      <a class="text-blue-500" href="{{ route('home') }}">HOME</a> @if ($post->category)> <a href="/category/{{ $post->category->id }}" class="text-blue-500">カテゴリー「{{ $post->category->category_title }}」</a> @endif> 記事ページ
     </div>
-@endif
 
 <div class="post-title border border-gray-300 px-4 py-2">
 

@@ -1,6 +1,6 @@
 @extends('_includes._authLayout')
 @section('auth-content')
-@section('title', __('Reset Password'))
+@section('title', パスワードリセット)
 
 <form method="POST" action="{{ route('password.update') }}">
 
@@ -8,15 +8,14 @@
 
   <input type="hidden" name="token" value="{{ $token }}">
 
-  @include('_includes._m-email')
-
-  @include('_includes._m-password')
-
-  <label for="password-confirm" class="block font-bold py-2">{{ __('Confirm Password') }}</label>
-  <input id="password-confirm" type="password" class="bg-gray-200 appearance-none border-2 @error('password') border-red-500 @else border-gray-200 @enderror rounded w-full py-2 px-4 focus:outline-none focus:bg-white focus:border-blue-700" name="password_confirmation" required autocomplete="new-password">
+  <ul>
+    <li>@include('_includes._m-email')</li>
+    <li>@include('_includes._m-password')</li>
+    <li>@include('_includes._m-passwordConfirmation')</li>
+  </ul>
 
   <div class="py-4">
-    @include('_includes._m-button', ['text' => __('Reset Password')])
+    <button type="submit" class="btn-blue">パスワードリセット</button>
   </div>
 
 </form>

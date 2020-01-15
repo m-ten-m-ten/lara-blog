@@ -1,15 +1,17 @@
 @extends('_includes._authLayout')
 @section('auth-content')
-@section('title', __('Reset Password'))
+@section('title', パスワードリセット)
 
 <form method="POST" action="{{ route('password.email') }}">
   @csrf
-  @include('_includes._m-email')
+
+  <ul>
+    <li>@include('_includes._m-email')</li>
+  </ul>
 
   <div class="py-4">
-    @include('_includes._m-button', ['text' => __('Send Password Reset Link')])
+    <button type="submit" class="btn-blue">パスワードリセット用URLを送信</button>
   </div>
 
 </form>
-
 @endsection

@@ -1,6 +1,6 @@
 @if ($paginator->hasPages())
-    <nav>
-        <ul class="flex items-center">
+    <nav class="flex justify-center items-center py-2 mb-6">
+        <ul class="flex">
             {{-- Previous Page Link --}}
             @if ($paginator->onFirstPage())
                 <li>
@@ -23,7 +23,7 @@
                 @if (is_array($element))
                     @foreach ($element as $page => $url)
                         @if ($page == $paginator->currentPage())
-                            <li><span class="block bg-blue-200 border-t border-b border-r px-4 py-2">{{ $page }}</span></li>
+                            <li><span class="pagination-current block border-t border-b border-r px-4 py-2">{{ $page }}</span></li>
                         @else
                             <li><a class="block border-t border-b border-r px-4 py-2" href="{{ $url }}">{{ $page }}</a></li>
                         @endif
