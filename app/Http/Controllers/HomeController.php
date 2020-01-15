@@ -1,4 +1,7 @@
 <?php
+/**
+ * Laravelブログアプリの公開ページ用コントローラー
+ */
 
 namespace App\Http\Controllers;
 
@@ -8,44 +11,64 @@ use App\Tag;
 
 class HomeController extends Controller
 {
+    /**
+     * ホームページ（記事一覧）へアクセスする。
+     *
+     * @return Resonse ホームページ（記事一覧）を表示
+     */
     public function index()
     {
         $data = [
-            'posts'      => Post::where('post_status', 'published')->orderBy('post_published', 'desc')->paginate(10),
-            'categories' => Category::all(),
-            'tags'       => Tag::all(),
+            'posts'      => Post::getPublicPostList(),
+            'categories' => Category::withCount('posts')->get(),
+            'tags'       => Tag::withCount('posts')->get(),
         ];
         return view('index', $data);
     }
 
+    /**
+     * 個別記事ページへアクセスする。
+     *
+     * @return Resonse 個別記事ページを表示
+     */
     public function show(Post $post)
     {
         $data = [
-            'post'       => $post,
-            'categories' => Category::all(),
-            'tags'       => Tag::all(),
+            'post'       => Post::with(['tags'])->find($post->id),
+            'categories' => Category::withCount('posts')->get(),
+            'tags'       => Tag::withCount('posts')->get(),
         ];
         return view('show', $data);
     }
 
+    /**
+     * カテゴリー別記事一覧へアクセスする。
+     *
+     * @return Resonse カテゴリー別記事一覧を表示
+     */
     public function category(Category $category)
     {
         $data = [
             'category'   => $category,
-            'posts'      => Category::find($category->id)->posts()->orderBy('post_published', 'desc')->paginate(10),
-            'categories' => Category::all(),
-            'tags'       => Tag::all(),
+            'posts'      => Category::getPublishCategoryPostList($category->id),
+            'categories' => Category::withCount('posts')->get(),
+            'tags'       => Tag::withCount('posts')->get(),
         ];
         return view('index', $data);
     }
 
+    /**
+     * タグ別記事一覧へアクセスする。
+     *
+     * @return Resonse タグ別記事一覧を表示
+     */
     public function tag(Tag $tag)
     {
         $data = [
             'tag'        => $tag,
-            'posts'      => Tag::find($tag->id)->posts()->orderBy('post_published', 'desc')->paginate(10),
-            'categories' => Category::all(),
-            'tags'       => Tag::all(),
+            'posts'      => Tag::getPublishTagPostList($tag->id),
+            'categories' => Category::withCount('posts')->get(),
+            'tags'       => Tag::withCount('posts')->get(),
         ];
         return view('index', $data);
     }
