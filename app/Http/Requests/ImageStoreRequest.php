@@ -47,4 +47,18 @@ class ImageStoreRequest extends FormRequest
             'image_name.unique'   => 'すでに使用されているファイル名です。',
         ];
     }
+
+    public function validated()
+    {
+        $validated = parent::validated();
+
+        if (isset($validated['image_file'])) {
+            $validated['image_extension'] = $validated['image_file']->extension();
+            $validated['image_file']->move(public_path() . '/img', $validated['image_name'] . '.' . $validated['image_extension']);
+        } else {
+            \rename(public_path() . '/img/' . $this->image->image_name . '.' . $this->image->image_extension, public_path() . '/img/' . $validated['image_name'] . '.' . $this->image->image_extension);
+        }
+
+        return $validated;
+    }
 }

@@ -52,13 +52,7 @@ class ImageController extends Controller
      */
     public function store(ImageStoreRequest $request, Image $image)
     {
-        $validatedData = $request->validated();
-        $image_name = $validatedData['image_name'];
-        $image_extension = $validatedData['image_file']->extension();
-        $validatedData['image_file']->move(public_path() . '/img', $image_name . '.' . $image_extension);
-        $image->image_name = $image_name;
-        $image->image_extension = $image_extension;
-        $image->save();
+        $image->fill($request->validated())->save();
         return redirect(route('image.edit', $image))->with('status', '登録が完了しました。');
     }
 
@@ -84,9 +78,7 @@ class ImageController extends Controller
      */
     public function update(ImageStoreRequest $request, Image $image)
     {
-        \rename(public_path() . '/img/' . $image->image_name . '.' . $image->image_extension, public_path() . '/img/' . $request->image_name . '.' . $image->image_extension);
-        $image->image_name = $request->image_name;
-        $image->save();
+        $image->fill($request->validated())->save();
         return redirect(route('image.edit', $image))->with('status', '変更が完了しました。');
     }
 
@@ -103,12 +95,10 @@ class ImageController extends Controller
         if ($request->checked) {
             foreach ($request->checkedIds as $id) {
                 $image = Image::findOrFail($id);
-                \File::delete(public_path() . '/img/' . $image->image_name . '.' . $image->image_extension);
                 $image->delete();
             }
         } elseif ($request->deleteId) {
             $image = Image::findOrFail($request->deleteId);
-            \File::delete(public_path() . '/img/' . $image->image_name . '.' . $image->image_extension);
             $image->delete();
         }
         return redirect(route('image.index'));
