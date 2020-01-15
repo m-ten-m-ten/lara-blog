@@ -35,4 +35,24 @@ class Post extends Model
     {
         return $this->belongsToMany('App\Tag');
     }
+
+    /**
+     * 管理用記事一覧データ取得
+     *
+     * @return object
+     */
+    public static function getPostList()
+    {
+        return static::with('tags')->latest()->paginate(10);
+    }
+
+    /**
+     * 公開用記事一覧表示用データ取得
+     *
+     * @return object
+     */
+    public static function getPublicPostList()
+    {
+        return static::where('post_status', 'published')->latest()->paginate(10);
+    }
 }

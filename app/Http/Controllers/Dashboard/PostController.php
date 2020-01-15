@@ -8,7 +8,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostStoreRequest;
-use App\{Category, Image, Tag, post};
+use App\{Category, Image, Post, Tag};
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -26,7 +26,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest()->paginate(10);
+        $posts = Post::getPostList();
+
         return view('dashboard.post.index', \compact('posts'));
     }
 
@@ -40,10 +41,10 @@ class PostController extends Controller
     public function create(Post $post)
     {
         $data = [
-            'post'       => $post,
-            'images'     => Image::latest()->paginate(15),
-            'categories' => Category::all(),
-            'tags'       => Tag::all(),
+            'post'          => $post,
+            'images'        => Image::getImageList(),
+            'categoryList'  => Category::getCategoryList(),
+            'tagList'       => Tag::getTagList(),
         ];
         return view('dashboard.post.create', $data);
     }
@@ -59,12 +60,12 @@ class PostController extends Controller
     public function store(PostStoreRequest $request, Post $post)
     {
         $this->storeDateStatus($request->submit_btn, $post);
-        $post->tags()->sync($request->tags);
 
         if (isset($request->image_id)) {
             $this->storeThumbnail($request->image_id, $post);
         }
         $post->fill($request->validated())->save();
+        $post->tags()->sync($request->tags);
         return redirect(route('post.edit', $post));
     }
 
@@ -78,10 +79,10 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $data = [
-            'post'       => $post,
-            'images'     => Image::latest()->paginate(15),
-            'categories' => Category::all(),
-            'tags'       => Tag::all(),
+            'post'          => $post,
+            'images'        => Image::getImageList(),
+            'categoryList'  => Category::getCategoryList(),
+            'tagList'       => Tag::getTagList(),
         ];
         return view('dashboard.post.create', $data);
     }
@@ -97,12 +98,12 @@ class PostController extends Controller
     public function update(PostStoreRequest $request, Post $post)
     {
         $this->storeDateStatus($request->submit_btn, $post);
-        $post->tags()->sync($request->tags);
 
         if (isset($request->image_id)) {
             $this->storeThumbnail($request->image_id, $post);
         }
         $post->fill($request->validated())->save();
+        $post->tags()->sync($request->tags);
         return redirect(route('post.edit', $post));
     }
 

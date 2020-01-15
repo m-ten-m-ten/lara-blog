@@ -16,4 +16,16 @@ class Category extends Model
     {
         return $this->hasMany('App\Post');
     }
+
+    // 管理用カテゴリー一覧を取得（プルダウン用）
+    public static function getCategoryList()
+    {
+        return static::latest()->pluck('category_title', 'id');
+    }
+
+    // 公開用カテゴリー別記事一覧を取得
+    public static function getPublishCategoryPostList(Int $id)
+    {
+        return static::find($id)->posts()->where('post_status', 'published')->latest()->paginate(10);
+    }
 }
