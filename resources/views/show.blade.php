@@ -1,33 +1,40 @@
 @extends('_includes._layout')
-
 @section('content')
 
-    <div class="mb-3 text-gray-700">
-      <a class="text-blue-500" href="{{ route('home') }}">HOME</a> @if ($post->category)> <a href="/category/{{ $post->category->id }}" class="text-blue-500">カテゴリー「{{ $post->category->category_title }}」</a> @endif> 記事ページ
-    </div>
+<div class="l-show">
 
-<div class="post-title border border-gray-300 px-4 py-2">
-
-  <h1 class="text-3xl font-semibold">{{ $post->post_title }}</h1>
-
-  <div class="flex justify-end">
-    <span>{{ $post->post_published->format('Y.m.d') }}</span>
+  <div class="m-breadcrumb">
+    <ul>
+      <li><a class="text-link" href="{{ route('home') }}">HOME</a></li>
+      @if($post->category)
+        <li><a class="text-link" href="/category/{{ $post->category->id }}">カテゴリー「{{ $post->category->category_title }}」</a></li>
+      @endif
+      <li>記事ページ</li>
+    </ul>
   </div>
 
-<div class="flex">
 
-    @if ( $post->category )
-      <a href="/category/{{ $post->category->id }}" class="text-sm text-gray-700 hover:text-white hover:bg-gray-500 border border-gray-500 rounded-full mr-2 p-1">{{ $post->category->category_title }}</a>
+  <div class="m-show-title">
+
+    <h1 class="m-show-title-text">{{ $post->post_title }}</h1>
+
+    <span class="m-show-title-date">{{ $post->post_published->format('Y.m.d') }}</span>
+
+    @if ($post->category)
+      <a class="m-show-title-attr" href="/category/{{ $post->category->id }}">{{ $post->category->category_title }}</a>
     @endif
 
-    @foreach ( $post->tags as $tag )
-      <a href="/tag/{{ $tag->id }}" class="text-sm text-gray-700 hover:text-white hover:bg-gray-500 border border-gray-500 rounded-full mr-2 p-1">{{ $tag->tag_title }}</a>
+    @foreach ($post->tags as $tag)
+      <a class="m-show-title-attr" href="/tag/{{ $tag->id }}">{{ $tag->tag_title }}</a>
     @endforeach
+
+  </div>
+
+
+  <div class="m-show-content">
+    {!! $post->post_content !!}
   </div>
 
 </div>
 
-<div class="post-content py-2">
-  {!! $post->post_content !!}
-</div>
 @endsection

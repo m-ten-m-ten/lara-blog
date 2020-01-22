@@ -28,14 +28,32 @@ $(function() {
     }
   });
 
-  // public ヘッダー スライドメニュー
-  $('#category_btn').click(function() {
-    if($('#category_menu').hasClass('open')){
-      $('#category_menu').slideUp();
-      $('#category_menu').removeClass('open');
+  // ヘッダーメニューのスライド
+  $('#menu01').click(function() {
+    if($('#menu01-sub').hasClass('open')){
+      $('#menu01-sub').slideUp();
+      $('#menu01-sub').removeClass('open');
     } else {
-      $('#category_menu').slideDown();
-      $('#category_menu').addClass('open');
+      $('#menu01-sub').slideDown();
+      $('#menu01-sub').addClass('open');
+    }
+  });
+  $('#menu02').click(function() {
+    if($('#menu02-sub').hasClass('open')){
+      $('#menu02-sub').slideUp();
+      $('#menu02-sub').removeClass('open');
+    } else {
+      $('#menu02-sub').slideDown();
+      $('#menu02-sub').addClass('open');
+    }
+  });
+  $('#menu03').click(function() {
+    if($('#menu03-sub').hasClass('open')){
+      $('#menu03-sub').slideUp();
+      $('#menu03-sub').removeClass('open');
+    } else {
+      $('#menu03-sub').slideDown();
+      $('#menu03-sub').addClass('open');
     }
   });
 
@@ -50,16 +68,18 @@ $(function() {
   });
 
   // ドロップダウンメニュー
-  const $navigation = $('.dropdown_menu');
-  const $navigationToggle = $('.dropdown_toggle');
+  const $navigation = $('.dropdown-menu');
+  const $navigationToggle = $('.dropdown-toggle');
 
   $navigationToggle.click(function() {
     if($navigation.hasClass('open')) {
       $navigation.slideUp();
       $navigation.removeClass('open');
+      $navigationToggle.removeClass('is-active');
     } else {
       $navigation.slideDown();
       $navigation.addClass('open');
+      $navigationToggle.addClass('is-active');
     }
   });
 
@@ -77,15 +97,11 @@ $(function() {
 
   // 選択済みのサムネイルの表示
   let src = $('input[name="image_id"]:checked').next().children('img').attr('src');
-  let name = $('input[name="image_id"]:checked').next().children('div').text();
   $("#selected_thumb_img").attr("src", src);
-  $("#selected_thumb_name").text(name);
 
   $('input[name="image_id"]:radio').change(function(){
     let src = $(this).next().children('img').attr('src');
-    let name = $(this).next().children('div').text();
     $("#selected_thumb_img").attr("src", src);
-    $("#selected_thumb_name").text(name);
   });
 
 });

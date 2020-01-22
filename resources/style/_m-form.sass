@@ -1,0 +1,31 @@
+.m-form
+
+.m-form-row
+  margin-bottom: 10px
+
+.m-form-title
+  display: block
+  font-weight: bold
+  font-size: 2.0rem
+  +mediaquery-tablet
+    font-size: 1.8rem
+
+.m-form-input
+  display: block
+  width: 100%
+  padding: 5px
+  border: 1px solide $bgColor-gray
+  border-radius: 5px
+
+.m-form-input--error
+  @extend .m-form-input
+  border: 1px solid $fontColor-error
+
+.error-text
+  margin-top: 5px
+  font-weight: bold
+  color: $fontColor-error
+
+.m-form-confirm
+  @extend .m-form-input
+  background-color: $bgColor-blue

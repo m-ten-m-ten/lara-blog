@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
@@ -43,5 +44,47 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         return parent::render($request, $exception);
+    }
+
+    /**
+     * Create a Symfony response for the given exception.
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    protected function convertExceptionToResponse(Exception $e)
+    {
+        if (config('app.debug')) {
+            return $this->renderExceptionWithWhoops($e);
+        }
+
+        return parent::convertExceptionToResponse($e);
+    }
+
+    /**
+     * Render an exception using Whoops.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    protected function renderExceptionWithWhoops(Exception $e)
+    {
+        $whoops = new \Whoops\Run();
+        $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler());
+
+        return response()->make(
+            $whoops->handleException($e),
+            \method_exists($e, 'getStatusCode') ? $e->getStatusCode() : 500,
+            \method_exists($e, 'getHeaders') ? $e->getHeaders() : []
+        );
+    }
+
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        // if ($request->expectsJson()) {
+        //     return response()->json(['message' => $exception->getMessage()], 401);
+        // }
+
+        $url = route(($guard = $exception->guards()[0]) ? $guard . '.login' : 'login');
+
+        return redirect($url);
     }
 }

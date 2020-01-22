@@ -1,19 +1,23 @@
-<!doctype html>
-<html class="h-full" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 @include('_includes._head')
 
-<body id="public" class="h-full">
-  <div class="relative min-h-full">
-    @include('_includes._header')
+<body>
+  <div id="container">
+    @include('_includes._l-header')
 
-    <div class="mt-4 pb-16 px-4 max-w-5xl mx-auto">
+    <div id="main" class="l-container">
       @yield('content')
     </div>
 
-    @include('_includes._footer')
+    @include('_includes._l-footer')
   </div>
 
-  @include('_includes._script')
+  @include('_includes._m-script')
+
+  @auth('admin')
+    @include('_includes._m-script--tinymce')
+  @endauth
 
 </body>
 </html>

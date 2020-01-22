@@ -1,0 +1,41 @@
+// adminヘッダー
+.m-admin-header
+  display: flex
+  justify-content: space-between
+  align-items: center
+  border-bottom: 1px solid $borderColor-gray
+  padding-top: 10px
+  padding-bottom: 10px
+  +mediaquery-smartphone
+    display: block
+
+.m-admin-header-left
+  display: flex
+  justify-content: flex-start
+  align-items: center
+  +mediaquery-smartphone
+    justify-content: space-between
+
+.m-admin-header-left > *
+  margin-right: 10px
+  +mediaquery-smartphone
+    margin-right: 0
+
+.m-admin-header-title
+  margin-top: 0
+  margin-bottom: 0
+  margin-left: 0
+  +mediaquery-tablet
+    font-size: 2.2rem
+
+.m-admin-header-right
+  display: flex
+  justify-content: flex-end
+  +mediaquery-smartphone
+    width: 100%
+    justify-content: space-between
+
+.m-admin-header-right > *
+  margin-left: 10px
+  +mediaquery-smartphone
+    margin-left: 0

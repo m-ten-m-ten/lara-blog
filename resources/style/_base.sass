@@ -1,0 +1,187 @@
+// ベースとなるスタイル
+// ----------------------------------------------------------------------
+*
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+
+html
+  height: 100%
+  font-size: 62.5%
+
+body
+  height: 100%
+  font-family: $fontFamily
+  background-color: $fontColor-inverse
+  color: $fontColor
+  font-size: 1.6rem
+  line-height: 1.7
+
+#container
+  position: relative
+  min-height: 100%
+
+#main
+  padding-bottom: 60px
+
+footer
+  width: 100%
+  height: 60px
+  position: absolute
+  bottom: 0
+
+h1
+  font-size: 2.8rem
+  line-height: 1.2
+  +mediaquery-tablet
+    font-size: 2.2rem
+
+
+h2
+  font-size: 2.4rem
+  line-height: 1.2
+  +mediaquery-tablet
+    font-size: 2.0rem
+
+
+a
+  +animation
+  color: $fontColor
+  text-decoration: none
+
+.text-link
+  color: $textLinkColor
+  text-decoration: underline
+  &:hover
+    text-decoration: none
+
+p
+  margin: 15px 0
+
+ul
+  list-style: none inside
+
+
+table
+  width: 100%
+  border-collapse: collapse
+  border: 1px solid $borderColor-gray
+
+  tr
+    border-bottom: 1px solid $borderColor-gray
+    &:last-child
+      border-bottom: 0
+    &:nth-of-type(even)
+      background-color: $mainColor-moreLighter
+
+  th
+    font-weight: bold
+    text-align: left
+
+  th,
+  td
+    padding: 5px 10px
+
+small
+  line-height: 1.0
+
+.block
+  display: block
+
+.hidden
+  display: none
+
+.nowrap
+  white-space: nowrap
+
+.emphasis
+  font-weight: bold
+  color: $blue
+  font-size: 2.0rem
+
+.w-full
+  width: 100%
+
+.inline-block
+  display: inline-block
+
+.text-center
+  text-align: center
+
+
+
+button
+  background-color: transparent
+  border: none
+  cursor: pointer
+  outline: none
+  padding: 0
+  appearance: none
+
+
+// clearFix
+.cf
+  content: ""
+  display: block
+  clear: both
+
+
+// margin
+.mr0
+  margin-right: 0
+
+
+.mt5
+  margin-top: 5px
+.mb5
+  margin-bottom: 5px
+.ml5
+  margin-left: 5px
+.mr5
+  margin-right: 5px
+
+
+.mt10
+  margin-top: 10px
+.mb10
+  margin-bottom: 10px
+.ml10
+  margin-left: 10px
+.mr10
+  margin-right: 10px
+
+
+// mediaquery
+.forSP
+  display: none
+  +mediaquery-smartphone
+    display: block
+
+.forTablet
+  display: none
+  +mediaquery-tablet
+    display: block
+
+.overSP
+  +mediaquery-smartphone
+    display: none
+
+.overTablet
+  +mediaquery-tablet
+    display: none
+
+// font awesome
+.fa,
+.fas
+  margin-right: 5px
+
+
+// font size
+.text-sm
+  font-size: 1.4rem
+
+.text-xs
+  font-size: 1.2rem
+
+
+

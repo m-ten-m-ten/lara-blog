@@ -35,4 +35,32 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * A user has many messages
+     */
+    public function messages()
+    {
+        return $this->hasMany('App\Message');
+    }
+
+    /**
+     * ユーザーの一覧を取得（プルダウン用）
+     */
+    public static function getUserList()
+    {
+        return static::latest()->pluck('name', 'id');
+    }
+
+    /**
+     * Boot
+     */
+    protected static function boot(): void
+    {
+        parent::boot();
+
+        static::deleting(function ($user): void {
+            $user->messages()->delete();
+        });
+    }
 }

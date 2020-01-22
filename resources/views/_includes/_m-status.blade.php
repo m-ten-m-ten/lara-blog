@@ -1,5 +1,5 @@
 @if (session('status'))
-  <div class="bg-blue-100 text-blue-900 px-4 py-2 mb-2">
+  <div class="m-status">
     {{ session('status') }}
   </div>
 @endif

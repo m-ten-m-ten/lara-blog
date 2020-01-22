@@ -1,5 +1,4 @@
 const mix = require('laravel-mix');
-const tailwindcss = require('tailwindcss');
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -13,12 +12,6 @@ const tailwindcss = require('tailwindcss');
 
 mix.js('resources/js/myjqery.js', 'public/js/myjqery.js')
     .scripts('resources/js/mypure.js', 'public/js/mypure.js')
-    .sass('resources/sass/app.scss', 'public/css')
-    .options({
-        processCssUrls: false,
-        postCss: [ tailwindcss('./tailwind.config.js') ],
-    });
-
 
 mix.browserSync({
     host: 'localhost',

@@ -1,0 +1,74 @@
+.m-button
+  +animation
+  padding: 5px 10px
+  color: $fontColor-inverse
+  background-color: $btnColor
+  border: 1px solid $btnColor
+  text-align: center
+  border-radius: 5px
+  outline: 0
+
+  &:hover
+    color: $btnColor
+    background-color: $fontColor-inverse
+
+
+.m-button--inverse
+  @extend .m-button
+  color: $btnColor
+  background-color: $fontColor-inverse
+
+  &:hover
+    color: $fontColor-inverse
+    background-color: $btnColor
+
+
+.m-button--slim
+  @extend .m-button
+  padding: 1px 5px
+
+
+.m-button--slimInverse
+  @extend .m-button--inverse
+  padding: 1px 5px
+
+
+
+.m-button--facebook
+  @extend.m-button
+  color: $facebook
+  border-color: $facebook
+
+  &:hover
+    color: $fontColor-inverse
+    background-color: $facebook
+
+
+.m-button--twitter
+  @extend.m-button
+  color: $twitter
+  border-color: $twitter
+
+  &:hover
+    color: $fontColor-inverse
+    background-color: $twitter
+
+
+.m-button--hatena
+  @extend.m-button
+  color: $hatena
+  border-color: $hatena
+
+  &:hover
+    color: $fontColor-inverse
+    background-color: $hatena
+
+.m-button--line
+  @extend.m-button
+  color: $line
+  border-color: $line
+
+  &:hover
+    color: $fontColor-inverse
+    background-color: $line
+

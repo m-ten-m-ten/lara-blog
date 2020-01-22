@@ -17,11 +17,11 @@ class Image extends Model
         return static::latest()->paginate(15);
     }
 
-    public static function boot()
+    public static function boot(): void
     {
         parent::boot();
 
-        static::deleting(function($image) {
+        static::deleting(function ($image): void {
             \File::delete(public_path() . '/img/' . $image->image_name . '.' . $image->image_extension);
         });
     }

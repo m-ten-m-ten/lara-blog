@@ -1,0 +1,27 @@
+.m-show-title
+  border: 1px solid $borderColor-darkgray
+  padding: 5px 15px
+
+
+.m-show-title-text
+  line-height: 1
+  +mediaquery-tablet
+    font-size: 2.4rem
+  +mediaquery-smartphone
+    font-size: 2rem
+
+
+.m-show-title-date
+  display: block
+  text-align: right
+
+
+.m-show-title-attr
+  +inline-block
+  padding: 2px 4px
+  border: 1px solid $bgColor-gray
+  border-radius: 15px
+
+  &:hover
+    background-color: $bgColor-gray
+    color: $fontColor-inverse

@@ -1,0 +1,123 @@
+.m-headerNav
+  ul
+    display: flex
+    padding: 18px 0
+    +mediaquery-smartphone
+      display: none
+      padding: 0
+      position: fixed
+      top: 58px
+      left: 0
+      width: 100%
+      z-index: 10
+      background-color: $bgColor-gray
+
+  li
+    border-right: 1px solid $fontColor-inverse
+    &:last-child
+      border-right: 0
+
+    +mediaquery-smartphone
+      border-right: 0
+      border-bottom: 1px solid #999
+      &:last-child
+        border-bottom: 0
+
+  a
+    display: block
+    padding: 0 10px
+    color: $fontColor-inverse
+    font-size: 1.6rem
+
+    +mediaquery-smartphone
+      padding: 10px
+
+
+  i
+    position: absolute
+    top: 15px
+    left: 15px
+
+.m-headerNav-child
+  display: none
+  position: absolute
+  width: 100%
+  top: 58px
+  left: 0
+  background-color: $bgColor-gray
+  +mediaquery-smartphone
+    position: static
+
+
+.m-headerNav-child-inner
+  display: flex
+  flex-wrap: wrap
+  justify-content: center
+  align-items: center
+
+  a
+    display: block
+    padding: 10px 10px
+    margin-right: 10px
+    margin-bottom: 10px
+    +mediaquery-smartphone
+      border: 1px solid #999
+      border-radius: 25px
+
+
+.m-headerNav-toggle
+  display: none
+  +mediaquery-smartphone
+    display: block
+
+  position: fixed
+  top: 6px
+  right: 10px
+  width: 45px
+  height: 45px
+  background-color: $bgColor-header
+  border-radius: 23px
+  cursor: pointer
+
+
+  .m-headerNav-toggle-bar,
+  &::before,
+  &::after
+    +animation
+    display: block
+    position: absolute
+    top: 20px
+    left: 11px
+    width: 23px
+    height: 3px
+    background-color: $fontColor-inverse
+
+  &::before
+    transform: translate(0, 9px)
+    content: ""
+
+  &::after
+    transform: translate(0, -9px)
+    content: ""
+
+  &.is-active .m-headerNav-toggle-bar
+    opacity: 0
+
+  &.is-active::before
+    transform: rotate(-45deg)
+
+  &.is-active::after
+    transform: rotate(45deg)
+
+
+.m-headerNav-close
+  display: none
+
+  &.is-active
+    display: block
+    padding: 10px
+    background-color: $mainColor-darker
+    color: $fontColor-inverse
+    text-align: center
+    cursor: pointer
+
