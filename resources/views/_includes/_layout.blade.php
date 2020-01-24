@@ -15,9 +15,9 @@
 
   @include('_includes._m-script')
 
-  @auth('admin')
+  @if(request()->path() === 'admin/post/create' || strpos(request()->path(), "/post/edit/") )
     @include('_includes._m-script--tinymce')
-  @endauth
+  @endif
 
 </body>
 </html>
