@@ -19,7 +19,8 @@ class Tag extends Model
 
     /**
      * 管理用記事登録・更新ページ用タグ一覧データ取得
-     * @return Object
+     *
+     * @return object
      */
     public static function getTagList()
     {
@@ -28,7 +29,8 @@ class Tag extends Model
 
     /**
      * 公開用タグ別記事一覧データ取得
-     * @return Object
+     *
+     * @return object
      */
     public static function getPublishTagPostList(Int $id)
     {

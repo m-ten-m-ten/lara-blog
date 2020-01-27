@@ -1,5 +1,5 @@
 @extends('_includes._l-form--center')
-@section('title', '登録画面')
+@section('title', 'ユーザー登録')
 @section('form-content')
 
 <form method="POST">

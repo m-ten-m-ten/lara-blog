@@ -15,7 +15,6 @@
 
 // 管理者
 Route::prefix('admin')->namespace('Admin')->as('admin.')->group(function (): void {
-
     Route::middleware('guest:admin')->group(function (): void {
         Route::get('login', 'LoginController@showLoginForm')->name('login');
         Route::post('login', 'LoginController@login');
@@ -81,14 +80,13 @@ Route::prefix('signup')->as('signup.')->group(function (): void {
 });
 
 // ユーザー専用ページ
-Route::prefix('user')->namespace('User')->as('user.')->group(function () {
-
-    Route::middleware('guest:user')->group(function () {
+Route::prefix('user')->namespace('User')->as('user.')->group(function (): void {
+    Route::middleware('guest:user')->group(function (): void {
         Route::get('login', 'LoginController@showLoginForm')->name('login');
         Route::post('login', 'LoginController@login');
     });
 
-    Route::middleware('auth:user')->group(function () {
+    Route::middleware('auth:user')->group(function (): void {
         Route::get('', 'IndexController@index')->name('top');
         Route::post('logout', 'LoginController@logout')->name('logout');
 
@@ -99,8 +97,21 @@ Route::prefix('user')->namespace('User')->as('user.')->group(function () {
         // メッセージ閲覧
         Route::get('message', 'MessageController@index')->name('message.index');
         Route::get('message/show/{message}', 'MessageController@show')->name('message.show');
+
+        // 支払い情報
+        Route::get('payment', 'PaymentController@index')->name('payment.top');
+        Route::get('payment/create', 'PaymentController@create')->name('payment.create');
+        Route::post('payment/create', 'PaymentController@store');
+        Route::delete('payment/delete', 'PaymentController@delete');
     });
 });
+
+// Stripeテスト
+Route::get('stripe', 'Stripe\IndexController@index')->name('stripe.top');
+Route::post('stripe', 'Stripe\CheckoutController@charge');
+
+Route::get('subscribe', 'Subscribe\IndexController@index')->name('subscribe.top');
+Route::post('subscribe', 'Subscribe\CheckoutController@subscribe_process');
 
 // 一般公開用ページ
 Route::get('/', 'HomeController@index')->name('home');

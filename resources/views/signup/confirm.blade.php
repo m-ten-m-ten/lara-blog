@@ -19,7 +19,8 @@
     </li>
   </ul>
 
-  <a class="m-button--inverse" href="{{ route('signup.index') }}">戻る</a>
-  <input type="submit" class="m-button" value="送信する">
+  <input type="submit" class="m-button mr5" value="送信する">
+  <a class="text-link" href="{{ route('signup.index') }}">入力画面へ戻る</a>
+
 </form>
 @endsection

@@ -50,7 +50,6 @@ class SignupController extends Controller
         if (!$data = session($this->sessionKey)) {
             return redirect(route('signup.index'));
         }
-
         $user->fill($data);
 
         return view('signup.confirm', \compact('user'));
@@ -64,21 +63,13 @@ class SignupController extends Controller
         if (!$data = session($this->sessionKey)) {
             return redirect(route('signup.index'));
         }
-
+        $data['status'] = 0;
         $user->fill($data)->save();
 
         auth('user')->login($user);
 
         session()->forget($this->sessionKey);
 
-        return redirect(route('signup.thanks'))->with('status', 'ユーザー登録が完了しました。');
-    }
-
-    /**
-     * 完了画面
-     */
-    public function thanks()
-    {
-        return view('signup.thanks');
+        return redirect(route('user.top'))->with('status', 'ユーザー登録が完了しました。');
     }
 }

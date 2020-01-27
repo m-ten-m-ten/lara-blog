@@ -21,6 +21,7 @@ $factory->define(User::class, function (Faker $faker) {
 
     $faker->seed($seed++); // 追加
     return [
+        'status'            => 0,
         'name'              => $faker->name,
         'email'             => $faker->unique()->safeEmail,
         'email_verified_at' => now(),

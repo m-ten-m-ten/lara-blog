@@ -191,26 +191,14 @@ $(function () {
 
 /***/ }),
 
-/***/ "./resources/sass/app.scss":
-/*!*********************************!*\
-  !*** ./resources/sass/app.scss ***!
-  \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
 /***/ 0:
-/*!*****************************************************************!*\
-  !*** multi ./resources/js/myjqery.js ./resources/sass/app.scss ***!
-  \*****************************************************************/
+/*!***************************************!*\
+  !*** multi ./resources/js/myjqery.js ***!
+  \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/matsuotenmei/program/Laravel/lara-blog/resources/js/myjqery.js */"./resources/js/myjqery.js");
-module.exports = __webpack_require__(/*! /Users/matsuotenmei/program/Laravel/lara-blog/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /Users/matsuotenmei/program/Laravel/lara-blog/resources/js/myjqery.js */"./resources/js/myjqery.js");
 
 
 /***/ })

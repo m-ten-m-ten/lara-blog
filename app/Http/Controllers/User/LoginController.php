@@ -27,22 +27,6 @@ class LoginController extends Controller
     }
 
     /**
-     * バリデーションを行う（メッセージの日本語化）
-     */
-    protected function validateLogin(Request $request)
-    {
-        $messages = [
-            $this->username().'.required' => 'メールアドレスを入力して下さい。',
-            'password.required' => 'パスワードを入力して下さい。',
-        ];
-
-        $request->validate([
-            $this->username() => 'required|string',
-            'password' => 'required|string',
-        ], $messages);
-    }
-
-    /**
      * ログアウト処理
      */
     public function logout(Request $request)
@@ -57,6 +41,22 @@ class LoginController extends Controller
         }
 
         return redirect(route('user.login'));
+    }
+
+    /**
+     * バリデーションを行う（メッセージの日本語化）
+     */
+    protected function validateLogin(Request $request): void
+    {
+        $messages = [
+            $this->username() . '.required' => 'メールアドレスを入力して下さい。',
+            'password.required'             => 'パスワードを入力して下さい。',
+        ];
+
+        $request->validate([
+            $this->username() => 'required|string',
+            'password'        => 'required|string',
+        ], $messages);
     }
 
     /**

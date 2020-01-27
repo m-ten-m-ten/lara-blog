@@ -15,7 +15,7 @@ class MessageController extends Controller
     {
         $messages = auth()->user()->messages()->latest()->get();
 
-        return view('user.message.index', compact('messages'));
+        return view('user.message.index', \compact('messages'));
     }
 
     /**
@@ -25,6 +25,6 @@ class MessageController extends Controller
     {
         abort_unless(auth()->user()->is($message->user), 403);
 
-        return view('user.message.show', compact('message'));
+        return view('user.message.show', \compact('message'));
     }
 }
