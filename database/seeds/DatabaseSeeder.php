@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
 
         // 自分用のユーザーを作成
         factory(App\User::class)->create(
-            ['name' => '自分', 'email' => 'aa@bb.net']
+            ['status' => 0, 'name' => '自分', 'email' => 'aa@bb.net']
         );
 
         // 他のユーザーを作成
@@ -50,9 +50,10 @@ class DatabaseSeeder extends Seeder
         // （public/thumbnailに画像ファイル'thumbnail_1.jpg'〜記事数分を入れる）
         $posts = App\Post::all();
         $tagIds = App\Tag::pluck('id');
+
         foreach ($posts as $post) {
             $post->post_thumbnail = 'thumbnail_' . $post->id . '.jpg';
-            $post->tags()->attach($tagIds->random(mt_rand(1, 3))->toArray());
+            $post->tags()->attach($tagIds->random(\mt_rand(1, 3))->toArray());
             $post->save();
         }
     }

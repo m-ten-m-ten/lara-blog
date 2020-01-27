@@ -103,6 +103,8 @@ Route::prefix('user')->namespace('User')->as('user.')->group(function (): void {
         Route::get('payment/create', 'PaymentController@create')->name('payment.create');
         Route::post('payment/create', 'PaymentController@store');
         Route::delete('payment/delete', 'PaymentController@delete');
+        Route::post('payment/paid', 'PaymentController@paid')->name('payment.paid');
+        Route::post('payment/cancel', 'PaymentController@cancel')->name('payment.cancel');
     });
 });
 

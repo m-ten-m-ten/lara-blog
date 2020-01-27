@@ -11,7 +11,7 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/myjqery.js', 'public/js/myjqery.js')
-    .scripts('resources/js/mypure.js', 'public/js/mypure.js')
+    .scripts('resources/js/payment.js', 'public/js/payment.js')
 
 mix.browserSync({
     host: 'localhost',
@@ -26,6 +26,7 @@ mix.browserSync({
        './config/**/*',
        './resources/views/**/*.blade.php',
        './resources/views/*.blade.php',
+       './resources/js/**/.js',
        './routes/**/*'
     ],
     watchOptions: {
