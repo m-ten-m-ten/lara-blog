@@ -48,23 +48,10 @@ class PaymentController extends Controller
         }
 
         try {
-            if ($user->stripe_id) { //顧客登録済みの場合
-                Payment::updateCustomer($token, $user);
-            } else { //顧客未登録の場合
-                Payment::setCustomer($token, $user);
-            }
+            Payment::saveCustomer($token, $user);
         } catch (\Stripe\Exception\CardException $e) {
-            /*
-             * カード登録失敗時には現段階では一律で別の登録カードを入れていただくように
-             * 促すメッセージで統一。
-             * カードエラーの類としては以下があるとのこと
-             * １、カードが決済に失敗しました
-             * ２、セキュリティーコードが間違っています
-             * ３、有効期限が間違っています
-             * ４、処理中にエラーが発生しました
-             *  */
             $cardError = [
-                'cardError' => 'カード登録に失敗しました。入力いただいた内容に相違がないかを確認いただき、問題ない場合は別のカードで登録を行ってみてください。',
+                'cardError' => 'カードの登録に失敗しました。ご入力内容にお間違えがない場合は、別のカードでお試し願います。',
             ];
             return redirect(route('user.payment.create'))->withErrors($cardError);
         }
@@ -80,12 +67,7 @@ class PaymentController extends Controller
     public function delete(Request $request)
     {
         $user = $request->user();
-
-        $result = Payment::deleteCard($user);
-
-        if ($result) {
-            return redirect(route('user.payment.top'))->with('status', 'カード情報の削除が完了しました。');
-        }
-        return redirect(route('user.payment.top'));
+        Payment::deleteCard($user);
+        return redirect(route('user.payment.top'))->with('status', 'カード情報の削除が完了しました。');
     }
 }
