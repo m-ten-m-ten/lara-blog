@@ -18,8 +18,8 @@ class CreateMessagesTable extends Migration
             $table->text('content');
             $table->timestamps();
 
-            // 例）外部キーを張る場合
-            // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            // 【勉強】Userモデルのイベントによる削除実装時には外部キー貼らない。User.phpのBoot()参照。
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

@@ -54,15 +54,17 @@ class User extends Authenticatable
         return static::latest()->pluck('name', 'id');
     }
 
-    /**
+    /*
      * Boot
+     * モデルの「イベント」の利用の勉強用。
+     * ユーザー削除処理時、削除直前に発生する「deleting」イベントにて、そのユーザーへのメッセージも削除。
      */
-    protected static function boot(): void
-    {
-        parent::boot();
+    // protected static function boot(): void
+    // {
+    //     parent::boot();
 
-        static::deleting(function ($user): void {
-            $user->messages()->delete();
-        });
-    }
+    //     static::deleting(function ($user): void {
+    //         $user->messages()->delete();
+    //     });
+    // }
 }

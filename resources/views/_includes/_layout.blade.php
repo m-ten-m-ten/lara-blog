@@ -20,7 +20,11 @@
   @endif
 
   @if(request()->path()==='user/payment/create')
-      @include('_includes._m-script--payment');
+      @include('_includes._m-script--payment')
+  @endif
+
+  @if(request()->path()==='admin/user')
+    @include('_includes._m-script--deleteUser')
   @endif
 
 </body>
