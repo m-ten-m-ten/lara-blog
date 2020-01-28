@@ -14,7 +14,7 @@ class Tag extends Model
     // postsテーブルへの参照
     public function posts()
     {
-        return $this->belongsToMany('App\Post');
+        return $this->belongsToMany(Post::class);
     }
 
     /**

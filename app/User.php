@@ -4,12 +4,10 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Cashier\Billable;
 
 class User extends Authenticatable
 {
     use Notifiable;
-    use Billable;
 
     /**
      * The attributes that are mass assignable.
@@ -43,7 +41,7 @@ class User extends Authenticatable
      */
     public function messages()
     {
-        return $this->hasMany('App\Message');
+        return $this->hasMany(Message::class);
     }
 
     /**

@@ -461,6 +461,12 @@ small {
 .text-center {
   text-align: center; }
 
+.text-blue {
+  color: #2b6cb0; }
+
+.text-red {
+  color: #e53e3e; }
+
 button {
   background-color: transparent;
   border: none;

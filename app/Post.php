@@ -27,13 +27,13 @@ class Post extends Model
     // categorysテーブルへの参照
     public function category()
     {
-        return $this->belongsTo('App\Category');
+        return $this->belongsTo(Category::class);
     }
 
     // tagsテーブルへの参照
     public function tags()
     {
-        return $this->belongsToMany('App\Tag');
+        return $this->belongsToMany(Tag::class);
     }
 
     /**

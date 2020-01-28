@@ -98,22 +98,16 @@ Route::prefix('user')->namespace('User')->as('user.')->group(function (): void {
         Route::get('message', 'MessageController@index')->name('message.index');
         Route::get('message/show/{message}', 'MessageController@show')->name('message.show');
 
-        // 支払い情報
+        // お支払い情報
         Route::get('payment', 'PaymentController@index')->name('payment.top');
         Route::get('payment/create', 'PaymentController@create')->name('payment.create');
         Route::post('payment/create', 'PaymentController@store');
         Route::delete('payment/delete', 'PaymentController@delete');
-        Route::post('payment/paid', 'PaymentController@paid')->name('payment.paid');
-        Route::post('payment/cancel', 'PaymentController@cancel')->name('payment.cancel');
+
+        Route::post('subscribe/create', 'SubscribeController@create')->name('subscribe.create');
+        Route::delete('subscribe/delete', 'SubscribeController@delete')->name('subscribe.delete');
     });
 });
-
-// Stripeテスト
-Route::get('stripe', 'Stripe\IndexController@index')->name('stripe.top');
-Route::post('stripe', 'Stripe\CheckoutController@charge');
-
-Route::get('subscribe', 'Subscribe\IndexController@index')->name('subscribe.top');
-Route::post('subscribe', 'Subscribe\CheckoutController@subscribe_process');
 
 // 一般公開用ページ
 Route::get('/', 'HomeController@index')->name('home');

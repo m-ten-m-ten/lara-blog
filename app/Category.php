@@ -14,7 +14,7 @@ class Category extends Model
     // postsテーブルへの参照
     public function posts()
     {
-        return $this->hasMany('App\Post');
+        return $this->hasMany(Post::class);
     }
 
     // 管理用カテゴリー一覧を取得（プルダウン用）

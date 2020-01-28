@@ -7,23 +7,30 @@ use Illuminate\Http\Request;
 
 class SubscribeController extends Controller
 {
-    public function index(Request $request)
+    /**
+     * 定期決済の登録処理
+     *
+     * @param Request $request [description]
+     *
+     * @return [type] [description]
+     */
+    public function create(Request $request)
     {
+        \Stripe\Stripe::setApiKey(\Config::get('payment.stripe_secret_key'));
         $user = $request->user();
-        return view('user.subscribe.index', \compact('user'));
-    }
 
-    public function subscribe_process(Request $request)
-    {
         try {
-            Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
-
-            $user = $request->user();
-            $user->newSubscription('default', 'plan_GbSICtC7pUiZlD')->create($request->stripeToken);
-
-            return redirect(route('subscribe.top'))->with('status', '定期支払処理が完了しました。');
-        } catch (\Exception $ex) {
-            return $ex->getMessage();
+            \Stripe\Subscription::create([
+                'customer' => $user->stripe_id,
+                'items'    => [['plan' => 'plan_GbSICtC7pUiZlD']],
+            ]);
+        } catch (\Stripe\Exception\CardException $e) {
+            return redirect(route('user.payment.top'));
         }
+
+        $user->status = 1;
+        $user->save();
+
+        return redirect(route('user.payment.top'))->with('status', '定期支払の登録及び有料会員登録が完了致しました。');
     }
 }

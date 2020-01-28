@@ -15,20 +15,21 @@
 
     <div class="m-user-main-section">
 
-      <h2>会員種別：{{ $user->status === 0 ? '無料会員' : '有料会員' }}</h2>
+      <h2>会員種別：<span class="text-blue">{{ $user->status === 0 ? '無料会員' : '有料会員' }}</span></h2>
 
       @if($defaultCard)
 
         @if($user->status === 0)
-          <p>500円/月で有料記事の購読できるようになります。</p>
-          <form action="{{ route('user.payment.paid') }}" method="POST">
+          <p>1,000円/月で有料会員となり、全ての記事を購読できるようになります。</p>
+          <form action="{{ route('user.subscribe.create') }}" method="POST">
             @csrf
             <button type="submit" class="m-button">有料会員になる</button>
           </form>
         @else
-          <p>下記ボタンを押すことで、有料会員を解約することができます。一度解約すると、再度有料会員になる際、再度500円がかかりますので、ご注意ください。</p>
-          <form action="{{ route('user.payment.cancel') }}" method="POST">
+          <p>下記ボタンを押すことで、有料会員を解約することができます。</p>
+          <form action="{{ route('user.subscribe.delete') }}" method="POST">
             @csrf
+            @method('DELETE')
             <button type="submit" class="m-button">有料会員を解除する</button>
           </form>
         @endif
@@ -40,7 +41,7 @@
     </div>
 
     <div class="m-user-main-section">
-      
+
       <h2>クレジットカード登録状況</h2>
 
       @isset($defaultCard)
