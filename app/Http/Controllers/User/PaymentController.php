@@ -35,40 +35,41 @@ class PaymentController extends Controller
      *
      * @param Request $request payment.jsにて処理された'stripeToken'が送られてくる
      *
-     * @return エラーがなければ、クレジットカード情報表示画面へリダイレクト。エラーがあればフォームへ戻す
+     * @return カード登録完了後支払いトップへリダイレクト。'stripeToken'がなければ支払いトップヘ、カード登録エラーがあればフォームへリダイレクト。
      */
     public function store(Request $request)
     {
         $token = $request->stripeToken;
         $user = $request->user();
 
-        if ($token) {
-            if ($user->stripe_id) { //顧客登録済場合の処理
-                $result = Payment::updateCustomer($token, $user);
-
-                // card error
-                if ($result) {
-                    $status_message = 'カード情報の変更が完了しました。';
-                } else {
-                    $errors = 'カード登録に失敗しました。入力いただいた内容に相違がないかを確認いただき、問題ない場合は別のカードで登録を行ってみてください。';
-                    return redirect(route('user.payment.create'));
-                }
-            } else { //顧客未登録の場合の処理
-                $result = Payment::setCustomer($token, $user);
-
-                // card error
-                if ($result) {
-                    $status_message = 'カード情報の登録が完了しました。';
-                } else {
-                    $errors = 'カード登録に失敗しました。入力いただいた内容に相違がないかを確認いただき、問題ない場合は別のカードで登録を行ってみてください。';
-                    return redirect(route('user.payment.create'));
-                }
-            }
-        } else {
-            return redirect(route('user.payment.create'))->with('errors', '申し訳ありません、通信状況の良い場所で再度ご登録をしていただくか、しばらく立ってから再度登録を行ってみてください。');
+        if (!$token) {
+            $errors = 'エラーが発生しました。通信状況の良い場所で再度ご登録をしていただくか、しばらく立ってから再度登録を行ってみてください。';
+            return redirect(route('user.payment.top'));
         }
 
-        return redirect(route('user.payment.top'))->with('status', $status_message);
+        try {
+            if ($user->stripe_id) { //顧客登録済みの場合
+                Payment::updateCustomer($token, $user);
+            } else { //顧客未登録の場合
+                Payment::setCustomer($token, $user);
+            }
+        } catch (\Stripe\Exception\CardException $e) {
+            /*
+             * カード登録失敗時には現段階では一律で別の登録カードを入れていただくように
+             * 促すメッセージで統一。
+             * カードエラーの類としては以下があるとのこと
+             * １、カードが決済に失敗しました
+             * ２、セキュリティーコードが間違っています
+             * ３、有効期限が間違っています
+             * ４、処理中にエラーが発生しました
+             *  */
+            $cardError = [
+                'cardError' => 'カード登録に失敗しました。入力いただいた内容に相違がないかを確認いただき、問題ない場合は別のカードで登録を行ってみてください。',
+            ];
+            return redirect(route('user.payment.create'))->withErrors($cardError);
+        }
+
+        return redirect(route('user.payment.top'))->with('status', 'カード情報の登録が完了しました。');
     }
 
     /**

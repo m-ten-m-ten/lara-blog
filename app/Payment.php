@@ -11,32 +11,16 @@ class Payment extends Model
      *
      * @param object $user ・・・・・カード登録をするユーザーの情報
      */
-    public static function setCustomer(String $token, User $user)
+    public static function setCustomer(String $token, User $user): void
     {
         \Stripe\Stripe::setApiKey(\Config::get('payment.stripe_secret_key'));
-
-        //Stripe上に顧客情報をtokenを使用することで保存
-        try {
-            $customer = \Stripe\Customer::create([
-                'card'        => $token,
-                'name'        => $user->name,
-                'description' => $user->id,
-            ]);
-        } catch (\Stripe\Exception\CardException $e) {
-            /*
-             * カード登録失敗時には現段階では一律で別の登録カードを入れていただくように
-             * 促すメッセージで統一。
-             * カードエラーの類としては以下があるとのこと
-             * １、カードが決済に失敗しました
-             * ２、セキュリティーコードが間違っています
-             * ３、有効期限が間違っています
-             * ４、処理中にエラーが発生しました
-             *  */
-            return false;
-        }
+        $customer = \Stripe\Customer::create([
+            'card'        => $token,
+            'name'        => $user->name,
+            'description' => $user->id,
+        ]);
         $user->stripe_id = $customer->id;
         $user->save();
-        return true;
     }
 
     /**
@@ -44,29 +28,14 @@ class Payment extends Model
      *
      * @param object $user ・・・・・カード登録をするユーザーの情報
      */
-    public static function updateCustomer(String $token, User $user)
+    public static function updateCustomer(String $token, User $user): void
     {
         \Stripe\Stripe::setApiKey(\Config::get('payment.stripe_secret_key'));
-
-        try {
-            self::deleteCard($user); //既存のカードがあれば削除
-            $customer = \Stripe\Customer::retrieve($user->stripe_id);
-            $newCard = $customer->sources->create(['source' => $token]); //新しいカードを作成
-            $customer->default_source = $newCard['id']; //デフォルトカードとして登録
-            $customer->save();
-        } catch (\Stripe\Exception\CardException $e) {
-            /*
-             * カード登録失敗時には現段階では一律で別の登録カードを入れていただくように
-             * 促すメッセージで統一。（メッセージ自体はController側で制御しています）
-             * カードエラーの類としては
-             * １、カードが決済に失敗しました
-             * ２、セキュリティーコードが間違っています
-             * ３、有効期限が間違っています
-             * ４、処理中にエラーが発生しました
-             *  */
-            return false;
-        }
-        return true;
+        self::deleteCard($user); //既存のカードがあれば削除
+        $customer = \Stripe\Customer::retrieve($user->stripe_id);
+        $newCard = $customer->sources->create(['source' => $token]); //新しいカードを作成
+        $customer->default_source = $newCard['id']; //デフォルトカードとして登録
+        $customer->save();
     }
 
     /**
