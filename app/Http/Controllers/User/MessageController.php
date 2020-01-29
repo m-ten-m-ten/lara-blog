@@ -20,11 +20,10 @@ class MessageController extends Controller
 
     /**
      * 自分宛のメッセージの詳細表示
+     * MessagePolicyのviewポリシーを、ルーティングでmiddlewareにて設定済み。
      */
     public function show(Message $message)
     {
-        abort_unless(auth()->user()->is($message->user), 403);
-
         return view('user.message.show', \compact('message'));
     }
 }
