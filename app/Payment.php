@@ -25,7 +25,6 @@ class Payment extends Model
         } else { //顧客未登録の場合
             $customer = \Stripe\Customer::create([
                 'card'        => $token,
-                'name'        => $user->name,
                 'description' => $user->id,
             ]);
             $user->stripe_id = $customer->id;
