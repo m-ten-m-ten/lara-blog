@@ -987,6 +987,11 @@ button {
     .m-index-postList-info {
       width: 66.66667%; } }
 
+.m-index-postList-subscriber {
+  color: #2b6cb0;
+  font-weight: bold;
+  font-size: 1.4rem; }
+
 .m-index-postList-date {
   font-size: 1.4rem; }
 
@@ -1026,6 +1031,10 @@ button {
   @media only screen and (max-width: 480px) {
     .m-show-title-text {
       font-size: 2rem; } }
+
+.m-show-title-subscriber {
+  display: block;
+  text-align: right; }
 
 .m-show-title-date {
   display: block;

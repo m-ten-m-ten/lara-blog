@@ -6,6 +6,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Post::class, function (Faker $faker) {
     return [
+        'for_subscriber' => random_int(0, 1),
         'post_title'     => $faker->text($maxNbChars = 30),
         'post_content'   => $faker->realText($maxNbChars = 10000, $indexSize = 5),
         'post_excerpt'   => $faker->realText($maxNbChars = 150, $indexSize = 1),

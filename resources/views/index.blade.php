@@ -25,6 +25,9 @@
             <img src="/thumbnail/{{ $post->post_thumbnail?: 'thumbnail-default.jpg' }}" alt="">
           </div>
           <div class="m-index-postList-info">
+            @if($post->for_subscriber == 1)
+              <span class="m-index-postList-subscriber">[有料会員用]</span>
+            @endif
             <span class="m-index-postList-date">{{ $post->post_published->format('Y.m.d') }}</span>
             <h2 class="m-index-postList-title">{{ $post->post_title }}</h2>
             <div class="m-index-postList-exerpt">{{ Str::limit($post->post_excerpt, 200) }}</div>
