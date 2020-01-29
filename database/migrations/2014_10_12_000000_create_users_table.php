@@ -13,6 +13,8 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table): void {
             $table->bigIncrements('id');
+            $table->string('stripe_id')->unique()->nullable();
+            $table->string('subscription_id')->unique()->nullable();
             $table->integer('status');
             $table->string('name');
             $table->string('email')->unique();

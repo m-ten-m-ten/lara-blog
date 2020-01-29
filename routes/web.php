@@ -103,7 +103,7 @@ Route::prefix('user')->namespace('User')->as('user.')->group(function (): void {
         Route::get('payment/create', 'PaymentController@create')->name('payment.create');
         Route::post('payment/create', 'PaymentController@store');
         Route::delete('payment/delete', 'PaymentController@delete');
-
+        // 定期決済（有料会員）登録
         Route::post('subscribe/create', 'SubscribeController@create')->name('subscribe.create');
         Route::delete('subscribe/delete', 'SubscribeController@delete')->name('subscribe.delete');
     });

@@ -15,11 +15,11 @@
 
     <div class="m-user-main-section">
 
-      <h2>会員種別：<span class="text-blue">{{ $user->status === 0 ? '無料会員' : '有料会員' }}</span></h2>
+      <h2>会員種別：<span class="text-blue">{{ $user->status == 0 ? '無料会員' : '有料会員' }}</span></h2>
 
       @if($defaultCard)
 
-        @if($user->status === 0)
+        @if($user->status == 0)
           <p>1,000円/月で有料会員となり、全ての記事を購読できるようになります。</p>
           <form action="{{ route('user.subscribe.create') }}" method="POST">
             @csrf
@@ -30,7 +30,7 @@
           <form action="{{ route('user.subscribe.delete') }}" method="POST">
             @csrf
             @method('DELETE')
-            <button type="submit" class="m-button">有料会員を解除する</button>
+            <button type="submit" class="m-button--red">有料会員を解除する</button>
           </form>
         @endif
 
