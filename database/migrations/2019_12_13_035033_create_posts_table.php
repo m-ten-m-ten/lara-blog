@@ -13,7 +13,7 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table): void {
             $table->bigIncrements('id');
-            $table->integer('for_subscriber'); //0:一般公開、1:有料会員向け
+            $table->tinyInteger('for_subscriber')->default(0)->comment('0:一般公開、1:有料会員向け');
             $table->text('post_title'); //タイトル
             $table->longText('post_content')->nullable(); //本文
             $table->string('post_thumbnail')->nullable();

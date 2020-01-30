@@ -15,7 +15,7 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('stripe_id')->unique()->nullable();
             $table->string('subscription_id')->unique()->nullable();
-            $table->integer('status'); //無料会員:0、有料会員:1
+            $table->tinyInteger('status')->default(0)->comment('0:無料会員、1:有料会員');
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
