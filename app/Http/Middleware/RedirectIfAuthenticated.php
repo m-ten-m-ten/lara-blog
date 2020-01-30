@@ -14,7 +14,7 @@ class RedirectIfAuthenticated
      *
      * @param \Illuminate\Http\Request $request
      */
-    public function handle(Request $request, Closure $next, String $guard = null)
+    public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
             $url = ($guard) ? route($guard . '.top') : '/';

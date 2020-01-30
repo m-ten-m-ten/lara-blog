@@ -85,7 +85,7 @@ class Handler extends ExceptionHandler
      *
      * @return Response 各認証ページのloginページへリダイレクト
      */
-    protected function unauthenticated(Request $request, AuthenticationException $exception)
+    protected function unauthenticated($request, AuthenticationException $exception)
     {
         // if ($request->expectsJson()) {
         //     return response()->json(['message' => $exception->getMessage()], 401);
