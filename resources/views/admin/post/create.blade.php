@@ -52,7 +52,7 @@
       {{-- ステータス --}}
       <div class="m-form-row">
         <label class="m-form-title">日付</label>
-        <div>ステータス：<span class="emphasis">{{ $post->post_status == 'drafted' ? '下書き' : '公開中'}}</span><br>
+        <div>ステータス：<span class="emphasis">@if($post->exists){{ $post->post_status == 'drafted' ? '下書き' : '公開中'}}@else - @endif</span><br>
           {!! $post->post_published ? '公開日時：' . $post->post_published->format('Y/m/d h:i') . '<br>' : '' !!}
           {!! $post->post_modified ? '更新日時：' . $post->post_modified->format('Y/m/d h:i') . '<br>' : '' !!}
           {{ $post->post_status == 'drafted' ? '下書き保存日時：' . $post->post_drafted->format('Y/m/d h:i') : '' }}
