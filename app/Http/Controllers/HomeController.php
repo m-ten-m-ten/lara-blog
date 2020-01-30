@@ -6,7 +6,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
-use App\post;
+use App\Post;
 use App\Tag;
 
 class HomeController extends Controller
