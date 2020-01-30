@@ -9,10 +9,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // 管理者を作成
-        factory(App\Admin::class)->create(
-            ['username' => 'admin', 'password' => bcrypt('adminpass')]
-        );
 
         // 自分用のユーザーを作成
         factory(App\User::class)->create(
