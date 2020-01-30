@@ -18,6 +18,13 @@ class CreateAdminsTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        DB::table('admins')->insert([
+            [
+                'username' => 'admin',
+                'password' => 'adminpass'
+            ],
+        ]);
     }
 
     /**
