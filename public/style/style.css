@@ -1288,7 +1288,8 @@ button {
   align-items: center; }
   @media only screen and (max-width: 480px) {
     .m-admin-header-left {
-      justify-content: space-between; } }
+      justify-content: space-between;
+      margin-bottom: 10px; } }
 
 .m-admin-header-left > * {
   margin-right: 10px; }
