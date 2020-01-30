@@ -20,10 +20,7 @@ class CreateAdminsTable extends Migration
         });
 
         DB::table('admins')->insert([
-            [
-                'username' => 'admin',
-                'password' => 'adminpass'
-            ],
+            ['username' => 'admin', 'password' => bcrypt('adminpass')],
         ]);
     }
 
