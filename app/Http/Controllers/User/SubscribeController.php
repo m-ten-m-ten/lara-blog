@@ -10,9 +10,7 @@ class SubscribeController extends Controller
     /**
      * 定期決済の作成と有料会員登録処理
      *
-     * @param Request $request
-     *
-     * @return お支払い情報ページへリダイレクト。
+     * @return お支払い情報ページへリダイレクト
      */
     public function create(Request $request)
     {
@@ -39,8 +37,8 @@ class SubscribeController extends Controller
 
     /**
      * 定期決済の削除と、有料会員登録の解除処理
-     * @param  Request $request
-     * @return お支払い情報ページへリダイレクト。
+     *
+     * @return お支払い情報ページへリダイレクト
      */
     public function delete(Request $request)
     {

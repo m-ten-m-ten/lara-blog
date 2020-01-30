@@ -77,7 +77,15 @@ class Handler extends ExceptionHandler
         );
     }
 
-    protected function unauthenticated($request, AuthenticationException $exception)
+    /**
+     * ゲストな人が要認証ページにアクセスしようとしたら、各認証ページのloginページを表示する。
+     *
+     * @param Request $request [description]
+     * @param AuthenticationException $exception [description]
+     *
+     * @return Response 各認証ページのloginページへリダイレクト
+     */
+    protected function unauthenticated(Request $request, AuthenticationException $exception)
     {
         // if ($request->expectsJson()) {
         //     return response()->json(['message' => $exception->getMessage()], 401);
