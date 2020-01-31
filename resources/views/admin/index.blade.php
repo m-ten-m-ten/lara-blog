@@ -28,7 +28,7 @@
         <li><a class="text-link" href="{{ route('admin.post.index') }}">投稿一覧</a></li>
         <li><a class="text-link" href="{{ route('admin.post.create') }}">投稿新規作成</a></li>
         <li><a class="text-link" href="{{ route('admin.image.index') }}">画像一覧</a></li>
-        <li><a class="text-link" href="{{ route('admin.image.create') }}">画像新規作成</a></li>
+        <li><a class="text-link" href="{{ route('admin.image.create') }}">画像追加</a></li>
         <li><a class="text-link" href="{{ route('admin.category.index') }}">カテゴリー一覧</a></li>
         <li><a class="text-link" href="{{ route('admin.category.create') }}">カテゴリー新規作成</a></li>
         <li><a class="text-link" href="{{ route('admin.tag.index') }}">タグ一覧</a></li>

@@ -7,7 +7,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TagStoreRequest;
-use App\tag;
+use App\Tag;
 use Illuminate\Http\Request;
 
 /**

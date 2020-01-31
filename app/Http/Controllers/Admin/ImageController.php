@@ -7,7 +7,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ImageStoreRequest;
-use App\image;
+use App\Image;
 use Illuminate\Http\Request;
 
 /**
