@@ -66,7 +66,7 @@ class PostController extends Controller
         }
         $post->fill($request->validated())->save();
         $post->tags()->sync($request->tags);
-        return redirect(route('admin.post.edit', $post));
+        return redirect(route('admin.post.edit', $post))->with('status', '登録が完了しました。');
     }
 
     /**
@@ -104,7 +104,7 @@ class PostController extends Controller
         }
         $post->fill($request->validated())->save();
         $post->tags()->sync($request->tags);
-        return redirect(route('admin.post.edit', $post));
+        return redirect(route('admin.post.edit', $post))->with('status', '変更が完了しました。');
     }
 
     /**
@@ -124,7 +124,7 @@ class PostController extends Controller
         } elseif ($request->deleteId) {
             $this->deletePost($request->deleteId);
         }
-        return redirect(route('admin.post.index'));
+        return redirect(route('admin.post.index'))->with('status', '削除が完了しました。');
     }
 
     /**

@@ -101,6 +101,6 @@ class ImageController extends Controller
             $image = Image::findOrFail($request->deleteId);
             $image->delete();
         }
-        return redirect(route('admin.image.index'));
+        return redirect(route('admin.image.index'))->with('status', '削除が完了しました。');
     }
 }

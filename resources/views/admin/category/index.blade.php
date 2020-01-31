@@ -12,6 +12,9 @@
   </div>
 
   {{-- 管理者画面メイン --}}
+
+  @include('_includes._m-status')
+
   <form id="delete-form" method="POST" action="/admin/category/delete">
   @csrf
   @method('DELETE')

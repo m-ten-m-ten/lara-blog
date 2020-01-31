@@ -98,6 +98,6 @@ class CategoryController extends Controller
             $category = Category::findOrFail($request->deleteId);
             $category->delete();
         }
-        return redirect(route('admin.category.index'));
+        return redirect(route('admin.category.index'))->with('status', '削除が完了しました。');
     }
 }

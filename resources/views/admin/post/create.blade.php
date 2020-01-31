@@ -28,11 +28,13 @@
   </div>
 
     {{-- 管理者画面メイン --}}
+
   <div class="m-admin-form">
 
     <div class="m-form m-admin-form-left">
 
       @include('_includes._m-error')
+      @include('_includes._m-status')
 
       <div class="m-form-row">
       <label class="m-form-title">タイトル</label>

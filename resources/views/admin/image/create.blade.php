@@ -12,9 +12,9 @@
   </div>
 
   {{-- 管理者画面メイン --}}
-  <div class="m-admin-form mt10">
+  @include('_includes._m-status')
 
-    @include('_includes._m-status')
+  <div class="m-admin-form mt10">
 
     <form class="m-form" method="POST" enctype="multipart/form-data">
       @csrf
