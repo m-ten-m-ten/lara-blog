@@ -6,6 +6,19 @@
 
 @include('_includes._m-error')
 
+<p>現在テスト中につき、下記のテスト用クレジットカードをご登録下さい。（請求はされません）</p>
+<ul class="mb10">
+  <li>カード番号：</li>
+    <ul>
+      <li>・4242424242424242(Visa)</li>
+      <li>・5555555555554444(Mastercard)</li>
+      <li>・3566002020360505(JCB)</li>
+    </ul>
+  <li>セキュリティコード：3桁の数字</li>
+  <li>有効期限：未来の年月</li>
+  <li>カード名義：ご自由にご入力下さい。</li>
+</ul>
+
 <form id="form_payment" class="mb10" method="POST">
   @csrf
 

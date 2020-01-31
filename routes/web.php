@@ -30,6 +30,7 @@ Route::prefix('admin')->namespace('Admin')->as('admin.')->group(function (): voi
         Route::post('message/create', 'MessageController@store');
         Route::get('message/edit/{message}', 'MessageController@edit')->name('message.edit');
         Route::post('message/edit/{message}', 'MessageController@update');
+        Route::delete('message/delete', 'MessageController@delete');
 
         // ユーザー管理
         Route::get('user', 'UserController@index')->name('user.index');

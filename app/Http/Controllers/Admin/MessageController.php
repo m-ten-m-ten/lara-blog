@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SaveMessage;
+use Illuminate\Http\Request;
 use App\Message;
 use App\User;
 
@@ -61,5 +62,16 @@ class MessageController extends Controller
         $message->fill($data)->save();
 
         return redirect(route('admin.message.edit', $message))->with('status', '変更が完了しました');
+    }
+
+    public function delete(Request $request)
+    {
+        if ($request->checked) {
+            Message::destroy($request->checkedIds);
+        } elseif ($request->deleteId) {
+            $message = Message::findOrFail($request->deleteId);
+            $message->delete();
+        }
+        return redirect(route('admin.message.index'))->with('status', '削除が完了しました。');
     }
 }

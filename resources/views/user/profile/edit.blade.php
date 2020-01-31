@@ -20,7 +20,8 @@
     </li>
   </ul>
 
-  <button type="submit" class="m-button">更新</button>
+  <button type="submit" class="m-button mr5">更新</button>
+  <a class="text-link" href="{{ route('user.top') }}">{{ auth()->user()->name }}さんページへ戻る</a>
 
 </form>
 @endsection

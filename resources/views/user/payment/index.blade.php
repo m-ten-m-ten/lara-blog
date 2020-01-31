@@ -3,10 +3,7 @@
 
 <div class="l-user-index">
 
-  {{-- ユーザー画面ヘッダー --}}
-  <div class="m-user-header">
-    <h1 class="m-user-header-title">お支払い情報</h1>
-  </div>
+  @include('_includes._m-user-header', ['title' => 'お支払い情報'])
 
   @include('_includes._m-status')
   @include('_includes._m-error')
@@ -16,6 +13,8 @@
     <div class="m-user-main-section">
 
       <h2>会員種別：<span class="text-blue">{{ $user->status == 0 ? '無料会員' : '有料会員' }}</span></h2>
+
+      <p class="text-red">現在テスト中のため、テスト用のクレジットカードのご登録で有料会員機能をONできます。</p>
 
       @if($defaultCard)
 
@@ -35,7 +34,7 @@
         @endif
 
       @else
-        <p>有料会員登録をするためには、下記よりお支払い用のクレジットカードをご登録下さい。</p>
+        <p>有料会員登録をするためには、下記よりお支払い用のクレジットカードをご登録下さい。</span></p>
       @endif
 
     </div>

@@ -377,7 +377,7 @@ body {
   min-height: 100%; }
 
 #main {
-  padding-bottom: 60px; }
+  padding-bottom: 90px; }
 
 footer {
   width: 100%;
@@ -901,9 +901,6 @@ button {
   margin-top: 10px;
   margin-bottom: 20px; }
 
-.l-index .m-pagination {
-  margin-bottom: 20px; }
-
 .m-breadcrumb ul {
   font-size: 0;
   letter-spacing: -1em;
@@ -1264,8 +1261,7 @@ button {
   margin-bottom: 10px; }
 
 .l-admin-index .m-admin-pagination {
-  margin-top: 30px;
-  margin-bottom: 30px; }
+  margin-top: 30px; }
 
 .l-admin-index .m-admin-menu {
   margin-top: 10px;
@@ -1444,5 +1440,8 @@ button {
 
 .m-user-main-section {
   margin-bottom: 30px; }
+
+table.m-message {
+  width: 100%; }
 
 /*# sourceMappingURL=style.css.map */
