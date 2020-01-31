@@ -10,6 +10,7 @@
     </div>
   </div>
 
+  {{-- 管理者画面メイン --}}
   <table class="m-admin-table">
     <tr>
       <th>名前</th>

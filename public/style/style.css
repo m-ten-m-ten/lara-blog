@@ -1267,6 +1267,9 @@ button {
   margin-top: 10px;
   margin-bottom: 10px; }
 
+.l-admin-index .m-admin-table {
+  margin-top: 10px; }
+
 .m-admin-header, .m-user-header {
   display: flex;
   justify-content: space-between;
