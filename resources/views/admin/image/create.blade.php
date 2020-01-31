@@ -23,8 +23,8 @@
           @if ($image->exists)
             <img class="block" src="/img/{{ $image->image_name }}.{{ $image->image_extension }}">
           @else
-            <label for="image_file" class="m-form-title">画像ファイル（jpeg / png）</label>
-            <input class="m-form-input" name="image_file" type="file" required>
+            <label for="image_file" class="m-form-title mb10">画像ファイル（jpeg / png）</label>
+            <input name="image_file" type="file" required>
             @error('image_file')
               <p class="error-text">{{ $message }}</p>
             @enderror
