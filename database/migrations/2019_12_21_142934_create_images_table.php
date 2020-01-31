@@ -17,6 +17,14 @@ class CreateImagesTable extends Migration
             $table->string('image_extension');
             $table->timestamps();
         });
+
+        for ($i = 1; $i < 51; $i++) {
+            $image = new App\Image();
+            $image->image_name = 'img' . $i;
+            $image->image_extension = 'jpg';
+            $image->save();
+        }
+
     }
 
     /**

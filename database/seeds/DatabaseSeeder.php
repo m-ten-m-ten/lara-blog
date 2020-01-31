@@ -24,12 +24,12 @@ class DatabaseSeeder extends Seeder
         });
 
         // 画像データ作成（public/imgに画像ファイル'img1.jpg'〜'img50.jpg'を入れる）
-        for ($i = 1; $i < 51; $i++) {
-            $image = new App\Image();
-            $image->image_name = 'img' . $i;
-            $image->image_extension = 'jpg';
-            $image->save();
-        }
+        // for ($i = 1; $i < 51; $i++) {
+        //     $image = new App\Image();
+        //     $image->image_name = 'img' . $i;
+        //     $image->image_extension = 'jpg';
+        //     $image->save();
+        // }
 
         // 記事のタグを作成
         factory(App\Tag::class, 10)->create();
