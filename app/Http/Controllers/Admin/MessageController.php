@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SaveMessage;
-use Illuminate\Http\Request;
 use App\Message;
 use App\User;
+use Illuminate\Http\Request;
 
 class MessageController extends Controller
 {

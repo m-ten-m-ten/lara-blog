@@ -13,6 +13,7 @@ class RedirectIfAuthenticated
      * 認証区分がない際には、'/'へリダイレクト。
      *
      * @param \Illuminate\Http\Request $request
+     * @param null|mixed $guard
      */
     public function handle($request, Closure $next, $guard = null)
     {

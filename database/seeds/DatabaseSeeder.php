@@ -9,7 +9,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-
         // 自分用のユーザーを作成
         factory(App\User::class)->create(
             ['status' => 0, 'name' => '自分', 'email' => 'aa@bb.net']

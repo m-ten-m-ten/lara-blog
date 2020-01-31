@@ -24,7 +24,6 @@ class CreateImagesTable extends Migration
             $image->image_extension = 'jpg';
             $image->save();
         }
-
     }
 
     /**
