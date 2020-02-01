@@ -115,8 +115,8 @@
       <div class="m-form-row">
         <label class="m-form-title">タグ</label>
         @foreach ($tagList as $key => $val)
-          <input type="checkbox" class="hidden tag-checkbox" id="tag{{ $key}}" name="tags[]" value="{{ $key }}" @if (old('tags', $post->tags)->contains($key)) checked @endif>
-          <label for="tag{{ $key }}" class="m-button--slimInverse inline-block mr5 mb10">{{ $val}}</label>
+          <input type="checkbox" class="hidden m-form-checkbox-tag" id="tag{{ $key}}" name="tags[]" value="{{ $key }}" @if (old('tags', $post->tags)->contains($key)) checked @endif>
+          <label for="tag{{ $key }}" class="inline-block mr5 mb10">{{ $val}}</label>
         @endforeach
         <a href="{{ route('admin.tag.create') }}" class="text-link mt5 block">タグを新規作成</a>
       </div>

@@ -768,7 +768,7 @@ button {
     text-align: center;
     cursor: pointer; }
 
-.m-button, .m-button--red, .m-button--inverse, .m-button--slimInverse, .m-button--slim, .m-button--facebook, .m-button--twitter, .m-button--hatena, .m-button--line {
+.m-button, .m-button--red, .m-button--inverse, .m-button--slimInverse, .m-form-checkbox-tag + label, .m-button--slim, .m-form-checkbox-tag:checked + label, .m-button--facebook, .m-button--twitter, .m-button--hatena, .m-button--line {
   transition-duration: 250ms;
   transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
   transition-property: all;
@@ -779,7 +779,7 @@ button {
   text-align: center;
   border-radius: 5px;
   outline: 0; }
-  .m-button:hover, .m-button--red:hover, .m-button--inverse:hover, .m-button--slimInverse:hover, .m-button--slim:hover, .m-button--facebook:hover, .m-button--twitter:hover, .m-button--hatena:hover, .m-button--line:hover {
+  .m-button:hover, .m-button--red:hover, .m-button--inverse:hover, .m-button--slimInverse:hover, .m-form-checkbox-tag + label:hover, .m-button--slim:hover, .m-button--facebook:hover, .m-button--twitter:hover, .m-button--hatena:hover, .m-button--line:hover {
     color: #2b6cb0;
     background-color: #fff; }
 
@@ -790,17 +790,17 @@ button {
     color: #e53e3e;
     background-color: #fff; }
 
-.m-button--inverse, .m-button--slimInverse {
+.m-button--inverse, .m-button--slimInverse, .m-form-checkbox-tag + label {
   color: #2b6cb0;
   background-color: #fff; }
-  .m-button--inverse:hover, .m-button--slimInverse:hover {
+  .m-button--inverse:hover, .m-button--slimInverse:hover, .m-form-checkbox-tag + label:hover {
     color: #fff;
     background-color: #2b6cb0; }
 
-.m-button--slim {
+.m-button--slim, .m-form-checkbox-tag:checked + label {
   padding: 1px 5px; }
 
-.m-button--slimInverse {
+.m-button--slimInverse, .m-form-checkbox-tag + label {
   padding: 1px 5px; }
 
 .m-button--facebook {
@@ -1101,6 +1101,14 @@ button {
 .m-form-confirm {
   background-color: #ebf8ff;
   border: 0; }
+
+.m-form-checkbox-tag + label:hover {
+  color: #2b6cb0;
+  background-color: #fff; }
+
+.m-form-checkbox-tag:checked + label:hover {
+  color: #fff;
+  background-color: #2b6cb0; }
 
 .l-user-index .m-user-main {
   margin-top: 10px; }

@@ -35,3 +35,19 @@
   @extend .m-form-input
   background-color: $bgColor-blue
   border: 0
+
+.m-form-checkbox-tag + label
+  @extend .m-button--slimInverse
+  &:hover
+    color: $btnColor
+    background-color: $fontColor-inverse
+
+
+.m-form-checkbox-tag:checked + label
+  @extend .m-button--slim
+  &:hover
+    color: $fontColor-inverse
+    background-color: $btnColor
+
+
+
