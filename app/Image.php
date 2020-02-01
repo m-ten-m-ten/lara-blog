@@ -6,23 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Image extends Model
 {
-    protected $fillable = [
-        'post_id',
-        'image_name',
-        'image_extension',
-    ];
+    protected $guarded = ['image_file'];
 
     public static function getImageList()
     {
         return static::latest()->paginate(15);
-    }
-
-    public static function boot(): void
-    {
-        parent::boot();
-
-        static::deleting(function ($image): void {
-            \File::delete(public_path() . '/img/' . $image->image_name . '.' . $image->image_extension);
-        });
     }
 }

@@ -11,7 +11,7 @@
     toolbar: ['undo redo | code | blockquote | bold | styleselect | forecolor backcolor | fontsizeselect','numlist bullist | table | link | image | media | removeformat | fullscreen'],
     fontsize_formats: '10px 12px 14px 16px 18px 20px 24px 34px',
     branding: false,
-    image_list: "/dashboard/post/read_image_api", //イメージのリストをJSONで出力。postContrller@readImage参照。
+    image_list: "/admin/post/read_image_api", //イメージのリストをJSONで出力。postContrller@readImage参照。
     relative_urls: false, // 相対パスに変換されるのを防ぐ
   });
 </script>

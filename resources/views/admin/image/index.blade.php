@@ -30,12 +30,12 @@
         <th></th>
       </tr>
       <tbody id="boxes">
-        @foreach ($images as $id => $image)
+        @foreach ($images as $image)
         <tr>
           <td><input type="checkbox" name="checkedIds[]" value="{{ $image->id }}"></td>
-          <td><img src="/img/{{$image->image_name}}.{{$image->image_extension}}" alt="" width="100px"></td>
-          <td><a class="text-link" href="/admin/image/edit/{{ $image->id }}">{{ $image->image_name }}.{{$image->image_extension}}</a></td>
-          <td>{{ $image->created_at->format('Y/m/d h:i') }}</td>
+          <td><img src="{{ $image->path }}" alt="" width="100px"></td>
+          <td><a class="text-link" href="/admin/image/edit/{{ $image->id }}">{{ $image->file_name }}</a></td>
+          <td>{{ $image->created_at->format('Y/m/d H:i') }}</td>
           <td class="nowrap">
             <a class="text-link" href="/admin/image/edit/{{ $image->id }}">編集</a>
             <span class="overTablet">|</span>

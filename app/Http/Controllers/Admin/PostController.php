@@ -9,13 +9,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostStoreRequest;
 use App\{Category, Image, Post, Tag};
-use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Laravelブログアプリの投稿記事管理用コントローラー
- *
- * Laravelブログアプリの投稿記事のCRUDメソッド群を記載。
  */
 class PostController extends Controller
 {
@@ -128,54 +126,26 @@ class PostController extends Controller
     }
 
     /**
-     * 新規記事投稿画面及び既存記事編集画面にて、押されたボタンによりステータスの更新及び日付の更新を行う
-     *
-     * 「下書き」ボタン：記事ステータス'post_status'を下書き'drafted'にして、下書き保存日時'post_drafted'に現時刻を入れる。
-     * 「公開」ボタン：記事ステータス'post_status'を公開'published'にして、公開日時'post_published'に現時刻を入れる。
-     * 「更新」ボタン：記事ステータス'post_status'を公開'published'にして、更新日時'post_modified'に現時刻を入れる。
-     *
-     * @param string $submit_btn 押下ボタンの種類。下書き'draft_btn',公開'publish_btn',更新'modify_btn'。
-     * @param Post $post 記事
-     */
-    public function storeDateStatus(String $submit_btn, Post $post): void
-    {
-        switch ($submit_btn) {
-            case 'draft_btn':
-              $post->post_drafted = Carbon::now();
-              $post->post_status = 'drafted';
-              break;
-            case 'publish_btn':
-              $post->post_published = Carbon::now();
-              $post->post_status = 'published';
-              break;
-            case 'modify_btn':
-              $post->post_modified = Carbon::now();
-              $post->post_status = 'published';
-              break;
-            default:
-              break;
-        }
-    }
-
-    /**
      * 記事にサムネイル画像を登録する処理
      *
-     * 登録済みのサムネイル画像を削除し、ファイル名を'現時刻thumbnail_ポストid.ファイル拡張子'としてpublic/thumbnailフォルダにコピーする。
-     * 記事のpost_thumbnailにファイル名を登録する。
+     * 既存のサムネイル画像があればファイル削除。
+     * 登録する画像をs3のimgフォルダからthumbnailフォルダへ新ネームでコピー。
+     * postにサムネイル関連のデータを登録。
      *
-     * @param int $image_id 登録したい画像のid
+     * @param int $image_id 登録画像のid
      * @param Post $post 記事
      */
     public function storeThumbnail(Int $image_id, Post $post): void
     {
         $this->deleteThumbnail($post);
+
         $image = Image::find($image_id);
-        $now = Carbon::now()->format('YmdHis');
-        $file_name = $now . 'thumbnail_' . $post->id . '.' . $image->image_extension;
-        $source = public_path() . '/img/' . $image->image_name . '.' . $image->image_extension;
-        $dest = public_path() . '/thumbnail/' . $file_name;
-        \copy($source, $dest);
-        $post->post_thumbnail = $file_name;
+        $new_thumbnail = 'thumbnail_' . $post->id . '.' . $image->image_extension;
+        Storage::disk('s3')->copy('img/' . $image->file_name, 'thumbnail/' . $new_thumbnail);
+
+        $post->post_thumbnail = $new_thumbnail;
+        $post->thumbnail_path = Storage::disk('s3')->url('thumbnail/' . $new_thumbnail);
+        $post->save();
     }
 
     /**
@@ -191,8 +161,6 @@ class PostController extends Controller
     }
 
     /**
-     * サムネイル画像ファイルの削除処理
-     *
      * 記事にサムネイル画像が登録されていれば、そのファイルを削除する。
      *
      * @param Post $post 記事
@@ -200,24 +168,23 @@ class PostController extends Controller
     public function deleteThumbnail(Post $post): void
     {
         if (isset($post->post_thumbnail)) {
-            \unlink(public_path() . '/thumbnail/' . $post->post_thumbnail);
+            Storage::disk('s3')->delete('thumbnail/' . $post->post_thumbnail);
         }
     }
 
     /**
-     * 投稿記事本文入力欄のTinyMce（WYSIWYGエディタ）用の画像JSONデータ出力処理
+     * 記事作成のTinyMce（WYSIWYGエディタ）用の画像JSONデータ出力処理
      *
-     * @return array 画像ファイル名・画像パスの配列
+     * @return JSON
      */
-    public function readImage(): array
+    public function readImage()
     {
         $images = Image::latest()->get();
-        $imageJSON = [];
 
-        foreach ($images as $image) {
-            $fileName = $image->image_name . '.' . $image->image_extension;
-            $imageJSON[] = ['title' => $fileName, 'value' => '/img/' . $fileName];
-        }
+        $imageJSON = $images->map(function ($image) {
+            return ['title' => $image->file_name, 'value' => $image->path];
+        });
+
         return $imageJSON;
     }
 }

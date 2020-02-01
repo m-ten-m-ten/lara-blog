@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ImageStoreRequest;
 use App\Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Laravelブログアプリの画像管理用コントローラー
@@ -46,7 +47,7 @@ class ImageController extends Controller
      * 新規画像のレコード登録処理
      *
      * @param ImageStoreRequest $request 画像のFormRequest
-     * @param Image $image 画像
+     * @param Image $image 画像オブジェクト
      *
      * @return Response 画像編集画面へリダイレクト
      */
@@ -94,13 +95,24 @@ class ImageController extends Controller
     {
         if ($request->checked) {
             foreach ($request->checkedIds as $id) {
-                $image = Image::findOrFail($id);
-                $image->delete();
+                $this->deleteImage($id);
             }
         } elseif ($request->deleteId) {
-            $image = Image::findOrFail($request->deleteId);
-            $image->delete();
+            $this->deleteImage($request->deleteId);
         }
+
         return redirect(route('admin.image.index'))->with('status', '削除が完了しました。');
+    }
+
+    /**
+     * 画像の削除処理
+     *
+     * @param int $id 削除したい画像ID
+     */
+    public function deleteImage(Int $id): void
+    {
+        $image = Image::findOrFail($id);
+        Storage::disk('s3')->delete('img/' . $image->file_name);
+        $image->delete();
     }
 }

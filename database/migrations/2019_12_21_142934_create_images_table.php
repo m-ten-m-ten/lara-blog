@@ -15,15 +15,10 @@ class CreateImagesTable extends Migration
             $table->bigIncrements('id');
             $table->string('image_name')->unique();
             $table->string('image_extension');
+            $table->string('file_name')->unique();
+            $table->string('path')->unique();
             $table->timestamps();
         });
-
-        for ($i = 1; $i < 51; $i++) {
-            $image = new App\Image();
-            $image->image_name = 'img' . $i;
-            $image->image_extension = 'jpg';
-            $image->save();
-        }
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
 class ImageStoreRequest extends FormRequest
@@ -48,17 +49,28 @@ class ImageStoreRequest extends FormRequest
         ];
     }
 
+    /**
+     * validated()をOverride。画像ファイルのs3へのアップロード、ファイル名変更処理まで行う。
+     *
+     * @return object バリデータ
+     */
     public function validated()
     {
-        $validated = parent::validated();
+        $validatedData = parent::validated();
 
-        if (isset($validated['image_file'])) {
-            $validated['image_extension'] = $validated['image_file']->extension();
-            $validated['image_file']->move(public_path() . '/img', $validated['image_name'] . '.' . $validated['image_extension']);
+        if (isset($validatedData['image_file'])) {
+            $validatedData['image_extension'] = $validatedData['image_file']->extension();
+            $validatedData['file_name'] = $validatedData['image_name'] . '.' . $validatedData['image_extension'];
+            Storage::disk('s3')->putFileAs('/img', $validatedData['image_file'], $validatedData['file_name'], 'public');
+            $validatedData['path'] = Storage::disk('s3')->url('img/' . $validatedData['file_name']);
         } else {
-            \rename(public_path() . '/img/' . $this->image->image_name . '.' . $this->image->image_extension, public_path() . '/img/' . $validated['image_name'] . '.' . $this->image->image_extension);
+            $old_file = $this->image->file_name;
+            $new_file = $validatedData['image_name'] . '.' . $this->image->image_extension;
+            Storage::disk('s3')->move('img/' . $old_file, 'img/' . $new_file);
+            $validatedData['path'] = Storage::disk('s3')->url('img/' . $new_file);
+            $validatedData['file_name'] = $new_file;
         }
 
-        return $validated;
+        return $validatedData;
     }
 }

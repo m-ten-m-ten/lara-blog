@@ -55,16 +55,16 @@
       <div class="m-form-row">
         <label class="m-form-title">日付</label>
         <div>ステータス：<span class="emphasis">@if($post->exists){{ $post->post_status == 'drafted' ? '下書き' : '公開中'}}@else - @endif</span><br>
-          {!! $post->post_published ? '公開日時：' . $post->post_published->format('Y/m/d h:i') . '<br>' : '' !!}
-          {!! $post->post_modified ? '更新日時：' . $post->post_modified->format('Y/m/d h:i') . '<br>' : '' !!}
-          {{ $post->post_status == 'drafted' ? '下書き保存日時：' . $post->post_drafted->format('Y/m/d h:i') : '' }}
+          {!! $post->post_published ? '公開日時：' . $post->post_published->format('Y/m/d H:i') . '<br>' : '' !!}
+          {!! $post->post_modified ? '更新日時：' . $post->post_modified->format('Y/m/d H:i') . '<br>' : '' !!}
+          {{ $post->post_status == 'drafted' ? '下書き保存日時：' . $post->post_drafted->format('Y/m/d H:i') : '' }}
         </div>
       </div>
 
       {{-- サムネイル画像 --}}
       <div class="m-form-row">
         <label class="m-form-title">サムネイル画像</label>
-        <img id="selected_thumb_img" class="block" src="/thumbnail/{{$post->post_thumbnail}}" alt="" width="120px">
+        <img id="selected_thumb_img" class="block" src="{{$post->post_thumbnail? $post->thumbnail_path :''}}" alt="" width="120px">
         <button type="button" id="modal-open" class="m-button mt5">画像を選択</button>
 
         {{-- モーダル画面サムネイル画像 --}}
@@ -79,8 +79,8 @@
                 <input id="post_thumbnail_{{ $image->id }}" type="radio" name="image_id" value="{{ $image->id }}" class="hidden radio"
                 @if( old('image_id') == $image->id ) checked @endif>
                 <label class="m-thumbnail-modal-list-label" for="post_thumbnail_{{ $image->id }}">
-                  <img src="/img/{{$image->image_name}}.{{$image->image_extension}}" alt="" width="120px">
-                  <div class="text-center text-sm">{{ $image->image_name }}.{{$image->image_extension}}</div>
+                  <img src="{{ $image->path }}" alt="" width="120px">
+                  <div class="text-center text-sm">{{ $image->file_name }}</div>
                 </label>
                 @endforeach
               </div>

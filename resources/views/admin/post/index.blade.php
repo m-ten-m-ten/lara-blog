@@ -42,9 +42,9 @@
             @endforeach
           </td>
           <td>
-            {!! $post->post_published ? '公開日時：'.$post->post_published->format('Y/m/d h:i').'<br>' : '' !!}
-            {!! $post->post_modified ? '更新日時：'.$post->post_modified->format('Y/m/d h:i').'<br>' : '' !!}
-            {{ $post->post_status == 'drafted' ? '下書き：'.$post->post_drafted->format('Y/m/d h:i') : '' }}
+            {!! $post->post_published ? '公開日時：'.$post->post_published->format('Y/m/d H:i').'<br>' : '' !!}
+            {!! $post->post_modified ? '更新日時：'.$post->post_modified->format('Y/m/d H:i').'<br>' : '' !!}
+            {{ $post->post_status == 'drafted' ? '下書き：'.$post->post_drafted->format('Y/m/d H:i') : '' }}
           </td>
           <td class="nowrap">
             <a class="text-link" href="/admin/post/edit/{{ $post->id }}">編集</a>

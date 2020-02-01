@@ -17,6 +17,7 @@ class CreatePostsTable extends Migration
             $table->text('post_title'); //タイトル
             $table->longText('post_content')->nullable(); //本文
             $table->string('post_thumbnail')->nullable();
+            $table->string('thumbnail_path')->nullable();
             $table->text('post_excerpt')->nullable(); //抜粋
             $table->string('post_status'); //ステータス：「published」「drafted」
             $table->dateTime('post_drafted')->nullable(); //下書き保存日時

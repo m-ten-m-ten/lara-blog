@@ -21,7 +21,7 @@
       <ul>
         <li class="m-form-row">
           @if ($image->exists)
-            <img class="block" src="/img/{{ $image->image_name }}.{{ $image->image_extension }}">
+            <img class="block" src="{{ $image->path }}">
           @else
             <label for="image_file" class="m-form-title mb10">画像ファイル（jpeg / png）</label>
             <input name="image_file" type="file" required>
