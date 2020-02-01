@@ -57,13 +57,14 @@ class PostController extends Controller
      */
     public function store(PostStoreRequest $request, Post $post)
     {
-        $this->storeDateStatus($request->submit_btn, $post);
+        $post->fill($request->validated())->save();
+
+        $post->tags()->sync($request->tags);
 
         if (isset($request->image_id)) {
             $this->storeThumbnail($request->image_id, $post);
         }
-        $post->fill($request->validated())->save();
-        $post->tags()->sync($request->tags);
+
         return redirect(route('admin.post.edit', $post))->with('status', '登録が完了しました。');
     }
 
@@ -95,13 +96,14 @@ class PostController extends Controller
      */
     public function update(PostStoreRequest $request, Post $post)
     {
-        $this->storeDateStatus($request->submit_btn, $post);
+        $post->fill($request->validated())->save();
 
         if (isset($request->image_id)) {
             $this->storeThumbnail($request->image_id, $post);
         }
-        $post->fill($request->validated())->save();
+
         $post->tags()->sync($request->tags);
+
         return redirect(route('admin.post.edit', $post))->with('status', '変更が完了しました。');
     }
 
