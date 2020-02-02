@@ -13,6 +13,7 @@ class Post extends Model
     ];
 
     protected $fillable = [
+        'for_subscriber',
         'post_title',
         'post_content',
         'post_excerpt',

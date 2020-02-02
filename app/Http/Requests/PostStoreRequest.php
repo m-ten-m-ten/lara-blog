@@ -25,6 +25,7 @@ class PostStoreRequest extends FormRequest
     public function rules()
     {
         return [
+            'for_subscriber'  => ['required', 'boolean'],
             'post_title'   => ['required', 'max:100'],
             'post_content' => [],
             'post_excerpt' => ['max:200'],
@@ -37,6 +38,7 @@ class PostStoreRequest extends FormRequest
     public function attributes()
     {
         return [
+            'for_subscriber'   => '公開範囲',
             'post_title'   => '記事のタイトル',
             'post_content' => '記事の本文',
             'post_excerpt' => '要約文',
