@@ -645,7 +645,7 @@ button {
     float: right; }
   .l-header-inner .m-headerToggleMenu {
     display: none; }
-    @media only screen and (max-width: 480px) {
+    @media only screen and (max-width: 768px) {
       .l-header-inner .m-headerToggleMenu {
         display: block;
         z-index: 10; } }
@@ -830,65 +830,6 @@ button {
   .m-button--line:hover {
     color: #fff;
     background-color: #8EC09D; }
-
-.m-newsList {
-  margin-top: 80px; }
-  @media only screen and (max-width: 780px) {
-    .m-newsList {
-      margin-top: 0; } }
-  @media only screen and (max-width: 500px) {
-    .m-newsList {
-      margin-top: 50px; } }
-
-.m-newsList-item {
-  margin-top: 60px; }
-  @media only screen and (max-width: 500px) {
-    .m-newsList-item {
-      margin-top: 40px; } }
-
-.m-newsList-item-image img {
-  width: 100%;
-  height: auto; }
-
-@media only screen and (max-width: 500px) {
-  .m-newsList-item-image[class*="l-grid-"] {
-    display: block;
-    width: 100%; } }
-
-@media only screen and (max-width: 500px) {
-  .m-newsList-item-text[class*="l-grid-"] {
-    display: block;
-    width: 100%;
-    margin-top: 15px; } }
-
-.m-newsList-item-title {
-  margin: 0;
-  font-size: 18px; }
-  @media only screen and (max-width: 500px) {
-    .m-newsList-item-title {
-      margin-top: 15px; } }
-
-.m-newsList-item-date {
-  color: #656c6e;
-  font-size: 12px;
-  margin: 5px 0 0;
-  font-family: "Lato", sans-serif; }
-
-.m-newsList-item-description {
-  font-size: 13px;
-  color: #656c6e;
-  margin: 20px 0 0; }
-  @media only screen and (max-width: 500px) {
-    .m-newsList-item-description {
-      display: none; } }
-
-.m-newsList-more {
-  display: none; }
-  @media only screen and (max-width: 500px) {
-    .m-newsList-more {
-      display: block;
-      margin-top: 40px;
-      text-align: center; } }
 
 .l-index .m-breadcrumb {
   margin-top: 10px;
@@ -1144,7 +1085,7 @@ button {
   letter-spacing: -1em;
   word-spacing: -1em;
   text-align: center; }
-  @media only screen and (max-width: 580px) {
+  @media only screen and (max-width: 768px) {
     .m-shareButtons {
       margin: 0 -15px;
       padding: 0 9%; } }
@@ -1158,10 +1099,10 @@ button {
   letter-spacing: normal;
   word-spacing: normal;
   margin: 0 15px; }
-  @media only screen and (max-width: 700px) {
+  @media only screen and (max-width: 1130px) {
     .m-shareButtons-item, .m-shareButtons-item--line {
       margin: 0 5px; } }
-  @media only screen and (max-width: 580px) {
+  @media only screen and (max-width: 768px) {
     .m-shareButtons-item, .m-shareButtons-item--line {
       width: 49.5%;
       margin: 5px 0;
@@ -1169,7 +1110,7 @@ button {
 
 .m-shareButtons-item--line {
   display: none; }
-  @media only screen and (max-width: 580px) {
+  @media only screen and (max-width: 768px) {
     .m-shareButtons-item--line {
       display: inline-block;
       *display: inline;
@@ -1185,6 +1126,9 @@ button {
   padding-bottom: 10px;
   color: #fff;
   font-size: 1.6rem; }
+  @media only screen and (max-width: 480px) {
+    .l-footer {
+      font-size: 1rem; } }
   .l-footer .m-copyRight {
     text-align: center; }
 
