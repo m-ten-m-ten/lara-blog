@@ -22,7 +22,7 @@
       <li class="">
         <a href="/{{ $post->id }}" class="l-row">
           <div class="thumbnailImg">
-            <img src="/thumbnail/{{ $post->post_thumbnail?: 'thumbnail-default.jpg' }}" alt="">
+            <img src="{{$post->thumbnail_path?: ''}}" alt="">
           </div>
           <div class="m-index-postList-info">
             @if($post->for_subscriber == 1)

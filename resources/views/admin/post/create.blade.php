@@ -64,7 +64,7 @@
       {{-- サムネイル画像 --}}
       <div class="m-form-row">
         <label class="m-form-title">サムネイル画像</label>
-        <img id="selected_thumb_img" class="block" src="{{$post->post_thumbnail? $post->thumbnail_path :''}}" alt="" width="120px">
+        <img id="selected_thumb_img" class="block" src="{{$post->thumbnail_path?: ''}}" alt="" width="120px">
         <button type="button" id="modal-open" class="m-button mt5">画像を選択</button>
 
         {{-- モーダル画面サムネイル画像 --}}
