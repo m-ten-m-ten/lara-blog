@@ -34,7 +34,14 @@
         @foreach ($posts as $post)
         <tr>
           <td><input type="checkbox" name="checkedIds[]" value="{{ $post->id }}"></td>
-          <td><a class="text-link" href="/admin/post/edit/{{ $post->id }}">{{ $post->post_title }}</a>{{ $post->post_status == 'drafted' ? ' - 下書き' : ''}}</td>
+          <td>
+            @if($post->for_subscriber == 1)
+              <span class="m-index-postList-subscriber">[有料]</span>
+            @endif
+            <a class="text-link" href="/admin/post/edit/{{ $post->id }}">
+            {{ $post->post_title }}</a>
+            {{ $post->post_status == 'drafted' ? ' - 下書き' : ''}}
+          </td>
           <td class="overTablet">{{ $post->category ? $post->category->category_title : ''}}</td>
           <td class="overTablet">
             @foreach ($post->tags as $tag)
