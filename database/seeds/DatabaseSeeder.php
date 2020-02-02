@@ -33,15 +33,13 @@ class DatabaseSeeder extends Seeder
             factory(App\Post::class, $category->id % 4 + 1)->create(['category_id' => $category->id]);
         });
 
-        // 作成した記事にサムネイル画像とタグを１〜３個登録する。
-        // （public/thumbnailに画像ファイル'thumbnail_1.jpg'〜記事数分を入れる）
+        // 作成した記事にタグを１〜３個登録する。
         $posts = App\Post::all();
         $tagIds = App\Tag::pluck('id');
 
-        // foreach ($posts as $post) {
-        //     $post->post_thumbnail = 'thumbnail_' . $post->id . '.jpg';
-        //     $post->tags()->attach($tagIds->random(\mt_rand(1, 3))->toArray());
-        //     $post->save();
-        // }
+        foreach ($posts as $post) {
+            $post->tags()->attach($tagIds->random(\mt_rand(1, 3))->toArray());
+            $post->save();
+        }
     }
 }
