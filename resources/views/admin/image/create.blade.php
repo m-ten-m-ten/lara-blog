@@ -7,7 +7,12 @@
   <div class="m-admin-header">
     <div class="m-admin-header-left">
       <h1 class="m-admin-header-title">画像{{ ($image->exists) ? '変更' : '追加'}}</h1>
-      <a class="m-button" href="{{ route('admin.image.index') }}">画像一覧へ</a>
+    </div>
+    <div class="m-admin-header-right">
+      <a class="m-button" href="{{ route('admin.image.index') }}"><span class="overTablet">画像</span>一覧</a>
+      @if($image->exists)
+        <a class="m-button" href="{{ route('admin.image.create') }}">新規追加</a>
+      @endif
     </div>
   </div>
 

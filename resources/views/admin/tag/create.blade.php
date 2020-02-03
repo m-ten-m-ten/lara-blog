@@ -7,7 +7,12 @@
   <div class="m-admin-header">
     <div class="m-admin-header-left">
       <h1 class="m-admin-header-title">タグ{{ ($tag->exists) ? '変更' : '追加'}}</h1>
-      <a class="m-button" href="{{ route('admin.tag.index') }}">タグ一覧へ</a>
+    </div>
+    <div class="m-admin-header-right">
+      <a class="m-button" href="{{ route('admin.tag.index') }}"><span class="overTablet">タグ</span>一覧</a>
+      @if($tag->exists)
+        <a class="m-button" href="{{ route('admin.tag.create') }}">新規作成</a>
+      @endif
     </div>
   </div>
 
