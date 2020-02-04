@@ -12,6 +12,7 @@ html
 body
   height: 100%
   font-family: $fontFamily
+  font-weight: $fontWeight
   background-color: $fontColor-inverse
   color: $fontColor
   font-size: 1.6rem
@@ -32,6 +33,7 @@ footer
 
 h1
   font-size: 2.8rem
+  font-weight: normal
   line-height: 1.2
   +mediaquery-tablet
     font-size: 2.2rem
@@ -39,10 +41,13 @@ h1
 
 h2
   font-size: 2.4rem
+  font-weight: normal
   line-height: 1.2
   +mediaquery-tablet
     font-size: 2.0rem
 
+h3
+  font-weight: normal
 
 a
   +animation
@@ -75,7 +80,6 @@ table
       background-color: $mainColor-moreLighter
 
   th
-    font-weight: bold
     text-align: left
 
   th,

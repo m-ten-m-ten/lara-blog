@@ -1,18 +1,10 @@
 @charset "utf-8"
 
-/* noto-sans-jp-regular - japanese_latin */
-@font-face
-  font-family: 'Noto Sans JP'
-  font-style: normal
-  font-weight: 400
-  src: local('Noto Sans Japanese Regular'), local('NotoSansJapanese-Regular'),
-  url('../fonts/noto-sans-jp-v24-japanese_latin-regular.woff2') format('woff2')
-
 // font-family
 // ----------------------------------------------------------------------
-$fontFamily: 'Noto Sans JP',"游ゴシック", YuGothic, "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", sans-serif
+$fontFamily: Avenir,"Hiragino Sans","游ゴシック", YuGothic, "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", sans-serif
 $fontFamily-specific: 'Lato', sans-serif
-
+$fontWeight: 400
 
 // カラー
 // ----------------------------------------------------------------------
@@ -89,7 +81,6 @@ $breakpoint-se: 360px
 @import "m-shareButtons"
 @import "l-footer"
 @import "m-footerNav"
-@import "m-copyRight"
 @import "m-pagination"
 @import "m-status"
 @import "m-error"

@@ -86,10 +86,10 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/myjqery.js":
-/*!*********************************!*\
-  !*** ./resources/js/myjqery.js ***!
-  \*********************************/
+/***/ "./resources/js/myjQuery.js":
+/*!**********************************!*\
+  !*** ./resources/js/myjQuery.js ***!
+  \**********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -192,13 +192,13 @@ $(function () {
 /***/ }),
 
 /***/ 0:
-/*!***************************************!*\
-  !*** multi ./resources/js/myjqery.js ***!
-  \***************************************/
+/*!****************************************!*\
+  !*** multi ./resources/js/myjQuery.js ***!
+  \****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/matsuotenmei/program/Laravel/lara-blog/resources/js/myjqery.js */"./resources/js/myjqery.js");
+module.exports = __webpack_require__(/*! /Users/matsuotenmei/program/Laravel/lara-blog/resources/js/myjQuery.js */"./resources/js/myjQuery.js");
 
 
 /***/ })
