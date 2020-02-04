@@ -23,9 +23,5 @@
       @include('_includes._m-script--payment')
   @endif
 
-  @if(request()->path()==='admin/user')
-    @include('_includes._m-script--deleteUser')
-  @endif
-
 </body>
 </html>

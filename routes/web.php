@@ -34,7 +34,7 @@ Route::prefix('admin')->namespace('Admin')->as('admin.')->group(function (): voi
 
         // ユーザー管理
         Route::get('user', 'UserController@index')->name('user.index');
-        Route::delete('user/destroy/{user}', 'UserController@destroy')->name('user.destroy');
+        Route::delete('user/delete', 'UserController@delete');
 
         // 記事管理
         Route::get('post', 'PostController@index')->name('post.index');
