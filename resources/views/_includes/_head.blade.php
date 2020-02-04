@@ -8,8 +8,7 @@
   <title>{{ config('app.name', 'Laravel') }}</title>
 
   <!-- Fonts -->
-  <link rel="dns-prefetch" href="//fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+  <link rel="preload" as="font" href="/fonts/noto-sans-jp-v24-japanese_latin-regular.woff2" crossorigin>
 
   <!-- Styles -->
   <link href="/style/style.css" rel="stylesheet">

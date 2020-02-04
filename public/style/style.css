@@ -1,4 +1,11 @@
 @charset "UTF-8";
+/* noto-sans-jp-regular - japanese_latin */
+@font-face {
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Noto Sans Japanese Regular"), local("NotoSansJapanese-Regular"), url("../fonts/noto-sans-jp-v24-japanese_latin-regular.woff2") format("woff2"); }
+
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 /**
  * 1. Set default font family to sans-serif.
@@ -366,7 +373,7 @@ html {
 
 body {
   height: 100%;
-  font-family: "游ゴシック", YuGothic, "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", sans-serif;
+  font-family: "Noto Sans JP", "游ゴシック", YuGothic, "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", sans-serif;
   background-color: #fff;
   color: #333;
   font-size: 1.6rem;
