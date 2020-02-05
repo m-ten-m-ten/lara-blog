@@ -4,7 +4,7 @@
 // ----------------------------------------------------------------------
 $fontFamily: Avenir,"Hiragino Sans","游ゴシック", YuGothic, "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", sans-serif
 $fontFamily-specific: 'Lato', sans-serif
-$fontWeight: 400
+$fontWeight: 300
 
 // カラー
 // ----------------------------------------------------------------------
@@ -14,12 +14,13 @@ $lightgray: #f7fafc
 $gray: #4a5568
 
 
-$fontColor: #333
+$fontColor: #2a292a
 $fontColor-inverse: #fff
 $fontColor-sub: #656c6e
+$fontColor-gray: #999fa0
 $fontColor-error: #e53e3e
 
-$textLinkColor: #2b6cb0
+$textLinkColor: #5181d0
 
 $mainColor: #2b6cb0
 $mainColor-darker: #03547D
@@ -35,6 +36,7 @@ $line: #8EC09D
 
 $bgColor-base: #f6f6f6
 $bgColor-gray: #656c6e
+$bgColor-lightgray: #f1f1f1
 $bgColor-white: #fff
 $bgColor-blue: #ebf8ff
 $bgColor-red: #fff5f5
@@ -59,6 +61,8 @@ $breakpoint-se: 360px
 
 // インポート
 // ----------------------------------------------------------------------
+@import "fontawesome/fontawesome"
+@import "fontawesome/solid"
 @import "normalize"
 @import "mixin"
 @import "base"
@@ -73,6 +77,7 @@ $breakpoint-se: 360px
 @import "m-index-postList"
 @import "l-show"
 @import "m-show-title"
+@import "m-show-content"
 @import "l-form"
 @import "m-form"
 @import "l-user-index"

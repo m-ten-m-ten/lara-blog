@@ -7,10 +7,10 @@
 
   <title>{{ config('app.name', 'Laravel') }}</title>
 
-  <!-- Fonts -->
-  <link rel="preload" as="font" href="/fonts/noto-sans-jp-v24-japanese_latin-regular.woff2" crossorigin>
-
   <!-- Styles -->
   <link href="/style/style.css" rel="stylesheet">
+  <link href="/style/dracula.css" rel="stylesheet">
+  <script src="/js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
 
 </head>

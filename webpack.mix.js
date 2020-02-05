@@ -10,7 +10,7 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/myjQuery.js', 'public/js/myjQuery.js')
+mix.js('resources/js/app.js', 'public/js/app.js')
     .scripts('resources/js/payment.js', 'public/js/payment.js')
 
 mix.browserSync({

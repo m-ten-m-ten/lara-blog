@@ -13,7 +13,7 @@
     @include('_includes._l-footer')
   </div>
 
-  @include('_includes._m-script')
+  <script src={{ asset('js/app.js')}}></script>
 
   @if(request()->path() === 'admin/post/create' || strpos(request()->path(), "/post/edit/") )
     @include('_includes._m-script--tinymce')
