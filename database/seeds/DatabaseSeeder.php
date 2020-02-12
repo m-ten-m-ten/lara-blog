@@ -29,17 +29,17 @@ class DatabaseSeeder extends Seeder
         factory(App\Category::class, 10)->create();
 
         // 作成したカテゴリーに記事を1~4本作成、登録する。
-        App\Category::all()->each(function ($category): void {
-            factory(App\Post::class, $category->id % 4 + 1)->create(['category_id' => $category->id]);
-        });
+        // App\Category::all()->each(function ($category): void {
+        //     factory(App\Post::class, $category->id % 4 + 1)->create(['category_id' => $category->id]);
+        // });
 
         // 作成した記事にタグを１〜３個登録する。
-        $posts = App\Post::all();
-        $tagIds = App\Tag::pluck('id');
+        // $posts = App\Post::all();
+        // $tagIds = App\Tag::pluck('id');
 
-        foreach ($posts as $post) {
-            $post->tags()->attach($tagIds->random(\mt_rand(1, 3))->toArray());
-            $post->save();
-        }
+        // foreach ($posts as $post) {
+        //     $post->tags()->attach($tagIds->random(\mt_rand(1, 3))->toArray());
+        //     $post->save();
+        // }
     }
 }

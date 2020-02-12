@@ -56,4 +56,14 @@ class Post extends Model
     {
         return static::where('post_status', 'published')->latest()->paginate(10);
     }
+
+    /**
+     * 公開用最新記事一覧表示用データ取得
+     *
+     * @return object
+     */
+    public static function getLatestPost()
+    {
+        return static::where('post_status', 'published')->latest()->paginate(6);
+    }
 }

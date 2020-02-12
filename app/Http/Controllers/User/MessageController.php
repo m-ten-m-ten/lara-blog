@@ -18,12 +18,4 @@ class MessageController extends Controller
         return view('user.message.index', \compact('messages'));
     }
 
-    /**
-     * 自分宛のメッセージの詳細表示
-     * MessagePolicyのviewポリシーを、ルーティングでmiddlewareにて設定済み。
-     */
-    public function show(Message $message)
-    {
-        return view('user.message.show', \compact('message'));
-    }
 }

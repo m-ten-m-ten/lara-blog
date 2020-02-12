@@ -34,9 +34,10 @@ class HomeController extends Controller
     public function show(Post $post)
     {
         $data = [
-            'post'       => Post::with(['tags'])->find($post->id),
-            'categories' => Category::withCount('posts')->get(),
-            'tags'       => Tag::withCount('posts')->get(),
+            'post'              => Post::with(['tags'])->find($post->id),
+            'posts'             => Post::getLatestPost(),
+            'categories'        => Category::withCount('posts')->get(),
+            'tags'              => Tag::withCount('posts')->get(),
         ];
         return view('show', $data);
     }

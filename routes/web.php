@@ -97,7 +97,6 @@ Route::prefix('user')->namespace('User')->as('user.')->group(function (): void {
 
         // メッセージ閲覧
         Route::get('message', 'MessageController@index')->name('message.index');
-        Route::get('message/show/{message}', 'MessageController@show')->name('message.show')->middleware('can:view,message');
 
         // お支払い情報
         Route::get('payment', 'PaymentController@index')->name('payment.top');

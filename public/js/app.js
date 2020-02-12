@@ -86,6 +86,171 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./node_modules/@firstandthird/toc/dist/toc.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/@firstandthird/toc/dist/toc.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var domassist__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! domassist */ "./node_modules/domassist/dist/domassist.js");
+/* harmony import */ var scroll_triggers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! scroll-triggers */ "./node_modules/scroll-triggers/dist/scroll-triggers.js");
+/* harmony import */ var smooth_scroller__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! smooth-scroller */ "./node_modules/smooth-scroller/dist/smooth-scroller.js");
+
+
+
+
+function init(el) {
+  if (!el) {
+    el = Object(domassist__WEBPACK_IMPORTED_MODULE_0__["find"])('[data-toc]');
+    el.forEach(function (e) {
+      return init(e);
+    });
+    return;
+  }
+
+  if (!el) {
+    return;
+  }
+
+  var container = el.dataset.tocContainer ? Object(domassist__WEBPACK_IMPORTED_MODULE_0__["findOne"])(el.dataset.tocContainer) || document.body : document.body;
+  var selectors = el.dataset.toc.split(',').map(function (s) {
+    return s.trim();
+  });
+  var tocItems = [];
+  var offset = el.dataset.tocOffset ? parseInt(el.dataset.tocOffset, 10) : 1;
+  var i = 1; // Building dict
+
+  selectors.forEach(function (selector) {
+    var items = Object(domassist__WEBPACK_IMPORTED_MODULE_0__["find"])(selector, container);
+    items.forEach(function (item) {
+      // Keep the id if already there
+      var index = item.id || "toc-" + i++;
+      var text = item.dataset.tocTitle ? item.dataset.tocTitle.trim() : item.textContent.trim();
+      var sanitizedClassName = selector.replace(/((:+[\w-\d]*)|[^A-z0-9-\s])/g, ' ').replace(/\s{2,}/g, ' ').trim();
+      var className = "toc-" + sanitizedClassName; // Set it if none
+
+      if (item.id !== index) {
+        item.id = index;
+      }
+
+      tocItems.push({
+        index: index,
+        text: text,
+        className: className
+      });
+    });
+  });
+  var html = '<ul>';
+  var triggerOptions = []; // Building markup
+
+  tocItems.forEach(function (item, j) {
+    var nextEl = tocItems[j + 1];
+    var options = {
+      el: ".toc-li-" + j,
+      fixed: 'true',
+      start: "#" + item.index,
+      position: 'top',
+      positionEnd: 'top',
+      className: 'toc-visible'
+    };
+    html += "\n<li class=\"toc-li-" + j + " " + item.className + "\"><a href=\"#" + item.index + "\">" + item.text + "</a></li>";
+
+    if (nextEl) {
+      options.end = "#" + nextEl.index;
+    }
+
+    triggerOptions.push(options);
+  });
+  html += '</ul>';
+  el.innerHTML = html;
+  var tocs = Object(domassist__WEBPACK_IMPORTED_MODULE_0__["find"])('li', el);
+  var anchors = Object(domassist__WEBPACK_IMPORTED_MODULE_0__["find"])('a', el); // Setting up scroll triggers and smooth scroll
+
+  Object(scroll_triggers__WEBPACK_IMPORTED_MODULE_1__["default"])(triggerOptions);
+  Object(smooth_scroller__WEBPACK_IMPORTED_MODULE_2__["init"])(anchors, offset); // Pause scroll triggers while smoothscrolling
+
+  Object(domassist__WEBPACK_IMPORTED_MODULE_0__["on"])(document.body, 'smoothscroll:start', function () {
+    Object(domassist__WEBPACK_IMPORTED_MODULE_0__["fire"])(tocs, 'scrolltriggers:pause');
+  });
+  Object(domassist__WEBPACK_IMPORTED_MODULE_0__["on"])(document.body, 'smoothscroll:end', function () {
+    Object(domassist__WEBPACK_IMPORTED_MODULE_0__["fire"])(tocs, 'scrolltriggers:resume');
+    Object(domassist__WEBPACK_IMPORTED_MODULE_0__["fire"])(window, 'scroll');
+  });
+
+  if (window.location.hash) {
+    anchors.some(function (anchor) {
+      var found = anchor.getAttribute('href') === window.location.hash;
+
+      if (found) {
+        setTimeout(function () {
+          var element = Object(domassist__WEBPACK_IMPORTED_MODULE_0__["findOne"])(window.location.hash);
+
+          if (element) {
+            // Silent scroll to element
+            Object(smooth_scroller__WEBPACK_IMPORTED_MODULE_2__["scroll"])(element, null, offset, true);
+          }
+        });
+      }
+
+      return found;
+    });
+  }
+}
+Object(domassist__WEBPACK_IMPORTED_MODULE_0__["ready"])(init);
+
+/* harmony default export */ __webpack_exports__["default"] = (init);
+//# sourceMappingURL=toc.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/attrobj/dist/attrobj.js":
+/*!**********************************************!*\
+  !*** ./node_modules/attrobj/dist/attrobj.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* global window */
+function attrobj (key, el) {
+  var values = {};
+  Object.keys(el.dataset).forEach(function (data) {
+    if (data.match(new RegExp("^" + key)) && data !== key) {
+      var optionName = data.replace(key, '');
+      var isGlobal = false;
+
+      if (optionName.match(/^Global/)) {
+        optionName = optionName.replace('Global', '');
+        isGlobal = true;
+      }
+
+      optionName = "" + optionName[0].toLowerCase() + optionName.slice(1);
+
+      if (isGlobal) {
+        values[optionName] = window[el.dataset[data]];
+      } else {
+        values[optionName] = el.dataset[data];
+      }
+
+      if (typeof values[optionName] === 'undefined' || values[optionName] === '') {
+        values[optionName] = true;
+      }
+    }
+  });
+  return values;
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (attrobj);
+//# sourceMappingURL=attrobj.js.map
+
+
+/***/ }),
+
 /***/ "./node_modules/axios/index.js":
 /*!*************************************!*\
   !*** ./node_modules/axios/index.js ***!
@@ -1825,6 +1990,631 @@ module.exports = {
   extend: extend,
   trim: trim
 };
+
+
+/***/ }),
+
+/***/ "./node_modules/domassist/dist/domassist.js":
+/*!**************************************************!*\
+  !*** ./node_modules/domassist/dist/domassist.js ***!
+  \**************************************************/
+/*! exports provided: default, addAttrs, addClass, append, closest, delegate, find, findOne, fire, hasClass, hide, hover, html, isTouch, isWindow, matches, modify, off, on, once, prefixedTransform, ready, remove, removeClass, scrollableContainer, show, styles, toArray, toggleClass */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addAttrs", function() { return addAttrs; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addClass", function() { return addClass; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "append", function() { return append; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "closest", function() { return closest; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "delegate", function() { return delegate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "find", function() { return find; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findOne", function() { return findOne; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fire", function() { return fire; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hasClass", function() { return hasClass; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hide", function() { return hide; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hover", function() { return hover; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "html", function() { return html; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isTouch", function() { return isTouch; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isWindow", function() { return isWindow; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "matches", function() { return matches; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modify", function() { return modify; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "off", function() { return off; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "on", function() { return on; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "once", function() { return once; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "prefixedTransform", function() { return prefixedTransform; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ready", function() { return ready; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "remove", function() { return remove; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeClass", function() { return removeClass; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "scrollableContainer", function() { return getScrollableContainer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "show", function() { return show; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "styles", function() { return styles; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toArray", function() { return toArray; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toggleClass", function() { return toggleClass; });
+function isWindow(obj) {
+  return obj != null && obj === obj.window;
+}
+
+function find(selector, context) {
+  if (context === void 0) {
+    context = null;
+  }
+
+  if (selector instanceof HTMLElement || selector instanceof Node || isWindow(selector)) {
+    return [selector];
+  } else if (selector instanceof NodeList) {
+    return [].slice.call(selector);
+  } else if (typeof selector === 'string') {
+    var startElement = context ? find(context)[0] : document;
+    return [].slice.call(startElement.querySelectorAll(selector));
+  }
+
+  return [];
+}
+
+function addClass(selector, cls) {
+  if (Array.isArray(selector)) {
+    return selector.forEach(function (item) {
+      return addClass(item, cls);
+    });
+  }
+
+  var els = find(selector);
+
+  if (els.length) {
+    var clsArray = [].concat(cls);
+    els.forEach(function (el) {
+      clsArray.forEach(function (item) {
+        el.classList.add(item);
+      });
+    });
+    return els;
+  }
+}
+
+function on(selector, event, cb, capture) {
+  if (capture === void 0) {
+    capture = false;
+  }
+
+  if (Array.isArray(selector)) {
+    selector.forEach(function (item) {
+      return on(item, event, cb, capture);
+    });
+    return;
+  }
+
+  var data = {
+    cb: cb,
+    capture: capture
+  };
+
+  if (!window._domassistevents) {
+    window._domassistevents = {};
+  }
+
+  window._domassistevents["_" + event] = data;
+  var el = find(selector);
+
+  if (el.length) {
+    el.forEach(function (item) {
+      item.addEventListener(event, cb, capture);
+    });
+  }
+}
+
+function matches(el, selector) {
+  var proto = Element.prototype;
+  var match = false;
+  var prefixes = ['matches', 'matchesSelector', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'];
+  prefixes.forEach(function (prefix) {
+    if (proto.hasOwnProperty(prefix)) {
+      match = proto[prefix];
+    }
+  });
+
+  if (match) {
+    return el ? match.call(el, selector) : null;
+  }
+}
+
+function closest(el, selector) {
+  do {
+    if (matches(el, selector)) {
+      return el;
+    }
+
+    el = el.parentElement || el.parentNode;
+  } while (el !== null && el.nodeType === 1);
+
+  return null;
+}
+
+function delegate(el, event, selector, cb, capture) {
+  if (capture === void 0) {
+    capture = false;
+  }
+
+  on(el, event, function (e) {
+    if (e.target && closest(e.target, selector)) {
+      return cb(e);
+    }
+  }, capture);
+}
+
+function findOne(selector, el) {
+  var found = find(selector, el);
+
+  if (found.length) {
+    return found[0];
+  }
+
+  return null;
+}
+
+// Check for the usage of native support for CustomEvents which is lacking
+// completely on IE.
+//
+
+function canIuseNativeCustom() {
+  try {
+    var p = new CustomEvent('t', {
+      detail: {
+        a: 'b'
+      }
+    });
+    return p.type === 't' && p.detail.a === 'b';
+  } catch (e) {
+    return false;
+  }
+} // Lousy polyfill for the Custom Event constructor for IE.
+
+
+var IECustomEvent = function CustomEvent(type, params) {
+  var e = document.createEvent('CustomEvent');
+
+  if (params) {
+    e.initCustomEvent(type, params.bubbles, params.cancelable, params.detail);
+  } else {
+    e.initCustomEvent(type, false, false, undefined);
+  }
+
+  return e;
+};
+
+var DomassistCustomEvent = false;
+
+function fire(selector, type, params) {
+  if (params === void 0) {
+    params = {};
+  }
+
+  if (Array.isArray(selector)) {
+    return selector.forEach(function (item) {
+      return fire(item, type, params);
+    });
+  }
+
+  if (!DomassistCustomEvent) {
+    DomassistCustomEvent = canIuseNativeCustom() ? CustomEvent : IECustomEvent;
+  }
+
+  var els = find(selector);
+
+  if (els.length) {
+    if (params.bubbles !== false) {
+      params.bubbles = true;
+    }
+
+    els.forEach(function (el) {
+      var event = new DomassistCustomEvent(type, params);
+      el.dispatchEvent(event);
+    });
+    return els;
+  }
+}
+
+function hasClass(selector, cls) {
+  var el = findOne(selector);
+
+  if (!el) {
+    return false;
+  }
+
+  return el.classList.contains(cls);
+}
+
+function hide(selector) {
+  if (Array.isArray(selector)) {
+    selector.forEach(function (item) {
+      return hide(item);
+    });
+  }
+
+  var els = find(selector);
+
+  if (els.length) {
+    els.forEach(function (el) {
+      var currentDisplay = window.getComputedStyle(el).getPropertyValue('display');
+
+      if (currentDisplay !== 'none') {
+        el.dataset._currentDisplay = currentDisplay;
+        el.style.display = 'none';
+      }
+    });
+  }
+}
+
+function hover(el, enter, exit) {
+  on(el, 'mouseenter', enter);
+  on(el, 'mouseleave', exit);
+}
+
+function off(selector, event) {
+  if (Array.isArray(selector)) {
+    selector.forEach(function (item) {
+      return off(item, event);
+    });
+  }
+
+  if (!window._domassistevents) {
+    window._domassistevents = {};
+  }
+
+  var data = window._domassistevents["_" + event];
+
+  if (!data) {
+    return;
+  }
+
+  var el = find(selector);
+
+  if (el.length) {
+    el.forEach(function (item) {
+      item.removeEventListener(event, data.cb, data.capture);
+    });
+  }
+}
+
+function once(el, event, run, capture) {
+  if (capture === void 0) {
+    capture = false;
+  }
+
+  on(el, event, function (e) {
+    off(el, event);
+    run(e);
+  }, capture);
+}
+
+var transform = null;
+function prefixedTransform() {
+  if (transform) {
+    return transform;
+  }
+
+  var testEl = document.createElement('div');
+
+  if (testEl.style.transform === null) {
+    var vendors = ['Webkit', 'webkit', 'Moz', 'ms'];
+    var property = null;
+
+    for (var i = 0, len = vendors.length; i < len && !property; i++) {
+      var tProperty = vendors[i] + "Transform";
+
+      if (typeof testEl.style[tProperty] !== 'undefined') {
+        property = tProperty;
+      }
+    }
+
+    transform = property;
+  } else {
+    transform = 'transform';
+  }
+
+  return transform;
+}
+
+function removeClass(selector, cls) {
+  if (Array.isArray(selector)) {
+    return selector.forEach(function (item) {
+      return removeClass(item, cls);
+    });
+  }
+
+  var els = find(selector);
+
+  if (els.length) {
+    var clsArray = [].concat(cls);
+    els.forEach(function (el) {
+      clsArray.forEach(function (item) {
+        el.classList.remove(item);
+      });
+    });
+    return els;
+  }
+}
+
+var SCROLLABLE_CONTAINER;
+
+function getScrollableContainer() {
+  if (SCROLLABLE_CONTAINER) {
+    return SCROLLABLE_CONTAINER;
+  }
+
+  var documentElement = window.document.documentElement;
+  var scrollableContainer;
+  documentElement.scrollTop = 1;
+
+  if (documentElement.scrollTop === 1) {
+    documentElement.scrollTop = 0;
+    scrollableContainer = documentElement;
+  } else {
+    scrollableContainer = document.body;
+  }
+
+  SCROLLABLE_CONTAINER = scrollableContainer;
+  return scrollableContainer;
+}
+
+function show(selector) {
+  if (Array.isArray(selector)) {
+    selector.forEach(function (item) {
+      return show(item);
+    });
+  }
+
+  var els = find(selector);
+
+  if (els.length) {
+    els.forEach(function (el) {
+      el.style.display = el.dataset._currentDisplay || 'block';
+    });
+  }
+}
+
+function toggleClass(selector, cls) {
+  if (Array.isArray(selector)) {
+    return selector.forEach(function (item) {
+      return toggleClass(item, cls);
+    });
+  }
+
+  var els = find(selector);
+
+  if (els.length) {
+    var clsArray = [].concat(cls);
+    els.forEach(function (el) {
+      clsArray.forEach(function (item) {
+        el.classList.toggle(item);
+      });
+    });
+    return els;
+  }
+}
+
+var setupReady = function setupReady(callbacks) {
+  return function (callback) {
+    callbacks.push(callback);
+
+    function execute() {
+      while (callbacks.length) {
+        var fn = callbacks.shift();
+
+        if (typeof fn === 'function') {
+          fn();
+        }
+      }
+    }
+
+    function loaded() {
+      document.removeEventListener('DOMContentLoaded', loaded);
+      execute();
+    }
+
+    setTimeout(function () {
+      if (document.readyState !== 'loading') {
+        return execute();
+      }
+    }, 0);
+    document.addEventListener('DOMContentLoaded', loaded);
+  };
+};
+
+var ready = setupReady([]);
+
+function styles(selector, css) {
+  if (Array.isArray(selector)) {
+    selector.forEach(function (item) {
+      return styles(item, css);
+    });
+  }
+
+  var els = find(selector);
+
+  if (els.length) {
+    els.forEach(function (el) {
+      Object.keys(css).forEach(function (key) {
+        el.style[key] = css[key];
+      });
+    });
+  }
+}
+
+function addAttrs(selector, attrs) {
+  if (Array.isArray(selector)) {
+    return selector.forEach(function (item) {
+      return addAttrs(item, attrs);
+    });
+  }
+
+  var els = find(selector);
+
+  if (els.length) {
+    els.forEach(function (item) {
+      Object.keys(attrs).forEach(function (attr) {
+        if (attr in item) {
+          item[attr] = attrs[attr];
+        } else {
+          item.dataset[attr] = attrs[attr];
+        }
+      });
+    });
+  }
+
+  return els;
+}
+
+function html(selector, value) {
+  if (Array.isArray(selector)) {
+    selector.forEach(function (item) {
+      return html(item, value);
+    });
+  }
+
+  var el = find(selector);
+
+  if (el.length) {
+    var length = el.length;
+
+    for (var i = 0; i < length; i += 1) {
+      el[i].innerHTML = value;
+    }
+  }
+}
+
+/* global DocumentTouch */
+function isTouch() {
+  return 'ontouchstart' in window || window.DocumentTouch && document instanceof DocumentTouch;
+}
+
+function bindEvents(el, events) {
+  Object.keys(events).forEach(function (event) {
+    on(el, event, events[event]);
+  });
+}
+
+function modify(selector, params) {
+  if (Array.isArray(selector)) {
+    selector.forEach(function (item) {
+      return modify(item, params);
+    });
+  }
+
+  var modules = {
+    addClass: addClass,
+    removeClass: removeClass,
+    html: html,
+    events: on,
+    styles: styles
+  };
+  var els = find(selector);
+
+  if (els.length) {
+    els.forEach(function (el) {
+      Object.keys(params).forEach(function (param, index) {
+        if (param in modules) {
+          if (param === 'events') {
+            bindEvents(el, params[param]);
+          }
+
+          modules[param](el, params[param]);
+        }
+      });
+    });
+  }
+}
+
+function append(selector, value) {
+  if (Array.isArray(selector)) {
+    return selector.forEach(function (item) {
+      return append(item, value);
+    });
+  }
+
+  var els = find(selector);
+
+  if (els.length) {
+    els.forEach(function (el) {
+      if (typeof value === 'string') {
+        el.insertAdjacentHTML('beforeend', value);
+      } else {
+        el.appendChild(value);
+      }
+    });
+  }
+}
+
+function toArray(value) {
+  if (!value) {
+    return [];
+  }
+
+  if (Array.isArray(value)) {
+    return value;
+  }
+
+  if (value instanceof Node) {
+    return [value];
+  }
+
+  return [].slice.call(value);
+}
+
+function remove(selector, context) {
+  if (Array.isArray(selector)) {
+    return selector.forEach(function (item) {
+      return remove(item, context);
+    });
+  }
+
+  var els = find(selector, context);
+
+  if (els.length) {
+    els.forEach(function (el) {
+      if (el.prototype && el.prototype.remove) {
+        el.remove();
+      } else if (el.parentNode) {
+        el.parentNode.removeChild(el);
+      }
+    });
+  }
+}
+
+var domassist_default = {
+  addClass: addClass,
+  delegate: delegate,
+  find: find,
+  findOne: findOne,
+  fire: fire,
+  hasClass: hasClass,
+  hide: hide,
+  hover: hover,
+  isWindow: isWindow,
+  off: off,
+  on: on,
+  once: once,
+  prefixedTransform: prefixedTransform,
+  removeClass: removeClass,
+  scrollableContainer: getScrollableContainer,
+  show: show,
+  matches: matches,
+  toggleClass: toggleClass,
+  closest: closest,
+  ready: ready,
+  styles: styles,
+  addAttrs: addAttrs,
+  html: html,
+  isTouch: isTouch,
+  modify: modify,
+  append: append,
+  toArray: toArray,
+  remove: remove
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (domassist_default);
+
+//# sourceMappingURL=domassist.js.map
 
 
 /***/ }),
@@ -12656,18 +13446,591 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
+/***/ "./node_modules/scroll-triggers/dist/scroll-triggers.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/scroll-triggers/dist/scroll-triggers.js ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var domassist__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! domassist */ "./node_modules/domassist/dist/domassist.js");
+/* harmony import */ var attrobj__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! attrobj */ "./node_modules/attrobj/dist/attrobj.js");
+/* harmony import */ var tinybounce__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tinybounce */ "./node_modules/tinybounce/dist/tinybounce.js");
+
+
+
+
+var Events = {
+  In: 'scrolltriggers:inView',
+  Out: 'scrolltriggers:outOfView',
+  Pause: 'scrolltriggers:pause',
+  Resume: 'scrolltriggers:resume',
+  Bounds: 'scrolltriggers:bounds'
+};
+
+var ScrollTrigger =
+/*#__PURE__*/
+function () {
+  function ScrollTrigger(el, options) {
+    var _this = this;
+
+    if (el.hasAttribute('data-scroll-init')) {
+      return;
+    }
+
+    this.added = false;
+    this.el = el;
+    this.options = options;
+    this.eventHandler = Object(tinybounce__WEBPACK_IMPORTED_MODULE_2__["default"])(this.onScroll.bind(this), 10, true);
+    this.dCalcBounds = Object(tinybounce__WEBPACK_IMPORTED_MODULE_2__["default"])(this.calcBounds.bind(this), 10);
+    this.paused = false;
+    this.disabled = false;
+    this.calcOffset(); // If images, once by default
+
+    if (this.options.image || this.options.src || this.options.srcset) {
+      this.options.once = true;
+    }
+
+    el.setAttribute('data-scroll-init', 'true');
+    this.calcBounds();
+    window.addEventListener('scroll', this.eventHandler);
+    window.addEventListener('resize', this.dCalcBounds);
+    Object(domassist__WEBPACK_IMPORTED_MODULE_0__["on"])(this.el, Events.Pause, function () {
+      _this.paused = true;
+    });
+    Object(domassist__WEBPACK_IMPORTED_MODULE_0__["on"])(this.el, Events.Resume, function () {
+      _this.paused = false;
+    });
+    /*
+      Prevents a bug on Blink+Webkit in which scroll is always 0 until around
+      400 milliseconds due to anchor scrolling features.
+     */
+
+    setTimeout(this.eventHandler, 400);
+  }
+
+  var _proto = ScrollTrigger.prototype;
+
+  _proto.calcBounds = function calcBounds() {
+    var _this2 = this;
+
+    this.calcOffset(); // Element is hidden and not fixed
+
+    var isAllowedToBeFixed = this.options.progress === true || typeof this.options.fixed !== 'undefined';
+
+    if (!this.el.offsetParent && !isAllowedToBeFixed || this.added && this.options.once) {
+      // Don't even bother calculating
+      this.disabled = true;
+      return;
+    }
+
+    this.disabled = false;
+
+    if (isAllowedToBeFixed && this.added) {
+      this.outOfView();
+      return requestAnimationFrame(function () {
+        return _this2.calcBounds();
+      });
+    }
+
+    var position = this.options.position || 'bottom';
+    this.startEl = this.options.start ? Object(domassist__WEBPACK_IMPORTED_MODULE_0__["findOne"])(this.options.start) : this.el;
+    ScrollTrigger.checkElement(this.startEl, 'start', this.options.start);
+    var rect = this.startEl.getBoundingClientRect();
+    var scrollY = ScrollTrigger.getScrollY();
+    var start = rect.top + scrollY + (this.options.offset || 0);
+    this.start = ScrollTrigger.processPosition(position, start);
+
+    if (this.options.end) {
+      var endEl = Object(domassist__WEBPACK_IMPORTED_MODULE_0__["findOne"])(this.options.end);
+      var endRect = endEl.getBoundingClientRect();
+      var end = endRect.top + scrollY;
+      var endPosition = this.options.positionEnd || 'bottom';
+
+      if (endPosition === 'auto') {
+        endPosition = 'top';
+      }
+
+      this.end = ScrollTrigger.processPosition(endPosition, end);
+
+      if (this.options.positionEnd === 'auto') {
+        this.end -= this.el.offsetHeight;
+      }
+
+      ScrollTrigger.checkElement(endEl, 'end', this.options.end);
+    }
+
+    this.fire(Events.Bounds);
+    this.eventHandler();
+  };
+
+  _proto.calcOffset = function calcOffset() {
+    this.options.offset = this.options.offset ? this.options.offset : this.el.dataset.scrollOffset; // Half a screen above loading
+
+    if (this.options.image || this.options.srcset || this.options.offset === 'auto') {
+      this.options.offset = Math.max((document.documentElement.clientHeight, window.innerHeight || 0) / 2) * -1;
+    } else {
+      this.options.offset = parseInt(this.options.offset || 0, 10);
+    }
+  };
+
+  _proto.inView = function inView() {
+    var _this$options = this.options,
+        className = _this$options.className,
+        inView = _this$options.inView;
+
+    if (className && this.el.classList) {
+      Object(domassist__WEBPACK_IMPORTED_MODULE_0__["addClass"])(this.el, className);
+    }
+
+    var image = this.options.image;
+    var src = this.options.src;
+    var srcset = this.options.srcset;
+
+    if (image || src) {
+      if (this.el.tagName === 'IMG') {
+        this.el.setAttribute('src', image);
+      } else if (this.el.tagName === 'IFRAME' || this.el.tagName === 'VIDEO') {
+        this.el.setAttribute('src', src);
+      } else {
+        Object(domassist__WEBPACK_IMPORTED_MODULE_0__["styles"])(this.el, {
+          backgroundImage: "url(" + image + ")",
+          backgroundRepeat: 'no-repeat'
+        });
+      }
+    }
+
+    if (srcset) {
+      this.el.setAttribute('srcset', srcset);
+    }
+
+    if (typeof inView === 'function') {
+      inView(this.el, this.options);
+    }
+
+    this.fire(Events.In);
+
+    if (this.options.once) {
+      this.disabled = true;
+      window.removeEventListener('scroll', this.eventHandler);
+      window.removeEventListener('resize', this.dCalcBounds);
+    }
+
+    this.added = true;
+  };
+
+  _proto.outOfView = function outOfView() {
+    var _this$options2 = this.options,
+        className = _this$options2.className,
+        outOfView = _this$options2.outOfView;
+
+    if (className && this.el.classList) {
+      Object(domassist__WEBPACK_IMPORTED_MODULE_0__["removeClass"])(this.el, className);
+    }
+
+    if (typeof outOfView === 'function') {
+      outOfView(this.el, this.options);
+    }
+
+    this.fire(Events.Out);
+    this.added = false;
+  };
+
+  _proto.fire = function fire$1(event) {
+    Object(domassist__WEBPACK_IMPORTED_MODULE_0__["fire"])(this.el, event, {
+      detail: {
+        instance: this,
+        options: this.options
+      }
+    });
+  };
+
+  _proto.onScroll = function onScroll() {
+    var scroll = ScrollTrigger.getScrollY();
+
+    if (this.paused || this.disabled) {
+      return;
+    }
+
+    if (this.options.progress) {
+      var perc = scroll / (document.documentElement.scrollHeight - window.innerHeight);
+      this.el.style.width = perc * 100 + "%";
+    }
+
+    if (scroll < this.start || this.end && scroll > this.end) {
+      if (this.added) {
+        this.outOfView();
+      }
+
+      return;
+    }
+
+    if (this.added) {
+      return;
+    }
+
+    this.inView();
+  };
+
+  ScrollTrigger.checkElement = function checkElement(element, position, selector) {
+    if (!element) {
+      throw new Error(position + " element doesn't match any element with selector: \"" + selector + "\"");
+    }
+  };
+
+  ScrollTrigger.getScrollY = function getScrollY() {
+    return window.pageYOffset || document.documentElement.scrollTop;
+  };
+
+  ScrollTrigger.processPosition = function processPosition(position, currentValue) {
+    if (position === 'top') {
+      return currentValue;
+    }
+
+    if (position === 'middle') {
+      currentValue -= window.innerHeight / 2;
+    } else if (position === 'bottom') {
+      currentValue -= window.innerHeight;
+    } else {
+      currentValue -= window.innerHeight * (parseInt(position, 10) / 100);
+    }
+
+    return currentValue;
+  };
+
+  return ScrollTrigger;
+}();
+
+var init = function init(items) {
+  var instances = [];
+
+  if (items && Array.isArray(items)) {
+    items.forEach(function (item) {
+      var els = Object(domassist__WEBPACK_IMPORTED_MODULE_0__["find"])(item.el);
+
+      if (els === null) {
+        throw new Error('unknown element');
+      }
+
+      els.forEach(function (el) {
+        delete item.el;
+        instances.push(new ScrollTrigger(el, item));
+      });
+    });
+  } else if (items) {
+    throw new Error('please convert object to array');
+  } else {
+    var els = Object(domassist__WEBPACK_IMPORTED_MODULE_0__["find"])('[data-scroll]');
+    els.forEach(function (el) {
+      var options = Object(attrobj__WEBPACK_IMPORTED_MODULE_1__["default"])('scroll', el);
+
+      if (options.progress !== null && typeof options.progress !== 'undefined') {
+        options.progress = true;
+      }
+
+      options.className = options["class"];
+
+      if (options.offset) {
+        options.offset = parseInt(options.offset, 10);
+      }
+
+      if (typeof options.once !== 'undefined') {
+        options.once = true;
+      }
+
+      instances.push(new ScrollTrigger(el, options));
+    });
+  }
+
+  return instances;
+};
+
+if (document.readyState !== 'complete') {
+  // Avoid image loading impacting on calculations
+  document.addEventListener('readystatechange', function () {
+    if (document.readyState === 'complete') {
+      Object(domassist__WEBPACK_IMPORTED_MODULE_0__["fire"])(window, 'resize');
+    }
+  });
+}
+
+Object(domassist__WEBPACK_IMPORTED_MODULE_0__["ready"])(init);
+init.Events = Events;
+init.ScrollTrigger = ScrollTrigger;
+
+/* harmony default export */ __webpack_exports__["default"] = (init);
+//# sourceMappingURL=scroll-triggers.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/smooth-scroller/dist/smooth-scroller.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/smooth-scroller/dist/smooth-scroller.js ***!
+  \**************************************************************/
+/*! exports provided: init, scroll */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "init", function() { return init; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "scroll", function() { return scroll; });
+/* harmony import */ var domassist__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! domassist */ "./node_modules/domassist/dist/domassist.js");
+
+
+/* global window,document */
+var duration = 1000;
+
+var ease = function ease(t, b, c, d) {
+  if ((t /= d / 2) < 1) return c / 2 * t * t * t * t + b; //eslint-disable-line
+
+  return -c / 2 * ((t -= 2) * t * t * t - 2) + b;
+};
+
+var animate = function animate(startTime, start, end, callback) {
+  if (callback === void 0) {
+    callback = function callback() {};
+  }
+
+  var time = new Date().getTime();
+  var difference = end - start;
+  var goingUp = difference < 0;
+
+  if (difference === 0) {
+    return;
+  }
+
+  var delta = time - startTime;
+  var to = Math.round(ease(delta, start, difference, duration));
+
+  if (!goingUp && to > end) {
+    to = end;
+  }
+
+  if (goingUp && to < end) {
+    to = end;
+  }
+
+  if (delta > duration) {
+    to = end;
+  }
+
+  window.scrollTo(0, to);
+
+  if (to === end) {
+    setTimeout(callback);
+    return;
+  }
+
+  if (to < 0) {
+    return;
+  }
+
+  window.requestAnimationFrame(function () {
+    return animate(startTime, start, end, callback);
+  });
+};
+
+var scroll = function scroll(target, hash, offset, silent) {
+  if (offset === void 0) {
+    offset = 0;
+  }
+
+  if (silent === void 0) {
+    silent = false;
+  }
+
+  if (!target) {
+    return;
+  }
+
+  Object(domassist__WEBPACK_IMPORTED_MODULE_0__["fire"])(target, 'smoothscroll:start', {
+    bubbles: true
+  });
+  var rect = target.getBoundingClientRect();
+  var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+  var adjustedOffset = Math.round(rect.top + scrollY) + offset;
+  var startTime = new Date();
+
+  if (!target.hasAttribute('tabindex')) {
+    target.tabIndex = '-1';
+  }
+
+  if (!silent) {
+    window.history.pushState(null, 'Scroll', hash);
+  }
+
+  animate(startTime.getTime(), scrollY, adjustedOffset, function () {
+    Object(domassist__WEBPACK_IMPORTED_MODULE_0__["fire"])(target, 'smoothscroll:end', {
+      bubbles: true
+    });
+  });
+  target.focus();
+};
+
+var listenEvent = function listenEvent(el, offset) {
+  if (el.dataset.smoothActive) {
+    return;
+  }
+
+  el.dataset.smoothActive = true;
+  el.addEventListener('click', function (e) {
+    var hash = el.getAttribute('href');
+
+    if (hash[0] !== '#') {
+      return;
+    }
+
+    e.preventDefault();
+    scroll(document.querySelector(hash), hash, offset);
+  });
+};
+
+var init = function init(query, offset) {
+  if (query === void 0) {
+    query = '[data-smooth]';
+  }
+
+  if (offset === void 0) {
+    offset = 0;
+  }
+
+  if (!window.requestAnimationFrame) {
+    return;
+  }
+
+  var els = query;
+
+  if (typeof query === 'string') {
+    els = document.querySelectorAll(query);
+  }
+
+  if (els instanceof Element) {
+    els = [els];
+  }
+
+  for (var i = 0, c = els.length; i < c; i++) {
+    var el = els[i];
+    listenEvent(el, offset);
+  }
+};
+window.addEventListener('DOMContentLoaded', function () {
+  init();
+});
+
+
+//# sourceMappingURL=smooth-scroller.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/tinybounce/dist/tinybounce.js":
+/*!****************************************************!*\
+  !*** ./node_modules/tinybounce/dist/tinybounce.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var debounce = function debounce(func, wait, immediate) {
+  var timeout;
+  return function () {
+    var context = this;
+    var args = arguments; // eslint-disable-line prefer-rest-params
+
+    var later = function later() {
+      timeout = null;
+
+      if (!immediate) {
+        func.apply(context, args);
+      }
+    };
+
+    var callNow = immediate && !timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+
+    if (callNow) {
+      func.apply(context, args);
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (debounce);
+//# sourceMappingURL=tinybounce.js.map
+
+
+/***/ }),
+
+/***/ "./resources/js/accordion.js":
+/*!***********************************!*\
+  !*** ./resources/js/accordion.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var TENS = TENS || {};
+TENS.LARANOTE = {};
+
+TENS.LARANOTE.ACCORDION = function ($accordionWrapper) {
+  this.$accordionWrapper = $accordionWrapper;
+  this.init();
+};
+
+TENS.LARANOTE.ACCORDION.prototype = {
+  SLIDE_INTERVAL: 500,
+  init: function init() {
+    this.setParameters();
+    this.bindEvent();
+  },
+  setParameters: function setParameters() {
+    this.$accordionBody = this.$accordionWrapper.children('.accordion-body:not(:animated)');
+    this.$accordionTrigger = this.$accordionWrapper.children('.accordion-trigger');
+  },
+  bindEvent: function bindEvent() {
+    this.$accordionTrigger.on("click", $.proxy(this.slideMenu, this));
+  },
+  slideMenu: function slideMenu() {
+    if (this.$accordionBody.css("display") === "none") {
+      this.$accordionBody.slideDown(this.SLIDE_INTERVAL);
+      this.$accordionTrigger.addClass('is-open');
+    } else {
+      this.$accordionBody.slideUp(this.SLIDE_INTERVAL);
+      this.$accordionTrigger.removeClass('is-open');
+    }
+  }
+};
+$(function () {
+  $('.accordion-wrapper').each(function () {
+    new TENS.LARANOTE.ACCORDION($(this));
+  });
+});
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _firstandthird_toc__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @firstandthird/toc */ "./node_modules/@firstandthird/toc/dist/toc.js");
 window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-__webpack_require__(/*! ./myjQuery.js */ "./resources/js/myjQuery.js");
+__webpack_require__(/*! ./myjQuery.js */ "./resources/js/myjQuery.js"); // require('./sideFixed.js');
+
+
+__webpack_require__(/*! ./accordion.js */ "./resources/js/accordion.js");
+
+
 
 /***/ }),
 
@@ -12702,57 +14065,6 @@ $(function () {
     if (!confirm('本当に削除しますか？')) {
       alert('キャンセルされました');
       return false;
-    }
-  }); // ヘッダーメニューのスライド
-
-  $('#menu01').click(function () {
-    if ($('#menu01-sub').hasClass('open')) {
-      $('#menu01-sub').slideUp();
-      $('#menu01-sub').removeClass('open');
-    } else {
-      $('#menu01-sub').slideDown();
-      $('#menu01-sub').addClass('open');
-    }
-  });
-  $('#menu02').click(function () {
-    if ($('#menu02-sub').hasClass('open')) {
-      $('#menu02-sub').slideUp();
-      $('#menu02-sub').removeClass('open');
-    } else {
-      $('#menu02-sub').slideDown();
-      $('#menu02-sub').addClass('open');
-    }
-  });
-  $('#menu03').click(function () {
-    if ($('#menu03-sub').hasClass('open')) {
-      $('#menu03-sub').slideUp();
-      $('#menu03-sub').removeClass('open');
-    } else {
-      $('#menu03-sub').slideDown();
-      $('#menu03-sub').addClass('open');
-    }
-  });
-  $('#tag_btn').click(function () {
-    if ($('#tag_menu').hasClass('open')) {
-      $('#tag_menu').slideUp();
-      $('#tag_menu').removeClass('open');
-    } else {
-      $('#tag_menu').slideDown();
-      $('#tag_menu').addClass('open');
-    }
-  }); // ドロップダウンメニュー
-
-  var $navigation = $('.dropdown-menu');
-  var $navigationToggle = $('.dropdown-toggle');
-  $navigationToggle.click(function () {
-    if ($navigation.hasClass('open')) {
-      $navigation.slideUp();
-      $navigation.removeClass('open');
-      $navigationToggle.removeClass('is-active');
-    } else {
-      $navigation.slideDown();
-      $navigation.addClass('open');
-      $navigationToggle.addClass('is-active');
     }
   }); // modal
 

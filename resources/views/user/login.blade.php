@@ -1,27 +1,27 @@
-@extends('_includes._l-form--center')
+@extends('_includes._l-form')
 @section('title', 'ユーザーログイン')
 @section('form-content')
 
-<form class="m-form" method="POST">
+<form class="form" method="POST">
   @csrf
   <ul>
-    <li class="m-form-row">
-      <label class="m-form-title">メールアドレス</label>
-      <input type="text" class="{{$errors->has('email') ? 'm-form-input--error' : 'm-form-input ' }}" name="email" value="{{ old('email') }}" required>
+    <li class="form__row">
+      <label class="form__title">メールアドレス</label>
+      <input type="text" class="{{$errors->has('email') ? 'form__input-error' : 'form__input ' }}" name="email" value="{{ old('email') }}" required>
       @error('email')
         <p class="error-text">{{ $message }}</p>
       @enderror
     </li>
 
-    <li class="m-form-row mb-2">
-      <label class="m-form-title">パスワード</label>
-      <input type="password" class="{{$errors->has('password') ? 'm-form-input--error' : 'm-form-input ' }}" name="password" required minlength="8" maxlength="30">
+    <li class="form__row mb-2">
+      <label class="form__title">パスワード</label>
+      <input type="password" class="{{$errors->has('password') ? 'form__input-error' : 'form__input ' }}" name="password" required minlength="8" maxlength="30">
       @error('password')
         <p class="error-text">{{ $message }}</p>
       @enderror
     </li>
   </ul>
 
-  <input type="submit" value="ログイン" class="m-button">
+  <input type="submit" value="ログイン" class="button">
 </form>
 @endsection

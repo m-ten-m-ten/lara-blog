@@ -1,0 +1,119 @@
+.navbar__menu
+
+.navbar__menu-body
+  display: flex
+  padding: 18px 0
+  +mediaquery-tablet
+    display: none
+    padding: 0
+    position: fixed
+    top: 58px
+    left: 0
+    width: 100%
+    z-index: 10
+    background-color: $bgColor-gray
+
+
+.navbar__menu-item
+  border-right: 1px solid $fontColor-inverse
+  &:last-child
+    border-right: 0
+
+  +mediaquery-tablet
+    border-right: 0
+    border-bottom: 1px solid #999
+    &:last-child
+      border-bottom: 0
+
+
+.navbar__menu-link
+  display: flex
+  align-items: center
+  padding: 0 10px
+  color: $fontColor-inverse
+  font-size: 1.6rem
+  +mediaquery-tablet
+    padding: 10px
+    &.accordion-trigger
+      &:after
+        content: "\f107"
+        font-family: "Font Awesome 5 Free"
+        font-size: 2.3rem
+        margin-left: 10px
+    &.accordion-trigger.is-open
+      &:after
+        content: "\f106"
+
+.navbar__menu-child
+  display: none
+  position: absolute
+  width: 100%
+  top: 58px
+  left: 0
+  background-color: $bgColor-gray
+  +mediaquery-tablet
+    position: static
+
+
+.navbar__menu-child-inner
+  display: flex
+  flex-wrap: wrap
+  justify-content: center
+  align-items: center
+
+  a
+    display: block
+    padding: 10px 10px
+    margin-right: 10px
+    margin-bottom: 10px
+    +mediaquery-tablet
+      border: 1px solid #999
+      border-radius: 25px
+      color: $fontColor-inverse
+
+
+.navbar__menu-toggle
+  display: none
+  +mediaquery-tablet
+    display: block
+
+  position: fixed
+  top: 6px
+  right: 10px
+  width: 45px
+  height: 45px
+  background-color: $bgColor-header
+  border-radius: 23px
+  cursor: pointer
+
+
+  .navbar__menu-toggle-bar,
+  &::before,
+  &::after
+    +animation
+    display: block
+    position: absolute
+    top: 20px
+    left: 11px
+    width: 23px
+    height: 3px
+    background-color: $bgColor-base
+
+  &::before
+    transform: translate(0, 9px)
+    content: ""
+
+  &::after
+    transform: translate(0, -9px)
+    content: ""
+
+  &.is-open .navbar__menu-toggle-bar
+    opacity: 0
+
+  &.is-open::before
+    transform: rotate(-45deg)
+
+  &.is-open::after
+    transform: rotate(45deg)
+
+

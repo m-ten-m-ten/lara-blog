@@ -1,0 +1,36 @@
+.message
+
+
+.message__list-item
+  margin-bottom: 1rem
+
+
+.message__list-title
+  display: flex
+  align-items: center
+  margin-bottom: .5rem
+  cursor: pointer
+  &:after
+    content: "open"
+    font-weight: 600
+    display: inline-block
+    margin-left: 1rem
+    padding: .2rem .5rem
+    border: 1px solid $borderColor-gray
+    border-radius: 1.4rem
+    color: $textLinkColor
+    font-size: 1.5rem
+  &.is-open
+    &:after
+      content: "close"
+
+
+.message__list-date
+  margin-right: 1rem
+  color: $fontColor-gray
+  +mediaquery-smartphone
+    font-size: 1.3rem
+
+
+.message__list-body
+  display: none

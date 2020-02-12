@@ -11,6 +11,7 @@ use App\Http\Requests\PostStoreRequest;
 use App\{Category, Image, Post, Tag};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image as ResizeImage;
 
 /**
  * Laravelブログアプリの投稿記事管理用コントローラー
@@ -61,8 +62,8 @@ class PostController extends Controller
 
         $post->tags()->sync($request->tags);
 
-        if (isset($request->image_id)) {
-            $this->storeThumbnail($request->image_id, $post);
+        if ($request->eye_catch) {
+            $this->storePostImage($request, $post);
         }
 
         return redirect(route('admin.post.edit', $post))->with('status', '登録が完了しました。');
@@ -98,8 +99,8 @@ class PostController extends Controller
     {
         $post->fill($request->validated())->save();
 
-        if (isset($request->image_id)) {
-            $this->storeThumbnail($request->image_id, $post);
+        if ($request->eye_catch) {
+            $this->storePostImage($request, $post);
         }
 
         $post->tags()->sync($request->tags);
@@ -125,29 +126,6 @@ class PostController extends Controller
             $this->deletePost($request->deleteId);
         }
         return redirect(route('admin.post.index'))->with('status', '削除が完了しました。');
-    }
-
-    /**
-     * 記事にサムネイル画像を登録する処理
-     *
-     * 既存のサムネイル画像があればファイル削除。
-     * 登録する画像をs3のimgフォルダからthumbnailフォルダへ新ネームでコピー。
-     * postにサムネイル関連のデータを登録。
-     *
-     * @param int $image_id 登録画像のid
-     * @param Post $post 記事
-     */
-    public function storeThumbnail(Int $image_id, Post $post): void
-    {
-        $this->deleteThumbnail($post);
-
-        $image = Image::find($image_id);
-        $new_thumbnail = 'thumbnail_' . $post->id . '.' . $image->image_extension;
-        Storage::disk('s3')->copy('img/' . $image->file_name, 'thumbnail/' . $new_thumbnail);
-
-        $post->post_thumbnail = $new_thumbnail;
-        $post->thumbnail_path = Storage::disk('s3')->url('thumbnail/' . $new_thumbnail);
-        $post->save();
     }
 
     /**
@@ -188,5 +166,29 @@ class PostController extends Controller
         });
 
         return $imageJSON;
+    }
+
+    public function storePostImage(Request $request, Post $post): void
+    {
+        $extension = $request->file('eye_catch')->extension();
+
+        // サムネイル画像をリサイズしてs3へ保存と、保存先を登録。
+        $thumbnail_image = ResizeImage::make($request->file('eye_catch'))->resize(360, null, function ($constraint): void {
+            $constraint->aspectRatio();
+        })->encode();
+
+        $thumbnail_name = 'thumbnail_' . $post->id . '.' . $extension;
+        $thumbnailStorePath = 'thumbnail/' . $thumbnail_name;
+
+        Storage::disk('s3')->put($thumbnailStorePath, $thumbnail_image, 'public');
+
+        $post->thumbnail = Storage::disk('s3')->url($thumbnailStorePath);
+
+        // アイキャッチ画像を登録
+        $eye_catch_name = 'eye_catch_' . $post->id . '.' . $extension;
+        Storage::disk('s3')->putFileAs('/eye_catch', $request->file('eye_catch'), $eye_catch_name, 'public');
+        $post->eye_catch = Storage::disk('s3')->url('eye_catch/' . $eye_catch_name);
+
+        $post->save();
     }
 }

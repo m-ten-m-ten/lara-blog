@@ -31,5 +31,9 @@
         "tailwindcss": "^1.1.4",
         "vue": "^2.5.17",
         "vue-template-compiler": "^2.6.10"
+    },
+    "dependencies": {
+        "@firstandthird/toc": "^2.1.0",
+        "import": "0.0.6"
     }
 }

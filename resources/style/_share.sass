@@ -1,0 +1,29 @@
+.share
+  +inline-block-parent
+  text-align: center
+
+  +mediaquery-tablet
+    margin: 0 -15px
+    padding: 0 9%
+
+
+.share-item
+  +inline-block
+  margin: 0 15px
+
+  +mediaquery-pc
+    margin: 0 5px
+
+  +mediaquery-tablet
+    width: 49.5%
+    margin: 5px 0
+    padding: 0 5px
+
+
+.share-item--line
+  @extend.share-item
+  display: none
+
+  +mediaquery-tablet
+    +inline-block
+

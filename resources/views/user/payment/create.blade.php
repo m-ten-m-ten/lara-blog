@@ -1,10 +1,10 @@
-@extends('_includes._l-form--center')
+@extends('_includes._l-form')
 
 @section('title', 'クレジットカード登録')
 
 @section('form-content')
 
-@include('_includes._m-error')
+@include('_includes._error')
 
 <p>現在テスト中につき、下記のテスト用クレジットカードをご登録下さい。（請求はされません）</p>
 <ul class="mb10">
@@ -23,28 +23,28 @@
   @csrf
 
 <ul>
-  <li class="m-form-row">
-    <label class="m-form-title">カード番号</label>
+  <li class="form__row">
+    <label class="form__title">カード番号</label>
     <div id="cardNumber"></div>
   </li>
 
-  <li class="m-form-row">
-    <label class="m-form-title">セキュリティコード</label>
+  <li class="form__row">
+    <label class="form__title">セキュリティコード</label>
     <div id="securityCode"></div>
   </li>
 
-  <li class="m-form-row">
-    <label class="m-form-title">有効期限</label>
+  <li class="form__row">
+    <label class="form__title">有効期限</label>
     <div id="expiration"></div>
   </li>
 
-  <li class="m-form-row">
-    <label class="m-form-title">カード名義</label>
-    <input type="text" name="cardName" id="cardName" class="m-form-input" value="" placeholder="カード名義を入力">
+  <li class="form__row">
+    <label class="form__title">カード名義</label>
+    <input type="text" name="cardName" id="cardName" class="form__input" value="" placeholder="カード名義を入力">
   </li>
 </ul>
 
-<button type="submit" id="create_token" class="m-button mt10">カードを登録する</button>
+<button type="submit" id="create_token" class="button mt10">カードを登録する</button>
 
 </form>
 

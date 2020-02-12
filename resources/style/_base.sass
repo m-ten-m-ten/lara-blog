@@ -13,7 +13,7 @@ body
   height: 100%
   font-family: $fontFamily
   font-weight: $fontWeight
-  background-color: $fontColor-inverse
+  background-color: $bgColor-base
   color: $fontColor
   font-size: 1.6rem
   line-height: 1.7
@@ -53,12 +53,6 @@ a
   +animation
   color: $fontColor
   text-decoration: none
-
-.text-link
-  color: $textLinkColor
-  text-decoration: underline
-  &:hover
-    text-decoration: none
 
 p
   margin: 15px 0
@@ -117,6 +111,16 @@ small
 
 .text-red
   color: $red
+
+.text-link
+  color: $textLinkColor
+  text-decoration: underline
+  &:hover
+    text-decoration: none
+
+.error-text
+  margin-top: 5px
+  color: $fontColor-error
 
 button
   background-color: transparent
@@ -191,5 +195,7 @@ button
 .text-xs
   font-size: 1.2rem
 
-
+// accordion
+.accordion-trigger
+  cursor: pointer
 

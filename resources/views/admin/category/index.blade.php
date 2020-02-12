@@ -1,27 +1,22 @@
-@extends('_includes._layout')
-@section('content')
+@extends('_includes._l-admin')
 
-<div class="l-admin-index">
+@section('admin__title', 'カテゴリー一覧')
 
-  {{-- 管理者画面ヘッダー --}}
-  <div class="m-admin-header">
-    <div class="m-admin-header-left">
-      <h1 class="m-admin-header-title">カテゴリー一覧</h1>
-      <a class="m-button" href="/admin/category/create">新規追加</a>
-    </div>
-  </div>
+@section('link-button')
+  <a class="button" href="/admin/category/create">新規追加</a>
+@endsection
 
-  {{-- 管理者画面メイン --}}
+@section('admin__content')
 
-  @include('_includes._m-status')
+<div class="admin__index">
 
   <form id="delete-form" method="POST" action="/admin/category/delete">
-  @csrf
-  @method('DELETE')
+    @csrf
+    @method('DELETE')
 
-    <button id="multipleSubmitBtn" class="m-button--inverse m-admin-multiple-button" type="submit" name="checked" value="checked">一括削除</button>
+    <button id="multipleSubmitBtn" class="button__inverse admin__index-multiSubmit" type="submit" name="checked" value="checked">一括削除</button>
 
-    <table class="m-admin-table">
+    <table class="admin__index-table">
       <tr>
         <th><input type="checkbox" id="all"></th>
         <th>カテゴリー</th>
@@ -46,9 +41,10 @@
     </table>
   </form>
 
-  <div class="m-admin-pagination">
+  <div class="admin__index-pagination">
     {{ $categories->links() }}
   </div>
 
 </div>
+
 @endsection

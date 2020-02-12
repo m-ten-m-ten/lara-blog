@@ -1,53 +1,46 @@
-@extends('_includes._layout')
+@extends('_includes._l-admin')
 @section('content')
 
-<div class="l-admin-create">
+@if($image->exists)
+  @section('admin__title', '画像変更')
+@else
+  @section('admin__title', '画像追加')
+@endif
 
-  {{-- 管理者画面ヘッダー --}}
-  <div class="m-admin-header">
-    <div class="m-admin-header-left">
-      <h1 class="m-admin-header-title">画像{{ ($image->exists) ? '変更' : '追加'}}</h1>
-    </div>
-    <div class="m-admin-header-right">
-      <a class="m-button" href="{{ route('admin.image.index') }}"><span class="overTablet">画像</span>一覧</a>
-      @if($image->exists)
-        <a class="m-button" href="{{ route('admin.image.create') }}">新規追加</a>
+@section('link-button')
+  <a class="button" href="{{ route('admin.image.index') }}"><span class="overTablet">画像</span>一覧</a>
+  @if($image->exists)
+    <a class="button" href="{{ route('admin.image.create') }}">新規追加</a>
+  @endif
+@endsection
+
+@section('admin__content')
+
+<form class="form" method="POST" enctype="multipart/form-data">
+  @csrf
+  <ul>
+    <li class="form__row">
+      @if ($image->exists)
+        <img class="block" src="{{ $image->path }}">
+      @else
+        <label for="image_file" class="form__title mb10">画像ファイル（jpeg / png）</label>
+        <input name="image_file" type="file" required>
+        @error('image_file')
+          <p class="error-text">{{ $message }}</p>
+        @enderror
       @endif
-    </div>
-  </div>
+   </li>
 
-  {{-- 管理者画面メイン --}}
-  @include('_includes._m-status')
+    <li class="form__row">
+      <label class="form__title">ファイル名（使用可能：数字 / 英字(小文字) / - / _ ）</label>
+      <input type="image_name" class="{{$errors->has('image_name') ? 'form__input-error' : 'form__input ' }}" name="image_name" value="{{ old('image_name', $image->image_name) }}" required maxlength="50" pattern="^[-_a-z0-9]{1,50}$">
+      @error('image_name')
+        <p class="error-text">{{ $message }}</p>
+      @enderror
+    </li>
+  </ul>
 
-  <div class="m-admin-form mt10">
+  <button type="submit" class="button">{{ $image->exists ? '変更' : '登録'}}</button>
+</form>
 
-    <form class="m-form" method="POST" enctype="multipart/form-data">
-      @csrf
-      <ul>
-        <li class="m-form-row">
-          @if ($image->exists)
-            <img class="block" src="{{ $image->path }}">
-          @else
-            <label for="image_file" class="m-form-title mb10">画像ファイル（jpeg / png）</label>
-            <input name="image_file" type="file" required>
-            @error('image_file')
-              <p class="error-text">{{ $message }}</p>
-            @enderror
-          @endif
-       </li>
-
-        <li class="m-form-row">
-          <label class="m-form-title">ファイル名（使用可能：数字 / 英字(小文字) / - / _ ）</label>
-          <input type="image_name" class="{{$errors->has('image_name') ? 'm-form-input--error' : 'm-form-input ' }}" name="image_name" value="{{ old('image_name', $image->image_name) }}" required maxlength="50" pattern="^[-_a-z0-9]{1,50}$">
-          @error('image_name')
-            <p class="error-text">{{ $message }}</p>
-          @enderror
-        </li>
-      </ul>
-
-      <button type="submit" class="m-button">{{ $image->exists ? '変更' : '登録'}}</button>
-    </form>
-
-  </div>
-</div>
 @endsection

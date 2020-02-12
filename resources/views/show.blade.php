@@ -3,63 +3,89 @@
 
 <div class="l-show">
 
-  <div class="m-breadcrumb">
-    <ul>
-      <li><a class="text-link" href="{{ route('home') }}">HOME</a></li>
-      @if($post->category)
-        <li><a class="text-link" href="/category/{{ $post->category->id }}">カテゴリー「{{ $post->category->category_title }}」</a></li>
-      @endif
-      <li>記事ページ</li>
-    </ul>
-  </div>
+  <div class="l-show__main">
 
+    @include('_includes._breadcrumb')
 
-  <div class="m-show-title">
+    <article class="article">
 
-    <h1 class="m-show-title-text">{{ $post->post_title }}</h1>
+      <figure class="article__eye-catch">
+        <img src="{{ $post->eye_catch }}" alt="">
+      </figure>
 
-    @if($post->for_subscriber == 1)
-      <span class="m-show-title-subscriber">[有料会員用]</span>
-    @endif
-    <span class="m-show-title-date">{{ $post->post_published->format('Y.m.d') }}</span>
+      <div class="article__header">
+        <span class="article__pub-date">
+          公開日:{{ $post->post_published->format('Y.m.d') }}
 
-    @if ($post->category)
-      <a class="m-show-title-attr" href="/category/{{ $post->category->id }}">{{ $post->category->category_title }}</a>
-    @endif
+          @if ($post->post_modified)
+            更新日:{{ $post->post_modified->format('Y.m.d') }}
+          @endif
+        </span>
 
-    @foreach ($post->tags as $tag)
-      <a class="m-show-title-attr" href="/tag/{{ $tag->id }}">{{ $tag->tag_title }}</a>
-    @endforeach
+        @if ($post->for_subscriber === 1)
+          <i class="article__subscriber fas fa-lock"></i>
+        @endif
+      </div>
 
-  </div>
+      <h1 class="article__title">{{ $post->post_title }}</h1>
 
+      <div class="article__attr">
 
-  <div class="m-show-content">
-
-    {{-- 有料会員用の記事は管理者及び有料会員のみ本文を表示。
-      無料会員には支払い情報ページリンク、非会員には会員登録ページリンクを表示。 --}}
-    @if($post->for_subscriber == 1)
-
-      @if(auth('admin')->check() || auth('user')->check())
-
-        {{-- 管理者及び有料会員には本文表示 --}}
-        @if(auth('admin')->check() || auth('user')->user()->status == 1)
-          {!! $post->post_content !!}
-
-        {{-- 無料会員には支払い情報ページリンクを表示 --}}
-        @else
-          <p>この記事は有料会員様向けです。<a class="text-link" href="{{ route('user.payment.top')}}">こちら</a>からご登録下さい。</p>
+        @if ($post->category)
+          <a href="/category/{{ $post->category->id }}">{{ $post->category->category_title }}</a>
         @endif
 
-      {{-- 非会員には会員登録ページへのリンクを表示 --}}
+        @foreach ($post->tags as $tag)
+          <a href="/tag/{{ $tag->id }}">{{ $tag->tag_title }}</a>
+        @endforeach
+      </div>
+
+      @include('_includes._toc')
+
+      {{-- 有料会員用の記事は管理者及び有料会員のみ本文を表示。
+        無料会員には支払い情報ページリンク、非会員には会員登録ページリンクを表示。 --}}
+      @if($post->for_subscriber == 1)
+
+        @if(auth('admin')->check() || auth('user')->check())
+
+          {{-- 管理者及び有料会員には本文表示 --}}
+          @if(auth('admin')->check() || auth('user')->user()->status == 1)
+            @include('_includes._article__body')
+
+          {{-- 無料会員には支払い情報ページリンクを表示 --}}
+          @else
+            <p>この記事は有料会員様向けです。<a class="text-link" href="{{ route('user.payment.top')}}">こちら</a>からご登録下さい。</p>
+          @endif
+
+        {{-- 非会員には会員登録ページへのリンクを表示 --}}
+        @else
+          <p>この記事は有料会員様向けです。<a class="text-link" href="{{ route('signup.index')}}">こちら</a>からご登録下さい。</p>
+        @endif
+
       @else
-        <p>この記事は有料会員様向けです。<a class="text-link" href="{{ route('signup.index')}}">こちら</a>からご登録下さい。</p>
+        @include('_includes._article__body')
       @endif
 
-    @else
-      {!! $post->post_content !!}
-    @endif
+    </article>
 
+  </div>
+
+  {{-- サイドバー --}}
+  <div class="l-show__side side">
+    <div class="sideInner">
+      {{-- Table of contents --}}
+      <div class="m-show-side-section">
+        @include('_includes._toc')
+      </div>
+
+      {{-- 最新記事 --}}
+      <div class="m-show-side-section">
+        <h3 class="m-show-side-section-title">最新記事</h3>
+
+        @include('_includes._postList')
+
+      </div>
+    </div>
   </div>
 
 </div>

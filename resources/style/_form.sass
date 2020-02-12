@@ -1,0 +1,54 @@
+.form
+
+
+.form__row
+  margin-bottom: 2rem
+
+
+.form__title
+  display: block
+  font-size: 2.0rem
+  +mediaquery-tablet
+    font-size: 1.8rem
+
+
+.form__input
+  display: block
+  width: 100%
+  padding: 5px
+  border: 1px solid $borderColor-darkgray
+  border-radius: 5px
+
+
+.form__input-stripe
+  @extend .form__input
+  padding-top: 8px
+  padding-bottom: 8px
+
+
+.form__input-error
+  @extend .form__input
+  border: 1px solid $borderColor-error
+
+
+.form__confirm
+  @extend .form__input
+  background-color: $bgColor-blue
+  border: 0
+
+
+.form__checkbox-tag + label
+  @extend .button--slimInverse
+  &:hover
+    color: $btnColor
+    background-color: $bgColor-base
+
+
+.form__checkbox-tag:checked + label
+  @extend .button--slim
+  &:hover
+    color: $fontColor-inverse
+    background-color: $btnColor
+
+
+
