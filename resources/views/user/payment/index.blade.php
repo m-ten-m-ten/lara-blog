@@ -55,7 +55,7 @@
 @isset($defaultCard)
   <a class="text-link" href="{{route('user.payment.create')}}" >クレジットカードを変更</a>
 
-  <form id="delete-form" action="/user/payment/delete" method="POST">
+  <form class="confirm checkAll-wrapper" action="/user/payment/delete" method="POST">
     @csrf
     @method('DELETE')
     <button class="button--red mt10">クレジットカードを削除</button>

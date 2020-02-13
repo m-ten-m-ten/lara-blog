@@ -8,22 +8,22 @@
 
 @section('admin__content')
 
-<form id="delete-form" method="POST" action="/admin/post/delete">
+<form class="confirm checkAll-wrapper" method="POST" action="/admin/post/delete">
   @csrf
   @method('DELETE')
 
-  <button id="multipleSubmitBtn" class="button__inverse admin__index-multiSubmit" type="submit" name="checked" value="checked">一括削除</button>
+  <button class="button__inverse admin__index-batchSubmit batchSubmit" type="submit" name="checked" value="checked">一括削除</button>
 
   <table class="admin__index-table">
     <tr>
-      <th><input type="checkbox" id="all"></th>
+      <th><input class="checkAll-trigger" type="checkbox"></th>
       <th>タイトル</th>
       <th class="overTablet">カテゴリー</th>
       <th class="overTablet">タグ</th>
       <th>日付</th>
       <th></th>
     </tr>
-    <tbody id="boxes">
+    <tbody>
       @foreach ($posts as $post)
       <tr>
         <td><input type="checkbox" name="checkedIds[]" value="{{ $post->id }}"></td>

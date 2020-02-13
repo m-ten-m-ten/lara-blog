@@ -16,11 +16,11 @@
   <script src={{ asset('js/app.js')}}></script>
 
   @if(request()->path() === 'admin/post/create' || strpos(request()->path(), "/post/edit/") )
-    @include('_includes._m-script--tinymce')
+    @include('_includes._script--tinymce')
   @endif
 
   @if(request()->path()==='user/payment/create')
-      @include('_includes._m-script--payment')
+      @include('_includes._script--payment')
   @endif
 
 </body>

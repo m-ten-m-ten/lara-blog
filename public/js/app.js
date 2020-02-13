@@ -14023,47 +14023,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _firstandthird_toc__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @firstandthird/toc */ "./node_modules/@firstandthird/toc/dist/toc.js");
 window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
-__webpack_require__(/*! ./myjQuery.js */ "./resources/js/myjQuery.js"); // require('./sideFixed.js');
-
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'; // require('./sideFixed.js');
 
 __webpack_require__(/*! ./accordion.js */ "./resources/js/accordion.js");
 
+__webpack_require__(/*! ./checkAll.js */ "./resources/js/checkAll.js");
 
-
-/***/ }),
-
-/***/ "./resources/js/myjQuery.js":
-/*!**********************************!*\
-  !*** ./resources/js/myjQuery.js ***!
-  \**********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+ // 軽めの処理を下記にまとめて記述
 
 $(function () {
-  // admin各機能indexページ 全選択/解除
-  $('#all').on('click', function () {
-    $("input[name='checkedIds[]']").prop('checked', this.checked);
-  });
-  $("input[name='checkedIds[]']").on('click', function () {
-    if ($('#boxes :checked').length == $('#boxes :input').length) {
-      $('#all').prop('checked', true);
-    } else {
-      $('#all').prop('checked', false);
-    }
-  }); // admin各機能indexページ チェック有無チェック
-
-  $('#multipleSubmitBtn').click(function () {
-    if ($('#boxes :checked').length == 0) {
-      alert('１つも選択されていません。');
-      return false;
-    }
-  }); // admin各機能indexページ キャンセル確認
-
-  $('#delete-form').submit(function () {
-    if (!confirm('本当に削除しますか？')) {
-      alert('キャンセルされました');
+  // confirmクラスが付与されたformのsubmit時、アラートにて実行確認
+  $('.confirm').submit(function () {
+    if (!confirm('実行してよろしいですか？')) {
       return false;
     }
   }); // modal
@@ -14076,13 +14047,71 @@ $(function () {
   });
   $modalClose.click(function () {
     $modal.css('display', 'none');
-  }); // 選択済みのサムネイルの表示
+  });
+});
 
-  var src = $('input[name="image_id"]:checked').next().children('img').attr('src');
-  $("#selected_thumb_img").attr("src", src);
-  $('input[name="image_id"]:radio').change(function () {
-    var src = $(this).next().children('img').attr('src');
-    $("#selected_thumb_img").attr("src", src);
+/***/ }),
+
+/***/ "./resources/js/checkAll.js":
+/*!**********************************!*\
+  !*** ./resources/js/checkAll.js ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var TENS = TENS || {};
+TENS.LARANOTE = {};
+
+TENS.LARANOTE.CHECK_ALL = function ($checkAllWrapper) {
+  this.$checkAllWrapper = $checkAllWrapper;
+  this.init();
+};
+
+TENS.LARANOTE.CHECK_ALL.prototype = {
+  init: function init() {
+    this.setParameters();
+    this.bindEvent();
+  },
+  setParameters: function setParameters() {
+    this.$checkAllTrigger = this.$checkAllWrapper.find('.checkAll-trigger');
+    this.$checkbox = this.$checkAllWrapper.find("input[type='checkbox']:not('.checkAll-trigger')");
+    this.$batchSubmit = this.$checkAllWrapper.find('.batchSubmit');
+  },
+  bindEvent: function bindEvent() {
+    this.$checkAllTrigger.on("click", $.proxy(this.checkAll, this));
+    this.$checkbox.on("click", $.proxy(this.checkState, this));
+    this.$batchSubmit.on("click", $.proxy(this.hasChecked, this));
+  },
+  // 全選択ボタンのチェック状態に選択ボタンを合わせる
+  checkAll: function checkAll() {
+    this.$checkbox.prop('checked', this.$checkAllTrigger.prop("checked"));
+  },
+  // 選択ボタンの状態により、全選択ボタンの状態を変更する
+  checkState: function checkState() {
+    if (this.$checkbox.length === this.checkedbox().length) {
+      this.$checkAllTrigger.prop("checked", true);
+    } else {
+      this.$checkAllTrigger.prop('checked', false);
+    }
+  },
+  // 一括処理ボタン押下時にチェック数が0の場合、アラート出してキャンセルする。
+  hasChecked: function hasChecked() {
+    if (this.checkedbox().length === 0) {
+      alert('１つも選択されていません。');
+      return false;
+    }
+  },
+  // チェック済みの選択ボタンをものを返す。
+  checkedbox: function checkedbox() {
+    var $checkedbox = $.grep(this.$checkbox, function (box) {
+      return $(box).prop("checked");
+    });
+    return $checkedbox;
+  }
+};
+$(function () {
+  $('.checkAll-wrapper').each(function () {
+    new TENS.LARANOTE.CHECK_ALL($(this));
   });
 });
 

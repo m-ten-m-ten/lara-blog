@@ -5624,7 +5624,7 @@ button {
 .admin__main .status {
   margin-bottom: 1rem; }
 
-.admin__index-multiSubmit {
+.admin__index-batchSubmit {
   margin-bottom: .5rem; }
 
 .admin__index-pagination,

@@ -8,21 +8,21 @@
 
 @section('admin__content')
 
-<form id="delete-form" method="POST" action="/admin/message/delete" >
+<form class="confirm checkAll-wrapper" method="POST" action="/admin/message/delete" >
   @csrf
   @method('DELETE')
 
-  <button id="multipleSubmitBtn" class="button__inverse admin__index-multiSubmit" type="submit" name="checked" value="checked">一括削除</button>
+  <button class="button__inverse admin__index-batchSubmit batchSubmit" type="submit" name="checked" value="checked">一括削除</button>
 
   <table class="admin__index-table">
     <tr>
-      <th><input type="checkbox" id="all"></th>
+      <th><input class="checkAll-trigger" type="checkbox"></th>
       <th>あて先</th>
       <th>タイトル</th>
       <th class="overTablet">本文</th>
       <th></th>
     </tr>
-    <tbody id="boxes">
+    <tbody>
       @foreach ($messages as $message)
       <tr>
         <td><input type="checkbox" name="checkedIds[]" value="{{ $message->id }}"></td>

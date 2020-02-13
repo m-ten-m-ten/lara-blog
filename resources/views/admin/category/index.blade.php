@@ -10,20 +10,20 @@
 
 <div class="admin__index">
 
-  <form id="delete-form" method="POST" action="/admin/category/delete">
+  <form class="confirm checkAll-wrapper" method="POST" action="/admin/category/delete">
     @csrf
     @method('DELETE')
 
-    <button id="multipleSubmitBtn" class="button__inverse admin__index-multiSubmit" type="submit" name="checked" value="checked">一括削除</button>
+    <button class="button__inverse admin__index-batchSubmit batchSubmit" type="submit" name="checked" value="checked">一括削除</button>
 
     <table class="admin__index-table">
       <tr>
-        <th><input type="checkbox" id="all"></th>
+        <th><input class="checkAll-trigger" type="checkbox"></th>
         <th>カテゴリー</th>
         <th>スラッグ</th>
         <th></th>
       </tr>
-      <tbody id="boxes">
+      <tbody>
         @foreach ($categories as $category)
         <tr>
           <td><input type="checkbox" name="checkedIds[]" value="{{ $category->id }}"></td>
