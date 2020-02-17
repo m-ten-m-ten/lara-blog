@@ -19,7 +19,7 @@
     <form action="{{ route('user.subscribe.delete') }}" method="POST">
       @csrf
       @method('DELETE')
-      <button type="submit" class="button--red">有料会員を解除する</button>
+      <button type="submit" class="button__red">有料会員を解除する</button>
     </form>
   @endif
 
@@ -58,7 +58,7 @@
   <form class="confirm checkAll-wrapper" action="/user/payment/delete" method="POST">
     @csrf
     @method('DELETE')
-    <button class="button--red mt10">クレジットカードを削除</button>
+    <button class="button__red mt10">クレジットカードを削除</button>
   </form>
 @else
   <a href="{{route('user.payment.create')}}" class="text-link">クレジットカードを登録</a>

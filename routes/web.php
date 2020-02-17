@@ -57,6 +57,7 @@ Route::prefix('admin')->namespace('Admin')->as('admin.')->group(function (): voi
         Route::get('category', 'CategoryController@index')->name('category.index');
         Route::get('category/create', 'CategoryController@create')->name('category.create');
         Route::post('category/create', 'CategoryController@store');
+        Route::post('category/ajaxCreate', 'CategoryController@ajaxStore');
         Route::delete('category/delete', 'CategoryController@delete');
         Route::get('category/edit/{category}', 'CategoryController@edit')->name('category.edit');
         Route::post('category/edit/{category}', 'CategoryController@update');
@@ -65,6 +66,7 @@ Route::prefix('admin')->namespace('Admin')->as('admin.')->group(function (): voi
         Route::get('tag', 'TagController@index')->name('tag.index');
         Route::get('tag/create', 'TagController@create')->name('tag.create');
         Route::post('tag/create', 'TagController@store');
+        Route::post('tag/ajaxCreate', 'TagController@ajaxStore');
         Route::delete('tag/delete', 'TagController@delete');
         Route::get('tag/edit/{tag}', 'TagController@edit')->name('tag.edit');
         Route::post('tag/edit/{tag}', 'TagController@update');

@@ -4909,6 +4909,9 @@ small {
   margin-top: 5px;
   color: #e53e3e; }
 
+.pointer {
+  cursor: pointer; }
+
 button {
   background-color: transparent;
   border: none;
@@ -5821,44 +5824,22 @@ button {
   background-color: #656c6e;
   color: #fff; }
 
-.modal {
+.modal-body {
   display: none;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  padding: 20px;
-  background-color: #656c6e;
-  z-index: 10; }
-  @media only screen and (max-width: 768px) {
-    .modal {
-      padding: 10px; } }
-
-.modal-inner {
-  width: 100%;
-  height: 100%;
-  padding: 20px;
-  overflow: auto;
-  background-color: #fff; }
-  @media only screen and (max-width: 768px) {
-    .modal-inner {
-      padding: 10px; } }
-
-#modal-close {
-  position: fixed;
-  top: 0;
-  left: 5px;
+  padding: 3rem;
   z-index: 10;
-  font-size: 4rem;
-  line-height: 1;
-  color: #656c6e;
-  background-color: #fff;
-  border: 1px solid #656c6e;
-  border-radius: 2rem; }
-  @media only screen and (max-width: 768px) {
-    #modal-close {
-      left: 0; } }
+  background-color: #fff; }
+  @media only screen and (max-width: 480px) {
+    .modal-body {
+      padding: 1rem; } }
+
+.modal-close {
+  margin-left: 1rem; }
 
 .share {
   font-size: 0;
@@ -5900,10 +5881,7 @@ button {
       letter-spacing: normal;
       word-spacing: normal; } }
 
-.button, .button--red, .button__inverse, .button--slimInverse, .form__checkbox-tag + label, .button--slim, .form__checkbox-tag:checked + label, .button--facebook, .button--twitter, .button--hatena, .button--line {
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
-  transition-property: all;
+.button, .button__red, .button__inverse, .button__slimInverse, .form__checkbox-tag + label, .button__slim, .form__checkbox-tag:checked + label, .button__facebook, .button__twitter, .button__hatena, .button__line {
   padding: 5px 10px;
   color: #fff;
   background-color: #2b6cb0;
@@ -5911,55 +5889,46 @@ button {
   text-align: center;
   border-radius: 5px;
   outline: 0; }
-  .button:hover, .button--red:hover, .button__inverse:hover, .button--slimInverse:hover, .form__checkbox-tag + label:hover, .button--slim:hover, .button--facebook:hover, .button--twitter:hover, .button--hatena:hover, .button--line:hover {
-    color: #2b6cb0;
-    background-color: #fff; }
 
-.button--red {
+.button__red {
   background-color: #e53e3e;
   border-color: #e53e3e; }
-  .button--red:hover {
-    color: #e53e3e;
-    background-color: #fff; }
 
-.button__inverse, .button--slimInverse, .form__checkbox-tag + label {
+.button__inverse, .button__slimInverse, .form__checkbox-tag + label {
   color: #2b6cb0;
   background-color: #fff; }
-  .button__inverse:hover, .button--slimInverse:hover, .form__checkbox-tag + label:hover {
-    color: #fff;
-    background-color: #2b6cb0; }
 
-.button--slim, .form__checkbox-tag:checked + label {
+.button__slim, .form__checkbox-tag:checked + label {
   padding: 1px 5px; }
 
-.button--slimInverse, .form__checkbox-tag + label {
+.button__slimInverse, .form__checkbox-tag + label {
   padding: 1px 5px; }
 
-.button--facebook {
+.button__facebook {
   color: #4871A9;
   border-color: #4871A9; }
-  .button--facebook:hover {
+  .button__facebook:hover {
     color: #fff;
     background-color: #4871A9; }
 
-.button--twitter {
+.button__twitter {
   color: #70BDD3;
   border-color: #70BDD3; }
-  .button--twitter:hover {
+  .button__twitter:hover {
     color: #fff;
     background-color: #70BDD3; }
 
-.button--hatena {
+.button__hatena {
   color: #2F9BCD;
   border-color: #2F9BCD; }
-  .button--hatena:hover {
+  .button__hatena:hover {
     color: #fff;
     background-color: #2F9BCD; }
 
-.button--line {
+.button__line {
   color: #8EC09D;
   border-color: #8EC09D; }
-  .button--line:hover {
+  .button__line:hover {
     color: #fff;
     background-color: #8EC09D; }
 
@@ -5972,5 +5941,8 @@ button {
   padding: 5px 10px;
   background-color: #fff5f5;
   color: #e53e3e; }
+
+.ajax-errors {
+  display: none; }
 
 /*# sourceMappingURL=style.css.map */

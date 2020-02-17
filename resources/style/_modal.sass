@@ -1,36 +1,15 @@
-.modal
+.modal-body
   display: none
   position: fixed
   top: 0
   left: 0
   width: 100%
   height: 100%
-  padding: 20px
-  background-color: $bgColor-gray
+  padding: 3rem
   z-index: 10
-  +mediaquery-tablet
-    padding: 10px
+  background-color: $bgColor-base
+  +mediaquery-smartphone
+    padding: 1rem
 
-.modal-inner
-  width: 100%
-  height: 100%
-  padding: 20px
-  overflow: auto
-  background-color: #fff
-  +mediaquery-tablet
-    padding: 10px
-
-
-#modal-close
-  position: fixed
-  top: 0
-  left: 5px
-  z-index: 10
-  font-size: 4rem
-  line-height: 1
-  color: $fontColor-sub
-  background-color: #fff
-  border: 1px solid $fontColor-sub
-  border-radius: 2rem
-  +mediaquery-tablet
-    left: 0
+.modal-close
+  margin-left: 1rem

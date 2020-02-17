@@ -17,13 +17,12 @@
 
 <div class="admin__postForm">
 
-  <form method="POST">
+  <form method="POST" enctype="multipart/form-data">
     @csrf
 
     <div class="form admin__postForm-left">
 
       @include('_includes._error')
-      @include('_includes._status')
 
       <div class="form__row">
       <label class="form__title">タイトル</label>
@@ -86,17 +85,43 @@
             <option value="{{ $key }}" @if (old('category_id', $post->category_id) == $key) selected @endif>{{ $val }}</option>
           @endforeach
         </select>
-        <a href="{{ route('admin.category.create') }}" class="text-link mt5 block">カテゴリーを新規作成</a>
+
+        <div class="modal-wrapper">
+          <div class="modal-open text-link mt5 pointer">カテゴリーを新規作成</div>
+          <div class="modal-body ajax-wrapper__category">
+            <ul class="ajax-errors error mb10"></ul>
+            <form>
+              @include('_includes._categoryForm')
+              <span class="button ajax-submit">登録</span>
+              <span class="modal-close button__inverse pointer">戻る</span>
+            </form>
+          </div>
+        </div>
+
       </div>
 
       {{-- タグ --}}
       <div class="form__row">
         <h2 class="form__title">タグ</h2>
-        @foreach ($tagList as $key => $val)
-          <input type="checkbox" class="hidden form__checkbox-tag" id="tag{{ $key}}" name="tags[]" value="{{ $key }}" @if (old('tags', $post->tags)->contains($key)) checked @endif>
-          <label for="tag{{ $key }}" class="inline-block mr5 mb10">{{ $val}}</label>
-        @endforeach
-        <a href="{{ route('admin.tag.create') }}" class="text-link mt5 block">タグを新規作成</a>
+        <div class="select-tag">
+          @foreach ($tagList as $key => $val)
+            <input type="checkbox" class="hidden form__checkbox-tag" id="tag{{ $key}}" name="tags[]" value="{{ $key }}">
+            <label for="tag{{ $key }}" class="inline-block mr5 mb10">{{ $val}}</label>
+          @endforeach
+        </div>
+
+        <div class="modal-wrapper">
+          <div class="modal-open text-link mt5 pointer">タグを新規作成</div>
+          <div class="modal-body ajax-wrapper__tag">
+            <ul class="ajax-errors error mb10"></ul>
+            <form>
+              @include('_includes._tagForm')
+              <span class="button ajax-submit">登録</span>
+              <span class="modal-close button__inverse pointer">戻る</span>
+            </form>
+          </div>
+        </div>
+
       </div>
 
       {{-- スラッグ --}}

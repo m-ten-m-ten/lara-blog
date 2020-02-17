@@ -1,5 +1,4 @@
 .button
-  +animation
   padding: 5px 10px
   color: $fontColor-inverse
   background-color: $btnColor
@@ -8,19 +7,11 @@
   border-radius: 5px
   outline: 0
 
-  &:hover
-    color: $btnColor
-    background-color: $bgColor-base
 
-
-.button--red
+.button__red
   @extend .button
   background-color: $red
   border-color: $red
-
-  &:hover
-    color: $red
-    background-color: $bgColor-base
 
 
 .button__inverse
@@ -28,23 +19,18 @@
   color: $btnColor
   background-color: $bgColor-base
 
-  &:hover
-    color: $fontColor-inverse
-    background-color: $btnColor
 
-
-.button--slim
+.button__slim
   @extend .button
   padding: 1px 5px
 
 
-.button--slimInverse
+.button__slimInverse
   @extend .button__inverse
   padding: 1px 5px
 
 
-
-.button--facebook
+.button__facebook
   @extend.button
   color: $facebook
   border-color: $facebook
@@ -54,7 +40,7 @@
     background-color: $facebook
 
 
-.button--twitter
+.button__twitter
   @extend.button
   color: $twitter
   border-color: $twitter
@@ -64,7 +50,7 @@
     background-color: $twitter
 
 
-.button--hatena
+.button__hatena
   @extend.button
   color: $hatena
   border-color: $hatena
@@ -73,7 +59,7 @@
     color: $fontColor-inverse
     background-color: $hatena
 
-.button--line
+.button__line
   @extend.button
   color: $line
   border-color: $line

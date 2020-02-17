@@ -52,6 +52,7 @@ class PostStoreRequest extends FormRequest
     public function messages()
     {
         return [
+            'eye_catch.file' => 'アイキャッチ画像のファイルを選択してください。',
             'eye_catch.dimensions' => 'アイキャッチ画像のサイズは横幅768〜1536pxにしてください。',
             'post_name.regex'      => '投稿スラッグは「数字、英字(小文字)、-（ハイフン）、_（アンダーバー）」で入力して下さい。',
         ];

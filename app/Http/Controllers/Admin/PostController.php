@@ -37,11 +37,12 @@ class PostController extends Controller
      *
      * @return Response 投稿記事入力画面を表示
      */
-    public function create(Post $post)
+    public function create(Post $post, Category $category, Tag $tag)
     {
         $data = [
             'post'          => $post,
-            'images'        => Image::getImageList(),
+            'category' => $category,
+            'tag' => $tag,
             'categoryList'  => Category::getCategoryList(),
             'tagList'       => Tag::getTagList(),
         ];
@@ -76,11 +77,12 @@ class PostController extends Controller
      *
      * @return Response 編集画面へアクセス
      */
-    public function edit(Post $post)
+    public function edit(Post $post, Category $category, Tag $tag)
     {
         $data = [
             'post'          => $post,
-            'images'        => Image::getImageList(),
+            'category' => $category,
+            'tag' => $tag,
             'categoryList'  => Category::getCategoryList(),
             'tagList'       => Tag::getTagList(),
         ];

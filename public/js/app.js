@@ -14011,6 +14011,91 @@ $(function () {
 
 /***/ }),
 
+/***/ "./resources/js/ajax.js":
+/*!******************************!*\
+  !*** ./resources/js/ajax.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var TENS = TENS || {};
+TENS.LARANOTE = {};
+
+TENS.LARANOTE.AJAX = function ($ajaxWrapper) {
+  this.$ajaxWrapper = $ajaxWrapper;
+  this.init(); // カテゴリー新規登録
+
+  if (this.$ajaxWrapper.hasClass('ajax-wrapper__category')) {
+    this.$category_title = this.$ajaxWrapper.find("input[name=category_title]");
+    this.$category_name = this.$ajaxWrapper.find("input[name=category_name]");
+    this.$ajaxSubmit.on("click", $.proxy(function () {
+      $.ajax({
+        url: '/admin/category/ajaxCreate',
+        data: {
+          category_title: this.$category_title.val(),
+          category_name: this.$category_name.val()
+        }
+      }).done($.proxy(function (data) {
+        this.$ajaxWrapper.css('display', 'none');
+        this.$ajaxErrors.html('').css('display', 'none');
+        $("select[name=category_id]").prepend("<option value=\"".concat(data.id, "\" selected>").concat(data.title, "</option>"));
+        this.$category_title.val("");
+        this.$category_name.val("");
+      }), this).fail($.proxy(this.displayErros, this));
+    }, this)); // タグ新規登録
+  } else if (this.$ajaxWrapper.hasClass('ajax-wrapper__tag')) {
+    this.$tag_title = this.$ajaxWrapper.find("input[name=tag_title]");
+    this.$tag_name = this.$ajaxWrapper.find("input[name=tag_name]");
+    this.$ajaxSubmit.on("click", $.proxy(function () {
+      $.ajax({
+        url: '/admin/tag/ajaxCreate',
+        data: {
+          tag_title: this.$tag_title.val(),
+          tag_name: this.$tag_name.val()
+        }
+      }).done($.proxy(function (data) {
+        this.$ajaxWrapper.css('display', 'none');
+        this.$ajaxErrors.html('').css('display', 'none');
+        $(".select-tag").prepend("\n          <input type=\"checkbox\" class=\"hidden form__checkbox-tag\" id=\"tag".concat(data.id, "\" name=\"tags[]\" value=\"").concat(data.id, "}\">\n          <label for=\"tag").concat(data.id, "\" class=\"inline-block mr5 mb10\">").concat(data.title, "</label>\n          "));
+        this.$tag_title.val("");
+        this.$tag_name.val("");
+      }), this).fail($.proxy(this.displayErros, this));
+    }, this));
+  }
+};
+
+TENS.LARANOTE.AJAX.prototype = {
+  init: function init() {
+    this.setParameters();
+    this.setupAjax();
+  },
+  setParameters: function setParameters() {
+    this.$ajaxSubmit = this.$ajaxWrapper.find('.ajax-submit');
+    this.$ajaxErrors = this.$ajaxWrapper.find('.ajax-errors');
+  },
+  displayErros: function displayErros(data) {
+    this.$ajaxErrors.html('').css('display', 'block');
+    $.each(data.responseJSON.errors, function (key, val) {
+      this.$ajaxErrors.prepend("<li>".concat(val, "</li>"));
+    }.bind(this));
+  },
+  setupAjax: function setupAjax() {
+    $.ajaxSetup({
+      method: 'post',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      context: this
+    });
+  }
+};
+$(function () {
+  new TENS.LARANOTE.AJAX($('.ajax-wrapper__category'));
+  new TENS.LARANOTE.AJAX($('.ajax-wrapper__tag'));
+});
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -14029,6 +14114,10 @@ __webpack_require__(/*! ./accordion.js */ "./resources/js/accordion.js");
 
 __webpack_require__(/*! ./checkAll.js */ "./resources/js/checkAll.js");
 
+__webpack_require__(/*! ./modal.js */ "./resources/js/modal.js");
+
+__webpack_require__(/*! ./ajax.js */ "./resources/js/ajax.js");
+
  // 軽めの処理を下記にまとめて記述
 
 $(function () {
@@ -14037,16 +14126,6 @@ $(function () {
     if (!confirm('実行してよろしいですか？')) {
       return false;
     }
-  }); // modal
-
-  var $modalOpen = $('#modal-open');
-  var $modalClose = $('#modal-close');
-  var $modal = $('#modal');
-  $modalOpen.click(function () {
-    $modal.css('display', 'block');
-  });
-  $modalClose.click(function () {
-    $modal.css('display', 'none');
   });
 });
 
@@ -14112,6 +14191,51 @@ TENS.LARANOTE.CHECK_ALL.prototype = {
 $(function () {
   $('.checkAll-wrapper').each(function () {
     new TENS.LARANOTE.CHECK_ALL($(this));
+  });
+});
+
+/***/ }),
+
+/***/ "./resources/js/modal.js":
+/*!*******************************!*\
+  !*** ./resources/js/modal.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var TENS = TENS || {};
+TENS.LARANOTE = {};
+
+TENS.LARANOTE.MODAL = function ($modalWrapper) {
+  this.$modalWrapper = $modalWrapper;
+  this.init();
+};
+
+TENS.LARANOTE.MODAL.prototype = {
+  SLIDE_INTERVAL: 500,
+  init: function init() {
+    this.setParameters();
+    this.bindEvent();
+  },
+  setParameters: function setParameters() {
+    this.$modalBody = this.$modalWrapper.find('.modal-body');
+    this.$modalOpen = this.$modalWrapper.find('.modal-open');
+    this.$modalClose = this.$modalWrapper.find('.modal-close');
+  },
+  bindEvent: function bindEvent() {
+    this.$modalOpen.on("click", $.proxy(this.openModal, this));
+    this.$modalClose.on("click", $.proxy(this.closeModal, this));
+  },
+  openModal: function openModal() {
+    this.$modalBody.css("display", "block");
+  },
+  closeModal: function closeModal() {
+    this.$modalBody.css("display", "none");
+  }
+};
+$(function () {
+  $('.modal-wrapper').each(function () {
+    new TENS.LARANOTE.MODAL($(this));
   });
 });
 
