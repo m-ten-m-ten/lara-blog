@@ -5770,6 +5770,8 @@ button {
   .toc .toc__title,
   .toc .toc__body {
     padding: 1rem; }
+  .toc .toc__body {
+    display: none; }
   .toc .toc__title {
     display: flex;
     justify-content: center;

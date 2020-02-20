@@ -1,5 +1,3 @@
 <div class="article__body">
-  <div class="content">
-    {!! $post->post_content !!}
-  </div>
+  {!! $post->post_content !!}
 </div>

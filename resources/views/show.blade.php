@@ -71,8 +71,8 @@
   </div>
 
   {{-- サイドバー --}}
-  <div class="l-show__side side">
-    <div class="sideInner">
+  <div id="sidebar" class="l-show__side">
+    <div id="sidebar__fixed">
       {{-- Table of contents --}}
       <div class="m-show-side-section">
         @include('_includes._toc')

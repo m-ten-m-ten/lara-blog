@@ -1,70 +1,50 @@
-//loadとresizeした時に実行
-$(function(){
-    $(window).on('load resize',function(){
-        sideFixed();
-    });
-});
+let TENS = TENS || {};
+TENS.LARANOTE = {};
 
-function sideFixed(){
+TENS.LARANOTE.SIDE_FIXED = function(){
+  this.init();
+};
 
-    const sideInner = $('.sideInner');
-    const side = $('.side');
+TENS.LARANOTE.SIDE_FIXED.prototype = {
 
-    // sideのtop位置を取得
-    const sideOffsetTop = side.offset().top;
+  init : function(){
+    this.setParameters();
+    this.bindEvent();
+  },
+  setParameters : function(){
+    this.sidebar = $('#sidebar');
+    this.sideFixed = this.sidebar.find('#sidebar__fixed');
+    this.main = $('#main');
 
-    //sideの高さ
-    const sideHeight = $('.side').outerHeight();
+    this.sidebar_top = this.sidebar.offset().top;
+    this.sideFixed_top = this.sideFixed.offset().top;
+    this.sideFixed_height = this.sideFixed.height();
 
-    //sideInnerの高さ
-    const sideInnerHeight = $('.sideInner').outerHeight();
-
-
-    //sideの下計算
-    //sideの高さ + sideのtop開始位置 - ( sideInnerの高さ +[ sideのpadding-bottom:30px +  .sideInner.fixedのtop:30px分 ] )
-    //1500 + 200 - ( 600 + 60 ) = 1140
-    //1140pxスクロールしたら追従をやめる
-    const sideBottom = sideHeight+sideOffsetTop-(sideInnerHeight+60);
-
-    $(function(){
-        function scrollPc() {
-            const topScroll = $(window).scrollTop();
-
-            if(topScroll>sideOffsetTop && topScroll<sideBottom){
-                //スクロール値がsideのtop位置よりも大きい時かつ、
-                //スクロール値が1140pxよりも小さい時
-
-                // fixed
-                sideInner.addClass('fixed');
-                sideInner.removeClass('stop');
-                side.css('vertical-align','top');
-
-            }else if(topScroll>sideOffsetTop && topScroll>= sideBottom){
-                //スクロール値がsideのtop位置よりも大きい時かつ、
-                //スクロール値が1140pxと等しい、または大きい時
-
-                //stop
-                sideInner.removeClass('fixed');
-                sideInner.addClass('stop');
-                //table-cellなのでvertical-alignを使えます
-                side.css('vertical-align','bottom');
-
-            }else{
-                //上記に当てはまらないもの
-                //（スクロール値がsideのtop位置よりも小さい時）
-
-                // top
-                sideInner.removeClass('fixed');
-                sideInner.removeClass('stop');
-                side.css('vertical-align','top');
-            }
-            return false;
-        }
-        scrollPc();
-        //スクロールした時に実行
-        $(window).scroll(function(){
-            scrollPc();
+  },
+  bindEvent : function() {
+    $(window).on('scroll resize', $.proxy(this.chase, this));
+  },
+  chase : function() {
+    this.scrollTop = $(window).scrollTop();
+    this.contentBottom = this.main.offset().top + this.main.height();
+    if ((this.scrollTop > this.sideFixed_top) && (this.scrollTop < this.contentBottom - this.sideFixed_height)){
+        this.sideFixed.css({
+            'position': 'fixed',
+            'top': 0,
+            'width': this.sidebar.width()
         });
-    });
-}
+    } else if(this.scrollTop >= this.contentBottom - this.sideFixed_height){
+        this.sideFixed.css({
+            'position': this.contentBottom - this.sideFixed_height -this.sidebar_top,
+            'top': 0,
+            'width': this.sidebar.width()
+        });
+    } else {
+        this.sideFixed.css('position', 'static');
+    }
+  }
+};
 
+$(function() {
+    new TENS.LARANOTE.SIDE_FIXED();
+});

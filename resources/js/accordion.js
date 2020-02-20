@@ -7,7 +7,6 @@ TENS.LARANOTE.ACCORDION = function($accordionWrapper){
 };
 
 TENS.LARANOTE.ACCORDION.prototype = {
-  SLIDE_INTERVAL : 500,
 
   init : function(){
     this.setParameters();

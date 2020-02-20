@@ -1,7 +1,7 @@
 window.$ = window.jQuery = require('jquery');
-window.axios = require('axios');
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-// require('./sideFixed.js');
+// window.axios = require('axios');
+// window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+require('./sideFixed.js');
 require('./accordion.js');
 require('./checkAll.js');
 require('./modal.js');
