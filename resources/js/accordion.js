@@ -7,6 +7,7 @@ TENS.LARANOTE.ACCORDION = function($accordionWrapper){
 };
 
 TENS.LARANOTE.ACCORDION.prototype = {
+  SLIDE_TIME : 500,
 
   init : function(){
     this.setParameters();
@@ -21,10 +22,10 @@ TENS.LARANOTE.ACCORDION.prototype = {
   },
   slideMenu : function() {
     if (this.$accordionBody.css("display") === "none") {
-      this.$accordionBody.slideDown(this.SLIDE_INTERVAL);
+      this.$accordionBody.slideDown(this.SLIDE_TIME);
       this.$accordionTrigger.addClass('is-open');
     } else {
-      this.$accordionBody.slideUp(this.SLIDE_INTERVAL);
+      this.$accordionBody.slideUp(this.SLIDE_TIME);
       this.$accordionTrigger.removeClass('is-open');
     }
   }

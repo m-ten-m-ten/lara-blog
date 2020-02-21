@@ -1,12 +1,11 @@
-let TENS = TENS || {};
-TENS.LARANOTE = {};
+var TENS_LARANOTE = TENS_LARANOTE || {};
 
-TENS.LARANOTE.CHECK_ALL = function($checkAllWrapper){
+TENS_LARANOTE.CHECK_ALL = function($checkAllWrapper){
   this.$checkAllWrapper = $checkAllWrapper;
   this.init();
 };
 
-TENS.LARANOTE.CHECK_ALL.prototype = {
+TENS_LARANOTE.CHECK_ALL.prototype = {
 
   init : function(){
     this.setParameters();
@@ -56,6 +55,6 @@ TENS.LARANOTE.CHECK_ALL.prototype = {
 
 $(function() {
   $('.checkAll-wrapper').each(function() {
-    new TENS.LARANOTE.CHECK_ALL($(this));
+    new TENS_LARANOTE.CHECK_ALL($(this));
   });
 });

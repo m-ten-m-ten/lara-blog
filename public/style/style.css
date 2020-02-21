@@ -5140,7 +5140,7 @@ button {
   width: 100%;
   top: 58px;
   left: 0;
-  background-color: #656c6e; }
+  background-color: #f1f1f1; }
   @media only screen and (max-width: 768px) {
     .navbar__menu-child {
       position: static; } }
@@ -5946,5 +5946,8 @@ button {
 
 .ajax-errors {
   display: none; }
+
+.ajax-submit {
+  cursor: pointer; }
 
 /*# sourceMappingURL=style.css.map */

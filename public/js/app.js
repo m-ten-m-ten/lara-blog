@@ -12021,6 +12021,7 @@ TENS.LARANOTE.ACCORDION = function ($accordionWrapper) {
 };
 
 TENS.LARANOTE.ACCORDION.prototype = {
+  SLIDE_TIME: 500,
   init: function init() {
     this.setParameters();
     this.bindEvent();
@@ -12034,10 +12035,10 @@ TENS.LARANOTE.ACCORDION.prototype = {
   },
   slideMenu: function slideMenu() {
     if (this.$accordionBody.css("display") === "none") {
-      this.$accordionBody.slideDown(this.SLIDE_INTERVAL);
+      this.$accordionBody.slideDown(this.SLIDE_TIME);
       this.$accordionTrigger.addClass('is-open');
     } else {
-      this.$accordionBody.slideUp(this.SLIDE_INTERVAL);
+      this.$accordionBody.slideUp(this.SLIDE_TIME);
       this.$accordionTrigger.removeClass('is-open');
     }
   }
@@ -12057,53 +12058,54 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var TENS = TENS || {};
-TENS.LARANOTE = {};
+var TENS_LARANOTE = TENS_LARANOTE || {};
 
-TENS.LARANOTE.AJAX = function ($ajaxWrapper) {
+TENS_LARANOTE.AJAX = function ($ajaxWrapper) {
   this.$ajaxWrapper = $ajaxWrapper;
   this.init(); // カテゴリー新規登録
 
   if (this.$ajaxWrapper.hasClass('ajax-wrapper__category')) {
-    this.$category_title = this.$ajaxWrapper.find("input[name=category_title]");
-    this.$category_name = this.$ajaxWrapper.find("input[name=category_name]");
+    var $category_title = this.$ajaxWrapper.find("input[name=category_title]"),
+        $category_name = this.$ajaxWrapper.find("input[name=category_name]");
     this.$ajaxSubmit.on("click", $.proxy(function () {
+      var $myself = this;
       $.ajax({
         url: '/admin/category/ajaxCreate',
         data: {
-          category_title: this.$category_title.val(),
-          category_name: this.$category_name.val()
+          category_title: $category_title.val(),
+          category_name: $category_name.val()
         }
-      }).done($.proxy(function (data) {
-        this.$ajaxWrapper.css('display', 'none');
-        this.$ajaxErrors.html('').css('display', 'none');
+      }).done(function (data) {
+        $myself.$ajaxWrapper.css('display', 'none');
+        $myself.$ajaxErrors.html('').css('display', 'none');
         $("select[name=category_id]").prepend("<option value=\"".concat(data.id, "\" selected>").concat(data.title, "</option>"));
-        this.$category_title.val("");
-        this.$category_name.val("");
-      }), this).fail($.proxy(this.displayErros, this));
+        $category_title.val('');
+        $category_name.val('');
+      }).fail($.proxy(this.displayErros, $myself));
     }, this)); // タグ新規登録
   } else if (this.$ajaxWrapper.hasClass('ajax-wrapper__tag')) {
-    this.$tag_title = this.$ajaxWrapper.find("input[name=tag_title]");
-    this.$tag_name = this.$ajaxWrapper.find("input[name=tag_name]");
+    var $tag_title = this.$ajaxWrapper.find("input[name=tag_title]"),
+        $tag_name = this.$ajaxWrapper.find("input[name=tag_name]");
     this.$ajaxSubmit.on("click", $.proxy(function () {
+      var $myself = this;
       $.ajax({
         url: '/admin/tag/ajaxCreate',
         data: {
-          tag_title: this.$tag_title.val(),
-          tag_name: this.$tag_name.val()
+          tag_title: $tag_title.val(),
+          tag_name: $tag_name.val()
         }
-      }).done($.proxy(function (data) {
-        this.$ajaxWrapper.css('display', 'none');
-        this.$ajaxErrors.html('').css('display', 'none');
+      }).done(function (data) {
+        $myself.$ajaxWrapper.css('display', 'none');
+        $myself.$ajaxErrors.html('').css('display', 'none');
         $(".select-tag").prepend("\n          <input type=\"checkbox\" class=\"hidden form__checkbox-tag\" id=\"tag".concat(data.id, "\" name=\"tags[]\" value=\"").concat(data.id, "}\">\n          <label for=\"tag").concat(data.id, "\" class=\"inline-block mr5 mb10\">").concat(data.title, "</label>\n          "));
-        this.$tag_title.val("");
-        this.$tag_name.val("");
-      }), this).fail($.proxy(this.displayErros, this));
+        $tag_title.val('');
+        $tag_name.val('');
+      }).fail($.proxy(this.displayErros, $myself));
     }, this));
   }
 };
 
-TENS.LARANOTE.AJAX.prototype = {
+TENS_LARANOTE.AJAX.prototype = {
   init: function init() {
     this.setParameters();
     this.setupAjax();
@@ -12129,8 +12131,8 @@ TENS.LARANOTE.AJAX.prototype = {
   }
 };
 $(function () {
-  new TENS.LARANOTE.AJAX($('.ajax-wrapper__category'));
-  new TENS.LARANOTE.AJAX($('.ajax-wrapper__tag'));
+  new TENS_LARANOTE.AJAX($('.ajax-wrapper__category'));
+  new TENS_LARANOTE.AJAX($('.ajax-wrapper__tag'));
 });
 
 /***/ }),
@@ -12147,8 +12149,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _firstandthird_toc__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @firstandthird/toc */ "./node_modules/@firstandthird/toc/dist/toc.js");
 window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"); // window.axios = require('axios');
 // window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
-__webpack_require__(/*! ./sideFixed.js */ "./resources/js/sideFixed.js");
 
 __webpack_require__(/*! ./accordion.js */ "./resources/js/accordion.js");
 
@@ -12178,15 +12178,14 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var TENS = TENS || {};
-TENS.LARANOTE = {};
+var TENS_LARANOTE = TENS_LARANOTE || {};
 
-TENS.LARANOTE.CHECK_ALL = function ($checkAllWrapper) {
+TENS_LARANOTE.CHECK_ALL = function ($checkAllWrapper) {
   this.$checkAllWrapper = $checkAllWrapper;
   this.init();
 };
 
-TENS.LARANOTE.CHECK_ALL.prototype = {
+TENS_LARANOTE.CHECK_ALL.prototype = {
   init: function init() {
     this.setParameters();
     this.bindEvent();
@@ -12230,7 +12229,7 @@ TENS.LARANOTE.CHECK_ALL.prototype = {
 };
 $(function () {
   $('.checkAll-wrapper').each(function () {
-    new TENS.LARANOTE.CHECK_ALL($(this));
+    new TENS_LARANOTE.CHECK_ALL($(this));
   });
 });
 
@@ -12243,16 +12242,14 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var TENS = TENS || {};
-TENS.LARANOTE = {};
+var TENS_LARANOTE = TENS_LARANOTE || {};
 
-TENS.LARANOTE.MODAL = function ($modalWrapper) {
+TENS_LARANOTE.MODAL = function ($modalWrapper) {
   this.$modalWrapper = $modalWrapper;
   this.init();
 };
 
-TENS.LARANOTE.MODAL.prototype = {
-  SLIDE_INTERVAL: 500,
+TENS_LARANOTE.MODAL.prototype = {
   init: function init() {
     this.setParameters();
     this.bindEvent();
@@ -12275,65 +12272,8 @@ TENS.LARANOTE.MODAL.prototype = {
 };
 $(function () {
   $('.modal-wrapper').each(function () {
-    new TENS.LARANOTE.MODAL($(this));
+    new TENS_LARANOTE.MODAL($(this));
   });
-});
-
-/***/ }),
-
-/***/ "./resources/js/sideFixed.js":
-/*!***********************************!*\
-  !*** ./resources/js/sideFixed.js ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var TENS = TENS || {};
-TENS.LARANOTE = {};
-
-TENS.LARANOTE.SIDE_FIXED = function () {
-  this.init();
-};
-
-TENS.LARANOTE.SIDE_FIXED.prototype = {
-  init: function init() {
-    this.setParameters();
-    this.bindEvent();
-  },
-  setParameters: function setParameters() {
-    this.sidebar = $('#sidebar');
-    this.sideFixed = this.sidebar.find('#sidebar__fixed');
-    this.main = $('#main');
-    this.sidebar_top = this.sidebar.offset().top;
-    this.sideFixed_top = this.sideFixed.offset().top;
-    this.sideFixed_height = this.sideFixed.height();
-  },
-  bindEvent: function bindEvent() {
-    $(window).on('scroll resize', $.proxy(this.chase, this));
-  },
-  chase: function chase() {
-    this.scrollTop = $(window).scrollTop();
-    this.contentBottom = this.main.offset().top + this.main.height();
-
-    if (this.scrollTop > this.sideFixed_top && this.scrollTop < this.contentBottom - this.sideFixed_height) {
-      this.sideFixed.css({
-        'position': 'fixed',
-        'top': 0,
-        'width': this.sidebar.width()
-      });
-    } else if (this.scrollTop >= this.contentBottom - this.sideFixed_height) {
-      this.sideFixed.css({
-        'position': this.contentBottom - this.sideFixed_height - this.sidebar_top,
-        'top': 0,
-        'width': this.sidebar.width()
-      });
-    } else {
-      this.sideFixed.css('position', 'static');
-    }
-  }
-};
-$(function () {
-  new TENS.LARANOTE.SIDE_FIXED();
 });
 
 /***/ }),

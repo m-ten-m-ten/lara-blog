@@ -1,13 +1,11 @@
-let TENS = TENS || {};
-TENS.LARANOTE = {};
+var TENS_LARANOTE = TENS_LARANOTE || {};
 
-TENS.LARANOTE.MODAL = function($modalWrapper){
+TENS_LARANOTE.MODAL = function($modalWrapper){
   this.$modalWrapper = $modalWrapper;
   this.init();
 };
 
-TENS.LARANOTE.MODAL.prototype = {
-  SLIDE_INTERVAL : 500,
+TENS_LARANOTE.MODAL.prototype = {
 
   init : function(){
     this.setParameters();
@@ -32,6 +30,6 @@ TENS.LARANOTE.MODAL.prototype = {
 
 $(function() {
   $('.modal-wrapper').each(function() {
-    new TENS.LARANOTE.MODAL($(this));
+    new TENS_LARANOTE.MODAL($(this));
   });
 });
