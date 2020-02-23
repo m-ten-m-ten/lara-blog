@@ -67,6 +67,7 @@ TENS_LARANOTE.AJAX.prototype = {
   init : function(){
     this.setParameters();
     this.setupAjax();
+    this.deleteValidation();
   },
   setParameters : function(){
     this.$ajaxSubmit = this.$ajaxWrapper.find('.ajax-submit');
@@ -86,6 +87,10 @@ TENS_LARANOTE.AJAX.prototype = {
         },
         context: this
     });
+  },
+  deleteValidation : function(){
+    console.log(this.$ajaxWrapper);
+    this.$ajaxWrapper.find("input").removeAttr("required max min maxlength pattern");
   }
 };
 

@@ -105,7 +105,12 @@
         <h2 class="form__title">タグ</h2>
         <div class="select-tag">
           @foreach ($tagList as $key => $val)
-            <input type="checkbox" class="hidden form__checkbox-tag" id="tag{{ $key}}" name="tags[]" value="{{ $key }}">
+            <input type="checkbox" class="hidden form__checkbox-tag" id="tag{{ $key}}" name="tags[]" value="{{ $key }}"
+            @if (old('tags'))
+              {{in_array("$key", old("tags")) ? 'checked' : ''}}
+            @else
+              {{$post->tags->contains($key) ? 'checked' : ''}}
+            @endif>
             <label for="tag{{ $key }}" class="inline-block mr5 mb10">{{ $val}}</label>
           @endforeach
         </div>
