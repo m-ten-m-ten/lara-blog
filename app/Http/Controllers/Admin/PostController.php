@@ -41,8 +41,8 @@ class PostController extends Controller
     {
         $data = [
             'post'          => $post,
-            'category' => $category,
-            'tag' => $tag,
+            'category'      => $category,
+            'tag'           => $tag,
             'categoryList'  => Category::getCategoryList(),
             'tagList'       => Tag::getTagList(),
         ];
@@ -81,8 +81,8 @@ class PostController extends Controller
     {
         $data = [
             'post'          => $post,
-            'category' => $category,
-            'tag' => $tag,
+            'category'      => $category,
+            'tag'           => $tag,
             'categoryList'  => Category::getCategoryList(),
             'tagList'       => Tag::getTagList(),
         ];

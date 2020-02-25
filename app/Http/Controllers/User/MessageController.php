@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Message;
 use Illuminate\Http\Request;
 
 class MessageController extends Controller
@@ -17,5 +16,4 @@ class MessageController extends Controller
 
         return view('user.message.index', \compact('messages'));
     }
-
 }

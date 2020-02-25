@@ -56,11 +56,8 @@ class TagController extends Controller
         return redirect(route('admin.tag.edit', $tag))->with('status', '登録が完了しました。');
     }
 
-    /*
+    /**
      * 新規タグのレコード登録処理(Ajax)
-     *
-     * @param TagStoreRequest $requestタグのFormRequest
-     * @param Tag $tagタグ
      *
      * @return JSON 登録しタグのidとtitleを返す
      */
@@ -69,6 +66,7 @@ class TagController extends Controller
         $tag->fill($request->validated())->save();
         return ['id' => $tag->id, 'title' => $tag->tag_title];
     }
+
     /**
      * タグ編集画面へのアクセス
      *

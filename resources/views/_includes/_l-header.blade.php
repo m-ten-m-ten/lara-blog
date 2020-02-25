@@ -45,7 +45,7 @@
         @auth('user')
           <li class="navbar__menu-item">
             <a class="navbar__menu-link" href="{{ route('user.top') }}">
-              {{ Auth::guard('user')->user()->name }}さんページ
+              {{ auth('user')->user()->name }}さんページ
             </a>
           </li>
           <li class="navbar__menu-item">

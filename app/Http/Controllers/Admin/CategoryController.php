@@ -56,7 +56,7 @@ class CategoryController extends Controller
         return redirect(route('admin.category.edit', $category))->with('status', '登録が完了しました。');
     }
 
-     /**
+    /**
      * 新規カテゴリーのレコード登録処理(Ajax)
      *
      * @param CategoryStoreRequest $request カテゴリーのFormRequest
