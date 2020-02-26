@@ -9,7 +9,7 @@ const style = {
 };
 
 const classes = {
-    base: 'form__input-stripe'
+    base: 'm-form-input-stripe'
 };
 
 

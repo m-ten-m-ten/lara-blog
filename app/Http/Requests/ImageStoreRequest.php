@@ -27,7 +27,7 @@ class ImageStoreRequest extends FormRequest
     {
         return [
             'image_file' => ['filled', 'file', 'mimes:jpeg,png'],
-            'image_name' => ['required', Rule::unique('images')->ignore($this->image), 'max:50', 'regex:/^[-_a-z0-9]{1,50}$/'],
+            'image_name' => ['required', Rule::unique('images')->ignore($this->image), 'max:50', 'regex:/^[-_a-z0-9]{0,50}$/'],
         ];
     }
 
@@ -50,6 +50,18 @@ class ImageStoreRequest extends FormRequest
     }
 
     /**
+     * ファイル名(image_name)の未入力時、画像ファイルのファイル名を、FormRequestのインスタンスとRequestのインスタンスに入力。
+     */
+    public function prepareForValidation(): void
+    {
+        if (isset($this['image_file']) && empty($this['image_name'])) {
+            $image_name = \rtrim($this->image_file->getClientOriginalName(), '.' . $this->image_file->getClientOriginalExtension());
+            $this['image_name'] = $image_name;
+            request()->merge(\compact('image_name'));
+        }
+    }
+
+    /**
      * validated()をOverride。画像ファイルのs3へのアップロード、ファイル名変更処理まで行う。
      *
      * @return object バリデータ
@@ -59,7 +71,7 @@ class ImageStoreRequest extends FormRequest
         $validatedData = parent::validated();
 
         if (isset($validatedData['image_file'])) {
-            $validatedData['image_extension'] = $validatedData['image_file']->extension();
+            $validatedData['image_extension'] = $validatedData['image_file']->getClientOriginalExtension();
             $validatedData['file_name'] = $validatedData['image_name'] . '.' . $validatedData['image_extension'];
             Storage::disk('s3')->putFileAs('/img', $validatedData['image_file'], $validatedData['file_name'], 'public');
             $validatedData['path'] = Storage::disk('s3')->url('img/' . $validatedData['file_name']);

@@ -4978,6 +4978,9 @@ button {
 .article__body blockquote:after {
   margin-right: 5px; }
 
+.text-normal {
+  font-size: 1.6rem; }
+
 .text-sm {
   font-size: 1.4rem; }
 

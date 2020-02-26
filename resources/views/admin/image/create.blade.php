@@ -32,8 +32,8 @@
    </li>
 
     <li class="form__row">
-      <label class="form__title">ファイル名（使用可能：数字 / 英字(小文字) / - / _ ）</label>
-      <input type="image_name" class="{{$errors->has('image_name') ? 'form__input-error' : 'form__input ' }}" name="image_name" value="{{ old('image_name', $image->image_name) }}" required maxlength="50" pattern="^[-_a-z0-9]{1,50}$">
+      <label class="form__title">ファイル名（使用可能：数字 / 英字(小文字) / - / _ ）<br><span class="text-normal">※未入力時は選択したファイルのファイル名が登録されます。</span></label>
+      <input type="image_name" class="{{$errors->has('image_name') ? 'form__input-error' : 'form__input ' }}" name="image_name" value="{{ old('image_name', $image->image_name) }}" maxlength="50" pattern="^[-_a-z0-9]{1,50}$">
       @error('image_name')
         <p class="error-text">{{ $message }}</p>
       @enderror
