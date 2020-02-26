@@ -12065,9 +12065,15 @@ TENS_LARANOTE.AJAX = function ($ajaxWrapper) {
   this.init(); // カテゴリー新規登録
 
   if (this.$ajaxWrapper.hasClass('ajax-wrapper__category')) {
-    var $category_title = this.$ajaxWrapper.find("input[name=category_title]"),
-        $category_name = this.$ajaxWrapper.find("input[name=category_name]");
-    this.$ajaxSubmit.on("click", $.proxy(function () {
+    storeCategory(this); // タグ新規登録
+  } else if (this.$ajaxWrapper.hasClass('ajax-wrapper__tag')) {
+    storeTag(this);
+  }
+
+  function storeCategory($myself) {
+    var $category_title = $myself.$ajaxWrapper.find("input[name=category_title]"),
+        $category_name = $myself.$ajaxWrapper.find("input[name=category_name]");
+    $myself.$ajaxSubmit.on("click", $.proxy(function () {
       var $myself = this;
       $.ajax({
         url: '/admin/category/ajaxCreate',
@@ -12082,11 +12088,13 @@ TENS_LARANOTE.AJAX = function ($ajaxWrapper) {
         $category_title.val('');
         $category_name.val('');
       }).fail($.proxy(this.displayErros, $myself));
-    }, this)); // タグ新規登録
-  } else if (this.$ajaxWrapper.hasClass('ajax-wrapper__tag')) {
-    var $tag_title = this.$ajaxWrapper.find("input[name=tag_title]"),
-        $tag_name = this.$ajaxWrapper.find("input[name=tag_name]");
-    this.$ajaxSubmit.on("click", $.proxy(function () {
+    }, $myself));
+  }
+
+  function storeTag($myself) {
+    var $tag_title = $myself.$ajaxWrapper.find("input[name=tag_title]"),
+        $tag_name = $myself.$ajaxWrapper.find("input[name=tag_name]");
+    $myself.$ajaxSubmit.on("click", $.proxy(function () {
       var $myself = this;
       $.ajax({
         url: '/admin/tag/ajaxCreate',
@@ -12097,11 +12105,11 @@ TENS_LARANOTE.AJAX = function ($ajaxWrapper) {
       }).done(function (data) {
         $myself.$ajaxWrapper.css('display', 'none');
         $myself.$ajaxErrors.html('').css('display', 'none');
-        $(".select-tag").prepend("\n          <input type=\"checkbox\" class=\"hidden form__checkbox-tag\" id=\"tag".concat(data.id, "\" name=\"tags[]\" value=\"").concat(data.id, "}\">\n          <label for=\"tag").concat(data.id, "\" class=\"inline-block mr5 mb10\">").concat(data.title, "</label>\n          "));
+        $(".select-tag").prepend("\n          <input type=\"checkbox\" class=\"hidden form__checkbox-tag\" id=\"tag".concat(data.id, "\" name=\"tags[]\" value=\"").concat(data.id, "}\" checked>\n          <label for=\"tag").concat(data.id, "\" class=\"inline-block mr5 mb10\">").concat(data.title, "</label>\n          "));
         $tag_title.val('');
         $tag_name.val('');
       }).fail($.proxy(this.displayErros, $myself));
-    }, this));
+    }, $myself));
   }
 };
 
@@ -12131,7 +12139,6 @@ TENS_LARANOTE.AJAX.prototype = {
     });
   },
   deleteValidation: function deleteValidation() {
-    console.log(this.$ajaxWrapper);
     this.$ajaxWrapper.find("input").removeAttr("required max min maxlength pattern");
   }
 };

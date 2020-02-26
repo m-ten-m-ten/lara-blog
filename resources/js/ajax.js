@@ -6,13 +6,19 @@ TENS_LARANOTE.AJAX = function($ajaxWrapper){
 
   // カテゴリー新規登録
   if (this.$ajaxWrapper.hasClass('ajax-wrapper__category')){
+    storeCategory(this);
+  // タグ新規登録
+  } else if (this.$ajaxWrapper.hasClass('ajax-wrapper__tag')){
+    storeTag(this);
+  }
 
-    let $category_title = this.$ajaxWrapper.find("input[name=category_title]"),
-      $category_name = this.$ajaxWrapper.find("input[name=category_name]");
+  function storeCategory($myself){
+    var $category_title = $myself.$ajaxWrapper.find("input[name=category_title]"),
+        $category_name = $myself.$ajaxWrapper.find("input[name=category_name]");
 
-    this.$ajaxSubmit.on("click", $.proxy(function(){
+    $myself.$ajaxSubmit.on("click", $.proxy(function(){
 
-      const $myself = this;
+      var $myself = this;
 
       $.ajax({
         url: '/admin/category/ajaxCreate',
@@ -29,17 +35,18 @@ TENS_LARANOTE.AJAX = function($ajaxWrapper){
         $category_name.val('');
       })
       .fail($.proxy(this.displayErros, $myself));
-    }, this));
 
-  // タグ新規登録
-  } else if (this.$ajaxWrapper.hasClass('ajax-wrapper__tag')){
+    }, $myself));
 
-    let $tag_title = this.$ajaxWrapper.find("input[name=tag_title]"),
-      $tag_name = this.$ajaxWrapper.find("input[name=tag_name]");
+  }
 
-    this.$ajaxSubmit.on("click", $.proxy(function(){
+  function storeTag($myself){
+    var $tag_title = $myself.$ajaxWrapper.find("input[name=tag_title]"),
+        $tag_name = $myself.$ajaxWrapper.find("input[name=tag_name]");
 
-      const $myself = this;
+    $myself.$ajaxSubmit.on("click", $.proxy(function(){
+
+      var $myself = this;
       $.ajax({
         url: '/admin/tag/ajaxCreate',
         data: {
@@ -51,16 +58,20 @@ TENS_LARANOTE.AJAX = function($ajaxWrapper){
         $myself.$ajaxWrapper.css('display', 'none');
         $myself.$ajaxErrors.html('').css('display', 'none');
         $(".select-tag").prepend(`
-          <input type="checkbox" class="hidden form__checkbox-tag" id="tag${data.id}" name="tags[]" value="${data.id}}">
+          <input type="checkbox" class="hidden form__checkbox-tag" id="tag${data.id}" name="tags[]" value="${data.id}}" checked>
           <label for="tag${data.id}" class="inline-block mr5 mb10">${data.title}</label>
           `);
         $tag_title.val('');
         $tag_name.val('');
       })
       .fail($.proxy(this.displayErros, $myself));
-      }, this));
-    }
+
+    }, $myself));
+
+  }
+
 };
+
 
 TENS_LARANOTE.AJAX.prototype = {
 
@@ -89,7 +100,6 @@ TENS_LARANOTE.AJAX.prototype = {
     });
   },
   deleteValidation : function(){
-    console.log(this.$ajaxWrapper);
     this.$ajaxWrapper.find("input").removeAttr("required max min maxlength pattern");
   }
 };
