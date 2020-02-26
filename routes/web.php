@@ -113,6 +113,6 @@ Route::prefix('user')->namespace('User')->as('user.')->group(function (): void {
 
 // 一般公開用ページ
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/category/{category}', 'HomeController@category');
-Route::get('/tag/{tag}', 'HomeController@tag');
-Route::get('{post}', 'HomeController@show');
+Route::get('/category/{category}', 'HomeController@category')->name('category');
+Route::get('/tag/{tag}', 'HomeController@tag')->name('tag');
+Route::get('{post}', 'HomeController@show')->name('post');

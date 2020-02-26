@@ -15,16 +15,16 @@
 
   <script src={{ asset('js/app.js')}}></script>
 
-  @if(request()->path() === 'admin/post/create' || strpos(request()->path(), "/post/edit/") )
+  @if(Route::currentRouteName() === 'admin.post.create' || Route::currentRouteName() === 'admin.post.edit')
     @include('_includes._script--tinymce')
   @endif
 
-  @if(request()->path() === 'user/payment/create')
+  @if(Route::currentRouteName() === 'user.payment.create')
       @include('_includes._script--payment')
   @endif
 
   {{-- 記事詳細ページでサイドバー追従用スクリプト読み込み --}}
-  @if (isset($show))
+  @if (Route::currentRouteName() === 'post')
     <script src="/js/sideFixed.js"></script>
   @endif
 

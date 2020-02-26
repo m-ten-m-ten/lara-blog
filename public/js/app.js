@@ -12009,45 +12009,50 @@ var debounce = function debounce(func, wait, immediate) {
 /*!***********************************!*\
   !*** ./resources/js/accordion.js ***!
   \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: Accordion */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-var TENS = TENS || {};
-TENS.LARANOTE = {};
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Accordion", function() { return Accordion; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-TENS.LARANOTE.ACCORDION = function ($accordionWrapper) {
-  this.$accordionWrapper = $accordionWrapper;
-  this.init();
-};
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-TENS.LARANOTE.ACCORDION.prototype = {
-  SLIDE_TIME: 500,
-  init: function init() {
-    this.setParameters();
-    this.bindEvent();
-  },
-  setParameters: function setParameters() {
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Accordion =
+/*#__PURE__*/
+function () {
+  function Accordion($accordionWrapper) {
+    _classCallCheck(this, Accordion);
+
+    this.$accordionWrapper = $accordionWrapper;
     this.$accordionBody = this.$accordionWrapper.children('.accordion-body:not(:animated)');
     this.$accordionTrigger = this.$accordionWrapper.children('.accordion-trigger');
-  },
-  bindEvent: function bindEvent() {
-    this.$accordionTrigger.on("click", $.proxy(this.slideMenu, this));
-  },
-  slideMenu: function slideMenu() {
-    if (this.$accordionBody.css("display") === "none") {
-      this.$accordionBody.slideDown(this.SLIDE_TIME);
-      this.$accordionTrigger.addClass('is-open');
-    } else {
-      this.$accordionBody.slideUp(this.SLIDE_TIME);
-      this.$accordionTrigger.removeClass('is-open');
-    }
+    this.bindEvent();
   }
-};
-$(function () {
-  $('.accordion-wrapper').each(function () {
-    new TENS.LARANOTE.ACCORDION($(this));
-  });
-});
+
+  _createClass(Accordion, [{
+    key: "bindEvent",
+    value: function bindEvent() {
+      this.$accordionTrigger.on("click", $.proxy(this.slideMenu, this));
+    }
+  }, {
+    key: "slideMenu",
+    value: function slideMenu() {
+      if (this.$accordionBody.css("display") === "none") {
+        this.$accordionBody.slideDown(this.SLIDE_TIME);
+        this.$accordionTrigger.addClass('is-open');
+      } else {
+        this.$accordionBody.slideUp(this.SLIDE_TIME);
+        this.$accordionTrigger.removeClass('is-open');
+      }
+    }
+  }]);
+
+  return Accordion;
+}();
 
 /***/ }),
 
@@ -12159,10 +12164,9 @@ $(function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _firstandthird_toc__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @firstandthird/toc */ "./node_modules/@firstandthird/toc/dist/toc.js");
+/* harmony import */ var _accordion_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./accordion.js */ "./resources/js/accordion.js");
 window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"); // window.axios = require('axios');
 // window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
-__webpack_require__(/*! ./accordion.js */ "./resources/js/accordion.js");
 
 __webpack_require__(/*! ./checkAll.js */ "./resources/js/checkAll.js");
 
@@ -12170,10 +12174,14 @@ __webpack_require__(/*! ./modal.js */ "./resources/js/modal.js");
 
 __webpack_require__(/*! ./ajax.js */ "./resources/js/ajax.js");
 
- // 軽めの処理を下記にまとめて記述
+
 
 $(function () {
-  // confirmクラスが付与されたformのsubmit時、アラートにて実行確認
+  // スライドメニューの登録
+  $('.accordion-wrapper').each(function () {
+    new _accordion_js__WEBPACK_IMPORTED_MODULE_1__["Accordion"]($(this));
+  }); // confirmクラスが付与されたformのsubmit時、アラートにて実行確認
+
   $('.confirm').submit(function () {
     if (!confirm('実行してよろしいですか？')) {
       return false;
