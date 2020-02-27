@@ -5,9 +5,9 @@
 @section('link-button')
   <button class="button"
   onclick="event.preventDefault();
-  document.getElementById('logout-form').submit();"
+  document.getElementById('logout-admin').submit();"
   >ログアウト</button>
-  <form id="logout-form" class="hidden" action="{{ route('admin.logout') }}" method="POST">
+  <form id="logout-admin" class="hidden" action="{{ route('admin.logout') }}" method="POST">
     @csrf
   </form>
 @endsection

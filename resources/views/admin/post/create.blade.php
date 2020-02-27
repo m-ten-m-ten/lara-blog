@@ -80,7 +80,7 @@
       <div class="form__row">
         <h2 class="form__title">カテゴリー</h2>
         <select class="w-full" name="category_id">
-          <option value="">カテゴリーを選択</option>
+          <option class="dummy-option" value="">カテゴリーを選択</option>
           @foreach ($categoryList as $key => $val)
             <option value="{{ $key }}" @if (old('category_id', $post->category_id) == $key) selected @endif>{{ $val }}</option>
           @endforeach

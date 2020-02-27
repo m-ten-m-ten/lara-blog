@@ -1,24 +1,22 @@
 window.$ = window.jQuery = require('jquery');
-// window.axios = require('axios');
-// window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-require('./checkAll.js');
-require('./modal.js');
-require('./ajax.js');
 import '@firstandthird/toc';
-import { Accordion } from "./accordion.js";
+import { App } from './action/App';
+import { Post } from './action/Post';
+import { AdminIndex } from './action/AdminIndex';
+import { AdminPostCreate } from './action/AdminPostCreate';
 
-$(function() {
-
-  // スライドメニューの登録
-  $('.accordion-wrapper').each(function() {
-    new Accordion($(this));
-  });
-
-  // confirmクラスが付与されたformのsubmit時、アラートにて実行確認
-  $('.confirm').submit(function () {
-    if (!confirm('実行してよろしいですか？')) {
-      return false;
-    }
-  });
-
-});
+const app = new App();
+const routes = {
+  'post' : new Post(),
+  'admin-index' : new AdminIndex(),
+  'admin/post/create' : new AdminPostCreate(),
+  'admin/post/edit' : new AdminPostCreate(),
+};
+const route = path =>{
+  if (routes.hasOwnProperty(path)) {
+    return routes[path];
+  }
+  return app;
+};
+const action = route($('#main').data('action'));
+action.ready();

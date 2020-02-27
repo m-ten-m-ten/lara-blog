@@ -51,9 +51,9 @@
           <li class="navbar__menu-item">
             <a class="navbar__menu-link" href="{{ route('user.logout') }}"
               onclick="event.preventDefault();
-              document.getElementById('logout-form').submit();
+              document.getElementById('logout-user').submit();
               ">ログアウト</a>
-            <form id="logout-form" class="hidden" action="{{ route('user.logout') }}" method="POST">
+            <form id="logout-user" class="hidden" action="{{ route('user.logout') }}" method="POST">
               @csrf
             </form>
           </li>

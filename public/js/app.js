@@ -12005,10 +12005,285 @@ var debounce = function debounce(func, wait, immediate) {
 
 /***/ }),
 
-/***/ "./resources/js/accordion.js":
-/*!***********************************!*\
-  !*** ./resources/js/accordion.js ***!
-  \***********************************/
+/***/ "./resources/js/action/AdminIndex.js":
+/*!*******************************************!*\
+  !*** ./resources/js/action/AdminIndex.js ***!
+  \*******************************************/
+/*! exports provided: AdminIndex */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AdminIndex", function() { return AdminIndex; });
+/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./App */ "./resources/js/action/App.js");
+/* harmony import */ var _modules_confirmDelete__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modules/confirmDelete */ "./resources/js/modules/confirmDelete.js");
+/* harmony import */ var _modules_CheckAll__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../modules/CheckAll */ "./resources/js/modules/CheckAll.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
+
+function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+var AdminIndex =
+/*#__PURE__*/
+function (_App) {
+  _inherits(AdminIndex, _App);
+
+  function AdminIndex() {
+    _classCallCheck(this, AdminIndex);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(AdminIndex).apply(this, arguments));
+  }
+
+  _createClass(AdminIndex, [{
+    key: "ready",
+    value: function ready() {
+      _get(_getPrototypeOf(AdminIndex.prototype), "ready", this).call(this);
+
+      Object(_modules_confirmDelete__WEBPACK_IMPORTED_MODULE_1__["confirmDelete"])();
+      new _modules_CheckAll__WEBPACK_IMPORTED_MODULE_2__["CheckAll"]($('.checkAll-wrapper'));
+    }
+  }]);
+
+  return AdminIndex;
+}(_App__WEBPACK_IMPORTED_MODULE_0__["App"]);
+
+/***/ }),
+
+/***/ "./resources/js/action/AdminPostCreate.js":
+/*!************************************************!*\
+  !*** ./resources/js/action/AdminPostCreate.js ***!
+  \************************************************/
+/*! exports provided: AdminPostCreate */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AdminPostCreate", function() { return AdminPostCreate; });
+/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./App */ "./resources/js/action/App.js");
+/* harmony import */ var _modules_Modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modules/Modal */ "./resources/js/modules/Modal.js");
+/* harmony import */ var _modules_AjaxCategory__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../modules/AjaxCategory */ "./resources/js/modules/AjaxCategory.js");
+/* harmony import */ var _modules_AjaxTag__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../modules/AjaxTag */ "./resources/js/modules/AjaxTag.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
+
+function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+var AdminPostCreate =
+/*#__PURE__*/
+function (_App) {
+  _inherits(AdminPostCreate, _App);
+
+  function AdminPostCreate() {
+    _classCallCheck(this, AdminPostCreate);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(AdminPostCreate).apply(this, arguments));
+  }
+
+  _createClass(AdminPostCreate, [{
+    key: "ready",
+    value: function ready() {
+      _get(_getPrototypeOf(AdminPostCreate.prototype), "ready", this).call(this);
+
+      $('.modal-wrapper').each(function () {
+        new _modules_Modal__WEBPACK_IMPORTED_MODULE_1__["Modal"]($(this));
+      });
+      new _modules_AjaxCategory__WEBPACK_IMPORTED_MODULE_2__["AjaxCategory"]();
+      new _modules_AjaxTag__WEBPACK_IMPORTED_MODULE_3__["AjaxTag"]();
+    }
+  }]);
+
+  return AdminPostCreate;
+}(_App__WEBPACK_IMPORTED_MODULE_0__["App"]);
+
+/***/ }),
+
+/***/ "./resources/js/action/App.js":
+/*!************************************!*\
+  !*** ./resources/js/action/App.js ***!
+  \************************************/
+/*! exports provided: App */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "App", function() { return App; });
+/* harmony import */ var _modules_Accordion_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../modules/Accordion.js */ "./resources/js/modules/Accordion.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+var App =
+/*#__PURE__*/
+function () {
+  function App() {
+    _classCallCheck(this, App);
+  }
+
+  _createClass(App, [{
+    key: "ready",
+    value: function ready() {
+      // スライドメニューの数だけインスタンス生成
+      $('.accordion-wrapper').each(function () {
+        new _modules_Accordion_js__WEBPACK_IMPORTED_MODULE_0__["Accordion"]($(this));
+      });
+    }
+  }]);
+
+  return App;
+}();
+
+/***/ }),
+
+/***/ "./resources/js/action/Post.js":
+/*!*************************************!*\
+  !*** ./resources/js/action/Post.js ***!
+  \*************************************/
+/*! exports provided: Post */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Post", function() { return Post; });
+/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./App */ "./resources/js/action/App.js");
+/* harmony import */ var _modules_fixSidebar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modules/fixSidebar */ "./resources/js/modules/fixSidebar.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
+
+function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var Post =
+/*#__PURE__*/
+function (_App) {
+  _inherits(Post, _App);
+
+  function Post() {
+    _classCallCheck(this, Post);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Post).apply(this, arguments));
+  }
+
+  _createClass(Post, [{
+    key: "ready",
+    value: function ready() {
+      _get(_getPrototypeOf(Post.prototype), "ready", this).call(this);
+
+      Object(_modules_fixSidebar__WEBPACK_IMPORTED_MODULE_1__["fixSidebar"])();
+    }
+  }]);
+
+  return Post;
+}(_App__WEBPACK_IMPORTED_MODULE_0__["App"]);
+
+/***/ }),
+
+/***/ "./resources/js/app.js":
+/*!*****************************!*\
+  !*** ./resources/js/app.js ***!
+  \*****************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _firstandthird_toc__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @firstandthird/toc */ "./node_modules/@firstandthird/toc/dist/toc.js");
+/* harmony import */ var _action_App__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./action/App */ "./resources/js/action/App.js");
+/* harmony import */ var _action_Post__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./action/Post */ "./resources/js/action/Post.js");
+/* harmony import */ var _action_AdminIndex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./action/AdminIndex */ "./resources/js/action/AdminIndex.js");
+/* harmony import */ var _action_AdminPostCreate__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./action/AdminPostCreate */ "./resources/js/action/AdminPostCreate.js");
+window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+
+
+
+
+
+var app = new _action_App__WEBPACK_IMPORTED_MODULE_1__["App"]();
+var routes = {
+  'post': new _action_Post__WEBPACK_IMPORTED_MODULE_2__["Post"](),
+  'admin-index': new _action_AdminIndex__WEBPACK_IMPORTED_MODULE_3__["AdminIndex"](),
+  'admin/post/create': new _action_AdminPostCreate__WEBPACK_IMPORTED_MODULE_4__["AdminPostCreate"](),
+  'admin/post/edit': new _action_AdminPostCreate__WEBPACK_IMPORTED_MODULE_4__["AdminPostCreate"]()
+};
+
+var route = function route(path) {
+  if (routes.hasOwnProperty(path)) {
+    return routes[path];
+  }
+
+  return app;
+};
+
+var action = route($('#main').data('action'));
+action.ready();
+
+/***/ }),
+
+/***/ "./resources/js/modules/Accordion.js":
+/*!*******************************************!*\
+  !*** ./resources/js/modules/Accordion.js ***!
+  \*******************************************/
 /*! exports provided: Accordion */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -12056,245 +12331,426 @@ function () {
 
 /***/ }),
 
-/***/ "./resources/js/ajax.js":
-/*!******************************!*\
-  !*** ./resources/js/ajax.js ***!
-  \******************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var TENS_LARANOTE = TENS_LARANOTE || {};
-
-TENS_LARANOTE.AJAX = function ($ajaxWrapper) {
-  this.$ajaxWrapper = $ajaxWrapper;
-  this.init(); // カテゴリー新規登録
-
-  if (this.$ajaxWrapper.hasClass('ajax-wrapper__category')) {
-    storeCategory(this); // タグ新規登録
-  } else if (this.$ajaxWrapper.hasClass('ajax-wrapper__tag')) {
-    storeTag(this);
-  }
-
-  function storeCategory($myself) {
-    var $category_title = $myself.$ajaxWrapper.find("input[name=category_title]"),
-        $category_name = $myself.$ajaxWrapper.find("input[name=category_name]");
-    $myself.$ajaxSubmit.on("click", $.proxy(function () {
-      var $myself = this;
-      $.ajax({
-        url: '/admin/category/ajaxCreate',
-        data: {
-          category_title: $category_title.val(),
-          category_name: $category_name.val()
-        }
-      }).done(function (data) {
-        $myself.$ajaxWrapper.css('display', 'none');
-        $myself.$ajaxErrors.html('').css('display', 'none');
-        $("select[name=category_id]").prepend("<option value=\"".concat(data.id, "\" selected>").concat(data.title, "</option>"));
-        $category_title.val('');
-        $category_name.val('');
-      }).fail($.proxy(this.displayErros, $myself));
-    }, $myself));
-  }
-
-  function storeTag($myself) {
-    var $tag_title = $myself.$ajaxWrapper.find("input[name=tag_title]"),
-        $tag_name = $myself.$ajaxWrapper.find("input[name=tag_name]");
-    $myself.$ajaxSubmit.on("click", $.proxy(function () {
-      var $myself = this;
-      $.ajax({
-        url: '/admin/tag/ajaxCreate',
-        data: {
-          tag_title: $tag_title.val(),
-          tag_name: $tag_name.val()
-        }
-      }).done(function (data) {
-        $myself.$ajaxWrapper.css('display', 'none');
-        $myself.$ajaxErrors.html('').css('display', 'none');
-        $(".select-tag").prepend("\n          <input type=\"checkbox\" class=\"hidden form__checkbox-tag\" id=\"tag".concat(data.id, "\" name=\"tags[]\" value=\"").concat(data.id, "}\" checked>\n          <label for=\"tag").concat(data.id, "\" class=\"inline-block mr5 mb10\">").concat(data.title, "</label>\n          "));
-        $tag_title.val('');
-        $tag_name.val('');
-      }).fail($.proxy(this.displayErros, $myself));
-    }, $myself));
-  }
-};
-
-TENS_LARANOTE.AJAX.prototype = {
-  init: function init() {
-    this.setParameters();
-    this.setupAjax();
-    this.deleteValidation();
-  },
-  setParameters: function setParameters() {
-    this.$ajaxSubmit = this.$ajaxWrapper.find('.ajax-submit');
-    this.$ajaxErrors = this.$ajaxWrapper.find('.ajax-errors');
-  },
-  displayErros: function displayErros(data) {
-    this.$ajaxErrors.html('').css('display', 'block');
-    $.each(data.responseJSON.errors, function (key, val) {
-      this.$ajaxErrors.prepend("<li>".concat(val, "</li>"));
-    }.bind(this));
-  },
-  setupAjax: function setupAjax() {
-    $.ajaxSetup({
-      method: 'post',
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      },
-      context: this
-    });
-  },
-  deleteValidation: function deleteValidation() {
-    this.$ajaxWrapper.find("input").removeAttr("required max min maxlength pattern");
-  }
-};
-$(function () {
-  new TENS_LARANOTE.AJAX($('.ajax-wrapper__category'));
-  new TENS_LARANOTE.AJAX($('.ajax-wrapper__tag'));
-});
-
-/***/ }),
-
-/***/ "./resources/js/app.js":
-/*!*****************************!*\
-  !*** ./resources/js/app.js ***!
-  \*****************************/
-/*! no exports provided */
+/***/ "./resources/js/modules/AjaxCategory.js":
+/*!**********************************************!*\
+  !*** ./resources/js/modules/AjaxCategory.js ***!
+  \**********************************************/
+/*! exports provided: AjaxCategory */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _firstandthird_toc__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @firstandthird/toc */ "./node_modules/@firstandthird/toc/dist/toc.js");
-/* harmony import */ var _accordion_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./accordion.js */ "./resources/js/accordion.js");
-window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"); // window.axios = require('axios');
-// window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AjaxCategory", function() { return AjaxCategory; });
+/* harmony import */ var _AjaxCommon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AjaxCommon */ "./resources/js/modules/AjaxCommon.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-__webpack_require__(/*! ./checkAll.js */ "./resources/js/checkAll.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-__webpack_require__(/*! ./modal.js */ "./resources/js/modal.js");
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-__webpack_require__(/*! ./ajax.js */ "./resources/js/ajax.js");
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
+
+function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 
+var AjaxCategory =
+/*#__PURE__*/
+function (_AjaxCommon) {
+  _inherits(AjaxCategory, _AjaxCommon);
 
-$(function () {
-  // スライドメニューの登録
-  $('.accordion-wrapper').each(function () {
-    new _accordion_js__WEBPACK_IMPORTED_MODULE_1__["Accordion"]($(this));
-  }); // confirmクラスが付与されたformのsubmit時、アラートにて実行確認
+  function AjaxCategory() {
+    var _this;
 
+    _classCallCheck(this, AjaxCategory);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(AjaxCategory).call(this));
+    _this.$ajaxWrapper = $('.ajax-wrapper__category');
+
+    _get(_getPrototypeOf(AjaxCategory.prototype), "setParameters", _assertThisInitialized(_this)).call(_assertThisInitialized(_this), _this.$ajaxWrapper);
+
+    _get(_getPrototypeOf(AjaxCategory.prototype), "setupAjax", _assertThisInitialized(_this)).call(_assertThisInitialized(_this));
+
+    _get(_getPrototypeOf(AjaxCategory.prototype), "deleteValidation", _assertThisInitialized(_this)).call(_assertThisInitialized(_this), _this.$ajaxWrapper);
+
+    _this.$category_title = _this.$ajaxWrapper.find("input[name=category_title]");
+    _this.$category_name = _this.$ajaxWrapper.find("input[name=category_name]");
+
+    _this.$ajaxSubmit.on("click", $.proxy(_this.storeCategory, _assertThisInitialized(_this)));
+
+    return _this;
+  }
+
+  _createClass(AjaxCategory, [{
+    key: "storeCategory",
+    value: function storeCategory() {
+      var $myself = this;
+      $.ajax({
+        url: '/admin/category/ajaxCreate',
+        data: {
+          category_title: $myself.$category_title.val(),
+          category_name: $myself.$category_name.val()
+        }
+      }).done(function (data) {
+        $myself.$ajaxWrapper.css('display', 'none');
+        $myself.$ajaxErrors.html('').css('display', 'none');
+        $("select[name='category_id']").find('option').removeAttr('selected');
+        $('.dummy-option').after("<option value=\"".concat(data.id, "\" selected>").concat(data.title, "</option>"));
+        $myself.$category_title.val('');
+        $myself.$category_name.val('');
+      }).fail($.proxy(_get(_getPrototypeOf(AjaxCategory.prototype), "displayErrors", this), $myself));
+    }
+  }]);
+
+  return AjaxCategory;
+}(_AjaxCommon__WEBPACK_IMPORTED_MODULE_0__["AjaxCommon"]);
+
+/***/ }),
+
+/***/ "./resources/js/modules/AjaxCommon.js":
+/*!********************************************!*\
+  !*** ./resources/js/modules/AjaxCommon.js ***!
+  \********************************************/
+/*! exports provided: AjaxCommon */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AjaxCommon", function() { return AjaxCommon; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var AjaxCommon =
+/*#__PURE__*/
+function () {
+  function AjaxCommon() {
+    _classCallCheck(this, AjaxCommon);
+  }
+
+  _createClass(AjaxCommon, [{
+    key: "setParameters",
+    value: function setParameters($ajaxWrapper) {
+      this.$ajaxSubmit = $ajaxWrapper.find('.ajax-submit');
+      this.$ajaxErrors = $ajaxWrapper.find('.ajax-errors');
+    }
+  }, {
+    key: "setupAjax",
+    value: function setupAjax() {
+      $.ajaxSetup({
+        method: 'post',
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        context: this
+      });
+    }
+  }, {
+    key: "deleteValidation",
+    value: function deleteValidation($ajaxWrapper) {
+      $ajaxWrapper.find("input").removeAttr("required max min maxlength pattern");
+    }
+  }, {
+    key: "displayErrors",
+    value: function displayErrors(data) {
+      this.$ajaxErrors.html('').css('display', 'block');
+      $.each(data.responseJSON.errors, function (key, val) {
+        this.$ajaxErrors.prepend("<li>".concat(val, "</li>"));
+      }.bind(this));
+    }
+  }]);
+
+  return AjaxCommon;
+}();
+
+/***/ }),
+
+/***/ "./resources/js/modules/AjaxTag.js":
+/*!*****************************************!*\
+  !*** ./resources/js/modules/AjaxTag.js ***!
+  \*****************************************/
+/*! exports provided: AjaxTag */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AjaxTag", function() { return AjaxTag; });
+/* harmony import */ var _AjaxCommon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AjaxCommon */ "./resources/js/modules/AjaxCommon.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
+
+function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+var AjaxTag =
+/*#__PURE__*/
+function (_AjaxCommon) {
+  _inherits(AjaxTag, _AjaxCommon);
+
+  function AjaxTag() {
+    var _this;
+
+    _classCallCheck(this, AjaxTag);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(AjaxTag).call(this));
+    _this.$ajaxWrapper = $('.ajax-wrapper__tag');
+    _this.$tag_title = _this.$ajaxWrapper.find("input[name=tag_title]");
+    _this.$tag_name = _this.$ajaxWrapper.find("input[name=tag_name]");
+
+    _get(_getPrototypeOf(AjaxTag.prototype), "setParameters", _assertThisInitialized(_this)).call(_assertThisInitialized(_this), _this.$ajaxWrapper);
+
+    _get(_getPrototypeOf(AjaxTag.prototype), "setupAjax", _assertThisInitialized(_this)).call(_assertThisInitialized(_this));
+
+    _get(_getPrototypeOf(AjaxTag.prototype), "deleteValidation", _assertThisInitialized(_this)).call(_assertThisInitialized(_this), _this.$ajaxWrapper);
+
+    _this.$ajaxSubmit.on("click", $.proxy(_this.storeTag, _assertThisInitialized(_this)));
+
+    return _this;
+  }
+
+  _createClass(AjaxTag, [{
+    key: "storeTag",
+    value: function storeTag() {
+      var $myself = this;
+      $.ajax({
+        url: '/admin/tag/ajaxCreate',
+        data: {
+          tag_title: $myself.$tag_title.val(),
+          tag_name: $myself.$tag_name.val()
+        }
+      }).done(function (data) {
+        $myself.$ajaxWrapper.css('display', 'none');
+        $myself.$ajaxErrors.html('').css('display', 'none');
+        $(".select-tag").prepend("\n          <input type=\"checkbox\" class=\"hidden form__checkbox-tag\" id=\"tag".concat(data.id, "\" name=\"tags[]\" value=\"").concat(data.id, "\" checked>\n          <label for=\"tag").concat(data.id, "\" class=\"inline-block mr5 mb10\">").concat(data.title, "</label>\n          "));
+        $myself.$tag_title.val('');
+        $myself.$tag_name.val('');
+      }).fail($.proxy(_get(_getPrototypeOf(AjaxTag.prototype), "displayErrors", this), $myself));
+    }
+  }]);
+
+  return AjaxTag;
+}(_AjaxCommon__WEBPACK_IMPORTED_MODULE_0__["AjaxCommon"]);
+
+/***/ }),
+
+/***/ "./resources/js/modules/CheckAll.js":
+/*!******************************************!*\
+  !*** ./resources/js/modules/CheckAll.js ***!
+  \******************************************/
+/*! exports provided: CheckAll */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CheckAll", function() { return CheckAll; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var CheckAll =
+/*#__PURE__*/
+function () {
+  function CheckAll($checkAllWrapper) {
+    _classCallCheck(this, CheckAll);
+
+    this.$checkAllWrapper = $checkAllWrapper;
+    this.$checkAllTrigger = this.$checkAllWrapper.find('.checkAll-trigger');
+    this.$checkbox = this.$checkAllWrapper.find("input[type='checkbox']:not('.checkAll-trigger')");
+    this.$batchSubmit = this.$checkAllWrapper.find('.batchSubmit');
+    this.bindEvent();
+  }
+
+  _createClass(CheckAll, [{
+    key: "bindEvent",
+    value: function bindEvent() {
+      this.$checkAllTrigger.on("click", $.proxy(this.checkAll, this));
+      this.$checkbox.on("click", $.proxy(this.checkState, this));
+      this.$batchSubmit.on("click", $.proxy(this.hasChecked, this));
+    } // 全選択ボタンのチェック状態に選択ボタンを合わせる
+
+  }, {
+    key: "checkAll",
+    value: function checkAll() {
+      this.$checkbox.prop('checked', this.$checkAllTrigger.prop("checked"));
+    } // 選択ボタンの状態により、全選択ボタンの状態を変更する
+
+  }, {
+    key: "checkState",
+    value: function checkState() {
+      if (this.$checkbox.length === this.checkedbox().length) {
+        this.$checkAllTrigger.prop("checked", true);
+      } else {
+        this.$checkAllTrigger.prop('checked', false);
+      }
+    } // チェック済みのチェックボックスを返す。
+
+  }, {
+    key: "checkedbox",
+    value: function checkedbox() {
+      var $checkedbox = $.grep(this.$checkbox, function (box) {
+        return $(box).prop("checked");
+      });
+      return $checkedbox;
+    } // 一括処理ボタン押下時にチェック数が0の場合、アラート出してキャンセルする。
+
+  }, {
+    key: "hasChecked",
+    value: function hasChecked() {
+      if (this.checkedbox().length === 0) {
+        alert('１つも選択されていません。');
+        return false;
+      }
+    }
+  }]);
+
+  return CheckAll;
+}();
+
+/***/ }),
+
+/***/ "./resources/js/modules/Modal.js":
+/*!***************************************!*\
+  !*** ./resources/js/modules/Modal.js ***!
+  \***************************************/
+/*! exports provided: Modal */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Modal", function() { return Modal; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Modal =
+/*#__PURE__*/
+function () {
+  function Modal($modalWrapper) {
+    _classCallCheck(this, Modal);
+
+    this.$modalWrapper = $modalWrapper;
+    this.$modalBody = this.$modalWrapper.find('.modal-body');
+    this.$modalOpen = this.$modalWrapper.find('.modal-open');
+    this.$modalClose = this.$modalWrapper.find('.modal-close');
+    this.bindEvent();
+  }
+
+  _createClass(Modal, [{
+    key: "bindEvent",
+    value: function bindEvent() {
+      this.$modalOpen.on("click", $.proxy(this.openModal, this));
+      this.$modalClose.on("click", $.proxy(this.closeModal, this));
+    }
+  }, {
+    key: "openModal",
+    value: function openModal() {
+      this.$modalBody.css("display", "block");
+    }
+  }, {
+    key: "closeModal",
+    value: function closeModal() {
+      this.$modalBody.css("display", "none");
+    }
+  }]);
+
+  return Modal;
+}();
+
+/***/ }),
+
+/***/ "./resources/js/modules/confirmDelete.js":
+/*!***********************************************!*\
+  !*** ./resources/js/modules/confirmDelete.js ***!
+  \***********************************************/
+/*! exports provided: confirmDelete */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "confirmDelete", function() { return confirmDelete; });
+// confirmクラスが付与されたformのsubmit時、アラートにて実行確認
+var confirmDelete = function confirmDelete() {
   $('.confirm').submit(function () {
     if (!confirm('実行してよろしいですか？')) {
       return false;
     }
   });
-});
+};
 
 /***/ }),
 
-/***/ "./resources/js/checkAll.js":
-/*!**********************************!*\
-  !*** ./resources/js/checkAll.js ***!
-  \**********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ "./resources/js/modules/fixSidebar.js":
+/*!********************************************!*\
+  !*** ./resources/js/modules/fixSidebar.js ***!
+  \********************************************/
+/*! exports provided: fixSidebar */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-var TENS_LARANOTE = TENS_LARANOTE || {};
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fixSidebar", function() { return fixSidebar; });
+function fixSidebar() {
+  var sidebar = $('#sidebar'),
+      sticked = $('#sidebar__fixed'),
+      main = $('#main'),
+      sidebarTop = sidebar.offset().top,
+      stickedOriginalTop = sticked.offset().top,
+      stickedHeight = sticked.height();
+  $(window).on('scroll resize', function () {
+    var scrollTop = $(window).scrollTop(),
+        contentBottom = main.offset().top + main.height();
 
-TENS_LARANOTE.CHECK_ALL = function ($checkAllWrapper) {
-  this.$checkAllWrapper = $checkAllWrapper;
-  this.init();
-};
-
-TENS_LARANOTE.CHECK_ALL.prototype = {
-  init: function init() {
-    this.setParameters();
-    this.bindEvent();
-  },
-  setParameters: function setParameters() {
-    this.$checkAllTrigger = this.$checkAllWrapper.find('.checkAll-trigger');
-    this.$checkbox = this.$checkAllWrapper.find("input[type='checkbox']:not('.checkAll-trigger')");
-    this.$batchSubmit = this.$checkAllWrapper.find('.batchSubmit');
-  },
-  bindEvent: function bindEvent() {
-    this.$checkAllTrigger.on("click", $.proxy(this.checkAll, this));
-    this.$checkbox.on("click", $.proxy(this.checkState, this));
-    this.$batchSubmit.on("click", $.proxy(this.hasChecked, this));
-  },
-  // 全選択ボタンのチェック状態に選択ボタンを合わせる
-  checkAll: function checkAll() {
-    this.$checkbox.prop('checked', this.$checkAllTrigger.prop("checked"));
-  },
-  // 選択ボタンの状態により、全選択ボタンの状態を変更する
-  checkState: function checkState() {
-    if (this.$checkbox.length === this.checkedbox().length) {
-      this.$checkAllTrigger.prop("checked", true);
+    if (scrollTop > stickedOriginalTop && scrollTop < contentBottom - stickedHeight) {
+      sticked.css({
+        'position': 'fixed',
+        'top': 0,
+        'width': sidebar.width()
+      });
+    } else if (scrollTop >= contentBottom - stickedHeight) {
+      sticked.css({
+        'position': 'absolute',
+        'top': contentBottom - stickedHeight - sidebarTop,
+        'width': sidebar.width()
+      });
     } else {
-      this.$checkAllTrigger.prop('checked', false);
+      sticked.css('position', 'static');
     }
-  },
-  // 一括処理ボタン押下時にチェック数が0の場合、アラート出してキャンセルする。
-  hasChecked: function hasChecked() {
-    if (this.checkedbox().length === 0) {
-      alert('１つも選択されていません。');
-      return false;
-    }
-  },
-  // チェック済みの選択ボタンをものを返す。
-  checkedbox: function checkedbox() {
-    var $checkedbox = $.grep(this.$checkbox, function (box) {
-      return $(box).prop("checked");
-    });
-    return $checkedbox;
-  }
-};
-$(function () {
-  $('.checkAll-wrapper').each(function () {
-    new TENS_LARANOTE.CHECK_ALL($(this));
   });
-});
-
-/***/ }),
-
-/***/ "./resources/js/modal.js":
-/*!*******************************!*\
-  !*** ./resources/js/modal.js ***!
-  \*******************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var TENS_LARANOTE = TENS_LARANOTE || {};
-
-TENS_LARANOTE.MODAL = function ($modalWrapper) {
-  this.$modalWrapper = $modalWrapper;
-  this.init();
-};
-
-TENS_LARANOTE.MODAL.prototype = {
-  init: function init() {
-    this.setParameters();
-    this.bindEvent();
-  },
-  setParameters: function setParameters() {
-    this.$modalBody = this.$modalWrapper.find('.modal-body');
-    this.$modalOpen = this.$modalWrapper.find('.modal-open');
-    this.$modalClose = this.$modalWrapper.find('.modal-close');
-  },
-  bindEvent: function bindEvent() {
-    this.$modalOpen.on("click", $.proxy(this.openModal, this));
-    this.$modalClose.on("click", $.proxy(this.closeModal, this));
-  },
-  openModal: function openModal() {
-    this.$modalBody.css("display", "block");
-  },
-  closeModal: function closeModal() {
-    this.$modalBody.css("display", "none");
-  }
-};
-$(function () {
-  $('.modal-wrapper').each(function () {
-    new TENS_LARANOTE.MODAL($(this));
-  });
-});
+}
 
 /***/ }),
 

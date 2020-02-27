@@ -6,7 +6,12 @@
   <div id="container">
     @include('_includes._l-header')
 
-    <div id="main" class="l-container">
+    <div id="main" class="l-container"
+      @if (preg_match('/^admin\..+\.index$/',Route::currentRouteName()) === 1)
+        data-action="admin-index"
+      @else
+        data-action="{{ str_replace('.', '/', Route::currentRouteName()) }}"
+      @endif>
       @yield('content')
     </div>
 
@@ -21,11 +26,6 @@
 
   @if(Route::currentRouteName() === 'user.payment.create')
       @include('_includes._script--payment')
-  @endif
-
-  {{-- 記事詳細ページでサイドバー追従用スクリプト読み込み --}}
-  @if (Route::currentRouteName() === 'post')
-    <script src="/js/sideFixed.js"></script>
   @endif
 
 </body>

@@ -5636,10 +5636,12 @@ button {
 .admin__index-batchSubmit {
   margin-bottom: .5rem; }
 
-.admin__index-pagination,
-.admin__index-menu,
-.admin__index-table {
+.admin__index-menu {
   margin-bottom: 1rem; }
+
+.admin__index-pagination,
+.admin__index-table {
+  margin-bottom: 3rem; }
 
 .admin__index-menu {
   display: flex;
