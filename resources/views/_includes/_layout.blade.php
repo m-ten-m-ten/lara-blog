@@ -20,9 +20,6 @@
 
   <script src={{ asset('js/app.js')}}></script>
 
-{{--   @if(Route::currentRouteName() === 'admin.post.create' || Route::currentRouteName() === 'admin.post.edit')
-    @include('_includes._script--tinymce')
-  @endif --}}
 
   @if(Route::currentRouteName() === 'user.payment.create')
       @include('_includes._script--payment')

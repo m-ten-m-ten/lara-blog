@@ -2,24 +2,18 @@ import { App } from './App';
 import { Modal } from '../modules/Modal';
 import { AjaxCategory } from '../modules/AjaxCategory';
 import { AjaxTag } from '../modules/AjaxTag';
-// import { tinymce } from '../modules/tinymce/tinymce.min.js';
 
-tinymce = require('../modules/tinymce/tinymce.min.js');
-// A theme is also required
-require('../modules/tinymce/themes/silver/theme.min.js');
+require('tinymce');
+require('tinymce/themes/silver');
+require('tinymce/plugins/lists');
+require('tinymce/plugins/link');
+require('tinymce/plugins/image');
+require('tinymce/plugins/code');
+require('tinymce/plugins/fullscreen');
+require('tinymce/plugins/media');
+require('tinymce/plugins/table');
 
-// Any plugins you want to use has to be imported
-require('../modules/tinymce/plugins/lists/plugin.min.js');
-require('../modules/tinymce/plugins/link/plugin.min.js');
-require('../modules/tinymce/plugins/image/plugin.min.js');
-require('../modules/tinymce/plugins/code/plugin.min.js');
-require('../modules/tinymce/plugins/fullscreen/plugin.min.js');
-require('../modules/tinymce/plugins/media/plugin.min.js');
-require('../modules/tinymce/plugins/table/plugin.min.js');
-require('../modules/tinymce/plugins/code/plugin.min.js');
-
-require('../modules/tinymce/langs/ja.js');
-
+require('tinymce-i18n/langs/ja');
 
 export class AdminPostCreate extends App {
   ready() {
