@@ -12,6 +12,7 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js/app.js')
     .scripts('resources/js/payment.js', 'public/js/payment.js')
+    .copy('node_modules/tinymce/skins', 'public/js/skins');
 
 mix.browserSync({
     host: 'localhost',

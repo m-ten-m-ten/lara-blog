@@ -3,7 +3,7 @@
   tinymce.init({
     selector: "#post_content", //これが一番上じゃないとだめ。
     body_class: "post-content", //エディターのbodyに付与したいclass。（スタイル適用のため）
-    content_css: "/css/app.css", //publicのスタイルシートを指定。
+    content_css: "/style/style.css", //publicのスタイルシートを指定。
     content_style: "body {margin: 15px;}", //指定したクラスの親に全体の余白系を指定しているなら、エディターのbodyに指定。
     language: "ja",
     plugins: "table lists link image fullscreen media code",
