@@ -1,5 +1,4 @@
-// confirmクラスが付与されたformのsubmit時、アラートにて実行確認
-export var confirmDelete = function() {
+export function confirmDelete() {
   $('.confirm').submit(function () {
 
     if (!confirm('実行してよろしいですか？')) {

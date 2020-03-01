@@ -1,5 +1,5 @@
 @extends('_includes._l-admin')
-
+@section('jsAction', 'adminPostCreate')
 @if($post->exists)
   @section('admin__title', '投稿変更')
 @else

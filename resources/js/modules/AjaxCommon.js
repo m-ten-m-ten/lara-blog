@@ -1,4 +1,9 @@
 export class AjaxCommon {
+  constructor($ajaxWrapper){
+    this.setParameters($ajaxWrapper);
+    this.setupAjax();
+    this.deleteValidation($ajaxWrapper);
+  }
 
   setParameters($ajaxWrapper){
     this.$ajaxSubmit = $ajaxWrapper.find('.ajax-submit');

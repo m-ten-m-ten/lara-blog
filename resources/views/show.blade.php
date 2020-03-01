@@ -1,4 +1,5 @@
 @extends('_includes._layout')
+@section('jsAction', 'post')
 @section('content')
 
 <div class="l-show">

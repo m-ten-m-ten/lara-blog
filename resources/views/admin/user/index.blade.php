@@ -1,5 +1,6 @@
 @extends('_includes._l-admin')
 
+@section('jsAction', 'adminIndex')
 @section('admin__title', 'ユーザー一覧')
 
 @section('admin__content')

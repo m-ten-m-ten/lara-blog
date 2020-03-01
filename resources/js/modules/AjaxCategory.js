@@ -2,13 +2,11 @@ import { AjaxCommon } from './AjaxCommon';
 
 export class AjaxCategory extends AjaxCommon {
   constructor(){
-    super();
-    this.$ajaxWrapper = $('.ajax-wrapper__category');
-    super.setParameters(this.$ajaxWrapper);
-    super.setupAjax();
-    super.deleteValidation(this.$ajaxWrapper);
-    this.$category_title = this.$ajaxWrapper.find("input[name=category_title]");
-    this.$category_name = this.$ajaxWrapper.find("input[name=category_name]");
+    const $ajaxWrapper = $('.ajax-wrapper__category');
+    super($ajaxWrapper);
+    this.$ajaxWrapper = $ajaxWrapper;
+    this.$category_title = $ajaxWrapper.find("input[name=category_title]");
+    this.$category_name = $ajaxWrapper.find("input[name=category_name]");
     this.$ajaxSubmit.on("click", $.proxy(this.storeCategory, this));
   }
 

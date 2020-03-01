@@ -1,5 +1,6 @@
 @extends('_includes._l-admin')
 
+@section('jsAction', 'adminIndex')
 @section('admin__title', '投稿一覧')
 
 @section('link-button')

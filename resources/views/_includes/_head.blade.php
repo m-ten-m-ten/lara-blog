@@ -10,7 +10,9 @@
   <!-- Styles -->
   <link href="/style/style.css" rel="stylesheet">
   <link href="/style/dracula.css" rel="stylesheet">
+
   <script src="/js/highlight.pack.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
+  <script src="https://js.stripe.com/v3/"></script>
 
 </head>

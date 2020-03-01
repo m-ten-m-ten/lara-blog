@@ -2,13 +2,11 @@ import { AjaxCommon } from './AjaxCommon';
 
 export class AjaxTag extends AjaxCommon {
   constructor(){
-    super();
-    this.$ajaxWrapper = $('.ajax-wrapper__tag');
-    this.$tag_title = this.$ajaxWrapper.find("input[name=tag_title]");
-    this.$tag_name = this.$ajaxWrapper.find("input[name=tag_name]");
-    super.setParameters(this.$ajaxWrapper);
-    super.setupAjax();
-    super.deleteValidation(this.$ajaxWrapper);
+    const $ajaxWrapper = $('.ajax-wrapper__tag');
+    super($ajaxWrapper);
+    this.$ajaxWrapper = $ajaxWrapper;
+    this.$tag_title = $ajaxWrapper.find("input[name=tag_title]");
+    this.$tag_name = $ajaxWrapper.find("input[name=tag_name]");
     this.$ajaxSubmit.on("click", $.proxy(this.storeTag, this));
   }
 

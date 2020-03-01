@@ -4,13 +4,14 @@ import { App } from './action/App';
 import { Post } from './action/Post';
 import { AdminIndex } from './action/AdminIndex';
 import { AdminPostCreate } from './action/AdminPostCreate';
+import { UserPaymentCreate } from './action/UserPaymentCreate';
 
 const app = new App();
 const routes = {
   'post' : new Post(),
-  'admin-index' : new AdminIndex(),
-  'admin/post/create' : new AdminPostCreate(),
-  'admin/post/edit' : new AdminPostCreate(),
+  'adminIndex' : new AdminIndex(),
+  'adminPostCreate' : new AdminPostCreate(),
+  'userPaymentCreate' : new UserPaymentCreate(),
 };
 const route = path =>{
   if (routes.hasOwnProperty(path)) {

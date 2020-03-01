@@ -91373,6 +91373,67 @@ function (_App) {
 
 /***/ }),
 
+/***/ "./resources/js/action/UserPaymentCreate.js":
+/*!**************************************************!*\
+  !*** ./resources/js/action/UserPaymentCreate.js ***!
+  \**************************************************/
+/*! exports provided: UserPaymentCreate */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserPaymentCreate", function() { return UserPaymentCreate; });
+/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./App */ "./resources/js/action/App.js");
+/* harmony import */ var _modules_Payment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modules/Payment */ "./resources/js/modules/Payment.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
+
+function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var UserPaymentCreate =
+/*#__PURE__*/
+function (_App) {
+  _inherits(UserPaymentCreate, _App);
+
+  function UserPaymentCreate() {
+    _classCallCheck(this, UserPaymentCreate);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(UserPaymentCreate).apply(this, arguments));
+  }
+
+  _createClass(UserPaymentCreate, [{
+    key: "ready",
+    value: function ready() {
+      _get(_getPrototypeOf(UserPaymentCreate.prototype), "ready", this).call(this);
+
+      new _modules_Payment__WEBPACK_IMPORTED_MODULE_1__["Payment"]();
+    }
+  }]);
+
+  return UserPaymentCreate;
+}(_App__WEBPACK_IMPORTED_MODULE_0__["App"]);
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -91387,7 +91448,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _action_Post__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./action/Post */ "./resources/js/action/Post.js");
 /* harmony import */ var _action_AdminIndex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./action/AdminIndex */ "./resources/js/action/AdminIndex.js");
 /* harmony import */ var _action_AdminPostCreate__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./action/AdminPostCreate */ "./resources/js/action/AdminPostCreate.js");
+/* harmony import */ var _action_UserPaymentCreate__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./action/UserPaymentCreate */ "./resources/js/action/UserPaymentCreate.js");
 window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+
 
 
 
@@ -91396,9 +91459,9 @@ window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jqu
 var app = new _action_App__WEBPACK_IMPORTED_MODULE_1__["App"]();
 var routes = {
   'post': new _action_Post__WEBPACK_IMPORTED_MODULE_2__["Post"](),
-  'admin-index': new _action_AdminIndex__WEBPACK_IMPORTED_MODULE_3__["AdminIndex"](),
-  'admin/post/create': new _action_AdminPostCreate__WEBPACK_IMPORTED_MODULE_4__["AdminPostCreate"](),
-  'admin/post/edit': new _action_AdminPostCreate__WEBPACK_IMPORTED_MODULE_4__["AdminPostCreate"]()
+  'adminIndex': new _action_AdminIndex__WEBPACK_IMPORTED_MODULE_3__["AdminIndex"](),
+  'adminPostCreate': new _action_AdminPostCreate__WEBPACK_IMPORTED_MODULE_4__["AdminPostCreate"](),
+  'userPaymentCreate': new _action_UserPaymentCreate__WEBPACK_IMPORTED_MODULE_5__["UserPaymentCreate"]()
 };
 
 var route = function route(path) {
@@ -91488,15 +91551,15 @@ function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) ===
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
 function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
 
 function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 
 var AjaxCategory =
@@ -91509,17 +91572,11 @@ function (_AjaxCommon) {
 
     _classCallCheck(this, AjaxCategory);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(AjaxCategory).call(this));
-    _this.$ajaxWrapper = $('.ajax-wrapper__category');
-
-    _get(_getPrototypeOf(AjaxCategory.prototype), "setParameters", _assertThisInitialized(_this)).call(_assertThisInitialized(_this), _this.$ajaxWrapper);
-
-    _get(_getPrototypeOf(AjaxCategory.prototype), "setupAjax", _assertThisInitialized(_this)).call(_assertThisInitialized(_this));
-
-    _get(_getPrototypeOf(AjaxCategory.prototype), "deleteValidation", _assertThisInitialized(_this)).call(_assertThisInitialized(_this), _this.$ajaxWrapper);
-
-    _this.$category_title = _this.$ajaxWrapper.find("input[name=category_title]");
-    _this.$category_name = _this.$ajaxWrapper.find("input[name=category_name]");
+    var $ajaxWrapper = $('.ajax-wrapper__category');
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(AjaxCategory).call(this, $ajaxWrapper));
+    _this.$ajaxWrapper = $ajaxWrapper;
+    _this.$category_title = $ajaxWrapper.find("input[name=category_title]");
+    _this.$category_name = $ajaxWrapper.find("input[name=category_name]");
 
     _this.$ajaxSubmit.on("click", $.proxy(_this.storeCategory, _assertThisInitialized(_this)));
 
@@ -91571,8 +91628,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 var AjaxCommon =
 /*#__PURE__*/
 function () {
-  function AjaxCommon() {
+  function AjaxCommon($ajaxWrapper) {
     _classCallCheck(this, AjaxCommon);
+
+    this.setParameters($ajaxWrapper);
+    this.setupAjax();
+    this.deleteValidation($ajaxWrapper);
   }
 
   _createClass(AjaxCommon, [{
@@ -91635,15 +91696,15 @@ function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) ===
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
 function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
 
 function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 
 var AjaxTag =
@@ -91656,16 +91717,11 @@ function (_AjaxCommon) {
 
     _classCallCheck(this, AjaxTag);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(AjaxTag).call(this));
-    _this.$ajaxWrapper = $('.ajax-wrapper__tag');
-    _this.$tag_title = _this.$ajaxWrapper.find("input[name=tag_title]");
-    _this.$tag_name = _this.$ajaxWrapper.find("input[name=tag_name]");
-
-    _get(_getPrototypeOf(AjaxTag.prototype), "setParameters", _assertThisInitialized(_this)).call(_assertThisInitialized(_this), _this.$ajaxWrapper);
-
-    _get(_getPrototypeOf(AjaxTag.prototype), "setupAjax", _assertThisInitialized(_this)).call(_assertThisInitialized(_this));
-
-    _get(_getPrototypeOf(AjaxTag.prototype), "deleteValidation", _assertThisInitialized(_this)).call(_assertThisInitialized(_this), _this.$ajaxWrapper);
+    var $ajaxWrapper = $('.ajax-wrapper__tag');
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(AjaxTag).call(this, $ajaxWrapper));
+    _this.$ajaxWrapper = $ajaxWrapper;
+    _this.$tag_title = $ajaxWrapper.find("input[name=tag_title]");
+    _this.$tag_name = $ajaxWrapper.find("input[name=tag_name]");
 
     _this.$ajaxSubmit.on("click", $.proxy(_this.storeTag, _assertThisInitialized(_this)));
 
@@ -91826,6 +91882,108 @@ function () {
 
 /***/ }),
 
+/***/ "./resources/js/modules/Payment.js":
+/*!*****************************************!*\
+  !*** ./resources/js/modules/Payment.js ***!
+  \*****************************************/
+/*! exports provided: Payment */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Payment", function() { return Payment; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Payment =
+/*#__PURE__*/
+function () {
+  function Payment() {
+    _classCallCheck(this, Payment);
+
+    /* 基本設定*/
+    this.stripe = window.Stripe('pk_test_iec7brwPyq9swQpeNe9jtz9z00SFvgURSv');
+    this.elements = this.stripe.elements();
+    this.style = {
+      base: {
+        fontSize: '15px'
+      }
+    };
+    this.classes = {
+      base: 'form__input-stripe'
+    };
+    /* フォームでdivタグになっている部分をStripe Elementsを使ってフォームに変換 */
+
+    this.cardNumber = this.elements.create('cardNumber', {
+      style: this.style,
+      classes: this.classes,
+      placeholder: 'カード番号 1234 1234 1234 1234'
+    });
+    this.cardNumber.mount('#cardNumber');
+    this.cardCvc = this.elements.create('cardCvc', {
+      style: this.style,
+      classes: this.classes,
+      placeholder: 'セキュリティ番号'
+    });
+    this.cardCvc.mount('#securityCode');
+    this.cardExpiry = this.elements.create('cardExpiry', {
+      style: this.style,
+      classes: this.classes,
+      placeholder: '有効期限 MM/YY'
+    });
+    this.cardExpiry.mount('#expiration');
+    this.formPayment = $('#form_payment');
+    this.bindEvent();
+  }
+
+  _createClass(Payment, [{
+    key: "bindEvent",
+    value: function bindEvent() {
+      this.formPayment.submit(function (e) {
+        this.storeStripe(e);
+      }.bind(this));
+    }
+  }, {
+    key: "storeStripe",
+    value: function storeStripe(e) {
+      console.log('Payment.storeStripeのthis');
+      console.log(this);
+      e.preventDefault();
+      this.stripe.createToken(this.cardNumber, {
+        name: $('#cardName').val()
+      }).then(function (result) {
+        /* errorが返ってきた場合はその旨を表示 */
+        if (result.error) {
+          alert("カード登録処理時にエラーが発生しました。カード番号が正しいものかどうかをご確認いただくか、別のクレジットカードで登録してみてください。");
+        } else {
+          /* 暗号化されたコードが返ってきた場合は以下のStripeTokenHandler関数を実行。その際、引数として暗号化されたコードを渡してあげる。 */
+          this.stripeTokenHandler(result.token);
+        }
+      }.bind(this));
+    }
+  }, {
+    key: "stripeTokenHandler",
+    value: function stripeTokenHandler(token) {
+      // const hiddenInput = document.createElement('input');
+      // hiddenInput.setAttribute('type', 'hidden');
+      // hiddenInput.setAttribute('name', 'stripeToken');
+      // hiddenInput.setAttribute('value', token.id);
+      // this.formPayment.appendChild(hiddenInput);
+      console.log('Payment.stripeTokenHandlerのthis');
+      console.log(this);
+      this.formPayment.append($("<input type=\"hidden\" name=\"stripeToken\" value=\"".concat(token.id, "\">")));
+      this.formPayment.submit();
+    }
+  }]);
+
+  return Payment;
+}();
+
+/***/ }),
+
 /***/ "./resources/js/modules/confirmDelete.js":
 /*!***********************************************!*\
   !*** ./resources/js/modules/confirmDelete.js ***!
@@ -91836,14 +91994,13 @@ function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "confirmDelete", function() { return confirmDelete; });
-// confirmクラスが付与されたformのsubmit時、アラートにて実行確認
-var confirmDelete = function confirmDelete() {
+function confirmDelete() {
   $('.confirm').submit(function () {
     if (!confirm('実行してよろしいですか？')) {
       return false;
     }
   });
-};
+}
 
 /***/ }),
 
