@@ -4851,6 +4851,9 @@ p {
 ul {
   list-style: none inside; }
 
+input {
+  outline: 0; }
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -5588,19 +5591,19 @@ button {
     .form__title {
       font-size: 1.8rem; } }
 
-.form__input, .form__input-stripe, .form__input-error, .form__confirm {
+.form__input, .form__input-error, .form__input-stripe, .form__confirm {
   display: block;
   width: 100%;
   padding: 5px;
   border: 1px solid #718096;
   border-radius: 5px; }
 
+.form__input-error {
+  border: 1px solid #e53e3e; }
+
 .form__input-stripe {
   padding-top: 8px;
   padding-bottom: 8px; }
-
-.form__input-error {
-  border: 1px solid #e53e3e; }
 
 .form__confirm {
   background-color: #ebf8ff;
@@ -5709,7 +5712,7 @@ button {
 .l-user .user__main {
   margin-top: 3rem; }
 
-.user__main h2, .user__main h3, .user__main h4, .user__main ol, .user__main ul, .user__main p, .user__main table, .user__main blockquote {
+.user__main h2, .user__main h3, .user__main h4, .user__main ol, .user__main ul, .user__main p, .user__main table, .user__main blockquote, .user__main form {
   margin-top: 0;
   margin-bottom: 3rem; }
 

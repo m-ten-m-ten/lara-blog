@@ -1,5 +1,6 @@
 @extends('_includes._l-form')
 
+@section('jsAction', 'userPaymentCreate')
 @section('title', 'クレジットカード登録')
 
 @section('form-content')
@@ -12,7 +13,6 @@
     <ul>
       <li>・4242424242424242(Visa)</li>
       <li>・5555555555554444(Mastercard)</li>
-      <li>・3566002020360505(JCB)</li>
     </ul>
   <li>セキュリティコード：3桁の数字</li>
   <li>有効期限：未来の年月</li>
@@ -40,7 +40,7 @@
 
   <li class="form__row">
     <label class="form__title">カード名義</label>
-    <input type="text" name="cardName" id="cardName" class="form__input" value="" placeholder="カード名義を入力">
+    <input type="text" name="cardName" id="cardName" class="form__input-stripe" value="" placeholder="カード名義を入力">
   </li>
 </ul>
 

@@ -1,75 +1,59 @@
 export class Payment {
-    constructor(){
-        /* 基本設定*/
-        this.stripe = window.Stripe('pk_test_iec7brwPyq9swQpeNe9jtz9z00SFvgURSv');
-        this.elements = this.stripe.elements();
-        this.style = {
-                base: {
-                    fontSize: '15px'
-                }
-            };
-        this.classes = {
-                base: 'form__input-stripe'
-            };
 
+    constructor(){
+        this.stripe = window.Stripe('pk_test_iec7brwPyq9swQpeNe9jtz9z00SFvgURSv');
+        this.formPayment = $('#form_payment');
+        this.setStripeElements();
+        this.bindEvent();
+    }
+
+    setStripeElements() {
+        const $elements = this.stripe.elements();
+        const $classes = {
+                base: 'form__input-stripe',
+            };
         /* フォームでdivタグになっている部分をStripe Elementsを使ってフォームに変換 */
-        this.cardNumber = this.elements.create('cardNumber', {
-            style: this.style,
-            classes: this.classes,
+        this.cardNumber = $elements.create('cardNumber', {
+            classes: $classes,
             placeholder: 'カード番号 1234 1234 1234 1234'
         });
         this.cardNumber.mount('#cardNumber');
 
-        this.cardCvc = this.elements.create('cardCvc', {
-            style: this.style,
-            classes: this.classes,
+        const $cardCvc = $elements.create('cardCvc', {
+            classes: $classes,
             placeholder: 'セキュリティ番号'
         });
-        this.cardCvc.mount('#securityCode');
+        $cardCvc.mount('#securityCode');
 
-        this.cardExpiry = this.elements.create('cardExpiry', {
-            style: this.style,
-            classes: this.classes,
+        const $cardExpiry = $elements.create('cardExpiry', {
+            classes: $classes,
             placeholder: '有効期限 MM/YY'
         });
-        this.cardExpiry.mount('#expiration');
-
-        this.formPayment = $('#form_payment');
-        this.bindEvent();
+        $cardExpiry.mount('#expiration');
     }
 
     bindEvent() {
-        this.formPayment.submit(function(e){
-            this.storeStripe(e)
-        }.bind(this));
+        this.formPayment.find("button[type='submit']").on("click", event => {
+            this.storeStripe(event)
+        });
     }
 
-    storeStripe(e){
-        console.log('Payment.storeStripeのthis');
-        console.log(this);
-        e.preventDefault();
-        this.stripe.createToken(this.cardNumber,{name: $('#cardName').val()}).then(function(result) {
+    storeStripe(event){
+        event.preventDefault();
 
-            /* errorが返ってきた場合はその旨を表示 */
+        // $elementsのインスタンスをトークン化。引数として渡すのはelementsのうちの一つで良い。
+        // 第２引数はoptionのdataとして、カード名義を送信。stripe公式でもカード名義の送信はrecommendしてる。
+        this.stripe.createToken(this.cardNumber, {name: $('#cardName').val()}).then( result => {
+
             if (result.error) {
+                /* errorが返ってきた場合はその旨を表示 */
                 alert("カード登録処理時にエラーが発生しました。カード番号が正しいものかどうかをご確認いただくか、別のクレジットカードで登録してみてください。");
             } else {
-
-            /* 暗号化されたコードが返ってきた場合は以下のStripeTokenHandler関数を実行。その際、引数として暗号化されたコードを渡してあげる。 */
-                this.stripeTokenHandler(result.token);
+                /* エラーが無ければ、戻り値のトークンを"stripeToken"の値にセットしてsubmit処理。 */
+                this.formPayment.append($(`<input type="hidden" name="stripeToken" value="${result.token.id}">`));
+                this.formPayment.submit();
             }
-        }.bind(this));
+        });
     }
 
-    stripeTokenHandler(token) {
-        // const hiddenInput = document.createElement('input');
-        // hiddenInput.setAttribute('type', 'hidden');
-        // hiddenInput.setAttribute('name', 'stripeToken');
-        // hiddenInput.setAttribute('value', token.id);
-        // this.formPayment.appendChild(hiddenInput);
-        console.log('Payment.stripeTokenHandlerのthis');
-        console.log(this);
-        this.formPayment.append($(`<input type="hidden" name="stripeToken" value="${token.id}">`));
-        this.formPayment.submit();
-    }
 }
