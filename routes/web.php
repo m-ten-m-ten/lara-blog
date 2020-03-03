@@ -50,8 +50,6 @@ Route::prefix('admin')->namespace('Admin')->as('admin.')->group(function (): voi
         Route::get('image/create', 'ImageController@create')->name('image.create');
         Route::post('image/create', 'ImageController@store');
         Route::delete('image/delete', 'ImageController@delete');
-        Route::get('image/edit/{image}', 'ImageController@edit')->name('image.edit');
-        Route::post('image/edit/{image}', 'ImageController@update');
 
         // カテゴリー管理
         Route::get('category', 'CategoryController@index')->name('category.index');

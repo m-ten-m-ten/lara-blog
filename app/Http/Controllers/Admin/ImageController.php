@@ -54,33 +54,7 @@ class ImageController extends Controller
     public function store(ImageStoreRequest $request, Image $image)
     {
         $image->fill($request->validated())->save();
-        return redirect(route('admin.image.edit', $image))->with('status', '登録が完了しました。');
-    }
-
-    /**
-     * 画像編集画面へのアクセス
-     *
-     * @param Image $image 画像
-     *
-     * @return Response 画像編集画面へ遷移
-     */
-    public function edit(Image $image)
-    {
-        return view('admin.image.create', \compact('image'));
-    }
-
-    /**
-     * 画像編集内容のレコード更新処理
-     *
-     * @param ImageStoreRequest $request 画像フォームリクエスト
-     * @param Image $image 画像
-     *
-     * @return Response 画像編集画面へリダイレクト
-     */
-    public function update(ImageStoreRequest $request, Image $image)
-    {
-        $image->fill($request->validated())->save();
-        return redirect(route('admin.image.edit', $image))->with('status', '変更が完了しました。');
+        return redirect(route('admin.image.index'))->with('status', '登録が完了しました。');
     }
 
     /**

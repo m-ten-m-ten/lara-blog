@@ -26,8 +26,17 @@ class ImageStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'image_file' => ['filled', 'file', 'mimes:jpeg,png'],
-            'image_name' => ['required', Rule::unique('images')->ignore($this->image), 'max:50', 'regex:/^[-_a-z0-9]{0,50}$/'],
+            'image_file' => [
+                'filled',
+                'file',
+                'mimes:jpeg,png',
+                function ($attribute, $value, $fail) {
+                    $image_name = \rtrim($value->getClientOriginalName(), '.' . $value->getClientOriginalExtension());
+                    if (preg_match('/^[-_a-z0-9]{0,50}$/', $image_name) === 0) {
+                        return $fail('ファイル名は「数字、英字(小文字)、-（ハイフン）、_（アンダーバー）」(50字以内)で入力して下さい。');
+                    }
+                }
+            ]
         ];
     }
 
@@ -35,7 +44,7 @@ class ImageStoreRequest extends FormRequest
     {
         return [
             'image_file' => '画像ファイル',
-            'image_name' => 'ファイル名',
+            // 'image_name' => 'ファイル名',
         ];
     }
 
@@ -44,25 +53,11 @@ class ImageStoreRequest extends FormRequest
         return [
             'image_file.filled'   => '画像ファイルを選択して下さい。',
             'image_file.file'     => '画像ファイルのアップロードに失敗しました。再度ご登録下さい。',
-            'image_name.regex'    => 'ファイル名は「数字、英字(小文字)、-（ハイフン）、_（アンダーバー）」で入力して下さい。',
-            'image_name.unique'   => 'すでに使用されているファイル名です。',
         ];
     }
 
     /**
-     * ファイル名(image_name)の未入力時、画像ファイルのファイル名を、FormRequestのインスタンスとRequestのインスタンスに入力。
-     */
-    public function prepareForValidation(): void
-    {
-        if (isset($this['image_file']) && empty($this['image_name'])) {
-            $image_name = \rtrim($this->image_file->getClientOriginalName(), '.' . $this->image_file->getClientOriginalExtension());
-            $this['image_name'] = $image_name;
-            request()->merge(\compact('image_name'));
-        }
-    }
-
-    /**
-     * validated()をOverride。画像ファイルのs3へのアップロード、ファイル名変更処理まで行う。
+     * validated()をOverride。画像ファイルのs3へのアップロード。
      *
      * @return object バリデータ
      */
@@ -70,18 +65,9 @@ class ImageStoreRequest extends FormRequest
     {
         $validatedData = parent::validated();
 
-        if (isset($validatedData['image_file'])) {
-            $validatedData['image_extension'] = $validatedData['image_file']->getClientOriginalExtension();
-            $validatedData['file_name'] = $validatedData['image_name'] . '.' . $validatedData['image_extension'];
-            Storage::disk('s3')->putFileAs('/img', $validatedData['image_file'], $validatedData['file_name'], 'public');
-            $validatedData['path'] = Storage::disk('s3')->url('img/' . $validatedData['file_name']);
-        } else {
-            $old_file = $this->image->file_name;
-            $new_file = $validatedData['image_name'] . '.' . $this->image->image_extension;
-            Storage::disk('s3')->move('img/' . $old_file, 'img/' . $new_file);
-            $validatedData['path'] = Storage::disk('s3')->url('img/' . $new_file);
-            $validatedData['file_name'] = $new_file;
-        }
+        $validatedData['file_name'] = $validatedData['image_file']->getClientOriginalName();
+        Storage::disk('s3')->putFileAs('/img', $validatedData['image_file'], $validatedData['file_name'], 'public');
+        $validatedData['path'] = Storage::disk('s3')->url('img/' . $validatedData['file_name']);
 
         return $validatedData;
     }

@@ -13,8 +13,6 @@ class CreateImagesTable extends Migration
     {
         Schema::create('images', function (Blueprint $table): void {
             $table->bigIncrements('id');
-            $table->string('image_name')->unique();
-            $table->string('image_extension');
             $table->string('file_name')->unique();
             $table->string('path')->unique();
             $table->timestamps();
