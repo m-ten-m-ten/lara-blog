@@ -9,18 +9,16 @@
 
 @section('admin__content')
 
+@include('_includes._error')
+
 <form class="form" method="POST" enctype="multipart/form-data">
   @csrf
   <ul>
     <li class="form__row">
-{{--         <label class="form__title mb10">画像ファイル 複数可（jpeg / png）※ファイル名は「数字 / 英字(小文字) / - / _ 」50文字以内</label>
-        <input name="image_files[]" type="file" required multiple> --}}
-      <label class="form__title mb10">画像ファイル （jpeg / png）※ファイル名は「数字 / 英字(小文字) / - / _ 」50文字以内</label>
-      <input name="image_file" type="file" required>
-      @error('image_file')
-        <p class="error-text">{{ $message }}</p>
-      @enderror
-   </li>
+        <label class="form__title mb10">画像ファイル 複数可（jpeg / png）※ファイル名は「数字 / 英字(小文字) / - / _ 」50文字以内</label>
+        <input name="image_files[]" type="file" multiple>
+{{--       <label class="form__title mb10">画像ファイル （jpeg / png）※ファイル名は「数字 / 英字(小文字) / - / _ 」50文字以内</label>
+      <input name="image_file" type="file" required> --}}
   </ul>
 
   <button type="submit" class="button">登録</button>

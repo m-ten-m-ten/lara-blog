@@ -47,13 +47,21 @@ class ImageController extends Controller
      * 新規画像のレコード登録処理
      *
      * @param ImageStoreRequest $request 画像のFormRequest
-     * @param Image $image 画像オブジェクト
      *
      * @return Response 画像編集画面へリダイレクト
      */
-    public function store(ImageStoreRequest $request, Image $image)
+    public function store(ImageStoreRequest $request)
     {
-        $image->fill($request->validated())->save();
+        $image_files = $request->validated()['image_files'];
+
+        foreach ($image_files as $index => $image_file) {
+            $image = new Image();
+            $file_name = $image_file->getClientOriginalName();
+            $image->file_name = $file_name;
+            Storage::disk('s3')->putFileAs('/img', $image_file, $file_name, 'public');
+            $image->path = Storage::disk('s3')->url('img/' . $file_name);
+            $image->save();
+        }
         return redirect(route('admin.image.index'))->with('status', '登録が完了しました。');
     }
 
