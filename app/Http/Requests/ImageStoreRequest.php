@@ -30,13 +30,14 @@ class ImageStoreRequest extends FormRequest
                 'image',
                 'mimes:jpeg,png',
                 function ($attribute, $value, $fail) {
-                    $image_name = \rtrim($value->getClientOriginalName(), '.' . $value->getClientOriginalExtension());
+                    $file_name = $value->getClientOriginalName();
+                    $image_name = \rtrim($file_name, '.' . $value->getClientOriginalExtension());
 
                     if (\preg_match('/^[-_a-z0-9]{0,50}$/', $image_name) === 0) {
                         return $fail('ファイル名は「数字、英字(小文字)、-（ハイフン）、_（アンダーバー）」(50字以内)で入力して下さい。');
                     }
 
-                    if (DB::table('images')->where('file_name', $value->getClientOriginalName())->exists()) {
+                    if (DB::table('images')->where('file_name', $file_name)->exists()) {
                         return $fail('ファイル名が既に登録されています。');
                     }
                 },
