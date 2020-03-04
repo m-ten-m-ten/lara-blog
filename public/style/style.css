@@ -5491,6 +5491,9 @@ button {
   max-width: 100%;
   height: auto; }
 
+.article__body img.shadow {
+  box-shadow: 3px 3px 15px 0 rgba(0, 0, 0, 0.25); }
+
 .article__body p {
   font-size: 1.7rem;
   line-height: 2.1; }
