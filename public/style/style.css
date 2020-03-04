@@ -5661,7 +5661,12 @@ button {
 .admin__index-table th,
 .admin__index-table td {
   padding-top: .5rem;
-  padding-bottom: .5rem; }
+  padding-bottom: .5rem;
+  vertical-align: middle; }
+  .admin__index-table th img,
+  .admin__index-table td img {
+    display: inline-block;
+    vertical-align: middle; }
 
 .admin__header, .user__header {
   display: flex;
