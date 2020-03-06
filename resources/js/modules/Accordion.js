@@ -12,10 +12,10 @@ export class Accordion {
 
   slideMenu(){
     if (this.$accordionBody.css("display") === "none") {
-      this.$accordionBody.slideDown(this.SLIDE_TIME);
+      this.$accordionBody.slideDown();
       this.$accordionTrigger.addClass('is-open');
     } else {
-      this.$accordionBody.slideUp(this.SLIDE_TIME);
+      this.$accordionBody.slideUp();
       this.$accordionTrigger.removeClass('is-open');
     }
   }

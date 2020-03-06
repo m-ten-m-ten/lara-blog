@@ -1,5 +1,4 @@
 window.$ = window.jQuery = require('jquery');
-import '@firstandthird/toc';
 import { App } from './action/App';
 import { Post } from './action/Post';
 import { AdminIndex } from './action/AdminIndex';

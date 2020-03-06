@@ -5823,6 +5823,8 @@ button {
       font-size: 1.5rem; }
   .toc .toc-h3 {
     margin-left: 1.5rem; }
+  .toc .toc-h4 {
+    margin-left: 2.5rem; }
 
 .pagination ul {
   display: flex;
