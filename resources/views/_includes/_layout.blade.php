@@ -11,6 +11,11 @@
     </div>
 
     @include('_includes._l-footer')
+
+    <div class="backToTop">
+      <i class="fas fa-arrow-up"></i>
+    </div>
+
   </div>
 
   <script src={{ asset('js/app.js')}}></script>
