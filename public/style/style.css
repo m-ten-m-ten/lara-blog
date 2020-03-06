@@ -4975,12 +4975,6 @@ button {
   .overTablet {
     display: none; } }
 
-.fa,
-.fas,
-.article__body blockquote:before,
-.article__body blockquote:after {
-  margin-right: 5px; }
-
 .text-normal {
   font-size: 1.6rem; }
 
@@ -5790,7 +5784,7 @@ button {
   .toc .toc__body {
     padding: 1rem; }
   .toc .toc__body {
-    display: none; }
+    display: block; }
   .toc .toc__title {
     display: flex;
     justify-content: center;
@@ -5970,5 +5964,28 @@ button {
 
 .ajax-submit {
   cursor: pointer; }
+
+.backToTop {
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition-property: all;
+  display: flex;
+  position: fixed;
+  bottom: -45px;
+  right: 2rem;
+  width: 45px;
+  height: 45px;
+  justify-content: center;
+  align-items: center;
+  color: #999fa0;
+  background-color: #fff;
+  border-radius: 45px;
+  cursor: pointer;
+  box-shadow: 3px 3px 15px 0 rgba(0, 0, 0, 0.25); }
+  .backToTop.backToTop__visible {
+    bottom: 2rem; }
+    .backToTop.backToTop__visible:hover {
+      color: #2a292a;
+      bottom: 3rem; }
 
 /*# sourceMappingURL=style.css.map */

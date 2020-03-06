@@ -92310,11 +92310,13 @@ function (_App) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "App", function() { return App; });
 /* harmony import */ var _modules_Accordion_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../modules/Accordion.js */ "./resources/js/modules/Accordion.js");
+/* harmony import */ var _modules_backToTop_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modules/backToTop.js */ "./resources/js/modules/backToTop.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 
 
 var App =
@@ -92327,7 +92329,8 @@ function () {
   _createClass(App, [{
     key: "ready",
     value: function ready() {
-      // スライドメニューの数だけインスタンス生成
+      Object(_modules_backToTop_js__WEBPACK_IMPORTED_MODULE_1__["backToTop"])(); // アコーディオンメニューの数だけインスタンス生成
+
       $('.accordion-wrapper').each(function () {
         new _modules_Accordion_js__WEBPACK_IMPORTED_MODULE_0__["Accordion"]($(this));
       });
@@ -92395,9 +92398,9 @@ function (_App) {
     value: function ready() {
       _get(_getPrototypeOf(Post.prototype), "ready", this).call(this);
 
-      Object(_modules_fixSidebar__WEBPACK_IMPORTED_MODULE_1__["fixSidebar"])();
       Object(_modules_highlight__WEBPACK_IMPORTED_MODULE_2__["highlight"])();
       new _modules_Toc__WEBPACK_IMPORTED_MODULE_3__["Toc"]('.article', '.toc__body');
+      Object(_modules_fixSidebar__WEBPACK_IMPORTED_MODULE_1__["fixSidebar"])();
     }
   }]);
 
@@ -93085,6 +93088,42 @@ function () {
 
 /***/ }),
 
+/***/ "./resources/js/modules/backToTop.js":
+/*!*******************************************!*\
+  !*** ./resources/js/modules/backToTop.js ***!
+  \*******************************************/
+/*! exports provided: backToTop */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "backToTop", function() { return backToTop; });
+/**
+ * backToTopクラス要素の制御
+ */
+function backToTop() {
+  var backToTop = $('.backToTop'); // backToTopクラス要素をクリックすると、ページトップへスクロール。
+
+  backToTop.click(function () {
+    $('html, body').animate({
+      scrollTop: 0
+    }, 500);
+  }); // backToTopクラス要素の出現制御
+
+  $(window).on('scroll', function () {
+    var triggerPoint = 100;
+    var scrollTop = $(window).scrollTop();
+
+    if (scrollTop <= triggerPoint) {
+      backToTop.removeClass('backToTop__visible');
+    } else {
+      backToTop.addClass('backToTop__visible');
+    }
+  });
+}
+
+/***/ }),
+
 /***/ "./resources/js/modules/confirmDelete.js":
 /*!***********************************************!*\
   !*** ./resources/js/modules/confirmDelete.js ***!
@@ -93115,6 +93154,9 @@ function confirmDelete() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fixSidebar", function() { return fixSidebar; });
+/**
+ * サイドバーで追従要素(#sidebar__fixed)の制御
+ */
 function fixSidebar() {
   var sidebar = $('#sidebar'),
       sticked = $('#sidebar__fixed'),
@@ -93135,7 +93177,7 @@ function fixSidebar() {
     } else if (scrollTop >= contentBottom - stickedHeight) {
       sticked.css({
         'position': 'absolute',
-        'top': contentBottom - stickedHeight - sidebarTop,
+        'top': contentBottom - stickedHeight,
         'width': sidebar.width()
       });
     } else {
