@@ -73,12 +73,12 @@
 
   {{-- サイドバー --}}
   <div id="sidebar" class="l-show__side">
-    <div id="sidebar__fixed">
-      {{-- Table of contents --}}
-      <div class="m-show-side-section">
-        @include('_includes._toc')
-      </div>
+    {{-- Table of contents --}}
+    <div class="m-show-side-section">
+      @include('_includes._toc')
+    </div>
 
+    <div id="sidebar__fixed">
       {{-- 最新記事 --}}
       <div class="m-show-side-section">
         <h3 class="m-show-side-section-title">最新記事</h3>
