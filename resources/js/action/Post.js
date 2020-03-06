@@ -6,8 +6,8 @@ import { Toc } from '../modules/Toc';
 export class Post extends App {
   ready() {
     super.ready();
-    fixSidebar();
     highlight();
     new Toc('.article', '.toc__body');
+    fixSidebar();
   }
 }
