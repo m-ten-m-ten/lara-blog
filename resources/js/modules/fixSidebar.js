@@ -1,3 +1,6 @@
+/**
+ * サイドバーで追従要素(#sidebar__fixed)の制御
+ */
 export function fixSidebar() {
   const sidebar = $('#sidebar'),
         sticked = $('#sidebar__fixed'),
@@ -19,7 +22,7 @@ export function fixSidebar() {
       } else if (scrollTop >= contentBottom - stickedHeight){
           sticked.css({
               'position': 'absolute',
-              'top': contentBottom - stickedHeight - sidebarTop,
+              'top': contentBottom - stickedHeight,
               'width': sidebar.width()
           });
       } else {
