@@ -5455,7 +5455,7 @@ button {
   letter-spacing: 1px; }
 
 .article__title {
-  line-height: 1; }
+  line-height: 1.6; }
   @media only screen and (max-width: 768px) {
     .article__title {
       font-size: 2.4rem; } }
@@ -5791,7 +5791,7 @@ button {
     align-items: center;
     font-size: 2rem;
     cursor: pointer; }
-    .toc .toc__title:after {
+    .toc .toc__title.accordion-trigger:after {
       content: "open";
       font-weight: 600;
       display: inline-block;
@@ -5801,7 +5801,7 @@ button {
       border-radius: 1.4rem;
       color: #5181d0;
       font-size: 1.5rem; }
-    .toc .toc__title.is-open:after {
+    .toc .toc__title.accordion-trigger.is-open:after {
       content: "close"; }
   .toc li {
     margin-bottom: 1rem; }

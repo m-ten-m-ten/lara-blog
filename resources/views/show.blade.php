@@ -41,7 +41,10 @@
         @endforeach
       </div>
 
-      @include('_includes._toc')
+      <div class="toc accordion-wrapper">
+        <div class="toc__title accordion-trigger is-open">Table of Contents</div>
+        <div class="toc__body accordion-body"></div>
+      </div>
 
       {{-- 有料会員用の記事は管理者及び有料会員のみ本文を表示。
         無料会員には支払い情報ページリンク、非会員には会員登録ページリンクを表示。 --}}
@@ -75,7 +78,10 @@
   <div id="sidebar" class="l-show__side">
     {{-- Table of contents --}}
     <div class="m-show-side-section">
-      @include('_includes._toc')
+      <div class="toc">
+        <div class="toc__title">Table of Contents</div>
+        <div class="toc__body"></div>
+      </div>
     </div>
 
     <div id="sidebar__fixed">
