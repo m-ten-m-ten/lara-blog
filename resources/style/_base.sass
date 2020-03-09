@@ -82,6 +82,12 @@ table
   td
     padding: 5px 10px
 
+hr
+  height: 0px
+  margin: 1rem 0 2rem 0
+  border: none
+  border-top: 1px solid $borderColor-gray
+
 small
   line-height: 1.0
 
@@ -185,6 +191,10 @@ button
 
 .overTablet
   +mediaquery-tablet
+    display: none
+
+.overPC
+  +mediaquery-pc
     display: none
 
 

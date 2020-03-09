@@ -30,16 +30,19 @@
 
       <h1 class="article__title">{{ $post->post_title }}</h1>
 
-      <div class="article__attr">
+      @if ($post->category || !empty($post->tags))
+        <div class="article__attr">
+          @if ($post->category)
+            <a href="/category/{{ $post->category->id }}">{{ $post->category->category_title }}</a>
+          @endif
 
-        @if ($post->category)
-          <a href="/category/{{ $post->category->id }}">{{ $post->category->category_title }}</a>
-        @endif
+          @foreach ($post->tags as $tag)
+            <a href="/tag/{{ $tag->id }}">{{ $tag->tag_title }}</a>
+          @endforeach
+        </div>
+      @endif
 
-        @foreach ($post->tags as $tag)
-          <a href="/tag/{{ $tag->id }}">{{ $tag->tag_title }}</a>
-        @endforeach
-      </div>
+      <hr class="overPC">
 
       <div class="toc accordion-wrapper">
         <div class="toc__title accordion-trigger is-open">Table of Contents</div>

@@ -4870,6 +4870,12 @@ table {
   table td {
     padding: 5px 10px; }
 
+hr {
+  height: 0px;
+  margin: 1rem 0 2rem 0;
+  border: none;
+  border-top: 1px solid #cbd5e0; }
+
 small {
   line-height: 1.0; }
 
@@ -4973,6 +4979,10 @@ button {
 
 @media only screen and (max-width: 768px) {
   .overTablet {
+    display: none; } }
+
+@media only screen and (max-width: 1130px) {
+  .overPC {
     display: none; } }
 
 .text-normal {
