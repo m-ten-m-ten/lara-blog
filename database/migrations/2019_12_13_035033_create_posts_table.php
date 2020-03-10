@@ -14,8 +14,8 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table): void {
             $table->bigIncrements('id');
             $table->tinyInteger('for_subscriber')->default(1)->comment('0:一般公開、1:有料会員向け');
-            $table->string('eye_catch')->default('/eyeCatch_default.jpg'); //アイキャッチ画像URL
-            $table->string('thumbnail')->default('/thumbnail_default.jpg'); //アイキャッチ画像のサムネイルURL
+            $table->string('eye_catch')->default('/img/eyeCatch_default.jpg'); //アイキャッチ画像URL
+            $table->string('thumbnail')->default('/img/thumbnail_default.jpg'); //アイキャッチ画像のサムネイルURL
             $table->text('post_title'); //タイトル
             $table->longText('post_content')->nullable(); //本文
             $table->text('post_excerpt')->nullable(); //抜粋

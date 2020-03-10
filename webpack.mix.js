@@ -17,7 +17,8 @@ mix
 
 mix
   .copy('node_modules/tinymce/skins', 'public/js/skins')
-  .copy('resources/style/webfonts', 'public/style/webfonts');
+  // .copy('resources/style/webfonts', 'public/style/webfonts')
+  .copy('resources/img/', 'public/img/');
 
 mix
   .browserSync({
