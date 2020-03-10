@@ -10,10 +10,15 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js/app.js')
-    .copy('node_modules/tinymce/skins', 'public/js/skins');
+mix
+  .js('resources/js/app.js', 'public/js/')
+  .sass('resources/style/style.sass', 'public/style/')
+  .sourceMaps(true, 'source-map');
 
-mix.browserSync({
+mix.copy('node_modules/tinymce/skins', 'public/js/skins');
+
+mix
+  .browserSync({
     host: 'localhost',
     proxy: {
         target: "localhost",
@@ -35,5 +40,5 @@ mix.browserSync({
     },
     open: "external",
     reloadOnRestart: true
-});
-
+  })
+  .disableSuccessNotifications();
