@@ -15,7 +15,9 @@ mix
   .sass('resources/style/style.sass', 'public/style/')
   .sourceMaps(true, 'source-map');
 
-mix.copy('node_modules/tinymce/skins', 'public/js/skins');
+mix
+  .copy('node_modules/tinymce/skins', 'public/js/skins')
+  .copy('resources/style/webfonts', 'public/style/webfonts');
 
 mix
   .browserSync({
