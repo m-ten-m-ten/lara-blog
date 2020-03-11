@@ -1,10 +1,10 @@
 import { Accordion } from '../modules/Accordion.js';
-import { backToTop } from '../modules/backToTop.js';
+import { backTop } from '../modules/backTop.js';
 
 export class App {
   ready() {
 
-  backToTop();
+  backTop();
 
   // アコーディオンメニューの数だけインスタンス生成
   $('.accordion-wrapper').each(function() {

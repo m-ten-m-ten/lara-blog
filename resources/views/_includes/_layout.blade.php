@@ -12,7 +12,7 @@
 
     @include('_includes._l-footer')
 
-    <div class="backToTop">
+    <div class="backTop">
       <i class="fas fa-arrow-up"></i>
     </div>
 

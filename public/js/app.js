@@ -92310,7 +92310,7 @@ function (_App) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "App", function() { return App; });
 /* harmony import */ var _modules_Accordion_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../modules/Accordion.js */ "./resources/js/modules/Accordion.js");
-/* harmony import */ var _modules_backToTop_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modules/backToTop.js */ "./resources/js/modules/backToTop.js");
+/* harmony import */ var _modules_backTop_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modules/backTop.js */ "./resources/js/modules/backTop.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -92329,7 +92329,7 @@ function () {
   _createClass(App, [{
     key: "ready",
     value: function ready() {
-      Object(_modules_backToTop_js__WEBPACK_IMPORTED_MODULE_1__["backToTop"])(); // アコーディオンメニューの数だけインスタンス生成
+      Object(_modules_backTop_js__WEBPACK_IMPORTED_MODULE_1__["backTop"])(); // アコーディオンメニューの数だけインスタンス生成
 
       $('.accordion-wrapper').each(function () {
         new _modules_Accordion_js__WEBPACK_IMPORTED_MODULE_0__["Accordion"]($(this));
@@ -93088,36 +93088,36 @@ function () {
 
 /***/ }),
 
-/***/ "./resources/js/modules/backToTop.js":
-/*!*******************************************!*\
-  !*** ./resources/js/modules/backToTop.js ***!
-  \*******************************************/
-/*! exports provided: backToTop */
+/***/ "./resources/js/modules/backTop.js":
+/*!*****************************************!*\
+  !*** ./resources/js/modules/backTop.js ***!
+  \*****************************************/
+/*! exports provided: backTop */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "backToTop", function() { return backToTop; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "backTop", function() { return backTop; });
 /**
- * backToTopクラス要素の制御
+ * backTopクラス要素の制御
  */
-function backToTop() {
-  var backToTop = $('.backToTop'); // backToTopクラス要素をクリックすると、ページトップへスクロール。
+function backTop() {
+  var backTop = $('.backTop'); // backTopクラス要素をクリックすると、ページトップへスクロール。
 
-  backToTop.click(function () {
+  backTop.click(function () {
     $('html, body').animate({
       scrollTop: 0
     }, 500);
-  }); // backToTopクラス要素の出現制御
+  }); // backTopクラス要素の出現制御
 
   $(window).on('scroll', function () {
     var triggerPoint = 100;
     var scrollTop = $(window).scrollTop();
 
     if (scrollTop <= triggerPoint) {
-      backToTop.removeClass('backToTop__visible');
+      backTop.removeClass('backTop__visible');
     } else {
-      backToTop.addClass('backToTop__visible');
+      backTop.addClass('backTop__visible');
     }
   });
 }
