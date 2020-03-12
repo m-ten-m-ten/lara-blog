@@ -70,6 +70,6 @@ class SignupController extends Controller
 
         session()->forget($this->sessionKey);
 
-        return redirect(route('user.top'))->with('status', 'ユーザー登録が完了しました。');
+        return redirect(route('user.index'))->with('status', 'ユーザー登録が完了しました。');
     }
 }

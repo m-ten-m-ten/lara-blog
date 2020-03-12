@@ -22,7 +22,7 @@ Route::prefix('admin')->namespace('Admin')->as('admin.')->group(function (): voi
 
     Route::middleware('auth:admin')->group(function (): void {
         Route::post('logout', 'LoginController@logout')->name('logout');
-        Route::get('', 'IndexController@index')->name('top');
+        Route::get('', 'IndexController@index')->name('index');
 
         // メッセージ管理
         Route::get('message', 'MessageController@index')->name('message.index');
@@ -88,7 +88,7 @@ Route::prefix('user')->namespace('User')->as('user.')->group(function (): void {
     });
 
     Route::middleware('auth:user')->group(function (): void {
-        Route::get('', 'IndexController@index')->name('top');
+        Route::get('', 'IndexController@index')->name('index');
         Route::post('logout', 'LoginController@logout')->name('logout');
 
         // 登録情報変更
@@ -99,7 +99,7 @@ Route::prefix('user')->namespace('User')->as('user.')->group(function (): void {
         Route::get('message', 'MessageController@index')->name('message.index');
 
         // お支払い情報
-        Route::get('payment', 'PaymentController@index')->name('payment.top');
+        Route::get('payment', 'PaymentController@index')->name('payment.index');
         Route::get('payment/create', 'PaymentController@create')->name('payment.create');
         Route::post('payment/create', 'PaymentController@store');
         Route::delete('payment/delete', 'PaymentController@delete');

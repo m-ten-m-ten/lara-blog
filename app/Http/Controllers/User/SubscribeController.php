@@ -26,13 +26,13 @@ class SubscribeController extends Controller
             $subscriptionError = [
                 'subscriptionError' => '有料会員登録に失敗しました。時間をあけて再度お試し下さい。',
             ];
-            return redirect(route('user.payment.top'))->withErrors($subscriptionError);
+            return redirect(route('user.payment.index'))->withErrors($subscriptionError);
         }
         $user->subscription_id = $subscription->id;
         $user->status = 1;
         $user->save();
 
-        return redirect(route('user.payment.top'))->with('status', '定期支払の登録及び有料会員登録が完了致しました。');
+        return redirect(route('user.payment.index'))->with('status', '定期支払の登録及び有料会員登録が完了致しました。');
     }
 
     /**
@@ -52,13 +52,13 @@ class SubscribeController extends Controller
             $subscriptionError = [
                 'subscriptionError' => '有料会員登録の解除に失敗しました。時間をあけて再度お試し下さい。',
             ];
-            return redirect(route('user.payment.top'))->withErrors($subscriptionError);
+            return redirect(route('user.payment.index'))->withErrors($subscriptionError);
         }
 
         $user->subscription_id = null;
         $user->status = 0;
         $user->save();
 
-        return redirect(route('user.payment.top'))->with('status', '定期支払の登録及び有料会員登録が完了致しました。');
+        return redirect(route('user.payment.index'))->with('status', '定期支払の登録及び有料会員登録が完了致しました。');
     }
 }

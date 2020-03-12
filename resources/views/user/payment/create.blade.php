@@ -48,7 +48,7 @@
 
 </form>
 
-<a class="text-link" href="{{route('user.payment.top')}}">お支払い情報ページへ</a>
+<a class="text-link" href="{{route('user.payment.index')}}">お支払い情報ページへ</a>
 
 </section>
 

@@ -61,7 +61,7 @@
 
           {{-- 無料会員には支払い情報ページリンクを表示 --}}
           @else
-            <p>この記事は有料会員様向けです。<a class="text-link" href="{{ route('user.payment.top')}}">こちら</a>からご登録下さい。</p>
+            <p>この記事は有料会員様向けです。<a class="text-link" href="{{ route('user.payment.index')}}">こちら</a>からご登録下さい。</p>
           @endif
 
         {{-- 非会員には会員登録ページへのリンクを表示 --}}

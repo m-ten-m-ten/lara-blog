@@ -44,7 +44,7 @@
 
         @auth('user')
           <li class="navbar__menu-item">
-            <a class="navbar__menu-link" href="{{ route('user.top') }}">
+            <a class="navbar__menu-link" href="{{ route('user.index') }}">
               {{ auth('user')->user()->name }}さんページ
             </a>
           </li>
@@ -70,7 +70,7 @@
 
         @auth('admin')
           <li class="navbar__menu-item">
-            <a class="navbar__menu-link" href="{{ route('admin.top') }}">管理者トップ</a>
+            <a class="navbar__menu-link" href="{{ route('admin.index') }}">管理者トップ</a>
           </li>
         @endauth
 

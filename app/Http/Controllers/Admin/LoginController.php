@@ -15,7 +15,7 @@ class LoginController extends Controller
      */
     public function redirectTo()
     {
-        return route('admin.top');
+        return route('admin.index');
     }
 
     /**

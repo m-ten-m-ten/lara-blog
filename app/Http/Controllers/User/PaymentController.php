@@ -44,7 +44,7 @@ class PaymentController extends Controller
 
         if (!$token) {
             $errors = 'エラーが発生しました。通信状況の良い場所で再度ご登録をしていただくか、しばらく立ってから再度登録を行ってみてください。';
-            return redirect(route('user.payment.top'));
+            return redirect(route('user.payment.index'));
         }
 
         try {
@@ -56,7 +56,7 @@ class PaymentController extends Controller
             return redirect(route('user.payment.create'))->withErrors($cardError);
         }
 
-        return redirect(route('user.payment.top'))->with('status', 'カード情報の登録が完了しました。');
+        return redirect(route('user.payment.index'))->with('status', 'カード情報の登録が完了しました。');
     }
 
     /**
@@ -68,6 +68,6 @@ class PaymentController extends Controller
     {
         $user = $request->user();
         Payment::deleteCard($user);
-        return redirect(route('user.payment.top'))->with('status', 'カード情報の削除が完了しました。');
+        return redirect(route('user.payment.index'))->with('status', 'カード情報の削除が完了しました。');
     }
 }
