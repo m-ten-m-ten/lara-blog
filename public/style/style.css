@@ -7795,7 +7795,7 @@ button {
 }
 
 .toc .toc__body {
-  display: block;
+  display: none;
 }
 
 .toc .toc__title {
