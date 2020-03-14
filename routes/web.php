@@ -87,8 +87,8 @@ Route::prefix('user')->namespace('User')->as('user.')->group(function (): void {
         Route::post('login', 'LoginController@login');
         Route::get('forgot', 'ForgotPasswordController@showLinkRequestForm')->name('forgot');
         Route::post('forgot', 'ForgotPasswordController@sendResetLinkEmail');
-        Route::get('reset', 'resetsPasswordController@showResetForm')->name('reset');
-        Route::post('reset', 'resetsPasswordController@reset');
+        Route::post('reset', 'ResetsPasswordController@reset')->name('update');
+        Route::get('reset/{token}', 'ResetsPasswordController@showResetForm')->name('reset');
     });
 
     Route::middleware('auth:user')->group(function (): void {

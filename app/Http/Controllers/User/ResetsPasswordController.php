@@ -4,7 +4,9 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 
 class ResetsPasswordController extends Controller
@@ -31,7 +33,7 @@ class ResetsPasswordController extends Controller
         return Auth::guard('user');
     }
 
-    protected $redirectTo = route('user.login');
+    protected $redirectTo = '/user/login';
 
         /**
      * Display the password reset view for the given token.
