@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Password;
-use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Password;
 
 class ForgotPasswordController extends Controller
 {
@@ -23,18 +22,6 @@ class ForgotPasswordController extends Controller
         return view('user.forgot');
     }
 
-     /**
-     * Get the response for a successful password reset link.
-     * sendResetLinkResponseのオーバーライド。
-     * @param  \Illuminate\Http\Request  $request
-     * @param  string  $response
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
-     */
-    protected function sendResetLinkResponse(Request $request, $response)
-    {
-        return redirect()->route('user.login')->with('status', trans($response));
-    }
-
     /**
      *パスワードリセットに使われるブローカの取得
      *
@@ -43,5 +30,18 @@ class ForgotPasswordController extends Controller
     public function broker()
     {
         return Password::broker('users');
+    }
+
+    /**
+     * Get the response for a successful password reset link.
+     * sendResetLinkResponseのオーバーライド。
+     *
+     * @param string $response
+     *
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     */
+    protected function sendResetLinkResponse(Request $request, $response)
+    {
+        return redirect()->route('user.login')->with('status', trans($response));
     }
 }

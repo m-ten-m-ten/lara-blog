@@ -2,18 +2,13 @@
 
 namespace App;
 
+use App\Notifications\UserPasswordResetNotification;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use App\Notifications\UserPasswordResetNotification;
 
 class User extends Authenticatable
 {
     use Notifiable;
-
-    public function sendPasswordResetNotification($token)
-    {
-        $this->notify(new UserPasswordResetNotification($token));
-    }
 
     /**
      * The attributes that are mass assignable.
@@ -41,6 +36,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function sendPasswordResetNotification($token): void
+    {
+        $this->notify(new UserPasswordResetNotification($token));
+    }
 
     /**
      * A user has many messages
