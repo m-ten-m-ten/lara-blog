@@ -7714,8 +7714,10 @@ button {
   margin-bottom: 10px;
 }
 
-.l-user .user__main {
-  margin-top: 3rem;
+.l-user .user__main,
+.l-user .error,
+.l-user .status {
+  margin-top: 2rem;
 }
 
 .user__main h2,
