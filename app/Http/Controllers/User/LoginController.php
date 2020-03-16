@@ -49,13 +49,13 @@ class LoginController extends Controller
     protected function validateLogin(Request $request): void
     {
         $messages = [
-            $this->username() . '.required' => 'メールアドレスを入力して下さい。',
-            'password.required'             => 'パスワードを入力して下さい。',
+            'email.required' => 'メールアドレスを入力して下さい。',
+            'password.required' => 'パスワードを入力して下さい。',
         ];
 
         $request->validate([
-            $this->username() => 'required|string',
-            'password'        => 'required|string',
+            'email' => 'required|string',
+            'password' => 'required|string',
         ], $messages);
     }
 

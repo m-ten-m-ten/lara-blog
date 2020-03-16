@@ -29,10 +29,10 @@ class LoginController extends Controller
     /**
      * ログインID(username)でログイン
      */
-    public function username()
-    {
-        return 'username';
-    }
+    // public function username()
+    // {
+    //     return 'email';
+    // }
 
     /**
      * ログアウト処理
@@ -57,13 +57,13 @@ class LoginController extends Controller
     protected function validateLogin(Request $request): void
     {
         $messages = [
-            $this->username() . '.required' => 'ログインIDを入力して下さい。',
-            'password.required'             => 'パスワードを入力して下さい。',
+            'email.required' => 'メールアドレスを入力して下さい。',
+            'password.required' => 'パスワードを入力して下さい。',
         ];
 
         $request->validate([
-            $this->username() => 'required|string',
-            'password'        => 'required|string',
+            'email' => 'required|string',
+            'password' => 'required|string',
         ], $messages);
     }
 

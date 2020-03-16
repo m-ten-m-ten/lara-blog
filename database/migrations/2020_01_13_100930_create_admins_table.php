@@ -13,8 +13,7 @@ class CreateAdminsTable extends Migration
     {
         Schema::create('admins', function (Blueprint $table): void {
             $table->bigIncrements('id');
-            $table->string('username')->unique();
-            $table->string('email')
+            $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
@@ -22,7 +21,7 @@ class CreateAdminsTable extends Migration
         });
 
         DB::table('admins')->insert([
-            ['username' => 'admin', 'password' => bcrypt('adminpass')],
+            ['email' => 'admin@test.net', 'password' => bcrypt('adminpass')],
         ]);
     }
 
