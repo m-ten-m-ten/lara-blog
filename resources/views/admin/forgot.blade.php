@@ -1,5 +1,5 @@
 @extends('_includes._l-form')
-@section('title', 'パスワードリセット申し込み')
+@section('title', '管理者用パスワードリセット申し込み')
 @section('form-content')
 
 <form class="form" method="POST">

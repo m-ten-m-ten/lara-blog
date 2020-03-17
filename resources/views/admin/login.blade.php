@@ -23,5 +23,6 @@
   </ul>
 
   <input type="submit" value="ログイン" class="button">
+  <a class="text-link block mt1" href="{{ route('admin.forgot') }}">パスワードをお忘れですか？</a>
 </form>
 @endsection

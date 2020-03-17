@@ -18,6 +18,10 @@ Route::prefix('admin')->namespace('Admin')->as('admin.')->group(function (): voi
     Route::middleware('guest:admin')->group(function (): void {
         Route::get('login', 'LoginController@showLoginForm')->name('login');
         Route::post('login', 'LoginController@login');
+        Route::get('forgot', 'ForgotPasswordController@showLinkRequestForm')->name('forgot');
+        Route::post('forgot', 'ForgotPasswordController@sendResetLinkEmail');
+        Route::post('reset', 'ResetsPasswordController@reset')->name('update');
+        Route::get('reset/{token}', 'ResetsPasswordController@showResetForm')->name('reset');
     });
 
     Route::middleware('auth:admin')->group(function (): void {
