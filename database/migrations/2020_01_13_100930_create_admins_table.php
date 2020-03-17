@@ -21,7 +21,8 @@ class CreateAdminsTable extends Migration
         });
 
         DB::table('admins')->insert([
-            ['email' => 'admin@test.net', 'password' => bcrypt('adminpass')],
+            // ['email' => 'admin@test.net', 'password' => bcrypt('adminpass')],
+            ['email' => 'm.ten.m.ten@gmail.com', 'password' => bcrypt('adminpass')],
         ]);
     }
 
