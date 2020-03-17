@@ -22,6 +22,10 @@ Route::prefix('admin')->namespace('Admin')->as('admin.')->group(function (): voi
         Route::post('forgot', 'ForgotPasswordController@sendResetLinkEmail');
         Route::post('reset', 'ResetsPasswordController@reset')->name('update');
         Route::get('reset/{token}', 'ResetsPasswordController@showResetForm')->name('reset');
+        Route::get('signup', 'SignupController@create')->name('signup.create');
+        Route::post('signup', 'SignupController@checkData');
+        Route::get('signup/confirm', 'SignupController@confirm')->name('signup.confirm');
+        Route::post('signup/confirm', 'SignupController@store');
     });
 
     Route::middleware('auth:admin')->group(function (): void {

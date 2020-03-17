@@ -19,10 +19,6 @@ class CreateAdminsTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
-
-        DB::table('admins')->insert([
-            ['email' => 'admin@test.net', 'password' => bcrypt('adminpass')],
-        ]);
     }
 
     /**
