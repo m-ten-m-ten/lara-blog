@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Admin;
+use App\Http\Controllers\Controller;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class SignupController extends Controller
 {
@@ -16,9 +18,9 @@ class SignupController extends Controller
     /**
      * 登録画面
      */
-    public function create(Admin $admin)
+    public function showRegistrationForm(Admin $admin)
     {
-        if (Admin::count() >= 1){
+        if (Admin::whereNotNull('email_verified_at')->count() >= 1) {
             return redirect(route('admin.login'))->with('status', '管理者はすでに登録済みです。');
         }
 
@@ -26,7 +28,7 @@ class SignupController extends Controller
             $admin->fill($form);
         }
 
-        return view('admin.signup.create', \compact('admin'));
+        return view('admin.signup.show', \compact('admin'));
     }
 
     /**
@@ -52,7 +54,7 @@ class SignupController extends Controller
     public function confirm(Admin $admin)
     {
         if (!$data = session($this->sessionKey)) {
-            return redirect(route('admin.signup.create'));
+            return redirect(route('admin.signup.show'));
         }
         $admin->fill($data);
 
@@ -65,14 +67,23 @@ class SignupController extends Controller
     public function store(Admin $admin)
     {
         if (!$data = session($this->sessionKey)) {
-            return redirect(route('admin.signup.create'));
+            return redirect(route('admin.signup.show'));
         }
-        $admin->fill($data)->save();
+
+        event(new Registered($admin = $this->create($data)));
 
         auth('admin')->login($admin);
 
         session()->forget($this->sessionKey);
 
-        return redirect(route('admin.index'))->with('status', '管理者登録が完了しました。');
+        return redirect(route('admin.index'));
+    }
+
+    protected function create(array $data)
+    {
+        return Admin::create([
+            'email'    => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
     }
 }

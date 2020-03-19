@@ -15,6 +15,10 @@
 
 // 管理者
 Route::prefix('admin')->namespace('Admin')->as('admin.')->group(function (): void {
+    Route::post('resend', 'VerificationController@resend')->name('verification.resend');
+    Route::get('verify', 'VerificationController@show')->name('verification.notice');
+    Route::get('verify/{id}/{hash}', 'VerificationController@verify')->name('verification.verify');
+
     Route::middleware('guest:admin')->group(function (): void {
         Route::get('login', 'LoginController@showLoginForm')->name('login');
         Route::post('login', 'LoginController@login');
@@ -22,13 +26,13 @@ Route::prefix('admin')->namespace('Admin')->as('admin.')->group(function (): voi
         Route::post('forgot', 'ForgotPasswordController@sendResetLinkEmail');
         Route::post('reset', 'ResetsPasswordController@reset')->name('update');
         Route::get('reset/{token}', 'ResetsPasswordController@showResetForm')->name('reset');
-        Route::get('signup', 'SignupController@create')->name('signup.create');
+        Route::get('signup', 'SignupController@showRegistrationForm')->name('signup.show');
         Route::post('signup', 'SignupController@checkData');
         Route::get('signup/confirm', 'SignupController@confirm')->name('signup.confirm');
         Route::post('signup/confirm', 'SignupController@store');
     });
 
-    Route::middleware('auth:admin')->group(function (): void {
+    Route::middleware('auth:admin', 'verified:admin.verification.notice')->group(function (): void {
         Route::post('logout', 'LoginController@logout')->name('logout');
         Route::get('', 'IndexController@index')->name('index');
 
