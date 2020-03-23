@@ -88,4 +88,15 @@ class VerificationController extends Controller
                     ? new Response('', 204)
                     : redirect($this->redirectPath())->with('status', '管理者登録が完了致しました。');
     }
+
+    /**
+     * The user has been verified.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return mixed
+     */
+    protected function verified(Request $request)
+    {
+        //
+    }
 }
