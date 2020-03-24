@@ -1,5 +1,5 @@
 @extends('_includes._l-form')
-@section('title', 'メール送信完了')
+@section('title', '管理者登録用メール送信完了')
 @section('form-content')
 
 @if (session('resent'))

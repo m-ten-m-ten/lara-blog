@@ -3,6 +3,7 @@
 @include('_includes._head')
 
 <body>
+
   <div id="container">
     @include('_includes._l-header')
 
@@ -20,5 +21,9 @@
 
   <script src={{ asset('js/app.js')}}></script>
 
+{{-- @php
+  \Debugbar::info(Request::session()->all());
+@endphp
+ --}}
 </body>
 </html>

@@ -91,12 +91,8 @@ class VerificationController extends Controller
 
     /**
      * The user has been verified.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return mixed
      */
     protected function verified(Request $request)
     {
-        //
     }
 }
