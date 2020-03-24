@@ -66,7 +66,7 @@
 
         {{-- 非会員には会員登録ページへのリンクを表示 --}}
         @else
-          <p>この記事は有料会員様向けです。<a class="text-link" href="{{ route('signup.index')}}">こちら</a>からご登録下さい。</p>
+          <p>この記事は有料会員様向けです。<a class="text-link" href="{{ route('signup.show')}}">こちら</a>からご登録下さい。</p>
         @endif
 
       @else

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 
 class SignupController extends Controller
@@ -15,19 +16,19 @@ class SignupController extends Controller
     /**
      * 登録画面
      */
-    public function index(User $user)
+    public function show(User $user)
     {
         if ($form = old() ?: session($this->sessionKey)) {
             $user->fill($form);
         }
 
-        return view('signup.index', \compact('user'));
+        return view('signup.show', \compact('user'));
     }
 
     /**
      * 検証
      */
-    public function postIndex(Request $request)
+    public function checkData(Request $request)
     {
         $validatedData = $request->validate([
             'name'     => 'required|max:255',
@@ -48,7 +49,7 @@ class SignupController extends Controller
     public function confirm(User $user)
     {
         if (!$data = session($this->sessionKey)) {
-            return redirect(route('signup.index'));
+            return redirect(route('signup.show'));
         }
         $user->fill($data);
 
@@ -58,18 +59,26 @@ class SignupController extends Controller
     /**
      * 登録処理等
      */
-    public function postConfirm(User $user)
+    public function store(User $user)
     {
         if (!$data = session($this->sessionKey)) {
-            return redirect(route('signup.index'));
+            return redirect(route('signup.show'));
         }
         $data['status'] = 0;
-        $user->fill($data)->save();
+
+        event(new Registered($user = $this->create($data)));
 
         auth('user')->login($user);
 
         session()->forget($this->sessionKey);
 
         return redirect(route('user.index'))->with('status', 'ユーザー登録が完了しました。');
+    }
+
+    protected function create(array $data)
+    {
+        $user = new User();
+        $user->fill($data)->save();
+        return $user;
     }
 }

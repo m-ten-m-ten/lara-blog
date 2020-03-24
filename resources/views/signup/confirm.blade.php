@@ -20,7 +20,7 @@
   </ul>
 
   <input type="submit" class="button mr5" value="送信する">
-  <a class="text-link" href="{{ route('signup.index') }}">入力画面へ戻る</a>
+  <a class="text-link" href="{{ route('signup.show') }}">入力画面へ戻る</a>
 
 </form>
 @endsection

@@ -85,11 +85,18 @@ Route::prefix('admin')->namespace('Admin')->as('admin.')->group(function (): voi
 
 // ユーザー登録
 Route::prefix('signup')->as('signup.')->group(function (): void {
-    Route::get('', 'SignupController@index')->name('index');
-    Route::post('', 'SignupController@postIndex');
+    Route::get('', 'SignupController@show')->name('show');
+    Route::post('', 'SignupController@checkData');
     Route::get('confirm', 'SignupController@confirm')->name('confirm');
-    Route::post('confirm', 'SignupController@postConfirm');
+    Route::post('confirm', 'SignupController@store');
     Route::get('thanks', 'SignupController@thanks')->name('thanks');
+});
+
+// ユーザーメール確認
+Route::prefix('user')->namespace('User')->as('user.')->group(function (): void {
+    Route::post('resend', 'VerificationController@resend')->name('verification.resend');
+    Route::get('verify', 'VerificationController@show')->name('verification.notice');
+    Route::get('verify/{id}/{hash}', 'VerificationController@verify')->name('verification.verify');
 });
 
 // ユーザー専用ページ
@@ -103,7 +110,7 @@ Route::prefix('user')->namespace('User')->as('user.')->group(function (): void {
         Route::get('reset/{token}', 'ResetsPasswordController@showResetForm')->name('reset');
     });
 
-    Route::middleware('auth:user')->group(function (): void {
+    Route::middleware('auth:user', 'verified:user.verification.notice')->group(function (): void {
         Route::get('', 'IndexController@index')->name('index');
         Route::post('logout', 'LoginController@logout')->name('logout');
 

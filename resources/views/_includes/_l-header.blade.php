@@ -64,7 +64,7 @@
             <a class="navbar__menu-link" href="{{ route('user.login') }}">ログイン</a>
           </li>
           <li class="navbar__menu-item">
-            <a class="navbar__menu-link" href="{{ route('signup.index') }}">ユーザー登録</a>
+            <a class="navbar__menu-link" href="{{ route('signup.show') }}">ユーザー登録</a>
           </li>
         @endguest
 

@@ -3,10 +3,12 @@
 namespace App;
 
 use App\Notifications\UserPasswordResetNotification;
+use App\Notifications\UserVerifyEmailNotification;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
@@ -29,15 +31,6 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
-
-    /**
      * パスワードリセット通知の送信
      *
      * @param string $token
@@ -45,6 +38,14 @@ class User extends Authenticatable
     public function sendPasswordResetNotification($token): void
     {
         $this->notify(new UserPasswordResetNotification($token));
+    }
+
+    /**
+     * メール確認の送信
+     */
+    public function sendEmailVerificationNotification(): void
+    {
+        $this->notify(new UserVerifyEmailNotification());
     }
 
     /**
