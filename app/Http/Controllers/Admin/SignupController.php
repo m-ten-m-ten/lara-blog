@@ -6,7 +6,6 @@ use App\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 class SignupController extends Controller
 {
@@ -83,7 +82,7 @@ class SignupController extends Controller
     {
         return Admin::create([
             'email'    => $data['email'],
-            'password' => Hash::make($data['password']),
+            'password' => $data['password'],
         ]);
     }
 }
