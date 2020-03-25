@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 /*!
- * Font Awesome Free 5.12.1 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 5.13.0 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
 
@@ -139,63 +139,53 @@
 
 @-webkit-keyframes fa-spin {
   0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
 
   100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 
 @keyframes fa-spin {
   0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
 
   100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 
 .fa-rotate-90 {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
-  -webkit-transform: rotate(90deg);
-          transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 
 .fa-rotate-180 {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2)";
-  -webkit-transform: rotate(180deg);
-          transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
 .fa-rotate-270 {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
-  -webkit-transform: rotate(270deg);
-          transform: rotate(270deg);
+  transform: rotate(270deg);
 }
 
 .fa-flip-horizontal {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1)";
-  -webkit-transform: scale(-1, 1);
-          transform: scale(-1, 1);
+  transform: scale(-1, 1);
 }
 
 .fa-flip-vertical {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)";
-  -webkit-transform: scale(1, -1);
-          transform: scale(1, -1);
+  transform: scale(1, -1);
 }
 
 .fa-flip-both,
 .fa-flip-horizontal.fa-flip-vertical {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)";
-  -webkit-transform: scale(-1, -1);
-          transform: scale(-1, -1);
+  transform: scale(-1, -1);
 }
 
 :root .fa-rotate-90,
@@ -826,6 +816,10 @@ readers do not read off random characters that represent icons */
 
 .fa-box-open:before {
   content: "\F49E";
+}
+
+.fa-box-tissue:before {
+  content: "\F95B";
 }
 
 .fa-boxes:before {
@@ -1712,6 +1706,10 @@ readers do not read off random characters that represent icons */
   content: "\F393";
 }
 
+.fa-disease:before {
+  content: "\F7FA";
+}
+
 .fa-divide:before {
   content: "\F529";
 }
@@ -2018,6 +2016,10 @@ readers do not read off random characters that represent icons */
 
 .fa-fast-forward:before {
   content: "\F050";
+}
+
+.fa-faucet:before {
+  content: "\F905";
 }
 
 .fa-fax:before {
@@ -2668,8 +2670,16 @@ readers do not read off random characters that represent icons */
   content: "\F4BE";
 }
 
+.fa-hand-holding-medical:before {
+  content: "\F95C";
+}
+
 .fa-hand-holding-usd:before {
   content: "\F4C0";
+}
+
+.fa-hand-holding-water:before {
+  content: "\F4C1";
 }
 
 .fa-hand-lizard:before {
@@ -2716,6 +2726,10 @@ readers do not read off random characters that represent icons */
   content: "\F257";
 }
 
+.fa-hand-sparkles:before {
+  content: "\F95D";
+}
+
 .fa-hand-spock:before {
   content: "\F259";
 }
@@ -2728,8 +2742,20 @@ readers do not read off random characters that represent icons */
   content: "\F4C4";
 }
 
+.fa-hands-wash:before {
+  content: "\F95E";
+}
+
 .fa-handshake:before {
   content: "\F2B5";
+}
+
+.fa-handshake-alt-slash:before {
+  content: "\F95F";
+}
+
+.fa-handshake-slash:before {
+  content: "\F960";
 }
 
 .fa-hanukiah:before {
@@ -2758,6 +2784,22 @@ readers do not read off random characters that represent icons */
 
 .fa-hdd:before {
   content: "\F0A0";
+}
+
+.fa-head-side-cough:before {
+  content: "\F961";
+}
+
+.fa-head-side-cough-slash:before {
+  content: "\F962";
+}
+
+.fa-head-side-mask:before {
+  content: "\F963";
+}
+
+.fa-head-side-virus:before {
+  content: "\F964";
 }
 
 .fa-heading:before {
@@ -2856,6 +2898,10 @@ readers do not read off random characters that represent icons */
   content: "\F47E";
 }
 
+.fa-hospital-user:before {
+  content: "\F80D";
+}
+
 .fa-hot-tub:before {
   content: "\F593";
 }
@@ -2890,6 +2936,10 @@ readers do not read off random characters that represent icons */
 
 .fa-house-damage:before {
   content: "\F6F1";
+}
+
+.fa-house-user:before {
+  content: "\F965";
 }
 
 .fa-houzz:before {
@@ -3140,6 +3190,10 @@ readers do not read off random characters that represent icons */
   content: "\F5FC";
 }
 
+.fa-laptop-house:before {
+  content: "\F966";
+}
+
 .fa-laptop-medical:before {
   content: "\F812";
 }
@@ -3294,6 +3348,14 @@ readers do not read off random characters that represent icons */
 
 .fa-luggage-cart:before {
   content: "\F59D";
+}
+
+.fa-lungs:before {
+  content: "\F604";
+}
+
+.fa-lungs-virus:before {
+  content: "\F967";
 }
 
 .fa-lyft:before {
@@ -3840,6 +3902,10 @@ readers do not read off random characters that represent icons */
   content: "\F704";
 }
 
+.fa-people-arrows:before {
+  content: "\F968";
+}
+
 .fa-people-carry:before {
   content: "\F4CE";
 }
@@ -3968,6 +4034,10 @@ readers do not read off random characters that represent icons */
   content: "\F5B0";
 }
 
+.fa-plane-slash:before {
+  content: "\F969";
+}
+
 .fa-play:before {
   content: "\F04B";
 }
@@ -4066,6 +4136,14 @@ readers do not read off random characters that represent icons */
 
 .fa-project-diagram:before {
   content: "\F542";
+}
+
+.fa-pump-medical:before {
+  content: "\F96A";
+}
+
+.fa-pump-soap:before {
+  content: "\F96B";
 }
 
 .fa-pushed:before {
@@ -4448,6 +4526,10 @@ readers do not read off random characters that represent icons */
   content: "\F3ED";
 }
 
+.fa-shield-virus:before {
+  content: "\F96C";
+}
+
 .fa-ship:before {
   content: "\F21A";
 }
@@ -4646,6 +4728,10 @@ readers do not read off random characters that represent icons */
 
 .fa-snowplow:before {
   content: "\F7D2";
+}
+
+.fa-soap:before {
+  content: "\F96E";
 }
 
 .fa-socks:before {
@@ -4868,12 +4954,24 @@ readers do not read off random characters that represent icons */
   content: "\F2F2";
 }
 
+.fa-stopwatch-20:before {
+  content: "\F96F";
+}
+
 .fa-store:before {
   content: "\F54E";
 }
 
 .fa-store-alt:before {
   content: "\F54F";
+}
+
+.fa-store-alt-slash:before {
+  content: "\F970";
+}
+
+.fa-store-slash:before {
+  content: "\F971";
 }
 
 .fa-strava:before {
@@ -5190,6 +5288,10 @@ readers do not read off random characters that represent icons */
 
 .fa-toilet-paper:before {
   content: "\F71E";
+}
+
+.fa-toilet-paper-slash:before {
+  content: "\F972";
 }
 
 .fa-toolbox:before {
@@ -5608,6 +5710,18 @@ readers do not read off random characters that represent icons */
   content: "\F1CA";
 }
 
+.fa-virus:before {
+  content: "\F974";
+}
+
+.fa-virus-slash:before {
+  content: "\F975";
+}
+
+.fa-viruses:before {
+  content: "\F976";
+}
+
 .fa-vk:before {
   content: "\F189";
 }
@@ -5890,7 +6004,7 @@ readers do not read off random characters that represent icons */
 }
 
 /*!
- * Font Awesome Free 5.12.1 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 5.13.0 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
 
@@ -5898,9 +6012,9 @@ readers do not read off random characters that represent icons */
   font-family: 'Font Awesome 5 Free';
   font-style: normal;
   font-weight: 900;
-  font-display: auto;
-  src: url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.eot?89e02bae13c9131c7468b1e729339ac1);
-  src: url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.eot?89e02bae13c9131c7468b1e729339ac1) format("embedded-opentype"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.woff2?55eb2a60e8181f0e68b558c991973bf0) format("woff2"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.woff?cdfec5cf5e9840889790bcf2c4042583) format("woff"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.ttf?75f38a159982b6bd1704891332d95fa7) format("truetype"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.svg?0724bb8b89ab6b8b9b7df917b17be0b7) format("svg");
+  font-display: block;
+  src: url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.eot?a0369ea57eb6d3843d6474c035111f29);
+  src: url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.eot?a0369ea57eb6d3843d6474c035111f29) format("embedded-opentype"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.woff2?b15db15f746f29ffa02638cb455b8ec0) format("woff2"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.woff?bea989e82b07e9687c26fc58a4805021) format("woff"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.ttf?1ab236ed440ee51810c56bd16628aef0) format("truetype"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.svg?ec763292e583294612f124c0b0def500) format("svg");
 }
 
 .fa,
@@ -6415,11 +6529,8 @@ h4 {
 }
 
 a {
-  -webkit-transition-duration: 250ms;
-          transition-duration: 250ms;
-  -webkit-transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
-          transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
-  -webkit-transition-property: all;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
   transition-property: all;
   color: #2a292a;
   text-decoration: none;
@@ -6800,12 +6911,9 @@ button {
 
 .navbar {
   height: 60px;
-  display: -webkit-box;
   display: flex;
-  -webkit-box-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-          align-items: center;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .navbar__logo a {
@@ -6816,7 +6924,6 @@ button {
 }
 
 .navbar__menu-body {
-  display: -webkit-box;
   display: flex;
   padding: 18px 0;
 }
@@ -6854,10 +6961,8 @@ button {
 }
 
 .navbar__menu-link {
-  display: -webkit-box;
   display: flex;
-  -webkit-box-align: center;
-          align-items: center;
+  align-items: center;
   padding: 0 10px;
   color: #fff;
   font-size: 1.6rem;
@@ -6896,13 +7001,10 @@ button {
 }
 
 .navbar__menu-child-inner {
-  display: -webkit-box;
   display: flex;
   flex-wrap: wrap;
-  -webkit-box-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .navbar__menu-child-inner a {
@@ -6942,11 +7044,8 @@ button {
 .navbar__menu-toggle .navbar__menu-toggle-bar,
 .navbar__menu-toggle::before,
 .navbar__menu-toggle::after {
-  -webkit-transition-duration: 250ms;
-          transition-duration: 250ms;
-  -webkit-transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
-          transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
-  -webkit-transition-property: all;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
   transition-property: all;
   display: block;
   position: absolute;
@@ -6958,14 +7057,12 @@ button {
 }
 
 .navbar__menu-toggle::before {
-  -webkit-transform: translate(0, 9px);
-          transform: translate(0, 9px);
+  transform: translate(0, 9px);
   content: "";
 }
 
 .navbar__menu-toggle::after {
-  -webkit-transform: translate(0, -9px);
-          transform: translate(0, -9px);
+  transform: translate(0, -9px);
   content: "";
 }
 
@@ -6974,13 +7071,11 @@ button {
 }
 
 .navbar__menu-toggle.is-open::before {
-  -webkit-transform: rotate(-45deg);
-          transform: rotate(-45deg);
+  transform: rotate(-45deg);
 }
 
 .navbar__menu-toggle.is-open::after {
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 .l-index .breadcrumb {
@@ -7031,11 +7126,9 @@ button {
 .index__title,
 .article__body h2,
 .user__main h2 {
-  display: -webkit-box;
   display: flex;
   font-size: 2.8rem;
-  -webkit-box-align: center;
-          align-items: center;
+  align-items: center;
 }
 
 @media only screen and (max-width: 480px) {
@@ -7050,7 +7143,6 @@ button {
 .article__body h2:before,
 .user__main h2:before {
   background-color: #2b6cb0;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#B4DAED), color-stop(70%, #2b6cb0), to(#03547D));
   background-image: linear-gradient(#B4DAED, #2b6cb0 70%, #03547D);
   content: " ";
   height: 1.75em;
@@ -7163,7 +7255,6 @@ button {
 }
 
 .postList__footer {
-  display: -webkit-box;
   display: flex;
   flex-wrap: wrap;
   padding-bottom: 1rem;
@@ -7293,17 +7384,14 @@ button {
 }
 
 .m-show-side-section-title {
-  display: -webkit-box;
   display: flex;
   font-size: 2rem;
-  -webkit-box-align: center;
-          align-items: center;
+  align-items: center;
   margin-bottom: 20px;
 }
 
 .m-show-side-section-title:before {
   background-color: #2b6cb0;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#B4DAED), color-stop(70%, #2b6cb0), to(#03547D));
   background-image: linear-gradient(#B4DAED, #2b6cb0 70%, #03547D);
   content: " ";
   height: 1.75em;
@@ -7354,10 +7442,8 @@ button {
 }
 
 .article__attr {
-  display: -webkit-box;
   display: flex;
-  -webkit-box-align: center;
-          align-items: center;
+  align-items: center;
   margin-bottom: 1.5rem;
 }
 
@@ -7421,11 +7507,9 @@ button {
 }
 
 .article__body h4 {
-  display: -webkit-box;
   display: flex;
   font-size: 2.0rem;
-  -webkit-box-align: cennter;
-          align-items: cennter;
+  align-items: cennter;
 }
 
 @media only screen and (max-width: 480px) {
@@ -7436,7 +7520,6 @@ button {
 
 .article__body h4:before {
   background-color: #656c6e;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#656c6e));
   background-image: linear-gradient(#fff, #656c6e);
   content: " ";
   height: 1.75em;
@@ -7619,7 +7702,6 @@ button {
 }
 
 .admin__index-menu {
-  display: -webkit-box;
   display: flex;
   flex-wrap: wrap;
 }
@@ -7649,10 +7731,8 @@ button {
 
 .admin__header,
 .user__header {
-  display: -webkit-box;
   display: flex;
-  -webkit-box-align: center;
-          align-items: center;
+  align-items: center;
   flex-wrap: wrap;
   margin: -.5rem;
   padding-top: 1rem;
@@ -7742,10 +7822,8 @@ button {
 }
 
 .message__list-title {
-  display: -webkit-box;
   display: flex;
-  -webkit-box-align: center;
-          align-items: center;
+  align-items: center;
   margin-bottom: .5rem;
   cursor: pointer;
 }
@@ -7782,7 +7860,6 @@ button {
 }
 
 .latestPost-list {
-  display: -webkit-box;
   display: flex;
   margin-bottom: 2rem;
 }
@@ -7799,12 +7876,9 @@ button {
 }
 
 .latestPost-homeLink {
-  display: -webkit-box;
   display: flex;
-  -webkit-box-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   height: 5rem;
   letter-spacing: 1px;
   border: 1px solid #cbd5e0;
@@ -7829,16 +7903,13 @@ button {
 }
 
 .toc .toc__body {
-  display: none;
+  display: block;
 }
 
 .toc .toc__title {
-  display: -webkit-box;
   display: flex;
-  -webkit-box-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   font-size: 2rem;
   cursor: pointer;
 }
@@ -7888,10 +7959,8 @@ button {
 }
 
 .pagination ul {
-  display: -webkit-box;
   display: flex;
-  -webkit-box-pack: center;
-          justify-content: center;
+  justify-content: center;
   flex-wrap: wrap;
 }
 
@@ -8100,23 +8169,17 @@ button {
 }
 
 .backTop {
-  -webkit-transition-duration: 250ms;
-          transition-duration: 250ms;
-  -webkit-transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
-          transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
-  -webkit-transition-property: all;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
   transition-property: all;
-  display: -webkit-box;
   display: flex;
   position: fixed;
   bottom: -45px;
   right: 2rem;
   width: 45px;
   height: 45px;
-  -webkit-box-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   color: #999fa0;
   background-color: #fff;
   border-radius: 45px;

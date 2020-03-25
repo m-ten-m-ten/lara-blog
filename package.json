@@ -10,26 +10,27 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "devDependencies": {
-        "@fortawesome/fontawesome-free": "^5.12.1",
+        "@fortawesome/fontawesome-free": "^5.13.0",
         "browser-sync": "^2.26.7",
         "browser-sync-webpack-plugin": "^2.2.2",
-        "cross-env": "^5.1",
+        "cross-env": "^7.0",
         "date-utils": "^1.2.21",
         "eslint-plugin-jquery": "^1.5.1",
         "glob": "^7.1.6",
-        "jquery": "^3.2",
-        "laravel-mix": "^4.0.7",
-        "lodash": "^4.17.13",
+        "jquery": "^3.4",
+        "laravel-mix": "^5.0.4",
+        "lodash": "^4.17.15",
         "node-sass": "^4.13.1",
         "resolve-url-loader": "^3.1.1",
         "sass": "^1.26.3",
-        "sass-loader": "^7.3.1",
+        "sass-loader": "^8.0.2",
         "vue-template-compiler": "^2.6.11"
     },
     "dependencies": {
-        "@stripe/stripe-js": "^1.1.0",
+        "@stripe/stripe-js": "^1.2.0",
         "highlight.js": "^9.18.1",
         "import": "0.0.6",
+        "mkdirp": "^1.0.3",
         "tinymce": "^5.2.0",
         "tinymce-i18n": "^19.9.17"
     }
