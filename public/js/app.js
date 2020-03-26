@@ -92282,7 +92282,7 @@ var AdminPostCreate = /*#__PURE__*/function (_App) {
       tinymce.init({
         selector: "#post_content",
         //これが一番上じゃないとだめ。
-        body_class: "post-content",
+        body_class: "article__body",
         //エディターのbodyに付与したいclass。（スタイル適用のため）
         content_css: "/style/style.css",
         //publicのスタイルシートを指定。
