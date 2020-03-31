@@ -1,18 +1,17 @@
 {{--
-パンくずリストの表示は下記ページ
+パンくずリストを表示するページは下記の通り
 ・個別記事
 ・カテゴリー別記事一覧
 ・タグ別記事一覧
 --}}
-@if(isset($post) || isset($category) || isset($tag))
+@if (Request::route()->named('post') || Request::route()->named('category') || Request::route()->named('tag'))
   <div class="breadcrumb">
     <ul>
       <li><a class="text-link" href="{{ route('home') }}">HOME</a></li>
 
-      {{-- 個別記事の場合 --}}
-      @if(isset($post))
+      {{-- 個別記事の場合は所属カテゴリーがあれば表示 --}}
+      @if(Request::route()->named('post'))
 
-        {{-- カテゴリーが設定されている記事の場合 --}}
         @if($post->category)
           <li><a class="text-link" href="/category/{{ $post->category->id }}">カテゴリー「{{ $post->category->category_title }}」</a></li>
         @endif
@@ -20,7 +19,7 @@
 
       {{-- カテゴリーorタグ別一覧ページの場合 --}}
       @else
-        <li>{{ isset($category)? 'カテゴリー「' . $category->category_title: 'タグ「' . $tag->tag_title }}」の記事一覧</li>
+        <li>{{ Request::route()->named('category')? 'カテゴリー「' . $category->category_title: 'タグ「' . $tag->tag_title }}」の記事一覧</li>
       @endif
       </ul>
   </div>
