@@ -7736,6 +7736,14 @@ button {
   padding-bottom: 25px;
 }
 
+.admin__index-menu-section h2 {
+  margin-top: 2rem;
+}
+
+.admin__index-menu-section h2:first-of-type {
+  margin-top: 0;
+}
+
 .admin__index-table th {
   background-color: #EFF5F8;
   border-bottom: 1px solid #cbd5e0;

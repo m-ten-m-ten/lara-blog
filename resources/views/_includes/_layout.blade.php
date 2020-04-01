@@ -21,9 +21,9 @@
 
   <script src={{ asset('js/app.js')}}></script>
 
-{{-- @php
+@php
   \Debugbar::info(Request::session()->all());
 @endphp
- --}}
+
 </body>
 </html>
