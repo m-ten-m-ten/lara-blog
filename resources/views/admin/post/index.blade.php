@@ -30,7 +30,7 @@
         <td><input type="checkbox" name="checkedIds[]" value="{{ $post->id }}"></td>
         <td>
           {!! $post->for_subscriber == 1 ? '<i class="fas fa-lock"></i>' : '' !!}
-          <a class="text-link" href="/admin/post/edit/{{ $post->id }}">{{ Str::limit($post->post_title, 50) }}</a>
+          <a class="text-link" href="/admin/post/edit/{{ $post->post_name }}">{{ Str::limit($post->post_title, 50) }}</a>
           {{ $post->post_status == 'drafted' ? ' - 下書き' : ''}}
         </td>
         <td class="overTablet">{{ $post->category ? $post->category->category_title : ''}}</td>
@@ -45,7 +45,7 @@
           {{ $post->post_status == 'drafted' ? '下書き：'.$post->post_drafted->format('Y/m/d H:i') : '' }}
         </td>
         <td class="nowrap">
-          <a class="text-link" href="/admin/post/edit/{{ $post->id }}">編集</a>
+          <a class="text-link" href="/admin/post/edit/{{ $post->post_name }}">編集</a>
           <span class="overTablet">|</span>
           <br class="forTablet">
           <button class="text-link" type="submit" name="deleteId" value="{{ $post->id }}">削除</button>

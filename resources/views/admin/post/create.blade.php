@@ -31,7 +31,7 @@
 
       <div class="form__row">
         <label for="" class="form__title">本文</label>
-        <textarea id="post_content" name="post_content" class="post-content" type="text" rows="20">{{ old('post_content', $post->post_content) }}</textarea>
+        <textarea id="tinymce_content" name="post_content" class="post-content" type="text" rows="20">{{ old('post_content', $post->post_content) }}</textarea>
       </div>
 
     </div>

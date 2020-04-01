@@ -6625,13 +6625,15 @@ small {
 }
 
 .text-link,
-.article__body a {
+.article__body a,
+.page__body a {
   color: #5181d0;
   text-decoration: underline;
 }
 
 .text-link:hover,
-.article__body a:hover {
+.article__body a:hover,
+.page__body a:hover {
   text-decoration: none;
 }
 
@@ -7074,22 +7076,16 @@ button {
   transform: rotate(45deg);
 }
 
-.l-index .breadcrumb {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
+.l-index .breadcrumb,
 .l-index .index__title,
 .l-index .article__body h2,
 .article__body .l-index h2,
+.l-index .page__body h2,
+.page__body .l-index h2,
 .l-index .user__main h2,
-.user__main .l-index h2 {
-  margin-bottom: 15px;
-}
-
+.user__main .l-index h2,
 .l-index .postList {
-  margin-top: 10px;
-  margin-bottom: 20px;
+  margin-top: 2rem;
 }
 
 .breadcrumb ul {
@@ -7121,6 +7117,7 @@ button {
 
 .index__title,
 .article__body h2,
+.page__body h2,
 .user__main h2 {
   display: flex;
   font-size: 2.8rem;
@@ -7130,6 +7127,7 @@ button {
 @media only screen and (max-width: 480px) {
   .index__title,
   .article__body h2,
+  .page__body h2,
   .user__main h2 {
     font-size: 2.3rem;
   }
@@ -7137,6 +7135,7 @@ button {
 
 .index__title:before,
 .article__body h2:before,
+.page__body h2:before,
 .user__main h2:before {
   background-color: #2b6cb0;
   background-image: linear-gradient(#B4DAED, #2b6cb0 70%, #03547D);
@@ -7365,25 +7364,22 @@ button {
   }
 }
 
-.l-show__main .breadcrumb {
-  margin-top: 20px;
-}
-
 .l-show__main .breadcrumb,
-.l-show__main .article {
-  margin-bottom: 2rem;
+.l-show__main .article,
+.l-show__main .page,
+.l-show__main .page {
+  margin-top: 2rem;
 }
 
 .m-show-side-section {
-  margin-top: 20px;
-  margin-bottom: 30px;
+  margin-top: 2rem;
 }
 
 .m-show-side-section-title {
   display: flex;
   font-size: 2rem;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 1.5rem;
 }
 
 .m-show-side-section-title:before {
@@ -7395,13 +7391,15 @@ button {
   width: .25em;
 }
 
-.article .toc {
+.article .toc,
+.page .toc {
   display: none;
   margin-bottom: 3rem;
 }
 
 @media only screen and (max-width: 1130px) {
-  .article .toc {
+  .article .toc,
+  .page .toc {
     display: block;
   }
 }
@@ -7421,18 +7419,21 @@ button {
   letter-spacing: 1px;
 }
 
-.article__title {
+.article__title,
+.page__title {
   line-height: 1.6;
 }
 
 @media only screen and (max-width: 768px) {
-  .article__title {
+  .article__title,
+  .page__title {
     font-size: 2.4rem;
   }
 }
 
 @media only screen and (max-width: 480px) {
-  .article__title {
+  .article__title,
+  .page__title {
     font-size: 2rem;
   }
 }
@@ -7457,64 +7458,83 @@ button {
 }
 
 .article__body h2,
+.page__body h2,
 .article__body h3,
+.page__body h3,
 .article__body h4,
+.page__body h4,
 .article__body ol,
+.page__body ol,
 .article__body ul,
+.page__body ul,
 .article__body p,
+.page__body p,
 .article__body table,
-.article__body blockquote {
+.page__body table,
+.article__body blockquote,
+.page__body blockquote,
+.article__body pre,
+.page__body pre {
   margin-top: 0;
   margin-bottom: 3rem;
 }
 
-.article__body img {
+.article__body img,
+.page__body img {
   max-width: 100%;
   height: auto;
 }
 
-.article__body img.shadow {
+.article__body img.shadow,
+.page__body img.shadow {
   box-shadow: 3px 3px 15px 0 rgba(0, 0, 0, 0.25);
 }
 
-.article__body p {
+.article__body p,
+.page__body p {
   font-size: 1.7rem;
   line-height: 2.1;
 }
 
 @media only screen and (max-width: 480px) {
-  .article__body p {
+  .article__body p,
+  .page__body p {
     font-size: 1.6rem;
     line-height: 1.9;
     font-weight: 300;
   }
 }
 
-.article__body h3 {
+.article__body h3,
+.page__body h3 {
   font-size: 2.1rem;
   font-weight: 600;
   border-bottom: 1px solid #cbd5e0;
 }
 
 @media only screen and (max-width: 480px) {
-  .article__body h3 {
+  .article__body h3,
+  .page__body h3 {
     font-size: 2.0rem;
   }
 }
 
-.article__body h4 {
+.article__body h4,
+.page__body h4 {
   display: flex;
   font-size: 2.0rem;
   align-items: cennter;
 }
 
 @media only screen and (max-width: 480px) {
-  .article__body h4 {
+  .article__body h4,
+  .page__body h4 {
     font-size: 1.9rem;
   }
 }
 
-.article__body h4:before {
+.article__body h4:before,
+.page__body h4:before {
   background-color: #656c6e;
   background-image: linear-gradient(#fff, #656c6e);
   content: " ";
@@ -7524,30 +7544,37 @@ button {
 }
 
 .article__body ul li,
-.article__body ol li {
+.page__body ul li,
+.article__body ol li,
+.page__body ol li {
   margin-bottom: .5rem;
   padding-left: .5rem;
 }
 
-.article__body ol li {
+.article__body ol li,
+.page__body ol li {
   list-style-type: decimal;
   list-style-position: inside;
 }
 
-.article__body ul li {
+.article__body ul li,
+.page__body ul li {
   list-style-type: circle;
 }
 
-.article__body table tr {
+.article__body table tr,
+.page__body table tr {
   background-color: #fff;
 }
 
-.article__body table th {
+.article__body table th,
+.page__body table th {
   background-color: #EFF5F8;
   font-weight: normal;
 }
 
-.article__body blockquote {
+.article__body blockquote,
+.page__body blockquote {
   position: relative;
   background-color: #f1f1f1;
   padding-top: 3rem;
@@ -7555,7 +7582,8 @@ button {
   padding-right: 1rem;
 }
 
-.article__body blockquote:before {
+.article__body blockquote:before,
+.page__body blockquote:before {
   font-family: "Font Awesome 5 Free";
   content: "\F10D";
   display: block;
@@ -7566,7 +7594,8 @@ button {
   color: #999fa0;
 }
 
-.article__body blockquote:after {
+.article__body blockquote:after,
+.page__body blockquote:after {
   font-family: "Font Awesome 5 Free";
   content: "\F10E";
   display: block;
@@ -7748,7 +7777,8 @@ button {
   }
 }
 
-.admin__postForm-left {
+.admin__postForm-left,
+.admin__pageForm-left {
   float: left;
   width: 72%;
   padding-top: 10px;
@@ -7757,14 +7787,16 @@ button {
 }
 
 @media only screen and (max-width: 768px) {
-  .admin__postForm-left {
+  .admin__postForm-left,
+  .admin__pageForm-left {
     float: none;
     width: 100%;
     padding-right: 0;
   }
 }
 
-.admin__postForm-right {
+.admin__postForm-right,
+.admin__pageForm-right {
   float: right;
   width: 28%;
   padding-top: 10px;
@@ -7773,7 +7805,8 @@ button {
 }
 
 @media only screen and (max-width: 768px) {
-  .admin__postForm-right {
+  .admin__postForm-right,
+  .admin__pageForm-right {
     float: none;
     width: 100%;
     padding-left: 0;
@@ -7781,11 +7814,13 @@ button {
   }
 }
 
-.admin__postForm-right .form__row {
+.admin__postForm-right .form__row,
+.admin__pageForm-right .form__row {
   margin-bottom: 3rem;
 }
 
-.admin__postForm-right .form__title {
+.admin__postForm-right .form__title,
+.admin__pageForm-right .form__title {
   border-bottom: 2px solid #2b6cb0;
   margin-bottom: 10px;
 }

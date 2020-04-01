@@ -11,6 +11,12 @@ class Tag extends Model
         'tag_name',
     ];
 
+    // モデルのルートキーの取得
+    public function getRouteKeyName()
+    {
+        return 'tag_name';
+    }
+
     // postsテーブルへの参照
     public function posts()
     {

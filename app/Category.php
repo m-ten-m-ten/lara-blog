@@ -11,6 +11,12 @@ class Category extends Model
         'category_name',
     ];
 
+    // モデルのルートキーの取得
+    public function getRouteKeyName()
+    {
+        return 'category_name';
+    }
+
     // postsテーブルへの参照
     public function posts()
     {

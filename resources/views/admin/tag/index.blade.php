@@ -26,10 +26,10 @@
       @foreach ($tags as $tag)
       <tr>
         <td><input type="checkbox" name="checkedIds[]" value="{{ $tag->id }}"></td>
-        <td><a class="text-link" href="{{ route('admin.tag.edit', $tag->id)}}">{{ $tag->tag_title }}</a></td>
+        <td><a class="text-link" href="{{ route('admin.tag.edit', $tag->tag_name)}}">{{ $tag->tag_title }}</a></td>
         <td>{{ $tag->tag_name }}</td>
         <td class="nowrap">
-          <a class="text-link" href="{{ route('admin.tag.edit', $tag->id)}}">編集</a>
+          <a class="text-link" href="{{ route('admin.tag.edit', $tag->tag_name)}}">編集</a>
           <span class="overTablet">|</span>
           <br class="forTablet">
           <button class="text-link" type="submit" name="deleteId" value="{{ $tag->id }}">削除</button>

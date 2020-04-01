@@ -92193,6 +92193,71 @@ var AdminIndex = /*#__PURE__*/function (_App) {
 
 /***/ }),
 
+/***/ "./resources/js/action/AdminPageCreate.js":
+/*!************************************************!*\
+  !*** ./resources/js/action/AdminPageCreate.js ***!
+  \************************************************/
+/*! exports provided: AdminPageCreate */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AdminPageCreate", function() { return AdminPageCreate; });
+/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./App */ "./resources/js/action/App.js");
+/* harmony import */ var _modules_Tinymce__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modules/Tinymce */ "./resources/js/modules/Tinymce.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
+
+function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
+
+function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var AdminPageCreate = /*#__PURE__*/function (_App) {
+  _inherits(AdminPageCreate, _App);
+
+  var _super = _createSuper(AdminPageCreate);
+
+  function AdminPageCreate() {
+    _classCallCheck(this, AdminPageCreate);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(AdminPageCreate, [{
+    key: "ready",
+    value: function ready() {
+      _get(_getPrototypeOf(AdminPageCreate.prototype), "ready", this).call(this);
+
+      new _modules_Tinymce__WEBPACK_IMPORTED_MODULE_1__["Tinymce"]();
+    }
+  }]);
+
+  return AdminPageCreate;
+}(_App__WEBPACK_IMPORTED_MODULE_0__["App"]);
+
+/***/ }),
+
 /***/ "./resources/js/action/AdminPostCreate.js":
 /*!************************************************!*\
   !*** ./resources/js/action/AdminPostCreate.js ***!
@@ -92207,6 +92272,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_Modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modules/Modal */ "./resources/js/modules/Modal.js");
 /* harmony import */ var _modules_AjaxCategory__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../modules/AjaxCategory */ "./resources/js/modules/AjaxCategory.js");
 /* harmony import */ var _modules_AjaxTag__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../modules/AjaxTag */ "./resources/js/modules/AjaxTag.js");
+/* harmony import */ var _modules_Tinymce__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../modules/Tinymce */ "./resources/js/modules/Tinymce.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -92238,26 +92304,6 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-__webpack_require__(/*! tinymce */ "./node_modules/tinymce/tinymce.js");
-
-__webpack_require__(/*! tinymce/themes/silver */ "./node_modules/tinymce/themes/silver/index.js");
-
-__webpack_require__(/*! tinymce/plugins/lists */ "./node_modules/tinymce/plugins/lists/index.js");
-
-__webpack_require__(/*! tinymce/plugins/link */ "./node_modules/tinymce/plugins/link/index.js");
-
-__webpack_require__(/*! tinymce/plugins/image */ "./node_modules/tinymce/plugins/image/index.js");
-
-__webpack_require__(/*! tinymce/plugins/code */ "./node_modules/tinymce/plugins/code/index.js");
-
-__webpack_require__(/*! tinymce/plugins/fullscreen */ "./node_modules/tinymce/plugins/fullscreen/index.js");
-
-__webpack_require__(/*! tinymce/plugins/media */ "./node_modules/tinymce/plugins/media/index.js");
-
-__webpack_require__(/*! tinymce/plugins/table */ "./node_modules/tinymce/plugins/table/index.js");
-
-__webpack_require__(/*! tinymce-i18n/langs/ja */ "./node_modules/tinymce-i18n/langs/ja.js");
-
 var AdminPostCreate = /*#__PURE__*/function (_App) {
   _inherits(AdminPostCreate, _App);
 
@@ -92279,26 +92325,7 @@ var AdminPostCreate = /*#__PURE__*/function (_App) {
       });
       new _modules_AjaxCategory__WEBPACK_IMPORTED_MODULE_2__["AjaxCategory"]();
       new _modules_AjaxTag__WEBPACK_IMPORTED_MODULE_3__["AjaxTag"]();
-      tinymce.init({
-        selector: "#post_content",
-        //これが一番上じゃないとだめ。
-        body_class: "article__body",
-        //エディターのbodyに付与したいclass。（スタイル適用のため）
-        content_css: "/style/style.css",
-        //publicのスタイルシートを指定。
-        content_style: "body {margin: 15px;}",
-        //指定したクラスの親に全体の余白系を指定しているなら、エディターのbodyに指定。
-        language: "ja",
-        plugins: "table lists link image fullscreen media code",
-        menubar: "false",
-        toolbar: ['undo redo | code | blockquote | bold | styleselect | forecolor backcolor | fontsizeselect', 'numlist bullist | table | link | image | media | removeformat | fullscreen'],
-        fontsize_formats: '10px 12px 14px 16px 18px 20px 24px 34px',
-        branding: false,
-        image_list: "/admin/post/read_image_api",
-        //イメージのリストをJSONで出力。postContrller@readImage参照。
-        relative_urls: false // 相対パスに変換されるのを防ぐ
-
-      });
+      new _modules_Tinymce__WEBPACK_IMPORTED_MODULE_4__["Tinymce"]();
     }
   }]);
 
@@ -92345,6 +92372,77 @@ var App = /*#__PURE__*/function () {
 
   return App;
 }();
+
+/***/ }),
+
+/***/ "./resources/js/action/Page.js":
+/*!*************************************!*\
+  !*** ./resources/js/action/Page.js ***!
+  \*************************************/
+/*! exports provided: Page */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Page", function() { return Page; });
+/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./App */ "./resources/js/action/App.js");
+/* harmony import */ var _modules_fixSidebar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modules/fixSidebar */ "./resources/js/modules/fixSidebar.js");
+/* harmony import */ var _modules_highlight__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../modules/highlight */ "./resources/js/modules/highlight.js");
+/* harmony import */ var _modules_Toc__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../modules/Toc */ "./resources/js/modules/Toc.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
+
+function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
+
+function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+var Page = /*#__PURE__*/function (_App) {
+  _inherits(Page, _App);
+
+  var _super = _createSuper(Page);
+
+  function Page() {
+    _classCallCheck(this, Page);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(Page, [{
+    key: "ready",
+    value: function ready() {
+      _get(_getPrototypeOf(Page.prototype), "ready", this).call(this);
+
+      Object(_modules_highlight__WEBPACK_IMPORTED_MODULE_2__["highlight"])();
+      new _modules_Toc__WEBPACK_IMPORTED_MODULE_3__["Toc"]('.page__body', '.toc__body');
+      Object(_modules_fixSidebar__WEBPACK_IMPORTED_MODULE_1__["fixSidebar"])();
+    }
+  }]);
+
+  return Page;
+}(_App__WEBPACK_IMPORTED_MODULE_0__["App"]);
 
 /***/ }),
 
@@ -92495,10 +92593,14 @@ var UserPaymentCreate = /*#__PURE__*/function (_App) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _action_App__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./action/App */ "./resources/js/action/App.js");
 /* harmony import */ var _action_Post__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./action/Post */ "./resources/js/action/Post.js");
-/* harmony import */ var _action_AdminIndex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./action/AdminIndex */ "./resources/js/action/AdminIndex.js");
-/* harmony import */ var _action_AdminPostCreate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./action/AdminPostCreate */ "./resources/js/action/AdminPostCreate.js");
-/* harmony import */ var _action_UserPaymentCreate__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./action/UserPaymentCreate */ "./resources/js/action/UserPaymentCreate.js");
+/* harmony import */ var _action_Page__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./action/Page */ "./resources/js/action/Page.js");
+/* harmony import */ var _action_AdminIndex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./action/AdminIndex */ "./resources/js/action/AdminIndex.js");
+/* harmony import */ var _action_AdminPostCreate__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./action/AdminPostCreate */ "./resources/js/action/AdminPostCreate.js");
+/* harmony import */ var _action_AdminPageCreate__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./action/AdminPageCreate */ "./resources/js/action/AdminPageCreate.js");
+/* harmony import */ var _action_UserPaymentCreate__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./action/UserPaymentCreate */ "./resources/js/action/UserPaymentCreate.js");
 window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+
+
 
 
 
@@ -92507,9 +92609,11 @@ window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jqu
 var app = new _action_App__WEBPACK_IMPORTED_MODULE_0__["App"]();
 var routes = {
   'post': new _action_Post__WEBPACK_IMPORTED_MODULE_1__["Post"](),
-  'adminIndex': new _action_AdminIndex__WEBPACK_IMPORTED_MODULE_2__["AdminIndex"](),
-  'adminPostCreate': new _action_AdminPostCreate__WEBPACK_IMPORTED_MODULE_3__["AdminPostCreate"](),
-  'userPaymentCreate': new _action_UserPaymentCreate__WEBPACK_IMPORTED_MODULE_4__["UserPaymentCreate"]()
+  'page': new _action_Page__WEBPACK_IMPORTED_MODULE_2__["Page"](),
+  'adminIndex': new _action_AdminIndex__WEBPACK_IMPORTED_MODULE_3__["AdminIndex"](),
+  'adminPostCreate': new _action_AdminPostCreate__WEBPACK_IMPORTED_MODULE_4__["AdminPostCreate"](),
+  'adminPageCreate': new _action_AdminPageCreate__WEBPACK_IMPORTED_MODULE_5__["AdminPageCreate"](),
+  'userPaymentCreate': new _action_UserPaymentCreate__WEBPACK_IMPORTED_MODULE_6__["UserPaymentCreate"]()
 };
 
 var route = function route(path) {
@@ -93016,6 +93120,65 @@ var Payment = /*#__PURE__*/function () {
 
   return Payment;
 }();
+
+/***/ }),
+
+/***/ "./resources/js/modules/Tinymce.js":
+/*!*****************************************!*\
+  !*** ./resources/js/modules/Tinymce.js ***!
+  \*****************************************/
+/*! exports provided: Tinymce */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Tinymce", function() { return Tinymce; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+__webpack_require__(/*! tinymce */ "./node_modules/tinymce/tinymce.js");
+
+__webpack_require__(/*! tinymce/themes/silver */ "./node_modules/tinymce/themes/silver/index.js");
+
+__webpack_require__(/*! tinymce/plugins/lists */ "./node_modules/tinymce/plugins/lists/index.js");
+
+__webpack_require__(/*! tinymce/plugins/link */ "./node_modules/tinymce/plugins/link/index.js");
+
+__webpack_require__(/*! tinymce/plugins/image */ "./node_modules/tinymce/plugins/image/index.js");
+
+__webpack_require__(/*! tinymce/plugins/code */ "./node_modules/tinymce/plugins/code/index.js");
+
+__webpack_require__(/*! tinymce/plugins/fullscreen */ "./node_modules/tinymce/plugins/fullscreen/index.js");
+
+__webpack_require__(/*! tinymce/plugins/media */ "./node_modules/tinymce/plugins/media/index.js");
+
+__webpack_require__(/*! tinymce/plugins/table */ "./node_modules/tinymce/plugins/table/index.js");
+
+__webpack_require__(/*! tinymce-i18n/langs/ja */ "./node_modules/tinymce-i18n/langs/ja.js");
+
+var Tinymce = function Tinymce() {
+  _classCallCheck(this, Tinymce);
+
+  tinymce.init({
+    selector: "#tinymce_content",
+    //これが一番上じゃないとだめ。
+    body_class: "article__body",
+    //エディターのbodyに付与したいclass。（スタイル適用のため）
+    content_css: "/style/style.css",
+    //publicのスタイルシートを指定。
+    content_style: "body {margin: 15px;}",
+    //指定したクラスの親に全体の余白系を指定しているなら、エディターのbodyに指定。
+    language: "ja",
+    plugins: "table lists link image fullscreen media code",
+    menubar: "false",
+    toolbar: ['undo redo | code | blockquote | bold | styleselect | forecolor backcolor | fontsizeselect', 'numlist bullist | table | link | image | media | removeformat | fullscreen'],
+    fontsize_formats: '10px 12px 14px 16px 18px 20px 24px 34px',
+    branding: false,
+    image_list: "/admin/post/read_image_api",
+    //イメージのリストをJSONで出力。postContrller@readImage参照。
+    relative_urls: false // 相対パスに変換されるのを防ぐ
+
+  });
+};
 
 /***/ }),
 

@@ -18,10 +18,12 @@
 <div class="admin__index-menu">
 
   <div class="admin__index-menu-section">
-    <h2>ブログ</h2>
+    <h2>記事・固定ページ</h2>
     <ul>
       <li><a class="text-link" href="{{ route('admin.post.index') }}">投稿一覧</a></li>
       <li><a class="text-link" href="{{ route('admin.post.create') }}">投稿新規作成</a></li>
+      <li><a class="text-link" href="{{ route('admin.page.index') }}">固定ページ一覧</a></li>
+      <li><a class="text-link" href="{{ route('admin.page.create') }}">固定ページ新規作成</a></li>
       <li><a class="text-link" href="{{ route('admin.image.index') }}">画像一覧</a></li>
       <li><a class="text-link" href="{{ route('admin.image.create') }}">画像追加</a></li>
       <li><a class="text-link" href="{{ route('admin.category.index') }}">カテゴリー一覧</a></li>
@@ -32,18 +34,18 @@
   </div>
 
   <div class="admin__index-menu-section">
+
     <h2>ユーザー</h2>
     <ul>
       <li><a class="text-link" href="{{ route('admin.user.index') }}">ユーザー一覧</a></li>
     </ul>
-  </div>
 
-  <div class="admin__index-menu-section">
     <h2>メッセージ</h2>
     <ul>
       <li><a class="text-link" href="{{ route('admin.message.index') }}">メッセージ一覧</a></li>
       <li><a class="text-link" href="{{ route('admin.message.create') }}">メッセージ新規作成</a></li>
     </ul>
+
   </div>
 </div>
 

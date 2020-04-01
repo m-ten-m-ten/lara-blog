@@ -1,7 +1,7 @@
 <ul class="postList">
   @foreach ( $posts as $post )
     <li class="postList__item">
-      <a href="/{{ $post->id }}" class="postList__link">
+      <a href="/{{ $post->post_name }}" class="postList__link">
         <figure class="postList__figure">
           <img class="postList__img" src="{{$post->thumbnail?: ''}}"  loading="lazy" alt="">
         </figure>
@@ -17,10 +17,10 @@
       </a>
       <div class="postList__footer">
         @if ($post->category)
-          <a class="postList__attr" href="/category/{{ $post->category->id }}">{{ $post->category->category_title }}</a>
+          <a class="postList__attr" href="/category/{{ $post->category->category_name }}">{{ $post->category->category_title }}</a>
         @endif
         @foreach ($post->tags as $tag)
-          <a class="postList__attr" href="/tag/{{ $tag->id }}">{{ $tag->tag_title }}</a>
+          <a class="postList__attr" href="/tag/{{ $tag->tag_name }}">{{ $tag->tag_title }}</a>
         @endforeach
       </div>
     </li>

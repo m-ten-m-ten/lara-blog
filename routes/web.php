@@ -37,25 +37,40 @@ Route::prefix('admin')->namespace('Admin')->as('admin.')->group(function (): voi
         Route::get('', 'IndexController@index')->name('index');
 
         // メッセージ管理
-        Route::get('message', 'MessageController@index')->name('message.index');
-        Route::get('message/create', 'MessageController@create')->name('message.create');
-        Route::post('message/create', 'MessageController@store');
-        Route::get('message/edit/{message}', 'MessageController@edit')->name('message.edit');
-        Route::post('message/edit/{message}', 'MessageController@update');
-        Route::delete('message/delete', 'MessageController@delete');
+        Route::prefix('message')->as('message.')->group(function (): void {
+            Route::get('', 'MessageController@index')->name('index');
+            Route::get('create', 'MessageController@create')->name('create');
+            Route::post('create', 'MessageController@store');
+            Route::get('edit/{message}', 'MessageController@edit')->name('edit');
+            Route::post('edit/{message}', 'MessageController@update');
+            Route::delete('delete', 'MessageController@delete');
+        });
 
         // ユーザー管理
         Route::get('user', 'UserController@index')->name('user.index');
         Route::delete('user/delete', 'UserController@delete');
 
         // 記事管理
-        Route::get('post', 'PostController@index')->name('post.index');
-        Route::get('post/create', 'PostController@create')->name('post.create');
-        Route::post('post/create', 'PostController@store');
-        Route::delete('post/delete', 'PostController@delete');
-        Route::get('post/edit/{post}', 'PostController@edit')->name('post.edit');
-        Route::post('post/edit/{post}', 'PostController@update');
-        Route::get('post/read_image_api', 'PostController@readImage');
+        Route::prefix('post')->as('post.')->group(function (): void {
+            Route::get('', 'PostController@index')->name('index');
+            Route::get('create', 'PostController@create')->name('create');
+            Route::post('create', 'PostController@store');
+            Route::delete('delete', 'PostController@delete');
+            Route::get('edit/{post}', 'PostController@edit')->name('edit');
+            Route::post('edit/{post}', 'PostController@update');
+            Route::get('read_image_api', 'PostController@readImage');
+        });
+
+        // 固定ページ管理
+        Route::prefix('page')->as('page.')->group(function (): void {
+            Route::get('', 'PageController@index')->name('index');
+            Route::get('create', 'PageController@create')->name('create');
+            Route::post('create', 'PageController@store');
+            Route::delete('delete', 'PageController@delete');
+            Route::get('edit/{page}', 'PageController@edit')->name('edit');
+            Route::post('edit/{page}', 'PageController@update');
+            Route::get('read_image_api', 'PageController@readImage');
+        });
 
         // 画像管理
         Route::get('image', 'ImageController@index')->name('image.index');
@@ -136,4 +151,5 @@ Route::prefix('user')->namespace('User')->as('user.')->group(function (): void {
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/category/{category}', 'HomeController@category')->name('category');
 Route::get('/tag/{tag}', 'HomeController@tag')->name('tag');
-Route::get('{post}', 'HomeController@show')->name('post');
+Route::get('/page/{page}', 'HomeController@page')->name('page');
+Route::get('{post}', 'HomeController@post')->name('post');

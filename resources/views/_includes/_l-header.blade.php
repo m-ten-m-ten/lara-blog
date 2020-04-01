@@ -22,7 +22,7 @@
             <div class="navbar__menu-child accordion-body l-container-pcFull">
               <div class="navbar__menu-child-inner l-container ">
                 @foreach ($categories as $category)
-                  <a href="/category/{{ $category->id }}">{{ $category->category_title}}({{ $category->posts_count }})</a>
+                  <a href="/category/{{ $category->category_name }}">{{ $category->category_title}}({{ $category->posts_count }})</a>
                 @endforeach
               </div>
             </div>
@@ -35,7 +35,7 @@
             <div class="navbar__menu-child accordion-body l-container-pcFull">
               <div class="navbar__menu-child-inner l-container">
                 @foreach ($tags as $tag)
-                  <a href="/tag/{{ $tag->id }}">{{ $tag->tag_title}}({{ $tag->posts_count }})</a>
+                  <a href="/tag/{{ $tag->tag_name }}">{{ $tag->tag_title}}({{ $tag->posts_count }})</a>
                 @endforeach
               </div>
             </div>

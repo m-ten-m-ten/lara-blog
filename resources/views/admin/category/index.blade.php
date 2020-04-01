@@ -27,10 +27,10 @@
         @foreach ($categories as $category)
         <tr>
           <td><input type="checkbox" name="checkedIds[]" value="{{ $category->id }}"></td>
-          <td><a class="text-link" href="{{ route('admin.category.edit', $category->id)}}">{{ $category->category_title }}</a></td>
+          <td><a class="text-link" href="{{ route('admin.category.edit', $category->category_name)}}">{{ $category->category_title }}</a></td>
           <td>{{ $category->category_name }}</td>
           <td class="nowrap">
-            <a class="text-link" href="{{ route('admin.category.edit', $category->id)}}">編集</a>
+            <a class="text-link" href="{{ route('admin.category.edit', $category->category_name)}}">編集</a>
             <span class="overTablet">|</span>
             <br class="forTablet">
             <button class="text-link" type="submit" name="deleteId" value="{{ $category->id }}">削除</button>
