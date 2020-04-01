@@ -4,7 +4,7 @@
 ・カテゴリー別記事一覧
 ・タグ別記事一覧
 --}}
-@if (Route::currentRouteName() === 'post' || 'category' || 'tag')
+@if (Route::currentRouteName() === 'post' || Route::currentRouteName() === 'category' || Route::currentRouteName() === 'tag')
   <div class="breadcrumb">
     <ul>
       <li><a class="text-link" href="{{ route('home') }}">HOME</a></li>
