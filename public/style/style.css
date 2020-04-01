@@ -6779,10 +6779,6 @@ button {
   font-size: 1.2rem;
 }
 
-.accordion-trigger {
-  cursor: pointer;
-}
-
 .l-container,
 .l-container--pcFull,
 .l-container--narrow {
@@ -7911,7 +7907,6 @@ button {
   justify-content: center;
   align-items: center;
   font-size: 2rem;
-  cursor: pointer;
 }
 
 .toc .toc__title.accordion-trigger:after {
@@ -7956,6 +7951,10 @@ button {
 
 .toc .toc-h4 {
   margin-left: 2.5rem;
+}
+
+.accordion-trigger {
+  cursor: pointer;
 }
 
 .pagination ul {
