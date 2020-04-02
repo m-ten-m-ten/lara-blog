@@ -6608,6 +6608,21 @@ small {
   width: 100%;
 }
 
+.clear-fix:after {
+  display: block;
+  content: "";
+  clear: both;
+}
+
+.float-left {
+  display: block;
+  float: left;
+}
+
+.circle {
+  border-radius: 50%;
+}
+
 .inline-block {
   display: inline-block;
 }
