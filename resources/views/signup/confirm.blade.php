@@ -6,15 +6,15 @@
 
   <ul>
     <li class="form__row">
-      <label class="form__title">{{__('message.name')}}</label>
+      <label class="form__title">名前</label>
       <div class="form__confirm">{{ $user->name }}</div>
     </li>
     <li class="form__row">
-      <label class="form__title">{{__('message.email')}}</label>
+      <label class="form__title">メールアドレス</label>
       <div class="form__confirm">{{ $user->email }}</div>
     </li>
     <li class="form__row">
-      <label class="form__title">{{__('message.password')}}</label>
+      <label class="form__title">パスワード</label>
       <div class="form__confirm">(表示されません)</div>
     </li>
   </ul>

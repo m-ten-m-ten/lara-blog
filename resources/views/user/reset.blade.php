@@ -7,7 +7,7 @@
   <input type="hidden" name="token" value="{{ $token }}">
   <ul>
     <li class="form__row">
-      <label class="form__title">e-mail</label>
+      <label class="form__title">メールアドレス</label>
       <input type="email" class="{{$errors->has('email') ? 'form__input-error' : 'form__input' }}" name="email" value="{{ $email }}" required autocomplete="email">
       @error('email')<span class="error-text">{{ $message }}</span>@enderror
     </li>
