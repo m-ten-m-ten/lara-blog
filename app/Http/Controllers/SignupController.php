@@ -28,7 +28,7 @@ class SignupController extends Controller
     /**
      * 検証
      */
-    public function checkData(Request $request)
+    public function checkInput(Request $request)
     {
         $validatedData = $request->validate([
             'name'     => 'required|max:255',

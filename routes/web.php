@@ -27,7 +27,7 @@ Route::prefix('admin')->namespace('Admin')->as('admin.')->group(function (): voi
         Route::post('reset', 'ResetsPasswordController@reset')->name('update');
         Route::get('reset/{token}', 'ResetsPasswordController@showResetForm')->name('reset');
         Route::get('signup', 'SignupController@showRegistrationForm')->name('signup.show');
-        Route::post('signup', 'SignupController@checkData');
+        Route::post('signup', 'SignupController@checkInput');
         Route::get('signup/confirm', 'SignupController@confirm')->name('signup.confirm');
         Route::post('signup/confirm', 'SignupController@store');
     });
@@ -101,7 +101,7 @@ Route::prefix('admin')->namespace('Admin')->as('admin.')->group(function (): voi
 // ユーザー登録
 Route::prefix('signup')->as('signup.')->group(function (): void {
     Route::get('', 'SignupController@show')->name('show');
-    Route::post('', 'SignupController@checkData');
+    Route::post('', 'SignupController@checkInput');
     Route::get('confirm', 'SignupController@confirm')->name('confirm');
     Route::post('confirm', 'SignupController@store');
     Route::get('thanks', 'SignupController@thanks')->name('thanks');
