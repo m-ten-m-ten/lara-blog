@@ -7,7 +7,7 @@
   <ul>
     <li class="form__row">
       <label class="form__title">メールアドレス</label>
-      <input type="email" class="{{$errors->has('email') ? 'form__input-error' : 'form__input' }}" name="email" value="{{ $admin->email }}" required autocomplete="email">
+      <input type="email" class="{{$errors->has('email') ? 'form__input-error' : 'form__input' }}" name="email" value="{{ old('name', $admin->email) }}" required autocomplete="email">
       @error('email')<span class="error-text">{{ $message }}</span>@enderror
     </li>
     <li class="form__row">
