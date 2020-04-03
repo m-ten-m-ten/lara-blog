@@ -7687,6 +7687,11 @@ button {
   }
 }
 
+.form__note {
+  display: block;
+  font-size: 1.4rem;
+}
+
 .form__input,
 .form__input-error,
 .form__input-stripe,

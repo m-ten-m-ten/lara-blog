@@ -152,4 +152,11 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/category/{category}', 'HomeController@category')->name('category');
 Route::get('/tag/{tag}', 'HomeController@tag')->name('tag');
 Route::get('/page/{page}', 'HomeController@page')->name('page');
+Route::prefix('contact')->namespace('Contact')->as('contact.')->group(function (): void {
+    Route::get('/', 'ContactController@show')->name('show');
+    Route::post('/', 'ContactController@checkInput');
+    Route::get('/confirm', 'ContactController@confirm')->name('confirm');
+    Route::post('/confirm', 'ContactController@send');
+    Route::get('/thanks', 'ContactController@thanks')->name('thanks');
+    });
 Route::get('{post}', 'HomeController@post')->name('post');
