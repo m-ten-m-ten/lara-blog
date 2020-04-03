@@ -158,5 +158,5 @@ Route::prefix('contact')->namespace('Contact')->as('contact.')->group(function (
     Route::get('/confirm', 'ContactController@confirm')->name('confirm');
     Route::post('/confirm', 'ContactController@send');
     Route::get('/thanks', 'ContactController@thanks')->name('thanks');
-    });
+});
 Route::get('{post}', 'HomeController@post')->name('post');
