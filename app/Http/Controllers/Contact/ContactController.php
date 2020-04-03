@@ -52,7 +52,8 @@ class ContactController extends Controller
     }
 
     /**
-     * 管理者へお問い合わせ内容の送信
+     * 管理者及びメールアドレスの入力があれば、カスタマーにもお問い合わせ内容を送信。
+     * return お問い合わせ完了画面の表示
      */
     public function send()
     {
@@ -70,14 +71,7 @@ class ContactController extends Controller
 
         session()->forget($this->sessionKey);
 
-        return redirect(route('contact.thanks'));
-    }
-
-    /**
-     * お問い合わせ完了画面
-     */
-    public function thanks()
-    {
         return view('contact.thanks');
     }
+
 }
