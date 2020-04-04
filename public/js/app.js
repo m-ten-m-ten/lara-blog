@@ -93331,16 +93331,22 @@ __webpack_require__.r(__webpack_exports__);
  * サイドバーで追従要素(#sidebar__fixed)の制御
  */
 function fixSidebar() {
-  var breakPoint = 1130; //sidebar出現ブレークポイント
+  var sidebar = $('#sidebar'),
+      sticked = $('#sidebar__fixed'),
+      main = $('#main'); // サイドバー表示時に各値をセットするようにするため、ここでは宣言のみ。
 
-  if ($(window).width() > breakPoint) {
-    var sidebar = $('#sidebar'),
-        sticked = $('#sidebar__fixed'),
-        main = $('#main'),
-        sidebarTop = sidebar.offset().top,
-        stickedOriginalTop = sticked.offset().top,
-        stickedHeight = sticked.height();
-    $(window).on('scroll resize', function () {
+  var sidebarTop,
+      stickedOriginalTop,
+      stickedHeight,
+      notSetValue = true; //サイドバーが表示されて、各値がセットされたらfalseとする。
+
+  $(window).on('load scroll resize', function () {
+    if (sidebar.css('display') != 'none') {
+      if (notSetValue) {
+        sidebarTop = sidebar.offset().top, stickedOriginalTop = sticked.offset().top, stickedHeight = sticked.height();
+        notSetValue = false;
+      }
+
       var scrollTop = $(window).scrollTop(),
           contentBottom = main.offset().top + main.height();
 
@@ -93359,8 +93365,8 @@ function fixSidebar() {
       } else {
         sticked.css('position', 'static');
       }
-    });
-  }
+    }
+  });
 }
 
 /***/ }),
