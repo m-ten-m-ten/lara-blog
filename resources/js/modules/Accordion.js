@@ -8,6 +8,10 @@ export class Accordion {
 
   bindEvent(){
     this.$accordionTrigger.on("click", $.proxy(this.slideMenu, this));
+    $(window).on("resize", () => {
+      this.$accordionBody.removeAttr("style");
+      this.$accordionTrigger.removeClass('is-open');
+    });
   }
 
   slideMenu(){

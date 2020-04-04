@@ -92658,7 +92658,14 @@ var Accordion = /*#__PURE__*/function () {
   _createClass(Accordion, [{
     key: "bindEvent",
     value: function bindEvent() {
+      var _this = this;
+
       this.$accordionTrigger.on("click", $.proxy(this.slideMenu, this));
+      $(window).on("resize", function () {
+        _this.$accordionBody.removeAttr("style");
+
+        _this.$accordionTrigger.removeClass('is-open');
+      });
     }
   }, {
     key: "slideMenu",
