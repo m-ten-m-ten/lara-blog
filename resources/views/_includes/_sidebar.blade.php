@@ -1,5 +1,5 @@
   <div id="sidebar" class="l-show__side">
-    {{-- Table of contents --}}
+    {{-- Table of contents サイドバーのはアコーディオン化しない --}}
     <div class="m-show-side-section">
       <div class="toc">
         <div class="toc__title">Table of Contents</div>

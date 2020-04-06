@@ -44,10 +44,7 @@
 
       <hr class="overPC">
 
-      <div class="toc accordion-wrapper">
-        <div class="toc__title accordion-trigger">Table of Contents</div>
-        <div class="toc__body accordion-body"></div>
-      </div>
+      @include('_includes._toc')
 
       {{-- 有料会員用の記事は管理者及び有料会員のみ本文を表示。
         無料会員には支払い情報ページリンク、非会員には会員登録ページリンクを表示。 --}}
