@@ -23,7 +23,7 @@
 
 {{-- @php
   \Debugbar::info(Request::session()->all());
-@endphp
- --}}
+@endphp --}}
+
 </body>
 </html>

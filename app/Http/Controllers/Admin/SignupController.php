@@ -19,10 +19,6 @@ class SignupController extends Controller
      */
     public function showRegistrationForm(Admin $admin)
     {
-        if (Admin::whereNotNull('email_verified_at')->count() >= 1) {
-            return redirect(route('admin.login'))->with('status', '管理者はすでに登録済みです。');
-        }
-
         if ($form = old() ?: session($this->sessionKey)) {
             $admin->fill($form);
         }
