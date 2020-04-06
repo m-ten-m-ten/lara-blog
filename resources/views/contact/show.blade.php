@@ -22,7 +22,7 @@
     </li>
     <li class="form__row">
       <label class="form__title">お問い合わせ内容</label>
-      <textarea class="{{$errors->has('body') ? 'form__input-error' : 'form__input' }}" name="body" type="text" rows="10" required maxlength="1000">@if(old('body')){{ old('body') }}@elseif($contact){{ $contact['body'] }}@endif</textarea>
+      <textarea class="{{$errors->has('body') ? 'form__input-error' : 'form__input' }}" name="body" type="text" rows="6" required maxlength="1000">@if(old('body')){{ old('body') }}@elseif($contact){{ $contact['body'] }}@endif</textarea>
       @error('body')<span class="error-text">{{ $message }}</span>@enderror
     </li>
   </ul>
