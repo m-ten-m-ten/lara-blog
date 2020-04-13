@@ -9,13 +9,13 @@
 @if($defaultCard)
 
   @if($user->status == 0)
-    <p>1,000円/月で有料会員となり、全ての記事を購読できるようになります。</p>
+    <label>1,000円/月で有料会員となり、全ての記事を購読できるようになります。</label>
     <form action="{{ route('user.subscribe.create') }}" method="POST">
       @csrf
       <button type="submit" class="button">有料会員になる</button>
     </form>
   @else
-    <p>下記ボタンを押すことで、有料会員を解約することができます。</p>
+    <label>下記ボタンを押すことで、有料会員を解約することができます。</label>
     <form action="{{ route('user.subscribe.delete') }}" method="POST">
       @csrf
       @method('DELETE')
