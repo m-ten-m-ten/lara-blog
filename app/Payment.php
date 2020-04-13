@@ -14,7 +14,7 @@ class Payment extends Model
      */
     public static function saveCustomer(String $token, User $user): void
     {
-        \Stripe\Stripe::setApiKey(\Config::get('payment.stripe_secret_key'));
+        \Stripe\Stripe::setApiKey(config('services.stripe.secret'));
 
         if ($user->stripe_id) { //顧客登録済みの場合
             self::deleteCard($user); //既存のカードがあれば削除
@@ -39,7 +39,7 @@ class Payment extends Model
      */
     protected static function getDefaultcard(User $user)
     {
-        \Stripe\Stripe::setApiKey(\Config::get('payment.stripe_secret_key'));
+        \Stripe\Stripe::setApiKey(config('services.stripe.secret'));
 
         $default_card = null;
 
@@ -68,7 +68,7 @@ class Payment extends Model
      */
     protected static function deleteCard(User $user): void
     {
-        \Stripe\Stripe::setApiKey(\Config::get('payment.stripe_secret_key'));
+        \Stripe\Stripe::setApiKey(config('services.stripe.secret'));
         $customer = \Stripe\Customer::retrieve($user->stripe_id);
 
         // card情報が存在していれば削除

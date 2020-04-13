@@ -19,7 +19,7 @@
   <li>カード名義：ご自由にご入力下さい。</li>
 </ul>
 
-<form id="form_payment" class="mb10" method="POST">
+<form id="form_payment" class="mb10" method="POST" data-key="{{ $key }}">
   @csrf
 
 <ul>

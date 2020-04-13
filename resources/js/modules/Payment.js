@@ -1,8 +1,8 @@
 export class Payment {
 
     constructor(){
-        this.stripe = window.Stripe('pk_test_iec7brwPyq9swQpeNe9jtz9z00SFvgURSv');
         this.formPayment = $('#form_payment');
+        this.stripe = window.Stripe(this.formPayment.data('key'));
         this.setStripeElements();
         this.bindEvent();
     }

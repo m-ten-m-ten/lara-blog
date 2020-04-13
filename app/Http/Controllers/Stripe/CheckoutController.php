@@ -13,7 +13,7 @@ class CheckoutController extends Controller
     public function charge(Request $request)
     {
         try {
-            Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+            Stripe::setApiKey(config('services.stripe.key'));
 
             $customer = Customer::create([
                 'email'   => $request->stripeEmail,

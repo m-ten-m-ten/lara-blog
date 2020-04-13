@@ -11,7 +11,7 @@ class CheckoutController extends Controller
     public function subscribe_process(Request $request)
     {
         try {
-            Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+            Stripe::setApiKey(config('services.key'));
 
             $user = $request->user();
             $user->newSubscription('default', 'plan_GbSICtC7pUiZlD')->create($request->stripeToken);

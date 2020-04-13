@@ -27,7 +27,8 @@ class PaymentController extends Controller
      */
     public function create()
     {
-        return view('user.payment.create');
+        $key = config('services.stripe.key');
+        return view('user.payment.create', \compact('key'));
     }
 
     /**

@@ -14,13 +14,13 @@ class SubscribeController extends Controller
      */
     public function create(Request $request)
     {
-        \Stripe\Stripe::setApiKey(\Config::get('payment.stripe_secret_key'));
+        \Stripe\Stripe::setApiKey(config('services.stripe.secret'));
         $user = $request->user();
 
         try {
             $subscription = \Stripe\Subscription::create([
                 'customer' => $user->stripe_id,
-                'items'    => [['plan' => 'plan_GbSICtC7pUiZlD']],
+                'items'    => [['plan' => config('services.stripe.plan')]],
             ]);
         } catch (\Stripe\Exception\CardException $e) {
             $subscriptionError = [
@@ -42,7 +42,7 @@ class SubscribeController extends Controller
      */
     public function delete(Request $request)
     {
-        \Stripe\Stripe::setApiKey(\Config::get('payment.stripe_secret_key'));
+        \Stripe\Stripe::setApiKey(config('services.stripe.secret'));
         $user = $request->user();
 
         try {
